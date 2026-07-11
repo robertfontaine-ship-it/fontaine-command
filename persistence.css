@@ -1,0 +1,1 @@
+.preference-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.preference-item{display:flex;align-items:center;gap:10px;cursor:default}.preference-item input{width:18px;height:18px}.btn.danger{background:#b91c1c;color:#fff}.btn.danger:hover{background:#991b1b}@media(max-width:700px){.preference-grid{grid-template-columns:1fr}}
