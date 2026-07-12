@@ -1,77 +1,59 @@
-const sem019=lessons.find(lesson=>lesson.id==="SEM-019");
-if(sem019){
-  Object.assign(sem019,{
-    status:"Ready to Build",
-    duration:"45–60 minutes",
+const semPackages={
+  "SEM-008":{
+    status:"Ready to Build",duration:"45–60 minutes",
     components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
-    overview:"Students examine how ethics, integrity, and company culture shape employee decisions, customer trust, brand reputation, and long-term success in sports and entertainment organizations.",
-    target:"I will analyze ethical decisions and explain how company culture affects employees, customers, and brand reputation in sports and entertainment marketing.",
-    success:"I will know I am successful when I can evaluate an SEM ethics scenario, justify a responsible response, and explain the effect on company culture with at least 80% accuracy.",
-    agenda:[
-      "Bell ringer: What would you do?",
-      "Mini lesson: ethics, integrity, and company culture",
-      "SEM ethics decision challenge",
-      "Company culture action plan",
-      "Exit ticket"
-    ],
-    bellRinger:"A venue employee notices a coworker giving free premium upgrades to friends while paying customers are told the section is sold out. Write the first action you would take and explain why.",
-    miniLesson:"Define ethics as standards used to judge right and wrong decisions, integrity as doing what is right even when no one is watching, and company culture as the shared values and behaviors that shape how employees work. Connect these ideas to ticketing, sponsorship disclosure, customer data, athlete or celebrity endorsements, workplace conduct, and truthful promotion. Emphasize that unethical shortcuts can create immediate gains but damage trust, employee morale, customer loyalty, and brand value.",
-    activity:"In teams, students rotate through four SEM ethics scenarios: misleading ticket fees, undisclosed influencer sponsorship, misuse of customer information, and preferential treatment for friends or VIPs. For each scenario, students identify the stakeholders, ethical problem, possible actions, likely consequences, and best response. Teams then create a five-point company-culture code for a fictional sports or entertainment organization and defend one policy to the class.",
-    exitTicket:"Choose one scenario from the lesson. State the ethical decision, identify one stakeholder affected, and explain how the decision would strengthen or weaken company culture.",
-    materials:[
-      "SEM ethics scenario cards",
-      "Decision-analysis organizer",
-      "Company-culture code template",
-      "Exit ticket"
-    ],
-    differentiation:[
-      "Provide an ethics vocabulary bank and stakeholder examples",
-      "Allow students to complete the scenario analysis independently or with a partner",
-      "Use sentence frames for claim, evidence, and consequence",
-      "Ask early finishers to write a manager response and employee-training recommendation"
-    ],
-    canvas:"⚖️ Review each SEM ethics scenario.\n🧠 Identify the stakeholders, ethical issue, possible choices, and likely consequences.\n🏢 Create a five-point company-culture code for your sports or entertainment organization.\n💬 Defend one policy using evidence from a scenario.\n📤 Submit the completed organizer and company-culture code in Canvas.\n🎯 Earn at least 80% mastery.",
-    standards:"8175 Workplace Readiness: integrity, work ethic, professionalism, decision-making, and interpersonal responsibility",
-    notes:"Source-backed build using the current SEM pacing guide, the 2025–2026 competency list, and Workplace Readiness expectations. A dedicated historical SEM-019 classroom resource was not found, so this package is newly authored and should receive a teacher reflection after first use.",
-    version:"Version 1 — Source-backed initial lesson package"
-  });
-}
+    overview:"Students identify the major businesses and career areas within sports, entertainment, and event marketing and explain why the industries are economically and culturally important.",
+    target:"I will identify major sports, entertainment, and event industry segments and explain how each creates value for customers and communities.",
+    success:"I will know I am successful when I can correctly classify industry examples and explain the value created by each segment with at least 80% accuracy.",
+    agenda:["Bell ringer: What counts as an SEM business?","SEM Industries slideshow and guided discussion","Industry picture examples activity","Class debrief","Exit ticket"],
+    bellRinger:"List five businesses connected to sports, entertainment, or events. For each business, identify what it sells and who the customer is.",
+    miniLesson:"Use the verified SEM Industries slideshow to introduce franchises, venues, media, advertising, security, sporting goods, recreation, hospitality, music, film, gaming, live events, and support services. Emphasize that SEM includes the entire customer experience and business ecosystem—not only teams, athletes, performers, or advertisements.",
+    activity:"Students complete the linked SEM Industries - Examples activity by finding and placing one real-world image for each industry category. Under each image, they identify the business, product or service, target customer, and one way the organization creates value.",
+    exitTicket:"Choose one SEM industry category that is often overlooked. Name a business in that category and explain why it is important to the overall sports, entertainment, or event experience.",
+    materials:["SEM Industries slideshow","SEM Industries - Examples activity","Internet access or approved image bank","Exit ticket"],
+    differentiation:["Provide a completed example and industry vocabulary bank","Allow students to use teacher-provided images","Pair students for classification support","Require early finishers to add a related career and marketing function"],
+    canvas:"🏟️ Review the SEM Industries slideshow.\n🔎 Find one real-world image for each assigned industry category.\n🧠 Identify the business, product or service, target customer, and value created.\n✅ Complete every category with accurate examples.\n📤 Submit the finished activity in Canvas.\n🎯 Earn at least 80% mastery.",
+    standards:"SEM 8175.044–046 — importance, development, and hospitality connections within sports, entertainment, and event industries",
+    notes:"Source-backed package using the verified SEM Industries slideshow and SEM Industries - Examples document.",version:"Version 1 — Source-backed SEM Industries introduction"
+  },
+  "SEM-009":{
+    status:"Ready to Build",duration:"45–60 minutes",
+    components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
+    overview:"Students compare sports, entertainment, and event industry sectors by examining products, customers, revenue sources, risks, and career pathways.",
+    target:"I will compare sports, entertainment, and event industry sectors using customers, products, revenue sources, and career opportunities.",
+    success:"I will know I am successful when I can complete an accurate sector comparison and defend two similarities or differences with at least 80% accuracy.",
+    agenda:["Bell ringer: Same industry or different?","Sector-comparison mini lesson","Industry comparison matrix","Career pathway connection","Exit ticket"],
+    bellRinger:"Compare an NFL game and a major music concert. Identify two business similarities and two differences.",
+    miniLesson:"Revisit the verified SEM Industries slideshow and organize examples into sports, entertainment, events, and cross-industry support services. Model comparison using product, target market, revenue, distribution, promotion, customer experience, operating risk, seasonality, and careers. Highlight overlap such as ticketing, sponsorship, media rights, concessions, security, merchandise, and hospitality.",
+    activity:"Student teams receive four organizations representing different SEM sectors. They complete a comparison matrix covering product or service, target customer, revenue sources, customer experience, major risks, required support businesses, and career opportunities. Teams then make a claim about which two sectors are most similar and defend it with evidence.",
+    exitTicket:"State one important similarity and one important difference between sports marketing and entertainment marketing. Explain why each matters to a marketer.",
+    materials:["SEM Industries slideshow","Industry organization cards","Sector comparison matrix","Career pathway reference","Exit ticket"],
+    differentiation:["Use color-coded comparison categories","Provide sentence frames for comparison claims","Allow oral defense instead of extended writing","Challenge early finishers to identify a hybrid organization that crosses sectors"],
+    canvas:"🎟️ Review the assigned sports, entertainment, and event organizations.\n📊 Complete the comparison matrix for products, customers, revenue, risks, and careers.\n💬 Make one evidence-based claim about which sectors are most similar.\n✅ Support your claim with at least two accurate details.\n📤 Submit the matrix and written claim in Canvas.\n🎯 Earn at least 80% mastery.",
+    standards:"SEM 8175.044–046 — importance, development, and hospitality connections within sports, entertainment, and event industries",
+    notes:"Source-backed authored package extending the verified SEM Industries slideshow into comparative analysis.",version:"Version 1 — Source-backed sector comparison"
+  },
+  "SEM-010":{
+    status:"Ready to Build",duration:"45–60 minutes",
+    components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
+    overview:"Students apply industry knowledge by analyzing an SEM business ecosystem and explaining how multiple organizations and marketing functions work together to deliver one customer experience.",
+    target:"I will analyze how businesses and marketing functions work together within a sports, entertainment, or event industry ecosystem.",
+    success:"I will know I am successful when I can map an SEM ecosystem, classify each business correctly, and explain at least three business connections with at least 80% accuracy.",
+    agenda:["Bell ringer: Who makes the event possible?","Business-ecosystem model","SEM ecosystem mapping challenge","Gallery walk and feedback","Exit ticket"],
+    bellRinger:"A sold-out arena concert begins at 8:00 p.m. List every type of business that may have contributed before the performer steps on stage.",
+    miniLesson:"Model an SEM ecosystem around one event. Start with the core property, then add venue, promoter, ticketing platform, media, sponsors, concessions, merchandise, transportation, security, hospitality, technology, insurance, and vendors. Connect each business to at least one marketing function: product, pricing, promotion, distribution, selling, financing, or marketing-information management.",
+    activity:"Teams select a sports event, concert, film release, esports tournament, festival, or similar experience. They create an ecosystem map with at least ten businesses or partners, classify each by industry category, connect each to a marketing function, and draw relationship arrows showing how value, money, information, or customers move through the system. Teams complete a gallery walk and revise one weak connection based on peer feedback.",
+    exitTicket:"Identify the three businesses in your ecosystem that are most essential. Explain what would happen to the customer experience if one were removed.",
+    materials:["SEM Industries slideshow","Large paper or digital mapping template","Business-category reference","Marketing-functions reference","Peer-feedback checklist"],
+    differentiation:["Provide a partially completed event ecosystem","Offer a list of possible partners for students needing support","Allow digital or paper mapping","Require advanced students to add revenue flows and one major operational risk"],
+    canvas:"🌐 Choose one sports, entertainment, or event experience.\n🏢 Map at least ten businesses or partners that make the experience possible.\n🏷️ Classify each business by industry category.\n📈 Connect each business to a marketing function and show how value moves through the ecosystem.\n🔁 Revise one connection after peer feedback.\n📤 Submit the completed ecosystem map in Canvas.\n🎯 Earn at least 80% mastery.",
+    standards:"SEM 8175.044–046 with application of the major marketing functions",
+    notes:"Source-backed authored application package using the verified SEM Industries resources and the MP1 marketing-functions sequence.",version:"Version 1 — Source-backed SEM ecosystem application"
+  }
+};
+Object.entries(semPackages).forEach(([id,content])=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,content);});
 
+const sem019=lessons.find(lesson=>lesson.id==="SEM-019");
+if(sem019){Object.assign(sem019,{status:"Ready to Build",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],overview:"Students examine how ethics, integrity, and company culture shape employee decisions, customer trust, brand reputation, and long-term success in sports and entertainment organizations.",target:"I will analyze ethical decisions and explain how company culture affects employees, customers, and brand reputation in sports and entertainment marketing.",success:"I will know I am successful when I can evaluate an SEM ethics scenario, justify a responsible response, and explain the effect on company culture with at least 80% accuracy.",agenda:["Bell ringer: What would you do?","Mini lesson: ethics, integrity, and company culture","SEM ethics decision challenge","Company culture action plan","Exit ticket"],bellRinger:"A venue employee notices a coworker giving free premium upgrades to friends while paying customers are told the section is sold out. Write the first action you would take and explain why.",miniLesson:"Define ethics as standards used to judge right and wrong decisions, integrity as doing what is right even when no one is watching, and company culture as the shared values and behaviors that shape how employees work. Connect these ideas to ticketing, sponsorship disclosure, customer data, athlete or celebrity endorsements, workplace conduct, and truthful promotion. Emphasize that unethical shortcuts can create immediate gains but damage trust, employee morale, customer loyalty, and brand value.",activity:"In teams, students rotate through four SEM ethics scenarios: misleading ticket fees, undisclosed influencer sponsorship, misuse of customer information, and preferential treatment for friends or VIPs. For each scenario, students identify the stakeholders, ethical problem, possible actions, likely consequences, and best response. Teams then create a five-point company-culture code for a fictional sports or entertainment organization and defend one policy to the class.",exitTicket:"Choose one scenario from the lesson. State the ethical decision, identify one stakeholder affected, and explain how the decision would strengthen or weaken company culture.",materials:["SEM ethics scenario cards","Decision-analysis organizer","Company-culture code template","Exit ticket"],differentiation:["Provide an ethics vocabulary bank and stakeholder examples","Allow students to complete the scenario analysis independently or with a partner","Use sentence frames for claim, evidence, and consequence","Ask early finishers to write a manager response and employee-training recommendation"],canvas:"⚖️ Review each SEM ethics scenario.\n🧠 Identify the stakeholders, ethical issue, possible choices, and likely consequences.\n🏢 Create a five-point company-culture code for your sports or entertainment organization.\n💬 Defend one policy using evidence from a scenario.\n📤 Submit the completed organizer and company-culture code in Canvas.\n🎯 Earn at least 80% mastery.",standards:"8175 Workplace Readiness: integrity, work ethic, professionalism, decision-making, and interpersonal responsibility",notes:"Source-backed build using the current SEM pacing guide, the 2025–2026 competency list, and Workplace Readiness expectations. A dedicated historical SEM-019 classroom resource was not found, so this package is newly authored and should receive a teacher reflection after first use.",version:"Version 1 — Source-backed initial lesson package"});}
 const sem020=lessons.find(lesson=>lesson.id==="SEM-020");
-if(sem020){
-  Object.assign(sem020,{
-    status:"Ready to Build",
-    duration:"45–60 minutes",
-    components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
-    overview:"Students synthesize the major MP1 concepts through a structured case-study review and an individual performance check using authentic sports and entertainment marketing scenarios.",
-    target:"I will apply major MP1 sports and entertainment marketing concepts to analyze business scenarios and recommend effective marketing decisions.",
-    success:"I will know I am successful when I can identify the correct marketing concept, support my analysis with evidence, and recommend an effective response with at least 80% accuracy.",
-    agenda:[
-      "Bell ringer: MP1 concept retrieval",
-      "Teacher-led case-study review",
-      "Collaborative scenario analysis",
-      "Individual performance check",
-      "Exit reflection"
-    ],
-    bellRinger:"Without using notes, list five major concepts from MP1. For each concept, write one sports, entertainment, or event example.",
-    miniLesson:"Review the MP1 framework through short scenarios rather than isolated definitions. Reconnect marketing concept, target market, marketing functions, SEM industries, promotion, sponsorships and endorsements, customer service, selling, professional communication, ethics, and company culture. Model how to identify the business problem, select the relevant concept, cite evidence from the scenario, and explain why a recommendation should work.",
-    activity:"Use the linked SEM Case Study Review slideshow to analyze scenarios as a class, then assign teams selected cases from the SEM Marketing Case Study Analysis document. Each team identifies the problem, relevant MP1 concept, evidence, recommended action, and likely result. Students finish with an individual performance check consisting of five scenario questions and one short written recommendation.",
-    exitTicket:"Which MP1 concept is your strongest, which concept still needs reinforcement, and what specific evidence from today's performance check supports your answer?",
-    materials:[
-      "SEM Case Study Review slideshow",
-      "SEM Marketing Case Study Analysis document",
-      "Individual five-question performance check",
-      "Exit reflection"
-    ],
-    differentiation:[
-      "Provide a one-page MP1 vocabulary reference for students who need support",
-      "Allow students to annotate scenarios before responding",
-      "Use mixed-readiness teams for collaborative case analysis",
-      "Require advanced students to compare two possible recommendations and defend the stronger option"
-    ],
-    canvas:"📚 Review the MP1 sports and entertainment marketing concepts.\n🔎 Analyze each assigned case study using evidence from the scenario.\n🧠 Identify the relevant marketing concept and recommend an effective response.\n✅ Complete the individual performance check.\n📝 Submit your case-study analysis and exit reflection in Canvas.\n🎯 Earn at least 80% mastery.",
-    standards:"SEM 8175 MP1 cumulative review: marketing concept, target market, marketing functions, SEM industries, promotion, sponsorships and endorsements, customer service, selling, communication, ethics, and workplace readiness",
-    notes:"Source-backed package built around the verified SEM Case Study Review slideshow and SEM Marketing Case Study Analysis document. The individual performance check should be replaced with the teacher's preferred MP1 assessment if one exists.",
-    version:"Version 1 — Source-backed MP1 review package"
-  });
-}
+if(sem020){Object.assign(sem020,{status:"Ready to Build",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],overview:"Students synthesize the major MP1 concepts through a structured case-study review and an individual performance check using authentic sports and entertainment marketing scenarios.",target:"I will apply major MP1 sports and entertainment marketing concepts to analyze business scenarios and recommend effective marketing decisions.",success:"I will know I am successful when I can identify the correct marketing concept, support my analysis with evidence, and recommend an effective response with at least 80% accuracy.",agenda:["Bell ringer: MP1 concept retrieval","Teacher-led case-study review","Collaborative scenario analysis","Individual performance check","Exit reflection"],bellRinger:"Without using notes, list five major concepts from MP1. For each concept, write one sports, entertainment, or event example.",miniLesson:"Review the MP1 framework through short scenarios rather than isolated definitions. Reconnect marketing concept, target market, marketing functions, SEM industries, promotion, sponsorships and endorsements, customer service, selling, professional communication, ethics, and company culture. Model how to identify the business problem, select the relevant concept, cite evidence from the scenario, and explain why a recommendation should work.",activity:"Use the linked SEM Case Study Review slideshow to analyze scenarios as a class, then assign teams selected cases from the SEM Marketing Case Study Analysis document. Each team identifies the problem, relevant MP1 concept, evidence, recommended action, and likely result. Students finish with an individual performance check consisting of five scenario questions and one short written recommendation.",exitTicket:"Which MP1 concept is your strongest, which concept still needs reinforcement, and what specific evidence from today's performance check supports your answer?",materials:["SEM Case Study Review slideshow","SEM Marketing Case Study Analysis document","Individual five-question performance check","Exit reflection"],differentiation:["Provide a one-page MP1 vocabulary reference for students who need support","Allow students to annotate scenarios before responding","Use mixed-readiness teams for collaborative case analysis","Require advanced students to compare two possible recommendations and defend the stronger option"],canvas:"📚 Review the MP1 sports and entertainment marketing concepts.\n🔎 Analyze each assigned case study using evidence from the scenario.\n🧠 Identify the relevant marketing concept and recommend an effective response.\n✅ Complete the individual performance check.\n📝 Submit your case-study analysis and exit reflection in Canvas.\n🎯 Earn at least 80% mastery.",standards:"SEM 8175 MP1 cumulative review: marketing concept, target market, marketing functions, SEM industries, promotion, sponsorships and endorsements, customer service, selling, communication, ethics, and workplace readiness",notes:"Source-backed package built around the verified SEM Case Study Review slideshow and SEM Marketing Case Study Analysis document. The individual performance check should be replaced with the teacher's preferred MP1 assessment if one exists.",version:"Version 1 — Source-backed MP1 review package"});}
