@@ -1,0 +1,57 @@
+const semFinalPackages={
+  "SEM-016":{
+    status:"Ready to Build",duration:"45–60 minutes",
+    components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
+    overview:"Students apply customer-service and interpersonal skills to authentic sports and entertainment situations involving complaints, service recovery, teamwork, and fan experience.",
+    target:"I will demonstrate effective customer-service and interpersonal skills when responding to sports and entertainment customer concerns.",
+    success:"I will know I am successful when I can identify the customer need, choose an appropriate response, and complete a role-play with at least 80% accuracy.",
+    agenda:["Bell ringer: Poor service response","Interpersonal-skills mini lesson","Teacher modeling and response revision","Individual role-play worksheet","Partner role-play and feedback","Exit ticket"],
+    bellRinger:"A fan reports that their assigned seat is already occupied. An employee says, ‘That is not my problem.’ Identify two problems with the response and rewrite it professionally.",
+    miniLesson:"Use the verified WRS Interpersonal Skills in SEM slides to review active listening, empathy, respectful tone, problem solving, teamwork, conflict resolution, and service recovery. Model a response sequence: listen, clarify, acknowledge, offer realistic options, confirm the solution, and close professionally.",
+    activity:"Students complete the verified SEM Individual Role-Play Worksheet by analyzing an assigned customer-service scenario, identifying the central problem and customer need, planning a professional response, and predicting the likely result. Students then perform the scenario with a partner, switch roles, and use a checklist to provide feedback on listening, tone, solution quality, and professionalism.",
+    exitTicket:"Write the strongest sentence you used during the role-play and explain which customer-service skill it demonstrates.",
+    materials:["WRS Interpersonal Skills in SEM slideshow","SEM Individual Role-Play Worksheet","Role-play scenario cards","Peer-feedback checklist","Exit ticket"],
+    differentiation:["Provide response stems and a customer-service vocabulary bank","Allow rehearsal before the graded role-play","Offer written analysis instead of live performance when needed","Require advanced students to respond to an added complication"],
+    canvas:"🎧 Review the customer-service and interpersonal-skills examples.\n📝 Complete the SEM Individual Role-Play Worksheet.\n🧠 Identify the customer need, professional response, and expected result.\n🎭 Perform the role-play with a partner and complete peer feedback.\n📤 Submit the worksheet and feedback in Canvas.\n🎯 Earn at least 80% mastery.",
+    standards:"SEM 8175 customer service and Workplace Readiness: communication, teamwork, conflict resolution, professionalism, and customer focus",
+    notes:"Source-backed package using the verified WRS Interpersonal Skills in SEM slideshow and SEM Individual Role-Play Worksheet.",
+    version:"Version 1 — Source-backed customer-service role-play package"
+  },
+  "SEM-017":{
+    status:"Ready to Build",duration:"45–60 minutes",
+    components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
+    overview:"Students examine why selling matters in sports and entertainment marketing and apply selling vocabulary to customer-focused sales conversations.",
+    target:"I will explain the role of selling in sports and entertainment marketing and apply selling vocabulary to a realistic customer interaction.",
+    success:"I will know I am successful when I can connect selling concepts to an SEM scenario and communicate a customer-focused sales message with at least 80% accuracy.",
+    agenda:["Bell ringer: Where does the money come from?","Selling notes and guided instruction","Feature-benefit practice","Selling comic-strip activity","Peer review","Exit ticket"],
+    bellRinger:"List four things a professional sports team or concert venue sells. Rank them from most important to least important for revenue and explain your top choice.",
+    miniLesson:"Use the verified Selling in Sports & Entertainment Marketing fill-in-the-blank notes to connect ticket sales, merchandise, concessions, sponsorships, premium experiences, customer relationships, and repeat business. Review customer needs, features versus benefits, product knowledge, questioning, recommendation, handling concerns, closing, and follow-up.",
+    activity:"Students complete the verified Selling in Sports & Entertainment Marketing Comic Strip Activity. They choose three assigned selling terms and create a short sports or entertainment sales interaction that shows the terms accurately in context. The conversation must include a customer need, a feature-benefit connection, a professional recommendation, and a clear next step or close. Peers review the comic for vocabulary accuracy and customer focus.",
+    exitTicket:"Write one feature and one benefit for an SEM product. Then write one question a salesperson could ask to determine whether the product fits the customer.",
+    materials:["Selling fill-in-the-blank notes","Selling comic-strip activity","Selling vocabulary reference","Peer-review checklist","Exit ticket"],
+    differentiation:["Provide completed note examples and a feature-benefit model","Allow digital or paper comic creation","Provide dialogue stems for the sales conversation","Require early finishers to add an objection and professional response"],
+    canvas:"💵 Complete the selling notes.\n🧠 Choose three selling vocabulary terms.\n💬 Create a sports or entertainment sales conversation that uses each term correctly.\n🎟️ Include a customer need, feature-benefit connection, recommendation, and close.\n✅ Complete peer review and make revisions.\n📤 Submit the finished comic in Canvas.\n🎯 Earn at least 80% mastery.",
+    standards:"SEM 8175 selling competencies and Workplace Readiness: communication, customer focus, product knowledge, and professionalism",
+    notes:"Source-backed package using the verified selling notes and comic-strip activity.",
+    version:"Version 1 — Source-backed SEM selling package"
+  },
+  "SEM-018":{
+    status:"Ready to Build",duration:"45–60 minutes",
+    components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"],
+    overview:"Students practice clear, professional communication across face-to-face, phone, email, and team situations common in sports and entertainment workplaces.",
+    target:"I will adapt my communication style to different sports and entertainment workplace situations while maintaining clarity and professionalism.",
+    success:"I will know I am successful when I can revise and deliver professional messages for multiple audiences and channels with at least 80% accuracy.",
+    agenda:["Bell ringer: Professional or not?","Communication-channel mini lesson","Message repair stations","Team communication challenge","Individual professional message","Exit ticket"],
+    bellRinger:"Rewrite this message to a customer: ‘We cannot help you because you waited too long.’ Keep the policy clear while making the response respectful and solution-focused.",
+    miniLesson:"Extend the verified WRS interpersonal-skills material into professional communication. Compare audience, purpose, tone, clarity, listening, nonverbal communication, email etiquette, phone communication, internal teamwork, and documentation. Model how the same issue should be communicated differently to a customer, coworker, supervisor, sponsor, or vendor.",
+    activity:"Students rotate through four message-repair stations: an unclear customer email, an unprofessional team chat, an incomplete phone message, and a sponsor-update conversation. At each station, students identify the audience and purpose, diagnose the communication problem, revise the message, and choose the best channel. Students finish by writing one polished professional message for an assigned SEM workplace scenario and completing a self-check for tone, clarity, accuracy, and action steps.",
+    exitTicket:"Identify one communication habit that builds trust and one habit that damages trust. Give a sports or entertainment workplace example of each.",
+    materials:["WRS Interpersonal Skills in SEM slideshow","Message-repair station cards","Professional communication checklist","Individual scenario prompt","Exit ticket"],
+    differentiation:["Provide tone and email-format models","Use sentence frames for openings, explanations, and closings","Allow oral recording instead of a written phone script","Require advanced students to adapt one message for two different audiences"],
+    canvas:"📣 Review the professional-communication expectations.\n🔧 Repair each unclear or unprofessional workplace message.\n👥 Identify the audience, purpose, tone, and best communication channel.\n✍️ Create one polished professional message for the assigned SEM scenario.\n✅ Use the checklist to revise your work.\n📤 Submit the station responses and final message in Canvas.\n🎯 Earn at least 80% mastery.",
+    standards:"SEM 8175 and Workplace Readiness: oral and written communication, listening, teamwork, professionalism, and information accuracy",
+    notes:"Source-backed authored package extending the verified WRS interpersonal-skills resource into professional workplace communication.",
+    version:"Version 1 — Source-backed professional-communication package"
+  }
+};
+Object.entries(semFinalPackages).forEach(([id,content])=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,content);});
