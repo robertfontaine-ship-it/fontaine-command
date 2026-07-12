@@ -1,5 +1,5 @@
 window.FONTaineSemSources={
-  migrationStatus:{course:"SEM",courseCode:"8175",phase:"Full lesson package build",exactLessonDocuments:7,authoredLessonPackages:5,sourceSupportedLessons:8,totalSeedLessons:20,nextBatch:"Build complete packages for SEM-011 through SEM-018"},
+  migrationStatus:{course:"SEM",courseCode:"8175",phase:"Full lesson package build",exactLessonDocuments:7,authoredLessonPackages:7,sourceSupportedLessons:6,totalSeedLessons:20,nextBatch:"Build complete packages for SEM-013 through SEM-018"},
   verificationLevels:{
     "exact-lesson-document":"A numbered lesson document exists and confirms lesson metadata.",
     "pacing-and-resource-supported":"The lesson sequence is supported by the pacing/learning-target sources and one or more matching classroom resources.",
@@ -24,8 +24,8 @@ window.FONTaineSemSources={
     "SEM-008":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"source-backed-authored-package",resourceIds:["sem-industries-slides","sem-industries-examples"],packageFile:"sem-lesson-packages.js"},
     "SEM-009":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"source-backed-authored-package",resourceIds:["sem-industries-slides"],packageFile:"sem-lesson-packages.js"},
     "SEM-010":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"source-backed-authored-package",resourceIds:["sem-industries-slides"],packageFile:"sem-lesson-packages.js"},
-    "SEM-011":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"pacing-and-resource-supported",resourceIds:["targeting-market-slides"]},
-    "SEM-012":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"pacing-and-resource-supported",resourceIds:["targeting-market-slides"]},
+    "SEM-011":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"source-backed-authored-package",resourceIds:["targeting-market-slides"],packageFile:"sem-target-market-packages.js"},
+    "SEM-012":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"source-backed-authored-package",resourceIds:["targeting-market-slides"],packageFile:"sem-target-market-packages.js"},
     "SEM-013":{unit:"Promotion in SEM",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["promo-mix-sorting"]},
     "SEM-014":{unit:"Sponsorships and Endorsements",timing:"45-60 minutes",standards:["8175.087+"],verification:"pacing-and-resource-supported",resourceIds:["endorsement-case-studies"]},
     "SEM-015":{unit:"Sponsorships and Endorsements",timing:"45-60 minutes",standards:["8175.087+"],verification:"pacing-and-resource-supported",resourceIds:["naming-rights-case-study"]},
