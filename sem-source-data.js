@@ -1,12 +1,13 @@
 window.FONTaineSemSources={
   migrationStatus:{
     course:"SEM",courseCode:"8175",phase:"Companion-resource audit",
-    exactLessonDocuments:7,sourceSupportedLessons:12,pacingSupportedLessons:1,totalSeedLessons:20,
-    nextBatch:"Audit missing lesson components and build exact packages for SEM-008 through SEM-020"
+    exactLessonDocuments:7,sourceSupportedLessons:13,pacingSupportedLessons:0,totalSeedLessons:20,
+    nextBatch:"Audit missing lesson components and build exact packages for SEM-008 through SEM-018 and SEM-020"
   },
   verificationLevels:{
     "exact-lesson-document":"A numbered lesson document exists and confirms lesson metadata.",
     "pacing-and-resource-supported":"The lesson sequence is supported by the pacing/learning-target sources and one or more matching classroom resources.",
+    "source-backed-authored-package":"The lesson is newly authored from verified pacing, competency, and workplace-readiness sources because no complete historical lesson package was found.",
     "pacing-supported":"The lesson sequence is supported by the pacing and competency sources, but the full lesson package still needs to be built."
   },
   masterSources:[
@@ -35,7 +36,7 @@ window.FONTaineSemSources={
     "SEM-016":{unit:"Customer Service in SEM",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["wrs-interpersonal-sem","sem-role-play-worksheet"]},
     "SEM-017":{unit:"Selling in SEM",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["selling-notes","selling-comic-strip"]},
     "SEM-018":{unit:"Professional Communication",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["wrs-interpersonal-sem"]},
-    "SEM-019":{unit:"Ethics and Company Culture",timing:"45-60 minutes",standards:[],verification:"pacing-supported",resourceIds:[]},
+    "SEM-019":{unit:"Ethics and Company Culture",timing:"45-60 minutes",standards:["WRS integrity","WRS work ethic","WRS professionalism","WRS decision-making"],verification:"source-backed-authored-package",resourceIds:[],packageFile:"sem-lesson-packages.js"},
     "SEM-020":{unit:"MP1 Review and Performance Check",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["sem-case-study-review","sem-case-study-analysis"]}
   },
   resources:{
