@@ -1,13 +1,10 @@
 window.FONTaineSemSources={
-  migrationStatus:{
-    course:"SEM",courseCode:"8175",phase:"Companion-resource audit",
-    exactLessonDocuments:7,sourceSupportedLessons:12,pacingSupportedLessons:1,totalSeedLessons:20,
-    nextBatch:"Audit missing lesson components and build exact packages for SEM-008 through SEM-020"
-  },
+  migrationStatus:{course:"SEM",courseCode:"8175",phase:"Full lesson package build",exactLessonDocuments:7,authoredLessonPackages:7,sourceSupportedLessons:6,totalSeedLessons:20,nextBatch:"Build complete packages for SEM-013 through SEM-018"},
   verificationLevels:{
     "exact-lesson-document":"A numbered lesson document exists and confirms lesson metadata.",
     "pacing-and-resource-supported":"The lesson sequence is supported by the pacing/learning-target sources and one or more matching classroom resources.",
-    "pacing-supported":"The lesson sequence is supported by the pacing and competency sources, but the full lesson package still needs to be built."
+    "source-backed-authored-package":"A complete lesson package was newly authored from verified pacing, competency, and classroom-resource sources.",
+    "pacing-supported":"The lesson sequence is supported by pacing and competency sources, but the full lesson package still needs to be built."
   },
   masterSources:[
     {type:"pacing-guide",title:"Sports and Entertainment Marketing Pacing Guide (2).pdf",fileId:"1lWl4842cKDj-NNcWN9C4h0jE9pbHlUeC",url:"https://drive.google.com/file/d/1lWl4842cKDj-NNcWN9C4h0jE9pbHlUeC",role:"Official units, competencies, and pacing"},
@@ -24,19 +21,19 @@ window.FONTaineSemSources={
     "SEM-005":{sourceId:"1fk56hp5vEJnaI8snFa61RFIuQswa3-7TXh7hKLIG7gU",url:"https://docs.google.com/document/d/1fk56hp5vEJnaI8snFa61RFIuQswa3-7TXh7hKLIG7gU",unit:"Overview of Marketing",timing:"45-60 minutes",standards:["MK8175.38-42"],verification:"exact-lesson-document"},
     "SEM-006":{sourceId:"1epvPXhjsmqLJyixA84mTrQxmnpExHR9YB_Kuw5ohXsk",url:"https://docs.google.com/document/d/1epvPXhjsmqLJyixA84mTrQxmnpExHR9YB_Kuw5ohXsk",unit:"Overview of Marketing",timing:"45-60 minutes",standards:["MK8175.38-42"],verification:"exact-lesson-document"},
     "SEM-007":{sourceId:"1E58-0Fga6k1TAnnnlo60C9HoRI86X6HyCTS2jjKDm4E",url:"https://docs.google.com/document/d/1E58-0Fga6k1TAnnnlo60C9HoRI86X6HyCTS2jjKDm4E",unit:"Overview of Marketing",timing:"45-60 minutes",standards:["MK8175.38-42"],verification:"exact-lesson-document"},
-    "SEM-008":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"pacing-and-resource-supported",resourceIds:["sem-industries-slides","sem-industries-examples"]},
-    "SEM-009":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"pacing-and-resource-supported",resourceIds:["sem-industries-slides"]},
-    "SEM-010":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"pacing-and-resource-supported",resourceIds:["sem-industries-slides"]},
-    "SEM-011":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"pacing-and-resource-supported",resourceIds:["targeting-market-slides"]},
-    "SEM-012":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"pacing-and-resource-supported",resourceIds:["targeting-market-slides"]},
+    "SEM-008":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"source-backed-authored-package",resourceIds:["sem-industries-slides","sem-industries-examples"],packageFile:"sem-lesson-packages.js"},
+    "SEM-009":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"source-backed-authored-package",resourceIds:["sem-industries-slides"],packageFile:"sem-lesson-packages.js"},
+    "SEM-010":{unit:"Importance of SEM Industries",timing:"45-60 minutes",standards:["8175.044-046"],verification:"source-backed-authored-package",resourceIds:["sem-industries-slides"],packageFile:"sem-lesson-packages.js"},
+    "SEM-011":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"source-backed-authored-package",resourceIds:["targeting-market-slides"],packageFile:"sem-target-market-packages.js"},
+    "SEM-012":{unit:"Overview of Marketing",timing:"45-60 minutes",standards:["8175.042"],verification:"source-backed-authored-package",resourceIds:["targeting-market-slides"],packageFile:"sem-target-market-packages.js"},
     "SEM-013":{unit:"Promotion in SEM",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["promo-mix-sorting"]},
     "SEM-014":{unit:"Sponsorships and Endorsements",timing:"45-60 minutes",standards:["8175.087+"],verification:"pacing-and-resource-supported",resourceIds:["endorsement-case-studies"]},
     "SEM-015":{unit:"Sponsorships and Endorsements",timing:"45-60 minutes",standards:["8175.087+"],verification:"pacing-and-resource-supported",resourceIds:["naming-rights-case-study"]},
     "SEM-016":{unit:"Customer Service in SEM",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["wrs-interpersonal-sem","sem-role-play-worksheet"]},
     "SEM-017":{unit:"Selling in SEM",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["selling-notes","selling-comic-strip"]},
     "SEM-018":{unit:"Professional Communication",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["wrs-interpersonal-sem"]},
-    "SEM-019":{unit:"Ethics and Company Culture",timing:"45-60 minutes",standards:[],verification:"pacing-supported",resourceIds:[]},
-    "SEM-020":{unit:"MP1 Review and Performance Check",timing:"45-60 minutes",standards:[],verification:"pacing-and-resource-supported",resourceIds:["sem-case-study-review","sem-case-study-analysis"]}
+    "SEM-019":{unit:"Ethics and Company Culture",timing:"45-60 minutes",standards:["WRS integrity","WRS work ethic","WRS professionalism","WRS decision-making"],verification:"source-backed-authored-package",resourceIds:[],packageFile:"sem-lesson-packages.js"},
+    "SEM-020":{unit:"MP1 Review and Performance Check",timing:"45-60 minutes",standards:[],verification:"source-backed-authored-package",resourceIds:["sem-case-study-review","sem-case-study-analysis"],packageFile:"sem-lesson-packages.js"}
   },
   resources:{
     "sem-industries-slides":{title:"SEM Industries",type:"Google Slides",fileId:"1FQmyVWaFA5St38tcZzOjELpGlctfoyjcjoT0VFTNaNQ",url:"https://docs.google.com/presentation/d/1FQmyVWaFA5St38tcZzOjELpGlctfoyjcjoT0VFTNaNQ",lessonIds:["SEM-008","SEM-009","SEM-010"]},
