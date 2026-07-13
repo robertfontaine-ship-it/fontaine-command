@@ -7,15 +7,23 @@ on:
     paths:
       - 'ai-teacher-assistant.js'
       - 'ai-teacher-bridge.js'
+      - 'ai-teacher-assistant.css'
+      - 'mobile-qa.css'
+      - 'styles.css'
       - 'index.html'
       - 'tests/ai-teacher-assistant.test.cjs'
+      - 'tests/mobile-navigation.test.cjs'
       - '.github/workflows/ai-teacher-qa.yml'
   pull_request:
     paths:
       - 'ai-teacher-assistant.js'
       - 'ai-teacher-bridge.js'
+      - 'ai-teacher-assistant.css'
+      - 'mobile-qa.css'
+      - 'styles.css'
       - 'index.html'
       - 'tests/ai-teacher-assistant.test.cjs'
+      - 'tests/mobile-navigation.test.cjs'
       - '.github/workflows/ai-teacher-qa.yml'
   workflow_dispatch:
 
@@ -31,6 +39,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Run AI Teacher Assistant QA
+          node-version: '24'
+      - name: Run AI Teacher Assistant command QA
         run: node tests/ai-teacher-assistant.test.cjs
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run mobile layout and navigation QA
+        run: node tests/mobile-navigation.test.cjs
