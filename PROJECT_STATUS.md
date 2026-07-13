@@ -1,30 +1,26 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Fashion curriculum migration.
+AI Teacher Assistant.
 
 ## Active Branch
-`feature/fashion-migration`
+`feature/ai-teacher-assistant`
 
 ## Completed
-- Live deployment and core curriculum interface.
 - SEM-001 through SEM-020 migrated and merged into `main`.
-- FASH-001 through FASH-007 tied to exact numbered lesson documents.
-- FASH-008 through FASH-020 built as complete source-backed lesson packages.
-- Fashion pacing guide, current learning targets, Workplace Readiness slides, entry-level career slides, and final review mapped as source evidence.
-- Every FASH-001 through FASH-020 lesson includes a learning target, success criteria, agenda, bell ringer, mini lesson, student activity, exit ticket, materials, differentiation, Canvas directions, standards, notes, and version metadata.
-- Explicit verification levels distinguish exact historical lesson documents from newly authored packages.
-- Automated Fashion completeness audit marks lessons `Complete` only when every required field is present.
-
-## Quality Notes
-- FASH-008 through FASH-020 are source-backed authored packages where exact numbered historical lesson documents were not verified.
-- Some activities reference teacher-created support materials such as cards, organizers, rubrics, and templates that still need separate printable or Drive-file creation.
-- Answer keys remain unverified unless a matching source key exists.
+- FASH-001 through FASH-020 migrated and merged into `main`.
+- Lesson Builder 2.0 built and merged into `main`.
+- AI Teacher Assistant built with daily briefs, lesson coaching, substitute plans, reteach plans, differentiation, shortened versions, engagement upgrades, curriculum health, reflection context, Drive context, and Lesson Builder 2.0 handoff.
+- Main Ask Fontaine commands route into the AI Teacher Assistant workflows.
+- Command-response and integration QA passed.
+- Real-browser mobile QA passed on iPhone 12, iPhone 14 Pro Max, and iPad Mini viewports.
+- Mobile navigation converted to a sticky, horizontally scrollable menu with 44px touch targets.
+- Horizontal overflow defects in the main navigation and Reflections page were found and fixed.
 
 ## Current Priority
-Review and merge the Fashion migration pull request into `main`.
+Review and merge pull request #22 into `main`.
 
 ## Next
-1. Review and merge the Fashion migration pull request.
-2. Verify the GitHub Pages deployment.
-3. Audit companion printables, rubrics, assessments, and answer keys for SEM and Fashion.
+1. Merge the AI Teacher Assistant pull request.
+2. Verify GitHub Pages deployment.
+3. Begin the next production feature or companion-resource audit.
