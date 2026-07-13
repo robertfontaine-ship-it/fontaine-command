@@ -44,7 +44,7 @@ jobs:
         run: node tests/ai-teacher-assistant.test.cjs
       - name: Install browser test dependency
         run: |
-          npm install --no-save playwright
-          npx playwright install --with-deps chromium
+          npm install --no-save --silent playwright >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
       - name: Run mobile layout and navigation QA
         run: node tests/mobile-navigation.test.cjs
