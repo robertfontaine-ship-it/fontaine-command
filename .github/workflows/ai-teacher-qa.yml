@@ -47,4 +47,18 @@ jobs:
           npm install --no-save --silent playwright >/dev/null 2>&1
           npx playwright install chromium >/dev/null 2>&1
       - name: Run mobile layout and navigation QA
-        run: node tests/mobile-navigation.test.cjs
+        id: mobile_qa
+        continue-on-error: true
+        run: node tests/mobile-navigation.test.cjs > mobile-qa-output.txt 2>&1
+      - name: Upload mobile QA output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-qa-output
+          path: mobile-qa-output.txt
+          if-no-files-found: error
+      - name: Report mobile QA result
+        if: always()
+        run: |
+          cat mobile-qa-output.txt
+          test "${{ steps.mobile_qa.outcome }}" = "success"
