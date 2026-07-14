@@ -27,8 +27,11 @@ async function assertNoOverflow(page,label){const size=await page.evaluate(()=>(
    page.on('console',message=>{if(message.type()==='error')errors.push(`console: ${message.text()}`);});
    await page.goto(BASE,{waitUntil:'networkidle'});
 
-   assert.match(await page.locator('.mp2-map-summary').textContent(),/60/);
-   assert.match(await page.locator('.mp2-map-summary').textContent(),/Source-backed lessons mapped/);
+   const audit=await page.evaluate(()=>FONTaineMP2Audit);
+   assert.equal(audit.total,60,`${viewport.name}: MP2 audit total is not 60`);
+   assert.equal(audit.byCourse.SEM,20);
+   assert.equal(audit.byCourse.Fashion,20);
+   assert.equal(audit.byCourse.Entrepreneurship,20);
    await assertNoOverflow(page,`${viewport.name} dashboard`);
 
    await page.locator('.nav button',{hasText:'Lessons'}).click();
@@ -59,21 +62,24 @@ async function assertNoOverflow(page,label){const size=await page.evaluate(()=>(
    await page.waitForSelector('.mp2-course-card');
    assert.equal(await page.locator('.mp2-course-card').count(),3);
    const cards=await page.locator('.mp2-course-card').allTextContents();
-   cards.forEach(text=>assert.match(text,/20 MP2 lessons/));
+   cards.forEach(text=>assert.match(text,/20\s+MP2/));
    const semCard=page.locator('.mp2-course-card',{hasText:'SEM'});
-   const builtCount=await page.evaluate(()=>lessons.filter(lesson=>lesson.course==='SEM'&&lesson.markingPeriod==='MP2'&&lesson.status==='Complete').length);
-   assert.match(await semCard.textContent(),new RegExp(`${builtCount} MP2 built`));
+   const semText=await semCard.textContent();
+   assert.match(semText,/20\s+MP1/);
+   assert.match(semText,/20\s+MP2/);
    await assertNoOverflow(page,`${viewport.name} courses`);
 
    await page.locator('.nav button',{hasText:'Build Queue'}).click();
    await page.waitForSelector('.mp2-result-count');
+   await page.locator('select[aria-label="Filter build queue by marking period"]').selectOption('MP2');
+   await page.waitForTimeout(100);
    const waiting=await page.evaluate(()=>lessons.filter(lesson=>lesson.markingPeriod==='MP2'&&lesson.status!=='Complete').length);
    assert.match(await page.locator('.mp2-result-count').textContent(),new RegExp(`${waiting} mapped lessons awaiting full packages`));
    await assertNoOverflow(page,`${viewport.name} build queue`);
 
    assert.deepEqual(errors,[],`${viewport.name}: browser errors detected\n${errors.join('\n')}`);
    await context.close();
-   console.log(`PASS ${viewport.name}: MP2 map, package progress, filters, lesson workspace, and build queue`);
+   console.log(`PASS ${viewport.name}: MP2 audit, filters, lesson workspace, courses, and build queue remain valid with MP3 loaded`);
   }
   console.log(`MP2 curriculum map browser QA passed for ${viewports.length} viewports.`);
  }finally{
