@@ -1,0 +1,53 @@
+name: MP2 Regression Diagnostics
+
+on:
+  pull_request:
+    paths:
+      - 'mp2-source-data.js'
+      - 'mp2-curriculum-map.js'
+      - 'mp2-compatibility.js'
+      - 'mp2-curriculum-map.css'
+      - 'index.html'
+      - 'tests/**'
+      - '.github/workflows/mp2-regression-diagnostics.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-diagnostics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save --silent playwright >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+      - name: Run browser diagnostics
+        id: diagnostics
+        shell: bash
+        run: |
+          mkdir -p diagnostic-output
+          set +e
+          node tests/mp2-curriculum-map-browser.test.cjs > diagnostic-output/mp2.txt 2>&1
+          mp2_status=$?
+          node tests/companion-resources-browser.test.cjs > diagnostic-output/companion.txt 2>&1
+          companion_status=$?
+          node tests/entrepreneurship-browser.test.cjs > diagnostic-output/entrepreneurship.txt 2>&1
+          entrepreneurship_status=$?
+          node tests/mobile-navigation.test.cjs > diagnostic-output/mobile.txt 2>&1
+          mobile_status=$?
+          printf 'mp2=%s\ncompanion=%s\nentrepreneurship=%s\nmobile=%s\n' "$mp2_status" "$companion_status" "$entrepreneurship_status" "$mobile_status" > diagnostic-output/status.txt
+          if (( mp2_status || companion_status || entrepreneurship_status || mobile_status )); then exit 1; fi
+      - name: Upload diagnostic output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mp2-regression-output
+          path: diagnostic-output
