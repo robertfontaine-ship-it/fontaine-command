@@ -19,7 +19,7 @@ const context={
  FONTaineDriveInventory:{files:[]},
  shell(content){return `<main>${content}</main>`;},badge(status){return `<b>${status}</b>`;},openLesson(){},go(){},render(){},
  lessonView(){return '<span class="pill">SEM</span><strong>WRS aligned</strong>Lesson added to the MP1 curriculum map.';},
- lessonList(){return '';},courses(){return '';},buildQueue(){return '';},dashboard(){return ''}
+ lessonList(){return '';},courses(){return '';},buildQueue(){return '';},dashboard(){return '';}
 };
 context.window=context;
 vm.createContext(context);
@@ -76,10 +76,14 @@ test('maps all nine pacing-guide units and nine MP2 standards records',()=>{
  assert.equal(data.units['fash-mp2-u02'],'Selling Process');
  assert.equal(data.units['ent-mp2-u03'],'Financial Statements');
 });
-test('links verified classroom resources without duplicating existing records',()=>{
- assert.equal(context.FONTaineMP2Audit.resources,17);
+test('links every verified classroom resource without duplicating existing records',()=>{
+ const expectedResources=Object.keys(context.FONTaineMP2Sources.resources).length;
+ assert.equal(context.FONTaineMP2Audit.resources,expectedResources);
+ assert.ok(expectedResources>=20);
  assert.ok(resources.some(resource=>resource.title.includes('SEM Promo Mix')));
  assert.ok(resources.some(resource=>resource.title.includes('Business Reboot')));
+ assert.ok(resources.some(resource=>resource.title.includes('Fashion Retail Selling')));
+ assert.ok(resources.some(resource=>resource.title.includes('Style the Stage')));
  assert.ok(context.FONTaineDriveInventory.files.some(file=>file.lessonIds.includes('FASH-040')));
 });
 test('lesson list supports MP2 and course filtering',()=>{
