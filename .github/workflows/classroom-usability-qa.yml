@@ -1,0 +1,34 @@
+name: Classroom Usability QA
+
+on:
+  pull_request:
+    paths:
+      - 'classroom-usability.js'
+      - 'classroom-usability.css'
+      - 'index.html'
+      - 'tests/classroom-usability.test.cjs'
+      - 'tests/classroom-usability-browser.test.cjs'
+      - '.github/workflows/classroom-usability-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  classroom-usability-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run classroom usability integration checks
+        run: node tests/classroom-usability.test.cjs
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save --silent playwright >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+      - name: Run classroom usability browser and mobile checks
+        run: node tests/classroom-usability-browser.test.cjs
