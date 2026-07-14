@@ -1,0 +1,123 @@
+(()=>{
+ const packages={
+  "FASH-034":{
+   overview:"Students define clienteling, establish measurable fashion service standards, and plan personalized interactions that build trust without misusing customer information.",
+   target:"I will explain clienteling and establish service standards for a fashion retailer.",
+   success:"I will know I am successful when I can define clienteling, evaluate service behaviors, and create measurable standards with at least 80% accuracy.",
+   agenda:["Bell ringer: Service or clienteling?","Verified clienteling notes and mini lesson","Service-standard audit","Client profile and contact plan","Exit ticket"],
+   bellRinger:"A sales associate remembers a customer’s preferred sizes, colors, and upcoming event. Explain when using that information is helpful and when it could feel intrusive.",
+   miniLesson:"Use the verified Clienteling & Service Recovery slides and notes to distinguish basic customer service from clienteling. Review personalization, product knowledge, accurate preference records, consent, privacy, appropriate follow-up, appointment selling, styling support, consistency, and long-term value. Model measurable service standards for greeting time, needs discovery, fitting-room support, product accuracy, checkout, follow-up, and issue escalation. Emphasize that clienteling should improve relevance and trust rather than create pressure or inappropriate surveillance.",
+   activity:"Students audit twelve fashion service behaviors and classify each as meeting, exceeding, or violating a service standard. Teams then create a service-standard scorecard for a boutique with measurable expectations for greeting, listening, product knowledge, fitting-room support, accessibility, checkout, follow-up, and complaint escalation. Individually, students build a permission-based client profile and contact plan for one customer, recording useful preferences, the source of the information, an appropriate next contact, and information that should not be collected or used.",
+   exitTicket:"Write one measurable fashion service standard and one clienteling action that supports it. Explain how the action protects customer trust.",
+   materials:["Clienteling & Service Recovery slides","Clienteling fill-in notes","Service-behavior cards","Service-standard scorecard","Client profile and contact planner"],
+   differentiation:["Provide examples of measurable service standards","Use a partially completed scorecard","Allow students to select from prepared clienteling actions","Require advanced students to add privacy, consent, and data-retention rules"],
+   canvas:"🤝 Review the Clienteling & Service Recovery slides and complete the notes.\n🔍 Audit the fashion service behaviors.\n📋 Create measurable service standards for the boutique.\n👤 Build a permission-based client profile and appropriate contact plan.\n🔒 Identify information that should not be collected or used.\n📤 Submit the scorecard and clienteling plan in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.099-.110 — customer service, clienteling, service standards, privacy, and relationship building",
+   notes:"Exact-resource package using Clienteling & Service Recovery, file ID 15k400QBbEHZlLPJCdGWB7-Svu8GQN0ID6eaV9j0ZDkg, and its fill-in notes, file ID 1TpvVf0vtoTMfPgG2qDyaDeRBFB0rRO2QlI4kI4n8DNs.",
+   version:"Version 1 — Fashion MP2 clienteling and service standards"
+  },
+  "FASH-035":{
+   overview:"Students adapt tone, questions, product support, pace, and communication channel to different fashion customers without stereotyping or making unsupported assumptions.",
+   target:"I will adapt professional communication to different fashion customer types and needs.",
+   success:"I will know I am successful when I can identify communication needs, select an appropriate response, and justify my adaptation with at least 80% accuracy.",
+   agenda:["Bell ringer: Same customer or different approach?","Customer communication mini lesson","Interaction-response set","Communication adaptation carousel","Exit ticket"],
+   bellRinger:"Compare a customer who wants detailed fabric and care information with a customer who wants quick help finding an outfit. What should remain consistent, and what should the associate adapt?",
+   miniLesson:"Review customer needs that may affect communication: level of product knowledge, urgency, confidence, decision-making style, accessibility, language, digital versus in-person preference, privacy, and desired amount of assistance. Model clear, respectful communication using open questions, active listening, plain language, confirmation, visual or written support, and appropriate pacing. Distinguish adapting service from stereotyping based on age, appearance, disability, body type, culture, gender, or perceived income.",
+   activity:"Students complete a Customer Interaction Response Set using profiles such as a confident trend shopper, an uncertain formalwear customer, a customer with limited time, a customer requesting accessibility support, an online customer, and a customer comparing technical product details. For each profile, students identify the likely communication need, write an appropriate opening, choose two questions, select a useful support method, and explain what assumptions to avoid. Pairs perform two contrasting interactions and use a checklist to evaluate clarity, listening, respect, accuracy, and adaptation.",
+   exitTicket:"Describe one communication behavior that should change based on customer needs and one professional standard that should never change.",
+   materials:["Clienteling & Service Recovery slides","Customer Interaction Response Set","Customer profile cards","Communication adaptation organizer","Peer checklist"],
+   differentiation:["Provide opening and question stems","Allow written or recorded role-play responses","Use highlighted customer needs in the profiles","Require advanced students to adapt one message across in-person, phone, and digital channels"],
+   canvas:"💬 Review professional fashion customer communication.\n👥 Analyze each customer profile without stereotyping.\n✍️ Write an opening, questions, and support plan for each interaction.\n🎭 Perform two contrasting customer interactions.\n✅ Use the checklist to evaluate clarity, listening, respect, and adaptation.\n📤 Submit the response set and peer feedback in Canvas.\n🎯 Earn at least 80% mastery.",
+   standards:"Fashion 8140.099-.110 — customer communication, active listening, accessibility, respect, and service adaptation",
+   notes:"Source-backed package using the verified Clienteling & Service Recovery resources and Customer Interaction Response Set described in the Fashion MP2 plan.",
+   version:"Version 1 — Fashion MP2 customer types and communication"
+  },
+  "FASH-036":{
+   overview:"Students apply a structured service-recovery process to fashion retail complaints involving products, fit, fulfillment, policies, employees, and digital shopping experiences.",
+   target:"I will apply service-recovery steps to resolve a fashion retail problem professionally.",
+   success:"I will know I am successful when I can clarify the problem, choose a fair solution, communicate the response, and document follow-up with at least 80% accuracy.",
+   agenda:["Bell ringer: Complaint or opportunity?","Verified service-recovery mini lesson","Five-step response practice","Fashion service case study","Recovery role-play and reflection"],
+   bellRinger:"A customer received the wrong size for an event tomorrow and says the brand ruined the experience. Identify the customer’s practical need and emotional need.",
+   miniLesson:"Use the verified service-recovery materials to teach five resolution actions: listen and acknowledge, clarify facts and needs, take responsibility within policy, offer realistic solutions or escalate, and confirm and document the resolution. Review empathy, apology, authority limits, policy explanation, alternatives, urgency, accessibility, compensation, follow-up, root-cause analysis, and the difference between winning an argument and restoring trust. Stress accurate promises and consistent policy application.",
+   activity:"Students complete a five-step response organizer for scenarios involving damaged merchandise, incorrect online fulfillment, unavailable sizes, an insensitive employee comment, a disputed return, delayed alteration, and misleading product information. Teams then analyze one detailed Service Scenario Case Study, identify the customer impact and root cause, design immediate and long-term actions, and perform a recovery role-play. The evaluator scores listening, clarification, empathy, policy accuracy, solution quality, confirmation, documentation, and prevention. Students revise one weak response after feedback.",
+   exitTicket:"Explain the difference between resolving the customer’s immediate complaint and correcting the process that caused it.",
+   materials:["Clienteling & Service Recovery slides and notes","Five-step resolution organizer","Fashion service scenarios","Service Scenario Case Study","Recovery role-play scorecard"],
+   differentiation:["Provide the recovery steps on a reference card","Allow written planning before the role-play","Use one clear solution option before adding policy constraints","Require advanced students to respond when the first solution is rejected"],
+   canvas:"🛠️ Review the five service-recovery actions.\n📝 Complete the response organizer for each fashion complaint.\n🔍 Analyze the customer impact and root cause in the case study.\n🎭 Perform the service-recovery role-play.\n📋 Document the immediate solution, follow-up, and prevention step.\n🔁 Revise one response using evaluator feedback.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.099-.110 — complaint handling, service recovery, policy communication, problem solving, and customer trust",
+   notes:"Exact-resource package using the verified Clienteling & Service Recovery slide deck and fill-in notes, including the five-step customer response practice.",
+   version:"Version 1 — Fashion MP2 service recovery"
+  },
+  "FASH-037":{
+   overview:"Students evaluate fashion customer-retention strategies and build a loyalty plan based on customer value, trust, personalization, experience, and measurable business results.",
+   target:"I will recommend customer-retention strategies that strengthen loyalty to a fashion brand.",
+   success:"I will know I am successful when I can evaluate retention tactics, select a coordinated strategy, and define measurable results with at least 80% accuracy.",
+   agenda:["Bell ringer: What makes customers return?","Verified retention slides and notes","Retention strategy audit","Fashion loyalty-plan challenge","Exit ticket"],
+   bellRinger:"Choose a fashion brand you have purchased from more than once. Identify the product, service, experience, or relationship factor that encouraged the repeat purchase.",
+   miniLesson:"Use the verified Customer Retention in Fashion Marketing slides and notes to distinguish acquisition, satisfaction, retention, loyalty, advocacy, and lifetime value. Review loyalty programs, member access, personalized recommendations, clienteling, consistent quality, service recovery, community, events, relevant content, convenience, post-purchase support, and feedback. Model evaluation using customer value, cost, inclusiveness, privacy, ease, brand fit, repeat-purchase potential, redemption behavior, satisfaction, retention rate, and lifetime value.",
+   activity:"Students audit retention tactics used by fashion brands and score each for customer value, cost, trust, personalization, accessibility, and brand fit. Teams receive a fashion brand, customer profile, retention problem, budget, and available customer data. They create a coordinated loyalty plan containing the retention goal, customer insight, three tactics, communication calendar, privacy boundaries, service-recovery connection, cost estimate, and measures such as repeat-purchase rate, retention rate, average order value, engagement, referrals, or satisfaction. Teams defend why the plan creates value beyond discounts.",
+   exitTicket:"Name one retention tactic that builds genuine loyalty and one that may only produce a short-term repeat purchase. Explain the difference.",
+   materials:["Customer Retention in Fashion Marketing slides","Retention fill-in notes","Retention strategy scorecard","Loyalty-plan brief","Measurement planner"],
+   differentiation:["Provide definitions and example metrics","Use a menu of retention tactics and sample costs","Allow a reduced two-tactic plan","Require advanced students to estimate customer lifetime value or retention return"],
+   canvas:"🔁 Review the Customer Retention slides and complete the notes.\n📊 Audit the sample retention strategies.\n🎯 Define the brand’s retention problem and customer insight.\n🤝 Build a three-part loyalty plan with privacy boundaries and service support.\n📈 Select measurable retention results.\n📤 Submit the audit and loyalty plan in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.099-.110 — customer retention, loyalty, clienteling, service quality, and relationship measurement",
+   notes:"Exact-resource package using Customer Retention in Fashion Marketing, file ID 1bkULBoEl1AViQb27fKoV1tO1LSdnHtGk_8fYeL9OgTc, and its notes, file ID 1EM-wX619zU3uY1w6MhWwYZelxIOE0eyOBBkptiaSZ90.",
+   version:"Version 1 — Fashion MP2 brand loyalty and retention"
+  },
+  "FASH-038":{
+   overview:"Students plan a winter fashion window display that uses a clear theme, target-customer insight, focal point, balance, color, lighting, signage, and product story.",
+   target:"I will plan a winter window display that appeals to a target customer and communicates a clear fashion story.",
+   success:"I will know I am successful when I can apply theme, focal point, balance, color, product placement, and signage with at least 80% accuracy.",
+   agenda:["Bell ringer: What makes a window stop traffic?","Visual display mini lesson","Display inspiration critique","Winter window sketch","Peer voting and revision"],
+   bellRinger:"A window display is visually attractive but customers cannot tell what product or message matters most. Identify the missing visual-merchandising principle and one correction.",
+   miniLesson:"Use the Fashion MP2 plan and boutique display brief to review display objective, target customer, theme, focal point, visual path, balance, proportion, repetition, contrast, color scheme, lighting, negative space, product grouping, mannequin styling, props, signage, price communication, accessibility, safety, and brand consistency. Model a display critique that separates decoration from purposeful product presentation and explains how each element should guide attention and support the customer action.",
+   activity:"Students critique four sample winter displays for focal point, balance, color, product visibility, brand fit, target-customer appeal, signage, and customer action. They then create a Winter Window Display plan containing the retailer or boutique, target customer, objective, theme statement, color palette, focal product, supporting products, mannequin or form styling, props, lighting, signage, dimensions, traffic-view direction, safety considerations, and a labeled sketch. Peers use a voting ballot and feedback sheet to identify the strongest story and one needed revision.",
+   exitTicket:"Identify the focal point of your display and explain how color, placement, lighting, and supporting products direct attention to it.",
+   materials:["Fashion MP2 Plan","Style the Stage boutique display brief","Visual display examples","Winter Window Display planning sheet","Peer voting ballot and feedback sheet"],
+   differentiation:["Provide a labeled display example and design vocabulary bank","Offer prepared color palettes and themes","Allow collage or digital mockup instead of hand drawing","Require advanced students to add dimensions, installation sequence, and material budget"],
+   canvas:"❄️ Review the visual-merchandising principles.\n🔍 Critique the sample winter displays.\n🎨 Plan the theme, color palette, focal point, products, props, lighting, and signage.\n✏️ Create a labeled Winter Window Display sketch or digital mockup.\n🗳️ Use peer voting and feedback to revise the display.\n📤 Submit the plan, visual, and reflection in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.099-.110 — customer experience and visual presentation application; target-customer appeal, communication, and service environment",
+   notes:"Source-backed holiday-showcase package using the Fashion MP2 Plan and the visual-merchandising requirements in the verified Style the Stage boutique brief.",
+   version:"Version 1 — Fashion MP2 winter window display"
+  },
+  "FASH-039":{
+   overview:"Students evaluate store layout and product placement, then create a planogram that supports navigation, product discovery, accessibility, basket building, and brand experience.",
+   target:"I will evaluate store layout and create a product planogram that supports customer movement and sales.",
+   success:"I will know I am successful when I can apply layout, traffic flow, product placement, adjacency, accessibility, and signage with at least 80% accuracy.",
+   agenda:["Bell ringer: Why is the product placed there?","Store layout and planogram mini lesson","Fix-this-display critique","Planogram challenge","Customer-path test"],
+   bellRinger:"A retailer places trend accessories near checkout and coordinated tops beside denim. Explain the customer behavior each placement is designed to influence.",
+   miniLesson:"Review grid, loop, free-flow, boutique, and mixed layouts; decompression zones; sightlines; hot and cold zones; product adjacencies; cross-merchandising; vertical and horizontal placement; eye-level visibility; impulse zones; fitting rooms; service points; accessibility; signage; replenishment; theft prevention; and planograms. Model how a layout balances customer ease, discovery, brand image, operational needs, and revenue without creating confusion or barriers.",
+   activity:"Students critique a flawed fashion store layout and identify problems involving traffic, accessibility, category logic, product visibility, congestion, fitting-room support, checkout, signage, and cross-selling. Teams then receive a floor area, product categories, fixtures, target customer, sales goals, and operational constraints. They select a layout type, draw the customer path, assign zones, and create a planogram for one key wall, table, or fixture. Teams conduct a customer-path test and revise one placement based on navigation, discovery, basket-building, or accessibility evidence.",
+   exitTicket:"Identify one product adjacency and one placement decision in your plan. Explain how each supports the customer and the business.",
+   materials:["Fashion store layout examples","Fix This Display critique","Store-layout planning grid","Planogram template","Customer-path and accessibility checklist"],
+   differentiation:["Provide fixture symbols and a partially completed layout","Use a smaller product assortment","Allow digital or paper planograms","Require advanced students to add sales-per-square-foot, replenishment, and loss-prevention considerations"],
+   canvas:"🏬 Review fashion store layouts, traffic flow, and planograms.\n🔧 Diagnose the problems in the flawed layout.\n🗺️ Select a layout type and draw the customer path.\n📦 Assign product zones, adjacencies, service points, and signage.\n📐 Create a detailed planogram for one fixture or wall.\n♿ Test navigation and accessibility, then revise one placement.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.099-.110 — customer experience and visual-merchandising application; layout, communication, accessibility, and service environment",
+   notes:"Source-backed package using the Fashion MP2 Plan, its Planogram Challenge and Fix This Display activities, and the verified boutique display brief.",
+   version:"Version 1 — Fashion MP2 store layout and planograms"
+  },
+  "FASH-040":{
+   overview:"Students demonstrate cumulative MP2 mastery through verified semester review, scenario application, an individual performance check, error analysis, and targeted improvement planning.",
+   target:"I will apply MP2 promotion, selling, customer-service, retention, and visual-merchandising concepts to new fashion scenarios.",
+   success:"I will know I am successful when I can complete the cumulative performance check and correct missed concepts with at least 80% accuracy.",
+   agenda:["Bell ringer: Connect the MP2 units","Verified semester review","Mixed fashion scenario review","Individual performance check","Error analysis and improvement plan"],
+   bellRinger:"Choose one fashion retailer and explain how promotion, selling, customer service, retention, and visual merchandising work together to affect sales and loyalty.",
+   miniLesson:"Use the verified Fashion Marketing Semester 1 study guide and answer key to organize MP2 concepts into promotional mix, selling process, clienteling and service recovery, retention, and visual merchandising. Model how to read a scenario, identify the decision being tested, select relevant evidence, reject plausible but weaker responses, and justify the strongest action. Review common errors: recommending before discovering needs, presenting features without benefits, responding to objections without clarification, using discounts as the only loyalty strategy, promising solutions outside policy, and designing displays without a target customer or focal point.",
+   activity:"Students complete a brief collaborative review, then independently complete a cumulative performance check containing promotional-tool classification, selling-process decisions, customer questioning, feature-benefit presentation, objection response, closing and follow-up, clienteling, service recovery, retention strategy, window-display critique, layout and planogram decisions, and one integrated fashion retail recommendation. After scoring with the verified key or teacher guide, students complete error analysis for each missed concept and create a two-skill improvement plan with named lessons and resources to revisit.",
+   exitTicket:"Identify your strongest MP2 fashion skill, your greatest remaining gap, and the exact practice you will complete next.",
+   materials:["Fashion Marketing Semester 1 Fill-in-the-Blank Study Guide","Verified study guide answer key","Cumulative MP2 performance check","Teacher scoring guide","Error-analysis and improvement-plan organizer"],
+   differentiation:["Provide a concept reference during review","Chunk the performance check into sections","Allow oral error-analysis explanations","Require advanced students to justify why one plausible alternative is weaker"],
+   canvas:"📘 Complete the verified Fashion Semester 1 study guide.\n🧠 Apply MP2 concepts during the mixed scenario review.\n✅ Complete the individual cumulative performance check.\n🔍 Correct every missed concept using evidence and the verified key or teacher feedback.\n🎯 Create a two-skill improvement plan with specific resources and actions.\n📤 Submit the performance check, error analysis, and plan in Canvas.\n🏁 Earn at least 80% mastery.",
+   standards:"Fashion 8140.082-.084; 8140.099-.113 — cumulative MP2 promotion, selling, customer service, retention, and visual-merchandising application",
+   notes:"Exact-resource cumulative package using Fashion Marketing Semester 1 Fill-in-the-Blank Study Guide, file ID 1W0icXY1Ehxm9vHGyQMG6bIS1k5X2yUA-nI64w6KXFfA, and verified answer key, file ID 1j_C8eHAVxN2WQaoLpY0GFM_Oi38xARUIf6YHetEkUzA.",
+   version:"Version 1 — Fashion MP2 semester review and performance check"
+  }
+ };
+ const ids=Object.keys(packages);
+ ids.forEach(id=>{
+  const lesson=lessons.find(item=>item.id===id);
+  if(!lesson)return;
+  Object.assign(lesson,packages[id],{status:"Complete",mapStatus:"Built",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"]});
+ });
+ window.FONTaineFashionMP2CustomerServicePackages={count:ids.length,lessonIds:ids,sourceIds:["fashion-clienteling-slides","fashion-clienteling-notes","fashion-retention-slides","fashion-retention-notes","fashion-mp2-plan","fashion-pop-up-brief","fashion-semester-review","fashion-semester-key"]};
+})();
