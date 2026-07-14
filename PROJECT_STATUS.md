@@ -1,27 +1,27 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Complete SEM MP3 Event Revenue and integrated performance packages.
+Generate companion resources for the completed SEM MP3 curriculum.
 
 ## Active Branch
-`feature/sem-mp3-event-revenue-packages`
+`feature/sem-mp3-companion-resources`
 
 ## Completed
-- SEM-001 through SEM-040, FASH-001 through FASH-040, and ENT-001 through ENT-040 are complete lesson packages across MP1 and MP2.
-- All MP2 companion resources are merged: 120 covered lessons, 600 generated printables, 32 verified Drive files, and 3 verified answer keys.
-- Production smoke testing passed after the complete MP2 build.
+- SEM-001 through SEM-060 are complete lesson packages across MP1, MP2, and MP3.
+- FASH-001 through FASH-040 and ENT-001 through ENT-040 are complete lesson packages across MP1 and MP2; their MP3 lessons remain mapped.
 - The complete 60-lesson MP3 curriculum map is merged into `main`.
-- SEM-041 through SEM-048 Distribution Strategy and SEM-049 through SEM-056 Pricing Strategy packages are merged into `main`.
-- SEM-057 through SEM-060 are built as complete Grammy Marketing Mission, Event Revenue Streams, Event Revenue Plan, and MP3 Performance Check packages.
-- All 20 SEM MP3 lesson packages are now complete.
-- Verified Grammy Marketing Mission, SEM selling slides and notes, and SEM final review are linked to the applicable lessons.
-- Dedicated QA verifies all required fields, Fontaine format, source links, event-revenue sequence, integrated calculations, and the 20/60 MP3 completion state.
+- All 20 SEM MP3 Distribution, Pricing, and Event Revenue packages are merged into `main`.
+- 100 generated companion resources added for SEM-041 through SEM-060: student organizers, scoring rubrics, exit tickets, quick checks, and teacher scoring guides.
+- Nine new unique SEM MP3 Drive files recorded as verified companion sources.
+- Existing SEM selling notes are extended to SEM-058 and SEM-059 without duplicate file records.
+- Companion Resources expand to 140 covered lessons, 700 generated printables, 41 verified Drive files, and 3 verified answer keys.
+- Dedicated calculation and responsive browser QA verify totals, source uniqueness, filters, previews, and mobile/desktop layout.
 
 ## Current Priority
-Run final SEM MP3 and full application regression QA, resolve defects, and merge the four complete packages.
+Run SEM MP3 companion calculation, browser, mobile, and full application regression QA; resolve defects; and merge the expansion.
 
 ## Next
-1. Merge SEM-057 through SEM-060 after all checks pass.
-2. Generate companion resources for all 20 completed SEM MP3 lessons.
-3. Begin Fashion MP3 Retail Formats and Customer Strategy.
-4. Continue Fashion Textiles, Sustainability, and capstone packages.
+1. Merge the SEM MP3 companion-resource expansion after all checks pass.
+2. Build FASH-041 through FASH-046 — Retail Formats and Customer Strategy.
+3. Continue Fashion Textiles, Sustainability, and capstone packages.
+4. Generate Fashion MP3 companion resources after all 20 Fashion packages are complete.
