@@ -23,11 +23,39 @@ Each lesson begins at 100 points and receives transparent deductions for actiona
 - **Needs Revision:** 65–79
 - **High Priority:** below 65
 
+## Initial Baseline
+
+The first complete audit produced:
+
+- **180 lessons reviewed**
+- **90/100 overall average**
+- **113 Strong**
+- **27 Minor Polish**
+- **33 Needs Revision**
+- **7 High Priority**
+
+All seven High Priority lessons were SEM-001 through SEM-007. They were marked complete but still contained generic starter content for the opening course-launch and marketing-functions sequence.
+
+## First Repair Cluster
+
+SEM-001 through SEM-007 were rebuilt from their seven verified exact lesson documents. The strengthened sequence now includes specific modeling, measurable evidence, named student products, completion criteria, rigorous exit tickets, differentiation, source notes, and complete Canvas directions.
+
+The post-repair audit produced:
+
+- **92/100 overall average**
+- **120 Strong**
+- **27 Minor Polish**
+- **33 Needs Revision**
+- **0 High Priority**
+- **SEM average increased from 91 to 96**
+
+The next revision queue is concentrated in Fashion and Entrepreneurship MP1. The most common remaining issues are low-rigor exit tickets, thin activity directions, thin mini lessons, and missing activity completion criteria.
+
 ## Teacher Workflow
 
 1. Open **Quality Audit** in the main navigation.
 2. Review the three course averages and the most common quality flags.
-3. Open the **High Priority** queue.
+3. Open the lowest available quality band.
 4. Filter by course or search for a lesson, unit, marking period, or issue.
 5. Open the lesson directly from the queue and revise the highest-impact flags first.
 6. Use teacher reflections after instruction to confirm whether the automated concern was meaningful in practice.
@@ -40,7 +68,8 @@ The `Curriculum Quality Audit` GitHub Actions workflow:
 - verifies that every lesson receives a score, band, and issue list;
 - confirms there are no missing core instructional fields;
 - reconciles course and quality-band totals;
+- verifies that SEM-001 through SEM-007 remain Strong and that no High Priority lessons return;
 - verifies dashboard script order and navigation registration;
 - uploads `curriculum-quality-audit.json` with course summaries, common issues, and the first 30 revision priorities.
 
-The initial baseline is intentionally diagnostic. Quality gates can become stricter after the first revision clusters are strengthened.
+The current baseline is diagnostic. Quality gates should become stricter as each ranked revision cluster is strengthened.
