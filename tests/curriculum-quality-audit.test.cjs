@@ -28,7 +28,9 @@ const context={
   console,data,lessons,resources:[],state,pages:['Dashboard','Lessons','Annual Review'],window:null,
   FONTaineStandards:{courseStandards:[],wrsMappings:{}},FONTaineDriveInventory:{files:[]},
   shell:value=>value,badge:value=>value,openLesson(){},go(){},toast(){},render(){},
-  document:{getElementById(){return appNode;}},navigator:{clipboard:{writeText(){return Promise.resolve();}}},
+  lessonView(){return'';},lessonList(){return'';},courses(){return'';},buildQueue(){return'';},dashboard(){return'';},
+  resourceLibrary(){return'';},simple(){return'';},settings(){return'';},componentChecklist(){return'';},
+  document:{getElementById(){return appNode;},querySelector(){return null;}},navigator:{clipboard:{writeText(){return Promise.resolve();}}},
   setTimeout,clearTimeout
 };
 context.window=context;
