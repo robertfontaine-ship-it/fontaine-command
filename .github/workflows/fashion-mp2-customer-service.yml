@@ -1,0 +1,27 @@
+name: Fashion MP2 Customer Service QA
+
+on:
+  pull_request:
+    paths:
+      - 'fashion-mp2-customer-service-sources.js'
+      - 'fashion-mp2-customer-service-packages.js'
+      - 'index.html'
+      - 'tests/fashion-mp2-customer-service.test.cjs'
+      - '.github/workflows/fashion-mp2-customer-service.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fashion-mp2-customer-service-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run final Fashion MP2 package QA
+        run: node tests/fashion-mp2-customer-service.test.cjs
