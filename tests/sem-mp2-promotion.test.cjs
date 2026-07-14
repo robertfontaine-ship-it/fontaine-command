@@ -44,14 +44,14 @@ const required=['overview','target','success','agenda','bellRinger','miniLesson'
 test('builds exactly eight SEM Promotion packages',()=>{
  assert.equal(promotion.length,8);
  assert.equal(context.FONTaineSEMMP2PromotionPackages.count,8);
- assert.deepEqual(context.FONTaineSEMMP2PromotionPackages.lessonIds,['SEM-021','SEM-022','SEM-023','SEM-024','SEM-025','SEM-026','SEM-027','SEM-028']);
+ assert.deepEqual(Array.from(context.FONTaineSEMMP2PromotionPackages.lessonIds),['SEM-021','SEM-022','SEM-023','SEM-024','SEM-025','SEM-026','SEM-027','SEM-028']);
 });
 test('all eight lessons are complete built MP2 packages',()=>{
  promotion.forEach(lesson=>{
   assert.equal(lesson.markingPeriod,'MP2');
   assert.equal(lesson.status,'Complete');
   assert.equal(lesson.mapStatus,'Built');
-  assert.deepEqual(lesson.components,['Lesson Plan','Learning Target','Agenda','Activity','Exit Ticket','Canvas Directions']);
+  assert.deepEqual(Array.from(lesson.components),['Lesson Plan','Learning Target','Agenda','Activity','Exit Ticket','Canvas Directions']);
   required.forEach(field=>assert.ok(Array.isArray(lesson[field])?lesson[field].length>0:String(lesson[field]||'').trim().length>0,`${lesson.id} missing ${field}`));
  });
 });
