@@ -91,7 +91,10 @@
   if(state.page!=="Lessons")return;
   const filters=document.querySelector(".main>.filters");
   const lessonCards=document.querySelectorAll(".main article.item");
-  if(filters&&!document.querySelector(".lesson-filter-summary"))filters.insertAdjacentHTML("afterend",`<div class="lesson-filter-summary"><strong>${lessonCards.length}</strong> matching lesson${lessonCards.length===1?"":"s"}<span>Open a lesson without losing these filters.</span></div>`);
+  const count=lessonCards.length;
+  const existing=document.querySelector(".mp2-result-count");
+  if(existing){existing.className="lesson-filter-summary";existing.innerHTML=`<strong>${count}</strong> matching lesson${count===1?"":"s"}<span>Open a lesson without losing these filters.</span>`;return;}
+  if(filters&&!document.querySelector(".lesson-filter-summary"))filters.insertAdjacentHTML("afterend",`<div class="lesson-filter-summary"><strong>${count}</strong> matching lesson${count===1?"":"s"}<span>Open a lesson without losing these filters.</span></div>`);
  }
  const originalRender=render;
  render=function(){
