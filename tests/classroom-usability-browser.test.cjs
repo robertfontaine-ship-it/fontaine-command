@@ -1,0 +1,86 @@
+const assert=require('node:assert/strict');
+const {spawn}=require('node:child_process');
+const {chromium}=require('playwright');
+const PORT=4176,BASE=`http://127.0.0.1:${PORT}`,wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const viewports=[{name:'Desktop',width:1366,height:900},{name:'iPhone 12',width:390,height:844}];
+async function serverReady(){for(let i=0;i<40;i++){try{if((await fetch(BASE)).ok)return;}catch{}await wait(250);}throw new Error('Static server did not start.');}
+async function noOverflow(page,label){const size=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));assert.ok(size.scrollWidth<=size.clientWidth+1,`${label}: overflow ${size.scrollWidth}>${size.clientWidth}`);}
+async function waitForToolbar(page,viewport,errors){
+ try{await page.waitForSelector('.classroom-toolbar',{timeout:5000});}
+ catch(error){
+  const snapshot=await page.evaluate(()=>({
+   statePage:window.state?.page,
+   selectedId:window.state?.selected?.id,
+   usability:window.FONTaineClassroomUsability||null,
+   toolbarCount:document.querySelectorAll('.classroom-toolbar').length,
+   tabCount:document.querySelectorAll('.tabs').length,
+   header:document.querySelector('.lesson-header')?.outerHTML||null,
+   appStart:document.getElementById('app')?.innerHTML.slice(0,4000)||null
+  }));
+  console.error(`CLASSROOM TOOLBAR SNAPSHOT ${viewport.name}\n${JSON.stringify({snapshot,errors},null,2)}`);
+  throw error;
+ }
+}
+(async()=>{
+ const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{stdio:'ignore'});
+ let browser;
+ try{
+  await serverReady();
+  browser=await chromium.launch({headless:true});
+  for(const viewport of viewports){
+   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},isMobile:viewport.width<600,hasTouch:viewport.width<900});
+   const page=await context.newPage(),errors=[];
+   page.on('pageerror',error=>errors.push(error.stack||error.message));
+   page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
+   await page.goto(BASE,{waitUntil:'networkidle'});
+   assert.match((await page.locator('.topbar>div>.muted').textContent()).trim(),/Entrepreneurship 9093/);
+   await page.evaluate(()=>go('Lessons'));
+   await page.waitForSelector('input[aria-label="Search lessons"]');
+   await page.locator('select[aria-label="Filter lessons by course"]').selectOption({label:'Entrepreneurship'});
+   await page.locator('select[aria-label="Filter lessons by marking period"]').selectOption({label:'MP3'});
+   await page.locator('input[aria-label="Search lessons"]').fill('ENT-051');
+   await page.waitForTimeout(100);
+   assert.equal(await page.locator('article.item').count(),1);
+   await page.locator('article.item').click();
+   await waitForToolbar(page,viewport,errors);
+   assert.match(await page.locator('.lesson-header h2').textContent(),/ENT-051/);
+   assert.equal((await page.locator('.classroom-back').textContent()).trim(),'Back to Lessons');
+   assert.ok(await page.locator('.classroom-toolbar .btn').count()>=8);
+   await noOverflow(page,`${viewport.name} lesson toolbar`);
+   await page.locator('.classroom-toolbar button',{hasText:'Next'}).click();
+   assert.match(await page.locator('.lesson-header h2').textContent(),/ENT-052/);
+   await page.locator('.classroom-toolbar button',{hasText:'Previous'}).click();
+   assert.match(await page.locator('.lesson-header h2').textContent(),/ENT-051/);
+   await page.locator('.classroom-toolbar button',{hasText:'Teach'}).click();
+   assert.equal(await page.locator('.tabs button.active').textContent(),'Teach');
+   assert.ok(await page.locator('.lesson-body').getByText('Learning Target',{exact:true}).count());
+   await page.evaluate(()=>{window.print=()=>{window.__fontainePrintCalled=true;};});
+   await page.locator('.classroom-toolbar button',{hasText:'Print full lesson'}).click();
+   assert.equal(await page.evaluate(()=>window.__fontainePrintCalled),true);
+   const printText=await page.locator('.lesson-print-sheet').textContent();
+   assert.match(printText,/Learning Target/);
+   assert.match(printText,/Canvas Directions/);
+   assert.match(printText,/Standards/);
+   await page.locator('.classroom-back').click();
+   await page.waitForSelector('input[aria-label="Search lessons"]');
+   assert.equal(await page.locator('input[aria-label="Search lessons"]').inputValue(),'ent-051');
+   assert.equal(await page.locator('select[aria-label="Filter lessons by course"]').inputValue(),'Entrepreneurship');
+   assert.equal(await page.locator('select[aria-label="Filter lessons by marking period"]').inputValue(),'MP3');
+   assert.equal(await page.locator('article.item').count(),1);
+   await page.locator('article.item').click();
+   await waitForToolbar(page,viewport,errors);
+   await page.locator('.classroom-toolbar button',{hasText:'Lesson resources'}).click();
+   await page.waitForSelector('.companion-dashboard');
+   assert.equal(await page.locator('input[aria-label="Search companion resources"]').inputValue(),'ENT-051');
+   assert.equal(await page.locator('select[aria-label="Filter companion resources by course"]').inputValue(),'Entrepreneurship');
+   assert.ok(await page.locator('.companion-card').count()>=5);
+   await noOverflow(page,`${viewport.name} companion results`);
+   assert.deepEqual(errors,[]);
+   console.log(`PASS ${viewport.name}: lesson return context, adjacent navigation, quick actions, printing, resources, and overflow`);
+   await context.close();
+  }
+ }finally{
+  if(browser)await browser.close();
+  server.kill('SIGTERM');
+ }
+})().catch(error=>{console.error(error);process.exit(1);});

@@ -51,33 +51,49 @@ function calculateReadiness(lesson){
   return lesson;
 }
 
+function readinessSignature(lesson){
+  return (lesson.components||[]).join("|");
+}
+
+function ensureLessonReadiness(lesson){
+  if(!lesson)return null;
+  const signature=readinessSignature(lesson);
+  if(!Array.isArray(lesson.componentDetails)||lesson.readinessComponentSignature!==signature){
+    lesson.componentDetails=initialComponentDetails(lesson);
+    lesson.readinessComponentSignature=signature;
+  }
+  return calculateReadiness(lesson);
+}
+
 function refreshReadiness(){
-  lessons.forEach(lesson=>{
-    if(!lesson.componentDetails)lesson.componentDetails=initialComponentDetails(lesson);
-    calculateReadiness(lesson);
-  });
-  window.FONTaineBuildTasks=lessons.flatMap(lesson=>lesson.buildTasks);
+  lessons.forEach(ensureLessonReadiness);
+  window.FONTaineBuildTasks=lessons.flatMap(lesson=>lesson.buildTasks||[]);
 }
 
 function toggleLessonComponent(lessonId,key){
-  const lesson=lessons.find(item=>item.id===lessonId);
+  const lesson=ensureLessonReadiness(lessons.find(item=>item.id===lessonId));
   const component=lesson?.componentDetails.find(item=>item.key===key);
   if(!component)return;
   component.status=component.status==="complete"?"missing":"complete";
   calculateReadiness(lesson);
+  window.FONTaineBuildTasks=lessons.flatMap(item=>(item.buildTasks||[]));
   toast(`${component.label} marked ${component.status} for ${lessonId}.`);
   render();
 }
 
 componentChecklist=function(lesson){
-  return lesson.componentDetails.filter(component=>component.required||component.status!=="not-required").map(component=>{
+  const readyLesson=ensureLessonReadiness(lesson);
+  if(!readyLesson)return "";
+  return readyLesson.componentDetails.filter(component=>component.required||component.status!=="not-required").map(component=>{
     const complete=component.status==="complete";
     const icon=complete?"✓":component.status==="draft"?"◐":"⚠";
-    return `<div class="component ${complete?"done":"missing"}"><span>${icon}</span><span><strong>${component.label}</strong><small>${component.status.replace("-"," ")}</small></span><button class="component-toggle" onclick="toggleLessonComponent('${lesson.id}','${component.key}')">${complete?"Mark missing":"Mark complete"}</button></div>`;
+    return `<div class="component ${complete?"done":"missing"}"><span>${icon}</span><span><strong>${component.label}</strong><small>${component.status.replace("-"," ")}</small></span><button class="component-toggle" onclick="toggleLessonComponent('${readyLesson.id}','${component.key}')">${complete?"Mark missing":"Mark complete"}</button></div>`;
   }).join("");
 };
 
 function curriculumReadinessSummary(){
+  lessons.forEach(ensureLessonReadiness);
+  window.FONTaineBuildTasks=lessons.flatMap(lesson=>lesson.buildTasks||[]);
   const totalComponents=lessons.flatMap(lesson=>lesson.componentDetails.filter(component=>component.required));
   const completeComponents=totalComponents.filter(component=>component.status==="complete").length;
   return {
@@ -98,6 +114,7 @@ dashboard=function(){
 };
 
 buildQueue=function(){
+  refreshReadiness();
   const tasks=window.FONTaineBuildTasks;
   return shell(`<div class="grid"><section class="card span-4"><div class="metric">${tasks.length}</div><div class="muted">Open component tasks</div></section><section class="card span-4"><div class="metric">${tasks.filter(task=>task.priority==="P0").length}</div><div class="muted">P0 required gaps</div></section><section class="card span-4"><div class="metric">${lessons.filter(lesson=>lesson.status==="Complete").length}</div><div class="muted">Complete lessons</div></section><section class="card span-12"><div class="list">${tasks.map(task=>`<div class="item row"><div><strong>${task.lessonId}</strong><div>${task.title}</div><div class="muted">Component: ${task.componentKey}</div></div><div><span class="pill">${task.priority}</span> <button class="btn" onclick="openLesson('${task.lessonId}')">Resolve</button></div></div>`).join("")||'<div class="empty">Every required lesson component is complete.</div>'}</div></section></div>`);
 };
