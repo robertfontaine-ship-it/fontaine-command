@@ -26,4 +26,13 @@ jobs:
         with:
           node-version: '24'
       - name: Run SEM MP2 Promotion package QA
-        run: node tests/sem-mp2-promotion.test.cjs
+        shell: bash
+        run: |
+          set -o pipefail
+          node tests/sem-mp2-promotion.test.cjs 2>&1 | tee sem-mp2-promotion-qa.txt
+      - name: Upload SEM Promotion QA output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sem-mp2-promotion-qa-output
+          path: sem-mp2-promotion-qa.txt
