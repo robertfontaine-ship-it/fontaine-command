@@ -3,7 +3,7 @@
   "FASH-059":{
    overview:"Students integrate retail format, target customer, textiles, sourcing, sustainability, pricing, merchandising, promotion, and performance measures into a complete fashion retail strategy capstone.",
    target:"I will integrate retail format, target customer, textiles, sourcing, sustainability, pricing, and merchandising decisions.",
-   success:"I will know I am successful when I can complete and defend the From Fiber to Floor strategy with consistent evidence and at least 80% accuracy.",
+   success:"I will know I am successful when I can complete and defend the From Fiber to Floor strategy using consistent evidence with at least 80% accuracy.",
    agenda:["Bell ringer: Every decision must connect","Verified capstone brief","Retail strategy development","Financial and evidence checkpoint","Executive presentation and reflection"],
    bellRinger:"A fashion concept can have attractive products but still fail if the customer, textile, sourcing, price, retail format, and merchandising decisions do not fit together. Explain one possible mismatch.",
    miniLesson:"Use the verified MP3 Fashion Project to review an integrated retail strategy: retail format, target customer, brand position, product assortment, fiber and fabric choices, product quality, sourcing and production, sustainability evidence, price architecture, channels, store or digital experience, visual merchandising, promotion, care communication, costs, risks, and measures. Model a decision chain showing how customer insight should connect every choice from material to selling floor.",
