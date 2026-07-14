@@ -10,6 +10,7 @@ const files={
  semSelling:fs.readFileSync('sem-mp2-selling-packages.js','utf8'),
  semProfessional:fs.readFileSync('sem-mp2-professional-skills-packages.js','utf8'),
  fashionPromotion:fs.readFileSync('fashion-mp2-promotion-packages.js','utf8'),
+ fashionPatch:fs.readFileSync('fashion-mp2-promotion-quality-patch.js','utf8'),
  index:fs.readFileSync('index.html','utf8')
 };
 const courseRows=[['SEM','8175','SEM'],['Fashion','8140','FASH'],['Entrepreneurship','9093','ENT']];
@@ -23,15 +24,19 @@ vm.createContext(context);
 let passed=0;
 function test(name,fn){try{fn();passed+=1;console.log(`PASS ${name}`);}catch(error){console.error(`FAIL ${name}`);throw error;}}
 
-test('Fashion promotion package JavaScript parses',()=>new vm.Script(files.fashionPromotion,{filename:'fashion-mp2-promotion-packages.js'}));
-test('index loads Fashion promotion packages after the MP2 map and before companion progress layers',()=>{
+test('Fashion promotion package and quality patch JavaScript parse',()=>{
+ new vm.Script(files.fashionPromotion,{filename:'fashion-mp2-promotion-packages.js'});
+ new vm.Script(files.fashionPatch,{filename:'fashion-mp2-promotion-quality-patch.js'});
+});
+test('index loads Fashion promotion package and patch after the MP2 map and before companion progress layers',()=>{
  const map=files.index.indexOf('mp2-curriculum-map.js');
  const professional=files.index.indexOf('sem-mp2-professional-skills-packages.js');
  const fashion=files.index.indexOf('fashion-mp2-promotion-packages.js');
+ const patch=files.index.indexOf('fashion-mp2-promotion-quality-patch.js');
  const companions=files.index.indexOf('sem-mp2-companion-resources.js');
  const progress=files.index.indexOf('mp2-build-progress.js');
- assert.ok([map,professional,fashion,companions,progress].every(value=>value>=0));
- assert.ok(map<professional&&professional<fashion&&fashion<companions&&companions<progress);
+ assert.ok([map,professional,fashion,patch,companions,progress].every(value=>value>=0));
+ assert.ok(map<professional&&professional<fashion&&fashion<patch&&patch<companions&&companions<progress);
 });
 
 vm.runInContext(files.source,context,{filename:'mp2-source-data.js'});
@@ -41,6 +46,7 @@ vm.runInContext(files.semPromotionPatch,context,{filename:'sem-mp2-promotion-qua
 vm.runInContext(files.semSelling,context,{filename:'sem-mp2-selling-packages.js'});
 vm.runInContext(files.semProfessional,context,{filename:'sem-mp2-professional-skills-packages.js'});
 vm.runInContext(files.fashionPromotion,context,{filename:'fashion-mp2-promotion-packages.js'});
+vm.runInContext(files.fashionPatch,context,{filename:'fashion-mp2-promotion-quality-patch.js'});
 
 const promotion=lessons.filter(lesson=>/^FASH-02[1-5]$/.test(lesson.id));
 const required=['overview','target','success','agenda','bellRinger','miniLesson','activity','exitTicket','materials','differentiation','canvas','standards','notes','version'];
