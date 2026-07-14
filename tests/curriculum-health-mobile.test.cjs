@@ -30,7 +30,8 @@ async function assertNoOverflow(page,label){const size=await page.evaluate(()=>(
    await page.waitForSelector('.health-dashboard');
    assert.equal((await page.locator('.topbar h1').textContent()).trim(),'Curriculum Health');
    assert.equal(await page.locator('.health-metric-card').count(),4,`${viewport.name}: four domain metrics were not rendered`);
-   assert.equal(await page.locator('.health-course-card').count(),2,`${viewport.name}: course comparison cards were not rendered`);
+   const expectedCourseCount=await page.evaluate(()=>new Set(lessons.map(lesson=>lesson.course)).size);
+   assert.equal(await page.locator('.health-course-card').count(),expectedCourseCount,`${viewport.name}: course comparison cards were not rendered`);
    assert.ok(await page.locator('.health-issue').count()>0,`${viewport.name}: action queue is empty`);
    await assertNoOverflow(page,`${viewport.name} dashboard`);
 
