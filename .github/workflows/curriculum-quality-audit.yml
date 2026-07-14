@@ -1,0 +1,37 @@
+name: Curriculum Quality Audit
+
+on:
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.css'
+      - 'index.html'
+      - 'tests/curriculum-quality-audit.test.cjs'
+      - '.github/workflows/curriculum-quality-audit.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '**.js'
+      - '**.css'
+      - 'index.html'
+      - 'tests/curriculum-quality-audit.test.cjs'
+      - '.github/workflows/curriculum-quality-audit.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run 180-lesson quality audit
+        run: node tests/curriculum-quality-audit.test.cjs
+      - name: Upload curriculum quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curriculum-quality-audit
+          path: artifacts/curriculum-quality-audit.json
+          if-no-files-found: warn
