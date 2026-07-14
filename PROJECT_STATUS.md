@@ -1,27 +1,27 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Build complete SEM MP2 Professional Skills, Customer Service, Case Review, and Performance Check lesson packages.
+Generate companion resources for the completed SEM MP2 curriculum, then begin Fashion MP2 lesson-package builds.
 
 ## Active Branch
-`feature/sem-mp2-professional-skills-packages`
+`feature/sem-mp2-companion-resources`
 
 ## Completed
-- SEM-001 through SEM-020, FASH-001 through FASH-020, and ENT-001 through ENT-020 migrated and merged into `main`.
-- Lesson Builder 2.0, AI Teacher Assistant, Curriculum Health Dashboard, and Companion Resources merged into `main`.
-- SEM-021 through SEM-040, FASH-021 through FASH-040, and ENT-021 through ENT-040 mapped and merged as source-backed MP2 lessons.
-- MP2 course, marking-period, standards, Drive-resource, dashboard, and Build Queue integration completed.
-- SEM-021 through SEM-028 built and merged as complete Promotion lesson packages.
-- SEM-029 through SEM-035 built and merged as complete Selling lesson packages.
-- SEM-036 through SEM-040 built as complete Professional Skills, Customer Service, Case Review, and Performance Check packages.
-- The final SEM batch includes professional communication, time and resource management, event customer service, DECA-style case role-play, and a cumulative MP2 performance check.
-- Dedicated package QA verifies all 20 SEM MP2 lessons are complete while Fashion and Entrepreneurship MP2 remain mapped for later builds.
+- SEM-001 through SEM-040 are complete lesson packages across MP1 and MP2.
+- FASH-001 through FASH-020 and ENT-001 through ENT-020 are complete MP1 lesson packages.
+- FASH-021 through FASH-040 and ENT-021 through ENT-040 are mapped as source-backed MP2 lessons.
+- Lesson Builder 2.0, AI Teacher Assistant, Curriculum Health Dashboard, Companion Resources, and MP2 curriculum mapping are merged into `main`.
+- SEM MP2 Promotion, Selling, Professional Skills, Customer Service, Case Review, and Performance Check packages are merged into `main`.
+- 100 generated companion resources added for SEM-021 through SEM-040: student organizers, scoring rubrics, exit tickets, quick checks, and teacher scoring guides.
+- Five additional unique SEM MP2 Drive files recorded as verified companion sources.
+- The existing SEM Individual Role-Play Worksheet is extended to SEM-035 and SEM-039 without creating a duplicate verified-file record.
+- Companion metrics expand from 60 to 80 covered lessons and from 300 to 400 generated printables.
 
 ## Current Priority
-Run SEM MP2 Professional Skills and full regression QA, resolve defects, and merge the five complete lesson packages.
+Run companion calculation, browser, mobile, and regression QA; resolve defects; and merge the SEM MP2 companion-resource expansion.
 
 ## Next
-1. Merge SEM-036 through SEM-040 after all checks pass.
-2. Generate companion resources for the 20 completed SEM MP2 packages.
-3. Build Fashion MP2 unit batches.
+1. Merge the SEM MP2 companion-resource expansion after all checks pass.
+2. Build FASH-021 through FASH-025 — Promotional Mix Elements.
+3. Continue Fashion MP2 Selling Process and Customer Service batches.
 4. Build Entrepreneurship MP2 unit batches.
