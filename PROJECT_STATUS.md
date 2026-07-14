@@ -1,28 +1,26 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-MP2 curriculum mapping across Sports & Entertainment Marketing, Fashion Marketing, and Entrepreneurship.
+Build complete SEM MP2 Promotion lesson packages.
 
 ## Active Branch
-`feature/mp2-curriculum-mapping`
+`feature/sem-mp2-promotion-packages`
 
 ## Completed
-- SEM-001 through SEM-020 migrated and merged into `main`.
-- FASH-001 through FASH-020 migrated and merged into `main`.
-- ENT-001 through ENT-020 migrated and merged into `main`.
+- SEM-001 through SEM-020, FASH-001 through FASH-020, and ENT-001 through ENT-020 migrated and merged into `main`.
 - Lesson Builder 2.0, AI Teacher Assistant, Curriculum Health Dashboard, and Companion Resources merged into `main`.
-- Production smoke testing and responsive browser QA established.
-- Official MP2 pacing-guide units and standards verified for all three courses.
-- Fashion MP2 instructional plan and current classroom resources verified.
-- SEM-021 through SEM-040, FASH-021 through FASH-040, and ENT-021 through ENT-040 mapped as source-backed planned lessons.
-- MP2 course, marking-period, lesson, standards, Drive-resource, dashboard, and Build Queue integration added.
-- MP2 calculation and responsive browser QA added.
+- SEM-021 through SEM-040, FASH-021 through FASH-040, and ENT-021 through ENT-040 mapped and merged as source-backed MP2 lessons.
+- MP2 course, marking-period, standards, Drive-resource, dashboard, and Build Queue integration completed.
+- SEM-021 through SEM-028 built as complete Promotion lesson packages.
+- SEM Promotion packages include learning targets, success criteria, agendas, bell ringers, instruction, student activities, exit tickets, materials, differentiation, Canvas directions, standards, and source notes.
+- MP2 course cards now distinguish total MP2 lessons from completed MP2 packages.
+- SEM MP2 Promotion calculation QA and package-progress-aware browser QA added.
 
 ## Current Priority
-Run MP2 curriculum-map QA, resolve integration defects, and merge the 60-lesson map into `main`.
+Run SEM MP2 Promotion and regression QA, resolve defects, and merge the eight complete lesson packages.
 
 ## Next
-1. Confirm MP2 calculation, filter, mobile, and regression tests pass.
-2. Merge the MP2 curriculum map.
-3. Build complete MP2 lesson packages in prioritized unit batches.
-4. Generate and verify MP2 companion materials only after each lesson package is complete.
+1. Merge SEM-021 through SEM-028 after all checks pass.
+2. Add companion resources for completed MP2 packages.
+3. Build SEM-029 through SEM-035 — Selling.
+4. Continue with Fashion and Entrepreneurship MP2 unit batches.
