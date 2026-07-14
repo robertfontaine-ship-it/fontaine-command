@@ -5,6 +5,7 @@ on:
     paths:
       - 'mp2-source-data.js'
       - 'fashion-mp2-selling-packages.js'
+      - 'fashion-mp2-selling-quality-patch.js'
       - 'index.html'
       - 'tests/fashion-mp2-selling.test.cjs'
       - '.github/workflows/fashion-mp2-selling.yml'
