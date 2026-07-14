@@ -28,10 +28,15 @@ async function assertNoOverflow(page,label){const size=await page.evaluate(()=>(
    await page.locator('.nav button',{hasText:'Companion Resources'}).click();
    await page.waitForSelector('.companion-dashboard');
    assert.equal((await page.locator('.topbar h1').textContent()).trim(),'Companion Resources');
-   assert.equal((await page.locator('[data-companion-metric="generated"] strong').textContent()).trim(),'300');
-   assert.equal((await page.locator('[data-companion-metric="verified"] strong').textContent()).trim(),'12');
+   const audit=await page.evaluate(()=>FONTaineCompanionAudit);
+   assert.equal(audit.generatedResources,400);
+   assert.equal(audit.verifiedResources,17);
+   assert.equal(audit.verifiedAnswerKeys,3);
+   assert.equal(audit.totalLessons,80);
+   assert.equal((await page.locator('[data-companion-metric="generated"] strong').textContent()).trim(),'400');
+   assert.equal((await page.locator('[data-companion-metric="verified"] strong').textContent()).trim(),'17');
    assert.equal((await page.locator('[data-companion-metric="keys"] strong').textContent()).trim(),'3');
-   assert.equal((await page.locator('[data-companion-metric="lessons"] strong').textContent()).trim(),'60');
+   assert.equal((await page.locator('[data-companion-metric="lessons"] strong').textContent()).trim(),'80');
    await assertNoOverflow(page,`${viewport.name} companion dashboard`);
 
    const selects=page.locator('.companion-toolbar select');
@@ -39,10 +44,15 @@ async function assertNoOverflow(page,label){const size=await page.evaluate(()=>(
    await selects.nth(1).selectOption({label:'Student Organizer'});
    await selects.nth(2).selectOption({label:'Generated'});
    await page.waitForTimeout(80);
-   assert.equal(await page.locator('.companion-card').count(),20,`${viewport.name}: SEM organizer filter should show 20 resources`);
+   assert.equal(await page.locator('.companion-card').count(),40,`${viewport.name}: SEM organizer filter should show 40 resources`);
+   const search=page.locator('input[aria-label="Search companion resources"]');
+   await search.fill('SEM-021');
+   await page.waitForTimeout(80);
+   assert.equal(await page.locator('.companion-card').count(),1,`${viewport.name}: SEM-021 generated organizer should be searchable`);
    await page.locator('.companion-card').first().locator('button',{hasText:'Preview'}).click();
    await page.waitForSelector('.companion-printable');
-   assert.match(await page.locator('.companion-printable h1').textContent(),/SEM-\d{3} Student Organizer/);
+   assert.match(await page.locator('.companion-printable h1').textContent(),/SEM-021 Student Organizer/);
+   assert.match(await page.locator('.companion-printable').textContent(),/promotional mix|awareness/i);
    assert.ok(await page.locator('.companion-writing-space').count()>=5,'Generated organizer should include response sections.');
    await assertNoOverflow(page,`${viewport.name} companion preview`);
    await page.locator('button',{hasText:'Back to resources'}).click();
@@ -54,7 +64,7 @@ async function assertNoOverflow(page,label){const size=await page.evaluate(()=>(
    assert.ok(await page.locator('.companion-review-flag').count()>0,'Review-required resources need a visible warning.');
    assert.deepEqual(errors,[],`${viewport.name}: browser errors detected\n${errors.join('\n')}`);
    await context.close();
-   console.log(`PASS ${viewport.name}: companion resources, filters, preview, and review labeling`);
+   console.log(`PASS ${viewport.name}: SEM MP2 companion resources, filters, preview, and review labeling`);
   }
  }finally{
   if(browser)await browser.close();
