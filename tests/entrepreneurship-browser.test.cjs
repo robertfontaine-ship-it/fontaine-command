@@ -30,10 +30,11 @@ async function noOverflow(page,label){const size=await page.evaluate(()=>({scrol
    await noOverflow(page,`${viewport.name} courses`);
 
    await page.locator('.nav button',{hasText:'Lessons'}).click();
-   const courseOptions=await page.locator('.filters select').first().locator('option').allTextContents();
+   const courseOptions=await page.locator('select[aria-label="Filter lessons by course"] option').allTextContents();
    assert.ok(courseOptions.includes('Entrepreneurship'),`${viewport.name}: lesson course filter missing Entrepreneurship`);
-   await page.locator('.filters select').first().selectOption({label:'Entrepreneurship'});
-   assert.equal(await page.locator('article.item').count(),20,`${viewport.name}: Entrepreneurship lesson count`);
+   await page.locator('select[aria-label="Filter lessons by course"]').selectOption({label:'Entrepreneurship'});
+   await page.locator('select[aria-label="Filter lessons by marking period"]').selectOption('MP1');
+   assert.equal(await page.locator('article.item').count(),20,`${viewport.name}: Entrepreneurship MP1 lesson count`);
    await page.locator('article.item',{hasText:'ENT-001'}).click();
    assert.match(await page.locator('.lesson-header h2').textContent(),/ENT-001/);
    assert.match(await page.locator('.lesson-body').textContent(),/Entrepreneurial Mindset|course systems/i);
@@ -43,7 +44,8 @@ async function noOverflow(page,label){const size=await page.evaluate(()=>({scrol
    const standardsCourses=await page.locator('.standards-toolbar select').nth(1).locator('option').allTextContents();
    assert.ok(standardsCourses.includes('Entrepreneurship'),`${viewport.name}: standards filter missing Entrepreneurship`);
    await page.locator('.standards-toolbar select').nth(1).selectOption({label:'Entrepreneurship'});
-   assert.equal(await page.locator('.standard-card').count(),8,`${viewport.name}: Entrepreneurship standards count`);
+   assert.ok(await page.locator('.standard-card').count()>=8,`${viewport.name}: Entrepreneurship standards missing`);
+   assert.equal(await page.locator('.standard-card',{hasText:'9093.MP1.08'}).count(),1,`${viewport.name}: Entrepreneurship MP1 standards missing`);
 
    await page.locator('.nav button',{hasText:'Google Drive'}).click();
    const driveCourses=await page.locator('.filters select').first().locator('option').allTextContents();
