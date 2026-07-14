@@ -1,0 +1,29 @@
+name: SEM MP3 Pricing QA
+
+on:
+  pull_request:
+    paths:
+      - 'sem-mp3-pricing-sources.js'
+      - 'sem-mp3-pricing-packages-a.js'
+      - 'sem-mp3-pricing-packages-b.js'
+      - 'sem-mp3-pricing-packages-c.js'
+      - 'index.html'
+      - 'tests/sem-mp3-pricing.test.cjs'
+      - '.github/workflows/sem-mp3-pricing.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sem-mp3-pricing-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run SEM MP3 Pricing Strategy QA
+        run: node tests/sem-mp3-pricing.test.cjs
