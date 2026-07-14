@@ -1,0 +1,39 @@
+(()=>{
+ const packages={
+  "ENT-039":{
+   overview:"Students build a startup cash-flow forecast and break-even analysis to identify timing shortages, required sales volume, financing needs, and financially realistic operating decisions.",
+   target:"I will prepare a startup cash-flow forecast and calculate break-even sales.",
+   success:"I will know I am successful when I can distinguish cash from profit, forecast monthly cash, calculate break-even, and recommend actions with at least 80% accuracy.",
+   agenda:["Bell ringer: Profitable but out of cash","Cash-flow and break-even mini lesson","Monthly forecast build","Break-even calculation lab","Scenario decision briefing"],
+   bellRinger:"A business records a sale in March but will not collect the customer payment until May. Explain how the sale can improve profit before it improves cash.",
+   miniLesson:"Distinguish profit from cash flow and review beginning cash, cash receipts, cash payments, net cash flow, ending cash, collection timing, payment timing, inventory purchases, loan proceeds, debt payments, owner investment, and minimum cash reserve. Introduce fixed costs, variable cost per unit, selling price, contribution margin, break-even units, and break-even sales dollars. Model how price, cost, volume, payment terms, seasonality, and startup spending affect cash and break-even decisions.",
+   activity:"Students create a six-month cash-flow forecast from sales, collection, expense, inventory, equipment, loan, and owner-investment assumptions. They identify the lowest cash month and amount of any shortage. Students then calculate contribution margin and break-even units for the venture and test four changes: higher price, lower variable cost, increased fixed cost, and lower sales volume. Teams prepare a decision briefing recommending timing, cost, pricing, financing, or collection changes while explaining the customer or operational tradeoff of each action.",
+   exitTicket:"Explain one way a profitable startup can run out of cash and one action that could reduce the risk.",
+   materials:["Financial Aspects of Business slides","Business Plan Template cash-flow section","Six-month cash-flow forecast","Break-even calculation sheet","Scenario decision brief"],
+   differentiation:["Provide cash-flow and break-even formula references","Use pre-entered beginning balances and rounded assumptions","Allow calculator use and paired error checks","Require advanced students to calculate margin of safety and financing need"],
+   canvas:"💵 Review the difference between profit and cash flow.\n📅 Build the six-month cash-flow forecast.\n⚠️ Identify the lowest cash month and any funding shortage.\n🧮 Calculate contribution margin and break-even units.\n🔄 Test the four pricing, cost, and volume changes.\n🎤 Submit the forecast, calculations, and decision briefing in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Entrepreneurship 9093.060-.064; 9093.076-.077 — cash-flow forecasting, break-even analysis, pricing, costs, financing, and financial decision making",
+   notes:"Source-backed package using Financial Aspects of Business, file ID 1gX7ylIDOKghr8C3GThL1EWuNAK5GXJyMVPOuThSf1gg, and Business Plan Template, file ID 1NMqCqQ6rRBV7xHUhVKsu6TH0CNl_vSZ8.",
+   version:"Version 1 — Entrepreneurship MP2 cash flow and break-even"
+  },
+  "ENT-040":{
+   overview:"Students demonstrate cumulative MP2 mastery by interpreting connected financial statements, completing the verified quarterly review, correcting errors, and recommending evidence-based startup actions.",
+   target:"I will interpret startup financial records, income statements, balance sheets, cash flow, and break-even information to make business decisions.",
+   success:"I will know I am successful when I can complete the cumulative performance check and correct missed concepts with at least 80% accuracy.",
+   agenda:["Bell ringer: One business, four financial views","Verified quarterly review","Connected-statement case","Individual performance check","Error analysis and improvement plan"],
+   bellRinger:"A startup reports net income, low cash, increasing debt, and rising sales. Explain why the owner must examine more than one financial statement before making a decision.",
+   miniLesson:"Use the verified Entrepreneurship Quarterly Exam Review and answer key to connect source records, income statements, balance sheets, cash-flow forecasts, and break-even analysis. Model how one transaction can affect profit, cash, assets, liabilities, and equity differently. Review common errors: treating revenue as cash, placing assets on an income statement, ignoring debt, confusing owner investment with sales, using average cost instead of variable cost for break-even, and recommending growth without checking capacity or cash.",
+   activity:"Students complete the verified quarterly review and then an individual cumulative performance check. The check requires transaction classification, source-document matching, preparation or correction of income-statement and balance-sheet sections, cash-flow interpretation, break-even calculation, and an integrated startup recommendation. Students use the verified answer key or teacher scoring guide to complete error analysis for every missed item: identify the concept, explain the original error, show the corrected calculation or reasoning, and name the lesson or resource to revisit. Students finish with a two-skill improvement plan.",
+   exitTicket:"Identify the financial measure you trust most right now, the measure you need more practice interpreting, and the specific practice you will complete next.",
+   materials:["Entrepreneurship Quarterly Exam Review","Verified quarterly review answer key","Financial Aspects of Business slides","Cumulative financial performance check","Error-analysis and improvement-plan organizer"],
+   differentiation:["Provide a financial-statement reference during review","Chunk the performance check into sections","Allow oral explanation for error analysis","Require advanced students to explain why one plausible financial recommendation is still weaker"],
+   canvas:"📘 Complete the verified Entrepreneurship Quarterly Exam Review.\n🧾 Apply source-document and transaction-classification skills.\n📈 Complete the income-statement, balance-sheet, cash-flow, and break-even performance tasks.\n🔍 Correct every missed item using the verified key or teacher feedback.\n🎯 Create a two-skill improvement plan with named resources and actions.\n📤 Submit the review, performance check, error analysis, and plan in Canvas.\n🏁 Earn at least 80% mastery.",
+   standards:"Entrepreneurship 9093.060-.064; 9093.076-.077 — cumulative financial records, statements, cash flow, break-even, analysis, and business decisions",
+   notes:"Exact-resource cumulative package using Entrepreneurship Quarterly Exam Review, file ID 1ouaBe_U_ls5dMDKXJmpUzSEdSBm0FacPdjV7Ub2vimY, and verified answer key, file ID 1kLvUYqPEgqyX3W-nJJqp2leRwOO4H-4roxR38YlhxqU.",
+   version:"Version 1 — Entrepreneurship MP2 financial review and performance check"
+  }
+ };
+ const ids=Object.keys(packages);ids.forEach(id=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,packages[id],{status:"Complete",mapStatus:"Built",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"]});});
+ window.FONTaineEntrepreneurshipMP2FinancialPackagesB={count:ids.length,lessonIds:ids};
+ window.FONTaineEntrepreneurshipMP2FinancialPackages={count:5,lessonIds:["ENT-036","ENT-037","ENT-038","ENT-039","ENT-040"],sourceIds:["ent-financial-slides","ent-business-plan-template","ent-quarterly-review","ent-quarterly-key"]};
+})();
