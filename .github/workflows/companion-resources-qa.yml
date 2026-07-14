@@ -6,17 +6,21 @@ on:
       - feature/companion-resource-audit
     paths:
       - 'companion-resources.js'
+      - 'sem-mp2-companion-resources.js'
       - 'companion-resources.css'
       - 'index.html'
       - 'tests/companion-resources.test.cjs'
+      - 'tests/sem-mp2-companion-resources.test.cjs'
       - 'tests/companion-resources-browser.test.cjs'
       - '.github/workflows/companion-resources-qa.yml'
   pull_request:
     paths:
       - 'companion-resources.js'
+      - 'sem-mp2-companion-resources.js'
       - 'companion-resources.css'
       - 'index.html'
       - 'tests/companion-resources.test.cjs'
+      - 'tests/sem-mp2-companion-resources.test.cjs'
       - 'tests/companion-resources-browser.test.cjs'
       - '.github/workflows/companion-resources-qa.yml'
   workflow_dispatch:
@@ -34,8 +38,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Run companion resource calculation QA
+      - name: Run base companion resource calculation QA
         run: node tests/companion-resources.test.cjs
+      - name: Run SEM MP2 companion resource calculation QA
+        run: node tests/sem-mp2-companion-resources.test.cjs
       - name: Install browser test dependency
         run: |
           npm install --no-save --silent playwright >/dev/null 2>&1
