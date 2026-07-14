@@ -12,6 +12,7 @@ const files={
  fashionPromotion:fs.readFileSync('fashion-mp2-promotion-packages.js','utf8'),
  fashionPromotionPatch:fs.readFileSync('fashion-mp2-promotion-quality-patch.js','utf8'),
  fashionSelling:fs.readFileSync('fashion-mp2-selling-packages.js','utf8'),
+ fashionSellingPatch:fs.readFileSync('fashion-mp2-selling-quality-patch.js','utf8'),
  index:fs.readFileSync('index.html','utf8')
 };
 const courseRows=[['SEM','8175','SEM'],['Fashion','8140','FASH'],['Entrepreneurship','9093','ENT']];
@@ -25,15 +26,19 @@ vm.createContext(context);
 let passed=0;
 function test(name,fn){try{fn();passed+=1;console.log(`PASS ${name}`);}catch(error){console.error(`FAIL ${name}`);throw error;}}
 
-test('Fashion selling package JavaScript parses',()=>new vm.Script(files.fashionSelling,{filename:'fashion-mp2-selling-packages.js'}));
-test('index loads Fashion selling packages after Fashion promotion and before companion progress layers',()=>{
+test('Fashion selling package and quality patch JavaScript parse',()=>{
+ new vm.Script(files.fashionSelling,{filename:'fashion-mp2-selling-packages.js'});
+ new vm.Script(files.fashionSellingPatch,{filename:'fashion-mp2-selling-quality-patch.js'});
+});
+test('index loads Fashion selling package and patch after Fashion promotion and before companion progress layers',()=>{
  const map=files.index.indexOf('mp2-curriculum-map.js');
  const promotion=files.index.indexOf('fashion-mp2-promotion-packages.js');
  const selling=files.index.indexOf('fashion-mp2-selling-packages.js');
+ const patch=files.index.indexOf('fashion-mp2-selling-quality-patch.js');
  const companions=files.index.indexOf('sem-mp2-companion-resources.js');
  const progress=files.index.indexOf('mp2-build-progress.js');
- assert.ok([map,promotion,selling,companions,progress].every(value=>value>=0));
- assert.ok(map<promotion&&promotion<selling&&selling<companions&&companions<progress);
+ assert.ok([map,promotion,selling,patch,companions,progress].every(value=>value>=0));
+ assert.ok(map<promotion&&promotion<selling&&selling<patch&&patch<companions&&companions<progress);
 });
 
 vm.runInContext(files.source,context,{filename:'mp2-source-data.js'});
@@ -45,6 +50,7 @@ vm.runInContext(files.semProfessional,context,{filename:'sem-mp2-professional-sk
 vm.runInContext(files.fashionPromotion,context,{filename:'fashion-mp2-promotion-packages.js'});
 vm.runInContext(files.fashionPromotionPatch,context,{filename:'fashion-mp2-promotion-quality-patch.js'});
 vm.runInContext(files.fashionSelling,context,{filename:'fashion-mp2-selling-packages.js'});
+vm.runInContext(files.fashionSellingPatch,context,{filename:'fashion-mp2-selling-quality-patch.js'});
 
 const selling=lessons.filter(lesson=>/^FASH-0(26|27|28|29|30|31|32|33)$/.test(lesson.id));
 const required=['overview','target','success','agenda','bellRinger','miniLesson','activity','exitTicket','materials','differentiation','canvas','standards','notes','version'];
