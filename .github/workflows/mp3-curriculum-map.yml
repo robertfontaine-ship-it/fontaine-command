@@ -1,0 +1,27 @@
+name: MP3 Curriculum Map QA
+
+on:
+  pull_request:
+    paths:
+      - 'mp3-source-data.js'
+      - 'mp3-curriculum-map.js'
+      - 'index.html'
+      - 'tests/mp3-curriculum-map.test.cjs'
+      - '.github/workflows/mp3-curriculum-map.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mp3-curriculum-map-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run MP3 curriculum map QA
+        run: node tests/mp3-curriculum-map.test.cjs
