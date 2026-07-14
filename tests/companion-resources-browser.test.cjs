@@ -1,73 +1,10 @@
 const assert=require('node:assert/strict');
 const {spawn}=require('node:child_process');
 const {chromium}=require('playwright');
-
-const PORT=4175;
-const BASE=`http://127.0.0.1:${PORT}`;
-const viewports=[
- {name:'iPhone 12',width:390,height:844},
- {name:'Desktop',width:1366,height:900}
-];
-const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const PORT=4175;const BASE=`http://127.0.0.1:${PORT}`;const viewports=[{name:'iPhone 12',width:390,height:844},{name:'Desktop',width:1366,height:900}];const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function waitForServer(){for(let i=0;i<40;i++){try{const response=await fetch(BASE);if(response.ok)return;}catch{}await wait(250);}throw new Error('Static server did not start.');}
 async function assertNoOverflow(page,label){const size=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));assert.ok(size.scrollWidth<=size.clientWidth+1,`${label}: horizontal overflow ${size.scrollWidth}px > ${size.clientWidth}px`);}
-
-(async()=>{
- const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{stdio:'ignore'});
- let browser;
- try{
-  await waitForServer();
-  browser=await chromium.launch({headless:true});
-  for(const viewport of viewports){
-   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},isMobile:viewport.width<600,hasTouch:viewport.width<900,permissions:['clipboard-read','clipboard-write']});
-   const page=await context.newPage();
-   const errors=[];
-   page.on('pageerror',error=>errors.push(`pageerror: ${error.message}`));
-   page.on('console',message=>{if(message.type()==='error')errors.push(`console: ${message.text()}`);});
-   await page.goto(BASE,{waitUntil:'networkidle'});
-   await page.locator('.nav button',{hasText:'Companion Resources'}).click();
-   await page.waitForSelector('.companion-dashboard');
-   assert.equal((await page.locator('.topbar h1').textContent()).trim(),'Companion Resources');
-   const audit=await page.evaluate(()=>FONTaineCompanionAudit);
-   assert.equal(audit.generatedResources,400);
-   assert.equal(audit.verifiedResources,17);
-   assert.equal(audit.verifiedAnswerKeys,3);
-   assert.equal(audit.totalLessons,80);
-   assert.equal((await page.locator('[data-companion-metric="generated"] strong').textContent()).trim(),'400');
-   assert.equal((await page.locator('[data-companion-metric="verified"] strong').textContent()).trim(),'17');
-   assert.equal((await page.locator('[data-companion-metric="keys"] strong').textContent()).trim(),'3');
-   assert.equal((await page.locator('[data-companion-metric="lessons"] strong').textContent()).trim(),'80');
-   await assertNoOverflow(page,`${viewport.name} companion dashboard`);
-
-   const selects=page.locator('.companion-toolbar select');
-   await selects.nth(0).selectOption({label:'SEM'});
-   await selects.nth(1).selectOption({label:'Student Organizer'});
-   await selects.nth(2).selectOption({label:'Generated'});
-   await page.waitForTimeout(80);
-   assert.equal(await page.locator('.companion-card').count(),40,`${viewport.name}: SEM organizer filter should show 40 resources`);
-   const search=page.locator('input[aria-label="Search companion resources"]');
-   await search.fill('SEM-021');
-   await page.waitForTimeout(80);
-   assert.equal(await page.locator('.companion-card').count(),1,`${viewport.name}: SEM-021 generated organizer should be searchable`);
-   await page.locator('.companion-card').first().locator('button',{hasText:'Preview'}).click();
-   await page.waitForSelector('.companion-printable');
-   assert.match(await page.locator('.companion-printable h1').textContent(),/SEM-021 Student Organizer/);
-   assert.match(await page.locator('.companion-printable').textContent(),/promotional mix|awareness/i);
-   assert.ok(await page.locator('.companion-writing-space').count()>=5,'Generated organizer should include response sections.');
-   await assertNoOverflow(page,`${viewport.name} companion preview`);
-   await page.locator('button',{hasText:'Back to resources'}).click();
-
-   await page.locator('.companion-toolbar button',{hasText:'Clear'}).click();
-   await selects.nth(2).selectOption({label:'Teacher Review Required'});
-   await page.waitForTimeout(80);
-   assert.equal(await page.locator('.companion-card').count(),60,'Review-required list should be capped at 60 visible resources.');
-   assert.ok(await page.locator('.companion-review-flag').count()>0,'Review-required resources need a visible warning.');
-   assert.deepEqual(errors,[],`${viewport.name}: browser errors detected\n${errors.join('\n')}`);
-   await context.close();
-   console.log(`PASS ${viewport.name}: SEM MP2 companion resources, filters, preview, and review labeling`);
-  }
- }finally{
-  if(browser)await browser.close();
-  server.kill('SIGTERM');
- }
-})().catch(error=>{console.error(error);process.exit(1);});
+(async()=>{const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{stdio:'ignore'});let browser;try{await waitForServer();browser=await chromium.launch({headless:true});for(const viewport of viewports){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},isMobile:viewport.width<600,hasTouch:viewport.width<900,permissions:['clipboard-read','clipboard-write']});const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(`pageerror: ${error.message}`));page.on('console',message=>{if(message.type()==='error')errors.push(`console: ${message.text()}`);});await page.goto(BASE,{waitUntil:'networkidle'});await page.locator('.nav button',{hasText:'Companion Resources'}).click();await page.waitForSelector('.companion-dashboard');assert.equal((await page.locator('.topbar h1').textContent()).trim(),'Companion Resources');const audit=await page.evaluate(()=>FONTaineCompanionAudit);assert.equal(audit.generatedResources,500);assert.equal(audit.verifiedResources,25);assert.equal(audit.verifiedAnswerKeys,3);assert.equal(audit.totalLessons,100);assert.equal((await page.locator('[data-companion-metric="generated"] strong').textContent()).trim(),'500');assert.equal((await page.locator('[data-companion-metric="verified"] strong').textContent()).trim(),'25');assert.equal((await page.locator('[data-companion-metric="keys"] strong').textContent()).trim(),'3');assert.equal((await page.locator('[data-companion-metric="lessons"] strong').textContent()).trim(),'100');await assertNoOverflow(page,`${viewport.name} companion dashboard`);
+const selects=page.locator('.companion-toolbar select');const search=page.locator('input[aria-label="Search companion resources"]');await selects.nth(0).selectOption({label:'Fashion'});await selects.nth(1).selectOption({label:'Student Organizer'});await selects.nth(2).selectOption({label:'Generated'});await page.waitForTimeout(80);assert.equal(await page.locator('.companion-card').count(),40,`${viewport.name}: Fashion organizer filter should show 40 resources`);await search.fill('FASH-021');await page.waitForTimeout(80);assert.equal(await page.locator('.companion-card').count(),1);await page.locator('.companion-card').first().locator('button',{hasText:'Preview'}).click();await page.waitForSelector('.companion-printable');assert.match(await page.locator('.companion-printable h1').textContent(),/FASH-021 Student Organizer/);assert.match(await page.locator('.companion-printable').textContent(),/customer value|value proposition/i);assert.ok(await page.locator('.companion-writing-space').count()>=5);await assertNoOverflow(page,`${viewport.name} Fashion companion preview`);await page.locator('button',{hasText:'Back to resources'}).click();
+await page.locator('.companion-toolbar button',{hasText:'Clear'}).click();await selects.nth(0).selectOption({label:'Fashion'});await selects.nth(2).selectOption({label:'Verified in Drive'});await search.fill('Clienteling');await page.waitForTimeout(80);assert.ok(await page.locator('.companion-card').count()>=2,'Clienteling slides and notes should be verified and searchable.');
+await page.locator('.companion-toolbar button',{hasText:'Clear'}).click();await selects.nth(2).selectOption({label:'Teacher Review Required'});await page.waitForTimeout(80);assert.equal(await page.locator('.companion-card').count(),60,'Review-required list should remain capped at 60 visible resources.');assert.ok(await page.locator('.companion-review-flag').count()>0);assert.deepEqual(errors,[],`${viewport.name}: browser errors detected\n${errors.join('\n')}`);await context.close();console.log(`PASS ${viewport.name}: Fashion MP2 companion metrics, filters, preview, verified sources, and review labeling`);}}finally{if(browser)await browser.close();server.kill('SIGTERM');}})().catch(error=>{console.error(error);process.exit(1);});
