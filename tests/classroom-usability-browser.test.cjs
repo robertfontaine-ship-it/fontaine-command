@@ -30,7 +30,7 @@ async function waitForToolbar(page,viewport,errors){
   for(const viewport of viewports){
    const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},isMobile:viewport.width<600,hasTouch:viewport.width<900});
    const page=await context.newPage(),errors=[];
-   page.on('pageerror',error=>errors.push(error.message));
+   page.on('pageerror',error=>errors.push(error.stack||error.message));
    page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
    await page.goto(BASE,{waitUntil:'networkidle'});
    assert.match((await page.locator('.topbar>div>.muted').textContent()).trim(),/Entrepreneurship 9093/);
