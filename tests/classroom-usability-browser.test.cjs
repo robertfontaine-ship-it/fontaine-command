@@ -63,7 +63,7 @@ async function waitForToolbar(page,viewport,errors){
    assert.match(printText,/Standards/);
    await page.locator('.classroom-back').click();
    await page.waitForSelector('input[aria-label="Search lessons"]');
-   assert.equal(await page.locator('input[aria-label="Search lessons"]').inputValue(),'ENT-051');
+   assert.equal(await page.locator('input[aria-label="Search lessons"]').inputValue(),'ent-051');
    assert.equal(await page.locator('select[aria-label="Filter lessons by course"]').inputValue(),'Entrepreneurship');
    assert.equal(await page.locator('select[aria-label="Filter lessons by marking period"]').inputValue(),'MP3');
    assert.equal(await page.locator('article.item').count(),1);
