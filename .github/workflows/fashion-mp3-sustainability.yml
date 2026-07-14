@@ -25,16 +25,4 @@ jobs:
         with:
           node-version: '24'
       - name: Run Fashion MP3 Sustainability QA
-        shell: bash
-        run: |
-          set +e
-          node tests/fashion-mp3-sustainability.test.cjs > fashion-mp3-sustainability-qa.txt 2>&1
-          status=$?
-          cat fashion-mp3-sustainability-qa.txt
-          exit $status
-      - name: Upload Fashion sustainability QA output
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: fashion-mp3-sustainability-qa-output
-          path: fashion-mp3-sustainability-qa.txt
+        run: node tests/fashion-mp3-sustainability.test.cjs
