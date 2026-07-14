@@ -1,0 +1,40 @@
+(()=>{
+ const packages={
+  "SEM-059":{
+   overview:"Students develop a coordinated event revenue plan using upsells, cross-sells, bundles, premium experiences, pricing, customer value, operational feasibility, and financial projections.",
+   target:"I will develop a coordinated event revenue plan using upsells, bundles, and customer-experience evidence.",
+   success:"I will know I am successful when I can build and defend a feasible revenue plan with customer value, pricing, operations, and projected results with at least 80% accuracy.",
+   agenda:["Bell ringer: Add value, not pressure","Upsell, cross-sell, and bundle mini lesson","Event revenue plan brief","Plan development and calculations","Peer feasibility review"],
+   bellRinger:"A fan already purchased a game ticket. Create one upsell, one cross-sell, and one experience upgrade that could add genuine value rather than simply increase the bill.",
+   miniLesson:"Use the verified selling materials to distinguish upselling, cross-selling, bundling, add-ons, upgrades, and premium experiences. Review customer need, timing, relevance, price, standalone value, bundle value, contribution, capacity, staffing, inventory, fulfillment, sponsorship support, customer communication, and ethical selling. Model how a revenue idea must fit the event journey and operational capacity. Review projected units, revenue, variable cost, contribution, break-even, and average revenue per attendee.",
+   activity:"Teams receive or select an event with audience, attendance, ticket price, venue, staffing, and cost information. They create an Event Revenue Plan containing a current revenue mix, customer journey, one ticket or seating upsell, one merchandise or concession cross-sell, one bundle, one premium experience, one sponsor-supported enhancement, price and customer-value justification, sales or communication points, capacity and staffing requirements, fulfillment steps, risks, and measures. Students calculate projected units, revenue, estimated variable cost, contribution, and average added revenue per attendee. Peers conduct a feasibility review and require one financial or operational revision.",
+   exitTicket:"Identify the revenue idea that adds the most customer value and explain the operational evidence showing the event can deliver it successfully.",
+   materials:["Selling in Sports and Entertainment Marketing slides","Selling fill-in-the-blank notes","Event Revenue Plan template","Revenue projection calculator","Peer feasibility rubric"],
+   differentiation:["Provide definitions and an example event journey","Use rounded attendance and cost assumptions","Allow teams to divide customer, finance, and operations roles","Require advanced students to calculate break-even units or compare two demand scenarios"],
+   canvas:"📈 Review upsells, cross-sells, bundles, and premium experiences.\n🎯 Select ideas that fit the event audience and customer journey.\n💵 Price each idea and calculate projected revenue, cost, and contribution.\n🧰 Add staffing, capacity, fulfillment, communication, and risk controls.\n🔍 Complete the peer feasibility review and revise the plan.\n📤 Submit the complete Event Revenue Plan in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"SEM 8175.108-.111 — event revenue planning, upselling, cross-selling, bundling, premium experiences, operations, and financial projection",
+   notes:"Exact-resource performance package using the verified SEM selling slideshow and notes as the foundation for event revenue, upgrades, bundles, and customer experience.",
+   version:"Version 1 — SEM MP3 event revenue plan"
+  },
+  "SEM-060":{
+   overview:"Students demonstrate cumulative MP3 mastery through verified review, distribution and pricing decisions, event-revenue analysis, calculations, error correction, and an individual improvement plan.",
+   target:"I will apply MP3 distribution, pricing, and event-revenue concepts to new sports and entertainment scenarios.",
+   success:"I will know I am successful when I can complete the MP3 performance check and correct missed concepts with at least 80% accuracy.",
+   agenda:["Bell ringer: One integrated SEM system","Verified SEM review","Mixed MP3 scenario challenge","Individual performance check","Error analysis and improvement plan"],
+   bellRinger:"Explain how distribution, pricing, selling, and event-revenue decisions work together to affect customer access, experience, revenue, and profit.",
+   miniLesson:"Use the verified SEM Final Exam Review to connect direct and indirect distribution, intermediaries, ticketing, merchandise and media channels, inventory and fulfillment, pricing factors and strategies, dynamic pricing, bundles, ethics, revenue and profit calculations, sponsorships, media rights, concessions, merchandise, premium experiences, upselling, and customer value. Model how to identify the business decision in a mixed scenario, choose relevant evidence, complete calculations, and reject an option that creates a larger customer or operational problem.",
+   activity:"Students complete selected items from the verified SEM review and then an individual MP3 performance check. The check includes channel classification, intermediary and fulfillment decisions, pricing-factor and strategy selection, dynamic and venue pricing, revenue, cost, profit, margin, and break-even calculations, event-revenue stream analysis, upsell and bundle design, and one integrated event recommendation. Students complete error analysis for each missed concept by identifying the skill, explaining the original error, showing corrected reasoning or work, and naming the lesson or verified resource to revisit. They finish with a two-skill improvement plan.",
+   exitTicket:"Identify your strongest MP3 SEM skill, your greatest remaining gap, and the exact practice you will complete next.",
+   materials:["SEM Final Exam Review - 50Q Wayground","Distribution Strategy notes","Pricing slideshow and notes","SEM selling slides and notes","Individual MP3 performance check","Teacher scoring guide","Error-analysis and improvement-plan organizer"],
+   differentiation:["Provide a vocabulary and formula reference during collaborative review","Chunk the check into distribution, pricing, and revenue sections","Allow oral explanation for error analysis","Require advanced students to explain why one plausible integrated strategy is weaker"],
+   canvas:"📘 Complete the verified SEM review items.\n🚚 Apply distribution and fulfillment decisions.\n💵 Apply pricing strategies and calculations.\n🎟️ Analyze event revenue, upsells, bundles, and customer experience.\n✅ Complete the individual MP3 performance check.\n🔍 Correct every missed concept and create a two-skill improvement plan.\n📤 Submit the performance check, error analysis, and plan in Canvas.\n🏁 Earn at least 80% mastery.",
+   standards:"SEM 8175.068-.077; 8175.108-.111 — cumulative MP3 distribution, pricing, selling, event revenue, calculations, and integrated decision making",
+   notes:"Exact-resource cumulative package using SEM - Final Exam Review - 50Q Wayground, file ID 1E838F9KtT4MhRGHjeAQG2wpSUJtHJ0fmUnarDWYa0Jc, plus the verified MP3 distribution, pricing, and selling resources.",
+   version:"Version 1 — SEM MP3 review and performance check"
+  }
+ };
+ const ids=Object.keys(packages);
+ ids.forEach(id=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,packages[id],{status:"Complete",mapStatus:"Built",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"]});});
+ window.FONTaineSEMMP3EventRevenuePackagesB={count:ids.length,lessonIds:ids};
+ window.FONTaineSEMMP3EventRevenuePackages={count:4,lessonIds:["SEM-057","SEM-058","SEM-059","SEM-060"],sourceIds:["sem-grammy-mission","sem-event-selling-slides","sem-event-selling-notes","sem-mp3-review"]};
+})();
