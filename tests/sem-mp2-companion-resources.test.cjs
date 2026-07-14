@@ -57,7 +57,11 @@ vm.runInContext(files.professional,context,{filename:'sem-mp2-professional-skill
 vm.runInContext(files.extension,context,{filename:'sem-mp2-companion-resources.js'});
 
 test('adds five generated resources for every completed SEM MP2 lesson',()=>{
- assert.deepEqual(context.FONTaineSEMMP2CompanionResources,{lessons:20,generated:100,verified:5,extendedVerified:1});
+ const summary=context.FONTaineSEMMP2CompanionResources;
+ assert.equal(summary.lessons,20);
+ assert.equal(summary.generated,100);
+ assert.equal(summary.verified,5);
+ assert.equal(summary.extendedVerified,1);
  assert.equal(context.FONTaineCompanionAudit.totalLessons,80);
  assert.equal(context.FONTaineCompanionAudit.generatedResources,400);
  assert.equal(context.FONTaineCompanionResources.filter(item=>item.status==='Generated'&&/^SEM-0(2[1-9]|3\d|40)$/.test(item.lessonIds[0])).length,100);
