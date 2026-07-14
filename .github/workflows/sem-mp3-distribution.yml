@@ -1,0 +1,29 @@
+name: SEM MP3 Distribution QA
+
+on:
+  pull_request:
+    paths:
+      - 'sem-mp3-distribution-sources.js'
+      - 'sem-mp3-distribution-packages-a.js'
+      - 'sem-mp3-distribution-packages-b.js'
+      - 'sem-mp3-distribution-packages-c.js'
+      - 'index.html'
+      - 'tests/sem-mp3-distribution.test.cjs'
+      - '.github/workflows/sem-mp3-distribution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sem-mp3-distribution-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run SEM MP3 Distribution Strategy QA
+        run: node tests/sem-mp3-distribution.test.cjs
