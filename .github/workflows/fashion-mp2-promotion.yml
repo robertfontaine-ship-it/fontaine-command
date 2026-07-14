@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'fashion-mp2-promotion-packages.js'
+      - 'fashion-mp2-promotion-quality-patch.js'
       - 'index.html'
       - 'tests/fashion-mp2-promotion.test.cjs'
       - '.github/workflows/fashion-mp2-promotion.yml'
