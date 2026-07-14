@@ -5,6 +5,7 @@ on:
     paths:
       - 'fashion-mp2-customer-service-sources.js'
       - 'fashion-mp2-customer-service-packages.js'
+      - 'fashion-mp2-customer-service-quality-patch.js'
       - 'index.html'
       - 'tests/fashion-mp2-customer-service.test.cjs'
       - '.github/workflows/fashion-mp2-customer-service.yml'
