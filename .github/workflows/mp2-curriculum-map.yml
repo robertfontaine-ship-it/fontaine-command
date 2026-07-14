@@ -5,6 +5,7 @@ on:
     paths:
       - 'mp2-source-data.js'
       - 'mp2-curriculum-map.js'
+      - 'mp2-compatibility.js'
       - 'mp2-curriculum-map.css'
       - 'index.html'
       - 'tests/mp2-curriculum-map.test.cjs'
