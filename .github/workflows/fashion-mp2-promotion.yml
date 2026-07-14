@@ -1,0 +1,26 @@
+name: Fashion MP2 Promotion QA
+
+on:
+  pull_request:
+    paths:
+      - 'fashion-mp2-promotion-packages.js'
+      - 'index.html'
+      - 'tests/fashion-mp2-promotion.test.cjs'
+      - '.github/workflows/fashion-mp2-promotion.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fashion-mp2-promotion-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run Fashion MP2 Promotional Mix package QA
+        run: node tests/fashion-mp2-promotion.test.cjs
