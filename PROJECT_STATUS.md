@@ -1,24 +1,27 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Generate companion resources for the completed Entrepreneurship MP2 curriculum and verify production.
+Map the complete MP3 curriculum for SEM, Fashion, and Entrepreneurship.
 
 ## Active Branch
-`feature/entrepreneurship-mp2-companion-resources`
+`feature/mp3-curriculum-map`
 
 ## Completed
 - SEM-001 through SEM-040, FASH-001 through FASH-040, and ENT-001 through ENT-040 are complete lesson packages across MP1 and MP2.
-- Lesson Builder 2.0, AI Teacher Assistant, Curriculum Health Dashboard, Companion Resources, and all MP2 curriculum packages are merged into `main`.
-- SEM and Fashion MP2 companion resources are merged: 100 covered lessons, 500 generated printables, 25 verified Drive files, and 3 verified answer keys.
-- 100 generated companion resources added for ENT-021 through ENT-040: student organizers, scoring rubrics, exit tickets, quick checks, and teacher scoring guides.
-- Seven new unique Entrepreneurship MP2 Drive files recorded as verified companion sources.
-- Existing promotional sorting, ownership notes, quarterly review, and verified answer key are extended to MP2 lessons without duplicate file records.
-- Final Companion Resources totals are 120 covered lessons, 600 generated printables, 32 verified Drive files, and 3 verified answer keys.
+- All MP2 companion resources are merged: 120 covered lessons, 600 generated printables, 32 verified Drive files, and 3 verified answer keys.
+- Production smoke testing passed after the complete MP2 build.
+- SEM-041 through SEM-060 are mapped across Distribution Strategy, Pricing Strategy, and Event Revenue.
+- FASH-041 through FASH-060 are mapped across Retail Formats, Textiles, Sustainability, and the From Fiber to Floor capstone.
+- ENT-041 through ENT-060 are mapped across Business Activation, Grand Opening Operations, and Business Simulator Month 1.
+- The MP3 registry contains 60 lessons, 9 units, 13 verified classroom resources, and 9 course-standard records.
+- Lesson, course, dashboard, and build-queue views now support MP3 filtering and navigation.
+- Dedicated QA verifies lesson counts, continuous IDs, source links, standards, filters, build queue, and duplicate protection.
 
 ## Current Priority
-Run final companion calculation, browser, mobile, and full application regression QA; resolve defects; merge; and perform production smoke testing.
+Run MP3 curriculum-map and full application regression QA, resolve defects, and merge the 60-lesson map.
 
 ## Next
-1. Merge the Entrepreneurship MP2 companion-resource expansion after all checks pass.
-2. Run production smoke testing on the deployed Fontaine Command site.
-3. Begin MP3 curriculum mapping after production verification.
+1. Merge the MP3 curriculum map after all checks pass.
+2. Build SEM-041 through SEM-048 — Distribution Strategy.
+3. Continue SEM Pricing and Event Revenue packages.
+4. Build Fashion and Entrepreneurship MP3 unit batches, then generate companion resources.
