@@ -1,0 +1,28 @@
+name: Fashion MP3 Retail QA
+
+on:
+  pull_request:
+    paths:
+      - 'fashion-mp3-retail-sources.js'
+      - 'fashion-mp3-retail-packages-a.js'
+      - 'fashion-mp3-retail-packages-b.js'
+      - 'index.html'
+      - 'tests/fashion-mp3-retail.test.cjs'
+      - '.github/workflows/fashion-mp3-retail.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fashion-mp3-retail-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run Fashion MP3 Retail Formats QA
+        run: node tests/fashion-mp3-retail.test.cjs
