@@ -27,11 +27,19 @@ jobs:
         with:
           node-version: '22'
       - name: Run 180-lesson quality audit
-        run: node tests/curriculum-quality-audit.test.cjs
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          set +e
+          node tests/curriculum-quality-audit.test.cjs 2>&1 | tee artifacts/curriculum-quality-audit.log
+          status=${PIPESTATUS[0]}
+          exit $status
       - name: Upload curriculum quality report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: curriculum-quality-audit
-          path: artifacts/curriculum-quality-audit.json
+          path: |
+            artifacts/curriculum-quality-audit.json
+            artifacts/curriculum-quality-audit.log
           if-no-files-found: warn
