@@ -25,16 +25,4 @@ jobs:
         with:
           node-version: '24'
       - name: Run final Fashion MP2 package QA
-        shell: bash
-        run: |
-          set +e
-          node tests/fashion-mp2-customer-service.test.cjs > fashion-final-qa.txt 2>&1
-          status=$?
-          cat fashion-final-qa.txt
-          exit $status
-      - name: Upload final Fashion QA output
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: fashion-mp2-final-qa-output
-          path: fashion-final-qa.txt
+        run: node tests/fashion-mp2-customer-service.test.cjs
