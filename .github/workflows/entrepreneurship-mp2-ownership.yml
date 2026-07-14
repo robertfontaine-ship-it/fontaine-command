@@ -1,0 +1,28 @@
+name: Entrepreneurship MP2 Ownership QA
+
+on:
+  pull_request:
+    paths:
+      - 'entrepreneurship-mp2-ownership-sources.js'
+      - 'entrepreneurship-mp2-ownership-packages-a.js'
+      - 'entrepreneurship-mp2-ownership-packages-b.js'
+      - 'index.html'
+      - 'tests/entrepreneurship-mp2-ownership.test.cjs'
+      - '.github/workflows/entrepreneurship-mp2-ownership.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  entrepreneurship-mp2-ownership-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run Entrepreneurship MP2 Business Ownership QA
+        run: node tests/entrepreneurship-mp2-ownership.test.cjs

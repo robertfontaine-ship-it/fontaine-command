@@ -1,0 +1,55 @@
+(()=>{
+ const packages={
+  "ENT-033":{
+   overview:"Students use a weighted decision process to compare ownership structures for startups with different owners, risks, funding needs, control preferences, tax concerns, and growth goals.",
+   target:"I will recommend a business ownership structure using evidence from a startup’s owners, risks, funding, control, taxes, and growth goals.",
+   success:"I will know I am successful when I can apply a weighted comparison, explain tradeoffs, and defend a structure recommendation with at least 80% accuracy.",
+   agenda:["Bell ringer: What matters most?","Ownership decision criteria review","Weighted structure matrix","Startup advisory challenge","Exit ticket"],
+   bellRinger:"Rank these ownership factors for a high-risk startup seeking investors: liability protection, control, taxes, startup cost, continuity, and access to capital. Explain your top two.",
+   miniLesson:"Review the major ownership structures and introduce a weighted decision process. Explain that criteria do not have equal importance for every venture. Model how an entrepreneur assigns weights to liability, control, taxation, capital, continuity, transferability, administrative cost, and growth, scores each structure, checks whether any nonnegotiable requirement eliminates an option, and then tests the result against real-world judgment. Emphasize documenting assumptions and seeking professional advice for legal and tax decisions.",
+   activity:"Teams receive detailed startup cases involving a solo creator, family food business, professional service, construction company, technology platform, franchise opportunity, and worker-owned venture. They identify the three most important criteria, assign weights, score at least four ownership structures, calculate totals, identify a runner-up, and explain one reason the highest score could still be rejected. Students then write an advisory memo with the recommendation, tradeoffs, unanswered questions, transition triggers, and professional consultations needed.",
+   exitTicket:"Identify one ownership criterion that should be weighted differently for two startup cases and explain why.",
+   materials:["Ownership notes and slides","Weighted ownership decision matrix","Startup advisory cases","Advisory memo template","Exit ticket"],
+   differentiation:["Provide suggested weights and a completed calculation","Use four structures instead of all options","Allow calculator use and rounded scores","Require advanced students to perform a sensitivity test by changing one weight"],
+   canvas:"⚖️ Review the ownership decision criteria.\n🎯 Identify and weight the most important criteria for the assigned startup.\n📊 Score at least four ownership structures.\n🧠 Identify the strongest choice, runner-up, and critical tradeoff.\n📝 Write the startup advisory memo and professional questions.\n📤 Submit the matrix and memo in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Entrepreneurship 9093.043; 9093.048-.053 — ownership comparison, decision criteria, liability, control, taxes, capital, continuity, and growth",
+   notes:"Source-backed application using the verified Business Ownership Structures notes and Types of Business Ownership slides.",
+   version:"Version 1 — Entrepreneurship MP2 ownership decision matrix"
+  },
+  "ENT-034":{
+   overview:"Students evaluate ownership, registration, contracts, insurance, staffing, vehicle, equipment, customer-property, and safety risks in a practical service-startup case.",
+   target:"I will analyze a startup case and recommend ownership, compliance, insurance, contract, and risk-control actions.",
+   success:"I will know I am successful when I can identify legal and operational risks, prioritize controls, and justify an ownership recommendation with at least 80% accuracy.",
+   agenda:["Bell ringer: Entity protection is not enough","Verified startup case review","Risk-category mini lesson","Case analysis and action plan","Executive briefing"],
+   bellRinger:"A service startup uses expensive equipment, drives to customer property, hires help, and could accidentally cause damage. Identify four risks that choosing an LLC alone would not solve.",
+   miniLesson:"Use the verified Power Washing Business guide as a practical case. Review ownership choice, business registration, assumed names, permits, taxes, separate finances, customer contracts, payment terms, cancellations, employee or contractor classification, vehicle and equipment use, property damage, injury, environmental rules, cybersecurity, record keeping, and insurance. Emphasize that an entity, insurance, contracts, safe procedures, training, documentation, and professional advice work together; no single control removes all risk.",
+   activity:"Students analyze the startup guide and complete a risk register with categories, likelihood, impact, current controls, gaps, owner responsibility, due date, and professional support needed. Teams recommend an ownership structure and create a 30-day legal and risk action plan covering registration, finances, permits, taxes, contracts, insurance, equipment, safety, staffing, customer communication, and records. Teams present a three-minute executive briefing defending the five highest-priority actions.",
+   exitTicket:"Name the highest-priority risk in the case and explain why the proposed control should occur before the first customer job.",
+   materials:["Power Washing Business: A Step-by-Step Guide","Ownership notes and slides","Startup risk register","30-day legal and risk action plan","Executive briefing rubric"],
+   differentiation:["Provide risk categories and example controls","Use a partially completed risk register","Assign team roles for entity, insurance, contracts, and operations","Require advanced students to distinguish risk transfer, reduction, avoidance, and acceptance"],
+   canvas:"🧰 Review the verified service-startup guide.\n⚠️ Identify ownership, registration, contract, insurance, staffing, equipment, and safety risks.\n📋 Complete the startup risk register.\n🗓️ Build a 30-day legal and risk action plan.\n🎤 Present the five highest-priority actions with evidence.\n📤 Submit the register, action plan, and briefing in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Entrepreneurship 9093.043; 9093.048-.053 — ownership selection, legal responsibilities, liability, risk management, contracts, insurance, and operations",
+   notes:"Exact-resource case package using Power Washing Business: A Step-by-Step Guide, file ID 1VSlbHAt7eZfV6Dh-F5EN_LhdW_JO4Uo28t45i_Gy7rs, plus the verified ownership resources.",
+   version:"Version 1 — Entrepreneurship MP2 ownership and risk case"
+  },
+  "ENT-035":{
+   overview:"Students create a practical startup legal, compliance, insurance, contract, record-keeping, and risk checklist tailored to an original or assigned venture.",
+   target:"I will create a startup legal and risk checklist tailored to a specific business model.",
+   success:"I will know I am successful when I can identify required decisions, assign responsibilities, prioritize deadlines, and explain professional-advice needs with at least 80% accuracy.",
+   agenda:["Bell ringer: Before the first sale","Startup compliance mini lesson","Business-specific requirement research map","Legal and risk checklist build","Peer red-team review"],
+   bellRinger:"List five actions an entrepreneur may need to complete before making the first sale, signing the first contract, hiring the first worker, or serving the first customer.",
+   miniLesson:"Organize startup responsibilities into ownership and governance; name and registration; licenses and permits; tax accounts and records; banking and bookkeeping; contracts and policies; insurance; employees and contractors; customer data and cybersecurity; products, services, vehicles, equipment, facilities, and safety; intellectual property; and professional advice. Explain how requirements vary by location and industry and that classroom planning does not replace legal, tax, insurance, or regulatory advice. Model a checklist item with requirement, purpose, owner, deadline, evidence, risk if missed, and verification source.",
+   activity:"Students select an original or assigned business and build a Startup Legal and Risk Checklist with at least fifteen business-specific items. Each item includes category, action, reason, responsible person, due date or trigger, required document or evidence, risk if missed, and source or professional to verify it. Students add an ownership recommendation, insurance needs, three contract or policy requirements, record-keeping system, customer-data rule, safety procedure, and three questions for professionals. Peers conduct a red-team review by identifying missing risks, vague actions, unrealistic deadlines, and unsupported assumptions before revision.",
+   exitTicket:"Identify the checklist item most likely to be overlooked by a new entrepreneur and explain the consequence of missing it.",
+   materials:["Ownership notes and slides","Verified service-startup guide","Startup Legal and Risk Checklist template","Professional-advice question sheet","Peer red-team rubric"],
+   differentiation:["Provide a categorized checklist starter","Offer prepared business models with likely requirements","Allow students to complete twelve core items before extending to fifteen","Require advanced students to add compliance evidence and recurring renewal dates"],
+   canvas:"📋 Select the startup and ownership recommendation.\n🏛️ Build business-specific registration, tax, permit, insurance, contract, record, data, and safety actions.\n👤 Assign an owner, deadline, evidence requirement, and consequence to each item.\n❓ Add questions for legal, tax, insurance, and licensing professionals.\n🔍 Complete the peer red-team review and revise weak items.\n📤 Submit the final Startup Legal and Risk Checklist in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Entrepreneurship 9093.043; 9093.048-.053 — business ownership, startup compliance, liability, risk controls, professional services, and operational responsibility",
+   notes:"Source-backed performance package using the verified ownership materials and practical startup legal-risk guide. Classroom planning must be verified with appropriate professionals and government sources.",
+   version:"Version 1 — Entrepreneurship MP2 startup legal and risk checklist"
+  }
+ };
+ const ids=Object.keys(packages);ids.forEach(id=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,packages[id],{status:"Complete",mapStatus:"Built",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"]});});
+ window.FONTaineEntrepreneurshipMP2OwnershipPackagesB={count:ids.length,lessonIds:ids};
+ window.FONTaineEntrepreneurshipMP2OwnershipPackages={count:7,lessonIds:["ENT-029","ENT-030","ENT-031","ENT-032","ENT-033","ENT-034","ENT-035"],sourceIds:["ent-ownership-notes","ent-ownership-slides","ent-startup-legal-case"]};
+})();
