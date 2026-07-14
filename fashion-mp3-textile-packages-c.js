@@ -1,0 +1,55 @@
+(()=>{
+ const packages={
+  "FASH-053":{
+   overview:"Students interpret standardized laundry symbols and care instructions and explain how correct care protects product performance, appearance, value, and customer satisfaction.",
+   target:"I will interpret care symbols and recommend procedures that protect fashion products.",
+   success:"I will know I am successful when I can decode the care symbols, explain the textile risk, and recommend accurate care with at least 80% accuracy.",
+   agenda:["Bell ringer: Care is part of product value","Verified laundry-symbol worksheet","Care-symbol decoding lab","Garment care case analysis","Customer care guide"],
+   bellRinger:"A customer washes a sweater incorrectly and it shrinks. Explain how fiber content, construction, water temperature, agitation, drying, and label communication may all be involved.",
+   miniLesson:"Use the verified How to Read Laundry Symbols worksheet to review washing, bleaching, drying, ironing, and professional-care symbols. Connect temperature, agitation, spin, tumble drying, line drying, flat drying, bleach type, ironing heat, and dry cleaning to textile properties and product construction. Explain how care affects shrinkage, felting, stretching, fading, bleeding, wrinkling, heat damage, coating damage, embellishments, and product life. Model clear customer-facing care communication.",
+   activity:"Students complete the verified laundry-symbol worksheet and a symbol-decoding check. Teams then analyze garment care cases involving wool knitwear, activewear, embellished formalwear, dark denim, silk-like fabric, waterproof outerwear, and blended basics. For each, students identify the symbols, likely textile risk, correct procedure, consequence of incorrect care, and one plain-language customer instruction. Students create a one-page care guide for a chosen garment using symbols and accurate written directions.",
+   exitTicket:"Choose one care symbol that customers often misunderstand and explain the product damage that could result.",
+   materials:["How to Read Laundry Symbols worksheet","Fiber Fundamentals slides","Garment care case cards","Care-symbol reference","Customer care-guide template"],
+   differentiation:["Provide symbol-category charts and completed examples","Use fewer symbols before completing the full set","Allow students to match symbols to written directions before explaining risks","Require advanced students to resolve conflicting fiber and construction care needs"],
+   canvas:"🧺 Complete the verified Laundry Symbols worksheet.\n🔍 Decode the washing, bleaching, drying, ironing, and professional-care symbols.\n👕 Analyze the garment care cases.\n⚠️ Explain the textile risk and consequence of incorrect care.\n📄 Create a customer-friendly garment care guide.\n📤 Submit the worksheet, case analysis, and guide in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.025-.029; 8140.045 — textile care, laundry symbols, product protection, customer communication, and quality",
+   notes:"Exact-resource package using How to Read Laundry Symbols, file ID 1-Gp8JVYpluNPGHNrATtbVRP6hlRYKpicwo3CAfc6Cm4, and the verified textile instructional materials.",
+   version:"Version 1 — Fashion MP3 laundry symbols and product care"
+  },
+  "FASH-054":{
+   overview:"Students translate textile evidence into product positioning, pricing, promotion, target-customer value, care communication, and credible marketing claims.",
+   target:"I will connect textile evidence to product positioning, pricing, promotion, and target-customer value.",
+   success:"I will know I am successful when I can use accurate textile evidence to build and defend a complete marketing strategy with at least 80% accuracy.",
+   agenda:["Bell ringer: Sell the evidence, not the buzzword","Verified textile-strategy notes","Claim-evidence audit","Product marketing strategy","Fabric Fit development"],
+   bellRinger:"A brand calls a jacket premium, breathable, durable, and sustainable. Identify the textile evidence needed to support each claim.",
+   miniLesson:"Use the verified Textile Marketing Strategy notes to connect fiber, blend, construction, finish, performance, care, quality, sourcing, certification, and cost to target market, value proposition, product position, price, distribution, promotion, packaging, selling points, and customer education. Distinguish features, benefits, evidence, and unsupported claims. Model how textile decisions can justify a price or position only when they create relevant customer value.",
+   activity:"Students audit fashion product claims and classify each as supported, incomplete, vague, or misleading based on available textile evidence. Teams then receive or select a product and build a Textile Marketing Strategy containing the customer, product need, fiber and blend, construction, finish, key properties, feature-benefit-evidence statements, care message, quality position, price rationale, channel fit, promotional message, proof, and claims to avoid. Students apply the strategy to the verified Fabric Fit Challenge and revise product recommendations or explanations.",
+   exitTicket:"Write one feature-benefit-evidence statement using a textile property and explain why it is stronger than a vague quality claim.",
+   materials:["Textile Marketing Strategy notes","Fiber Fundamentals slides","Claim-evidence audit cards","Textile Marketing Strategy organizer","Fabric Fit Challenge deck"],
+   differentiation:["Provide feature-benefit-evidence sentence frames","Use product briefs with highlighted textile data","Allow visual strategy boards before written explanation","Require advanced students to evaluate certification, traceability, or comparative environmental evidence"],
+   canvas:"📣 Review the verified Textile Marketing Strategy notes.\n🔍 Audit the sample product claims.\n👥 Define the customer, product need, textile choice, and evidence.\n💬 Build accurate feature-benefit-evidence statements.\n💵 Explain the product position, price, channel, care, and promotion.\n🧵 Apply the strategy to the Fabric Fit Challenge.\n📤 Submit the audit and strategy in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.025-.029; 8140.045 — textile marketing, customer value, positioning, pricing, promotion, evidence, and product claims",
+   notes:"Exact-resource package using Textile Marketing Strategy notes, file ID 1HYXQZA8PYvt1PUJXFPMpnpcprlLQnQvnOHwgYa1pq6Q, and Fabric Fit Challenge, file ID 1TBlTb1uMbvTJiBDWtFnuPJWzCUXF7HNvTNCjm7XyHwk.",
+   version:"Version 1 — Fashion MP3 textile marketing strategy"
+  },
+  "FASH-055":{
+   overview:"Students complete and defend a textile product-development portfolio by selecting fiber blends and fabric constructions that balance performance, market logic, care, cost, and customer value.",
+   target:"I will select textiles that fit product function, customer needs, retail format, and price position.",
+   success:"I will know I am successful when I can complete the Fabric Fit portfolio, support every textile choice with evidence, and meet the project criteria with at least 80% accuracy.",
+   agenda:["Bell ringer: The right fabric for the job","Fabric Fit criteria review","Verified portfolio completion","Peer technical review","Product-development presentation and reflection"],
+   bellRinger:"A fabric can perform well but still be wrong for a product because of cost, care, customer, or retail position. Explain one example.",
+   miniLesson:"Review the complete textile-selection decision: product function, target customer, retail format, price point, required properties, fiber or blend, percentage logic, fabric construction, finish, quality evidence, comfort, durability, care, cost efficiency, sourcing or sustainability tradeoffs, marketing benefit, and limitations. Model a technical recommendation that compares alternatives and explains why the selected option offers the strongest overall fit rather than the highest performance in one category.",
+   activity:"Students complete the verified Fabric Fit Challenge portfolio for four distinct products. For each product they define the user and function, required properties, selected fiber blend, blend percentages, fabric construction, finish when applicable, performance evidence, care instructions, cost and price logic, retail format, feature-benefit-evidence statement, sustainability or sourcing consideration, rejected alternative, and final recommendation. Peers use a technical-review rubric to identify one unsupported claim, one property mismatch, and one cost or care risk. Students revise and deliver a short product-development presentation with evaluator questions.",
+   exitTicket:"Identify the strongest textile choice in your portfolio and one assumption that should be tested before production.",
+   materials:["Fabric Fit Challenge slide deck","Fiber Fundamentals slides","Textile Marketing Strategy notes","Technical-review rubric","Product-development presentation scorecard","Student reflection"],
+   differentiation:["Provide a required-slide checklist and fiber-property bank","Offer prepared product briefs and cost bands","Allow recorded or live presentation","Require advanced students to estimate material cost, testing standards, or alternative sourcing"],
+   canvas:"🧵 Complete the verified Fabric Fit Challenge portfolio.\n🎯 Define the product, customer, function, retail format, and price position.\n🧪 Select the fiber blend, percentages, construction, finish, and evidence.\n🧺 Add care, cost, marketing benefit, tradeoffs, and rejected alternative.\n🔍 Complete the peer technical review and revise weak claims.\n🎤 Deliver the product-development presentation.\n📤 Submit the portfolio, scorecard, and reflection in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.025-.029; 8140.045 — integrated textile selection, product performance, customer value, care, cost, marketing, and product development",
+   notes:"Exact-resource performance package using Fashion Marketing - Fabric Fit Challenge - Student Slide Deck, file ID 1TBlTb1uMbvTJiBDWtFnuPJWzCUXF7HNvTNCjm7XyHwk, plus the verified textile slides and notes.",
+   version:"Version 1 — Fashion MP3 Fabric Fit Challenge"
+  }
+ };
+ const ids=Object.keys(packages);ids.forEach(id=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,packages[id],{status:"Complete",mapStatus:"Built",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"]});});
+ window.FONTaineFashionMP3TextilePackagesC={count:ids.length,lessonIds:ids};
+ window.FONTaineFashionMP3TextilePackages={count:9,lessonIds:["FASH-047","FASH-048","FASH-049","FASH-050","FASH-051","FASH-052","FASH-053","FASH-054","FASH-055"],sourceIds:["fashion-mp3-plan","fashion-fiber-slides","fashion-fiber-notes","fashion-textile-strategy","fashion-laundry-symbols","fashion-fabric-fit"]};
+})();
