@@ -1,0 +1,29 @@
+name: Fashion MP3 Textiles QA
+
+on:
+  pull_request:
+    paths:
+      - 'fashion-mp3-textile-sources.js'
+      - 'fashion-mp3-textile-packages-a.js'
+      - 'fashion-mp3-textile-packages-b.js'
+      - 'fashion-mp3-textile-packages-c.js'
+      - 'index.html'
+      - 'tests/fashion-mp3-textiles.test.cjs'
+      - '.github/workflows/fashion-mp3-textiles.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fashion-mp3-textiles-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run Fashion MP3 Textiles QA
+        run: node tests/fashion-mp3-textiles.test.cjs
