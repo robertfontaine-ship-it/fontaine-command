@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const read=name=>fs.readFileSync(name,'utf8');
+let passed=0;const test=(name,fn)=>{fn();passed++;console.log(`PASS ${name}`);};
+test('classroom usability script parses',()=>new vm.Script(read('classroom-usability.js')));
+test('classroom usability assets load after the final application wrappers',()=>{const h=read('index.html'),p=value=>h.indexOf(value);assert.ok(p('mobile-qa.css')<p('classroom-usability.css'));assert.ok(p('annual-review.js')<p('classroom-usability.js'));assert.ok(p('classroom-usability.js')<p('</body>'));});
+test('workflow preserves lesson context and provides classroom actions',()=>{const source=read('classroom-usability.js');['captureLessonReturnContext','returnFromLesson','openAdjacentLesson','openLessonCompanions','copyCurrentCanvas','printCurrentLesson','Print full lesson'].forEach(value=>assert.ok(source.includes(value),value));});
+test('full lesson print includes every teacher-facing section',()=>{const source=read('classroom-usability.js');['Learning Target','Success Criteria','Agenda','Bell Ringer','Mini Lesson','Student Activity','Exit Ticket','Materials','Differentiation','Canvas Directions','Standards'].forEach(value=>assert.ok(source.includes(value),value));});
+test('mobile usability CSS contains scroll-safe controls and print isolation',()=>{const css=read('classroom-usability.css');assert.match(css,/overflow-x:auto/);assert.match(css,/position:sticky/);assert.match(css,/body\.lesson-printing/);assert.match(css,/@media print/);});
+console.log(`\n${passed} classroom usability integration checks passed.`);
