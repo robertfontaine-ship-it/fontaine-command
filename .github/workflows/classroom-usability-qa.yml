@@ -31,4 +31,13 @@ jobs:
           npm install --no-save --silent playwright >/dev/null 2>&1
           npx playwright install chromium >/dev/null 2>&1
       - name: Run classroom usability browser and mobile checks
-        run: node tests/classroom-usability-browser.test.cjs
+        run: |
+          set -o pipefail
+          node tests/classroom-usability-browser.test.cjs 2>&1 | tee classroom-usability-browser.log
+      - name: Upload classroom usability browser log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: classroom-usability-browser-log
+          path: classroom-usability-browser.log
+          if-no-files-found: error
