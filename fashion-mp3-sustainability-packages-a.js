@@ -1,0 +1,54 @@
+(()=>{
+ const packages={
+  "FASH-056":{
+   overview:"Students analyze environmental and social impacts across the fashion product life cycle and distinguish credible sustainability evidence from vague or misleading claims.",
+   target:"I will analyze environmental and social impacts across the fashion product life cycle.",
+   success:"I will know I am successful when I can identify impacts, compare tradeoffs, evaluate evidence, and recommend a responsible improvement with at least 80% accuracy.",
+   agenda:["Bell ringer: Sustainable compared with what?","Verified sustainable-materials slideshow","Product life-cycle impact map","Fashion Face-Off analysis","Evidence-based recommendation"],
+   bellRinger:"A brand calls a product sustainable because it contains recycled polyester. Identify the additional environmental and social evidence needed before accepting the claim.",
+   miniLesson:"Use the verified Sustainable Materials slideshow and Fashion Face-Off template to review impacts from raw materials, agriculture or extraction, fiber production, dyeing and finishing, manufacturing, labor, transportation, packaging, retail, customer care, product life, reuse, resale, recycling, and disposal. Compare water, energy, chemicals, emissions, waste, durability, wages, working conditions, traceability, certifications, circularity, and customer use. Distinguish a single improved attribute from a complete sustainability claim and introduce greenwashing warning signs.",
+   activity:"Students create a product life-cycle impact map for a conventional fashion item and identify high-impact stages, stakeholders, evidence gaps, and possible improvements. They then complete a Fashion Face-Off comparison between a fast-fashion and more responsible alternative using materials, production, labor, durability, care, packaging, transport, price, transparency, and end-of-life evidence. Students write a recommendation that names the stronger option, acknowledges tradeoffs, rejects one unsupported claim, and proposes one realistic customer or brand action.",
+   exitTicket:"Identify one sustainability claim that can be true but incomplete and explain the missing evidence.",
+   materials:["Sustainable Materials slideshow","Fashion Face-Off template","Product life-cycle impact map","Sustainability evidence checklist","Recommendation rubric"],
+   differentiation:["Provide life-cycle stages and impact vocabulary","Use prepared brand evidence packets","Allow teams to divide environmental and social analysis before combining it","Require advanced students to evaluate certification scope, durability, or rebound effects"],
+   canvas:"🌍 Review the verified Sustainable Materials slideshow.\n🔄 Map the product life cycle and identify major impacts.\n⚔️ Complete the Fashion Face-Off comparison.\n🔍 Separate supported evidence from vague claims.\n✍️ Write a balanced recommendation with one realistic improvement.\n📤 Submit the impact map and Fashion Face-Off in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.053; 8140.055 — fashion sustainability, product life cycle, environmental and social impact, evidence, and consumer decisions",
+   notes:"Exact-resource package using Fashion Marketing - Sustainable Materials - Slideshow, file ID 10-qDGdCnMENPo0dlnfUOc4veOEwvMJv0Tjg7Fh8FDhE, and Fashion Face-Off - Template, file ID 1thku5yaUk159feWsSLtIS8H6bWAaV3k1SqAFTnIhHyU.",
+   version:"Version 1 — Fashion MP3 sustainability systems"
+  },
+  "FASH-057":{
+   overview:"Students evaluate how sourcing, manufacturing, labor, logistics, lead time, quality, cost, compliance, and transparency affect fashion products and brand perception.",
+   target:"I will evaluate how production and sourcing decisions affect cost, availability, quality, workers, and brand perception.",
+   success:"I will know I am successful when I can compare sourcing options, identify risks, analyze stakeholder effects, and defend a recommendation with at least 80% accuracy.",
+   agenda:["Bell ringer: The lowest cost is not the full cost","Production and sourcing mini lesson","Supply-chain comparison","Risk and stakeholder matrix","Sourcing recommendation"],
+   bellRinger:"A fashion company can produce locally at a higher unit cost or overseas at a lower unit cost and longer lead time. Identify at least five factors beyond unit price that should affect the decision.",
+   miniLesson:"Review sourcing locations, suppliers, vertical integration, subcontracting, minimum orders, capacity, lead time, quality control, landed cost, tariffs, transportation, inventory risk, flexibility, compliance, labor standards, worker safety, environmental regulation, traceability, geopolitical risk, and brand reputation. Explain how faster or cheaper production can create hidden costs and how local production does not automatically guarantee responsible practices. Model a sourcing recommendation that weighs customer, product, finance, operations, and stakeholder evidence.",
+   activity:"Teams compare three sourcing scenarios for a fashion product: local small-batch production, established overseas manufacturing, and a lower-cost high-risk supplier. They calculate or compare unit and landed costs, lead time, minimum order, quality evidence, flexibility, worker and environmental risks, transportation, availability, and brand impact. Students complete a weighted sourcing matrix, identify the highest-risk assumption, recommend a supplier strategy, and create a monitoring plan with quality, labor, environmental, delivery, and communication checkpoints. They update the Fashion Face-Off with production evidence.",
+   exitTicket:"Choose one sourcing factor that is easy to measure and one that is difficult to verify. Explain how the brand should manage both.",
+   materials:["Sustainable Materials slideshow","Fashion Face-Off template","Supplier scenario cards","Weighted sourcing matrix","Supplier monitoring checklist"],
+   differentiation:["Provide sourcing vocabulary and pre-calculated landed costs","Use a reduced four-factor matrix before the full comparison","Allow calculator use and assigned team roles","Require advanced students to design a dual-sourcing or contingency strategy"],
+   canvas:"🏭 Review sourcing, production, labor, quality, cost, and lead-time decisions.\n📊 Compare the three supplier scenarios.\n⚖️ Complete the weighted sourcing matrix.\n⚠️ Identify the highest-risk assumption and hidden cost.\n📋 Recommend a supplier strategy and monitoring plan.\n📤 Submit the matrix, recommendation, and updated Fashion Face-Off in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.053; 8140.055 — sourcing, production, globalization, labor, quality, cost, logistics, transparency, and brand risk",
+   notes:"Exact-resource package using the Sustainable Materials slideshow, Fashion Face-Off template, and Fashion MP3 Planning Doc.",
+   version:"Version 1 — Fashion MP3 sourcing and global production"
+  },
+  "FASH-058":{
+   overview:"Students construct and defend a complete fashion look using direct retailer evidence, textile properties, sustainability, price, product use, and target-customer fit.",
+   target:"I will build and defend a fashion look using sustainability, product, retailer, and customer evidence.",
+   success:"I will know I am successful when I can complete the Sustainable Fit Challenge, verify the product evidence, and justify the full look with at least 80% accuracy.",
+   agenda:["Bell ringer: A sustainable fit must still fit","Verified challenge brief","Direct retailer research","Look development and evidence audit","Peer review and presentation"],
+   bellRinger:"A product may use a preferred material but still be a weak sustainable choice because of durability, care, sourcing, shipping, price, or customer use. Explain one example.",
+   miniLesson:"Use the verified Sustainable Fit Challenge and Sustainable Materials slideshow to review direct-source research, product function, target customer, retailer fit, materials, certifications, sourcing, durability, versatility, care, price, transparency, shipping, packaging, and end-of-life. Model a balanced justification that avoids claiming a product is perfectly sustainable and instead compares evidence, tradeoffs, likely use, and value over time.",
+   activity:"Students complete the verified Sustainable Fit Challenge by building a full look with one top, one pant or bottom, one shoe, and two accessories using retailer sites directly. For each item they document retailer, product, price, fiber or material, construction or performance clues, sourcing or certification evidence, care, durability or versatility, sustainability strength, limitation, and customer value. Students calculate total look cost, explain the target customer and occasion, identify the strongest and weakest evidence, compare one alternative item, and deliver a concise look defense after peer evidence review.",
+   exitTicket:"Identify the item in your look with the strongest sustainability evidence and the item with the greatest unresolved tradeoff.",
+   materials:["Sustainable Fit Challenge slide deck","Sustainable Materials slideshow","Direct retailer sources","Product-evidence checklist","Peer evidence-review rubric"],
+   differentiation:["Provide approved retailer links and evidence categories","Offer a prepared target customer and budget","Allow screenshot evidence with concise analysis","Require advanced students to calculate cost per wear or compare shipping and care impacts"],
+   canvas:"👗 Open the verified Sustainable Fit Challenge.\n🔎 Research every product directly from retailer sites.\n🧵 Document materials, performance, care, sourcing, price, and evidence.\n⚖️ Explain the strength and limitation of every item.\n💵 Calculate the full look cost and connect it to the target customer.\n🎤 Complete the peer review and present the look defense.\n📤 Submit the finished challenge in Canvas.\n✅ Earn at least 80% mastery.",
+   standards:"Fashion 8140.053; 8140.055 — sustainable materials, retail research, customer fit, product evidence, pricing, and ethical fashion communication",
+   notes:"Exact-resource performance package using Fashion Marketing - Sustainable Fit Challenge, file ID 1MPxktRxnEWe5IKLZTWEePmzo3a4PcDJUVIBlUhuKL_k, and Sustainable Materials slideshow, file ID 10-qDGdCnMENPo0dlnfUOc4veOEwvMJv0Tjg7Fh8FDhE.",
+   version:"Version 1 — Fashion MP3 Sustainable Fit Challenge"
+  }
+ };
+ const ids=Object.keys(packages);ids.forEach(id=>{const lesson=lessons.find(item=>item.id===id);if(lesson)Object.assign(lesson,packages[id],{status:"Complete",mapStatus:"Built",duration:"45–60 minutes",components:["Lesson Plan","Learning Target","Agenda","Activity","Exit Ticket","Canvas Directions"]});});
+ window.FONTaineFashionMP3SustainabilityPackagesA={count:ids.length,lessonIds:ids};
+})();
