@@ -7,6 +7,7 @@ const root=path.resolve(__dirname,'..');
 const sourceCode=fs.readFileSync(path.join(root,'mp2-source-data.js'),'utf8');
 const mapCode=fs.readFileSync(path.join(root,'mp2-curriculum-map.js'),'utf8');
 const packageCode=fs.readFileSync(path.join(root,'sem-mp2-promotion-packages.js'),'utf8');
+const qualityCode=fs.readFileSync(path.join(root,'sem-mp2-promotion-quality-patch.js'),'utf8');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 
 const courseRows=[['SEM','8175','SEM'],['Fashion','8140','FASH'],['Entrepreneurship','9093','ENT']];
@@ -25,18 +26,23 @@ vm.createContext(context);
 let passed=0;
 function test(name,fn){try{fn();passed+=1;console.log(`PASS ${name}`);}catch(error){console.error(`FAIL ${name}`);throw error;}}
 
-test('package JavaScript parses',()=>new vm.Script(packageCode,{filename:'sem-mp2-promotion-packages.js'}));
-test('index loads MP2 map before promotion packages and compatibility after them',()=>{
+test('package and quality JavaScript parse',()=>{
+ new vm.Script(packageCode,{filename:'sem-mp2-promotion-packages.js'});
+ new vm.Script(qualityCode,{filename:'sem-mp2-promotion-quality-patch.js'});
+});
+test('index loads map, packages, quality normalization, then compatibility',()=>{
  const map=index.indexOf('mp2-curriculum-map.js');
  const packages=index.indexOf('sem-mp2-promotion-packages.js');
+ const quality=index.indexOf('sem-mp2-promotion-quality-patch.js');
  const compatibility=index.indexOf('mp2-compatibility.js');
- assert.ok(map>=0&&packages>=0&&compatibility>=0);
- assert.ok(map<packages&&packages<compatibility);
+ assert.ok(map>=0&&packages>=0&&quality>=0&&compatibility>=0);
+ assert.ok(map<packages&&packages<quality&&quality<compatibility);
 });
 
 vm.runInContext(sourceCode,context,{filename:'mp2-source-data.js'});
 vm.runInContext(mapCode,context,{filename:'mp2-curriculum-map.js'});
 vm.runInContext(packageCode,context,{filename:'sem-mp2-promotion-packages.js'});
+vm.runInContext(qualityCode,context,{filename:'sem-mp2-promotion-quality-patch.js'});
 
 const promotion=lessons.filter(lesson=>/^SEM-02[1-8]$/.test(lesson.id));
 const required=['overview','target','success','agenda','bellRinger','miniLesson','activity','exitTicket','materials','differentiation','canvas','standards','notes','version'];
