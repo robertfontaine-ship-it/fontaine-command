@@ -1,0 +1,27 @@
+name: Entrepreneurship MP3 Grand Opening QA
+
+on:
+  pull_request:
+    paths:
+      - 'entrepreneurship-mp3-grand-opening-sources.js'
+      - 'entrepreneurship-mp3-grand-opening-packages.js'
+      - 'index.html'
+      - 'tests/entrepreneurship-mp3-grand-opening.test.cjs'
+      - '.github/workflows/entrepreneurship-mp3-grand-opening.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  entrepreneurship-mp3-grand-opening-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run Entrepreneurship MP3 Grand Opening QA
+        run: node tests/entrepreneurship-mp3-grand-opening.test.cjs
