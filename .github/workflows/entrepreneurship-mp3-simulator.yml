@@ -1,0 +1,27 @@
+name: Entrepreneurship MP3 Business Simulator QA
+
+on:
+  pull_request:
+    paths:
+      - 'entrepreneurship-mp3-simulator-packages-a.js'
+      - 'entrepreneurship-mp3-simulator-packages-b.js'
+      - 'index.html'
+      - 'tests/entrepreneurship-mp3-simulator.test.cjs'
+      - '.github/workflows/entrepreneurship-mp3-simulator.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  entrepreneurship-mp3-simulator-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run Entrepreneurship MP3 Business Simulator QA
+        run: node tests/entrepreneurship-mp3-simulator.test.cjs
