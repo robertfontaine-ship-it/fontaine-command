@@ -24,13 +24,22 @@ const lessons=rows.flatMap(([course,courseCode,prefix])=>Array.from({length:20},
 const data={courses:rows.map(([title,code])=>({title,code})),units:{},lessonTitles:{},resources:[]};
 const state={page:'Dashboard',search:'',course:'All',status:'All',markingPeriod:'All',buildCourse:'All',buildPeriod:'MP3'};
 const appNode={outerHTML:''};
-const context={console,data,lessons,resources:[],state,pages:['Dashboard','Lessons','Annual Review'],window:null,shell:value=>value,badge:value=>value,openLesson(){},go(){},toast(){},render(){},document:{getElementById(){return appNode;}},setTimeout,clearTimeout};
+const context={
+  console,data,lessons,resources:[],state,pages:['Dashboard','Lessons','Annual Review'],window:null,
+  FONTaineStandards:{courseStandards:[],wrsMappings:{}},FONTaineDriveInventory:{files:[]},
+  shell:value=>value,badge:value=>value,openLesson(){},go(){},toast(){},render(){},
+  document:{getElementById(){return appNode;}},navigator:{clipboard:{writeText(){return Promise.resolve();}}},
+  setTimeout,clearTimeout
+};
 context.window=context;
 vm.createContext(context);
 
 let passed=0;
 const test=(name,fn)=>{fn();passed++;console.log(`PASS ${name}`);};
-scripts.forEach(file=>vm.runInContext(read(file),context,{filename:file}));
+scripts.forEach(file=>{
+  try{vm.runInContext(read(file),context,{filename:file});}
+  catch(error){console.error(`SCRIPT_FAILURE ${file}`);throw error;}
+});
 const audit=context.FONTaineQualityAudit;
 
 test('audit covers all 180 released lessons',()=>{
