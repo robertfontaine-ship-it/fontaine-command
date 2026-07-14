@@ -1,10 +1,10 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Build complete Fashion MP2 Promotional Mix lesson packages.
+Build complete Fashion MP2 Selling Process and Holiday Pop-Up Boutique lesson packages.
 
 ## Active Branch
-`feature/fashion-mp2-promotion-packages`
+`feature/fashion-mp2-selling-packages`
 
 ## Completed
 - SEM-001 through SEM-040 are complete lesson packages across MP1 and MP2.
@@ -12,16 +12,17 @@ Build complete Fashion MP2 Promotional Mix lesson packages.
 - FASH-021 through FASH-040 and ENT-021 through ENT-040 are mapped as source-backed MP2 lessons.
 - Lesson Builder 2.0, AI Teacher Assistant, Curriculum Health Dashboard, Companion Resources, and MP2 curriculum mapping are merged into `main`.
 - All 20 SEM MP2 packages and 100 SEM MP2 generated companion resources are merged into `main`.
-- FASH-021 through FASH-025 are built as complete Promotional Mix lesson packages.
-- The Fashion batch covers customer value, the four-P marketing mix, all five promotional tools, the verified 20-card scenario-sorting activity, and a Fashion Drop 360° promotional-pack performance task.
-- Verified Fashion Promotional Mix slides and sorting resources remain linked to the applicable lessons.
-- Dedicated Fashion MP2 package QA verifies learning-target format, standards, source links, sorting design, Fashion Drop 360° requirements, and the 25/60 MP2 completion state.
+- FASH-021 through FASH-025 are complete Promotional Mix lesson packages merged into `main`.
+- FASH-026 through FASH-033 are built as complete Selling Process and Holiday Pop-Up Boutique packages.
+- The Selling sequence covers buying motives, customer discovery, features and benefits, objections and alternatives, closing, follow-up, pop-up concept development, product-mix and inventory planning, and a final sales role-play.
+- Verified Fashion MP2 plan, retail selling scenario review, and pop-up boutique event brief are linked to the applicable lessons.
+- Dedicated QA verifies all required fields, Fontaine target format, source links, selling-process coverage, pop-up financial planning, role-play requirements, and the 33/60 MP2 completion state.
 
 ## Current Priority
-Run Fashion MP2 Promotional Mix and full application regression QA, resolve defects, and merge the five complete packages.
+Run Fashion MP2 Selling and full application regression QA, resolve defects, and merge the eight complete packages.
 
 ## Next
-1. Merge FASH-021 through FASH-025 after all checks pass.
-2. Build FASH-026 through FASH-033 — Selling Process and Holiday Pop-Up Boutique.
-3. Build FASH-034 through FASH-040 — Customer Service and Visual Merchandising.
-4. Generate Fashion MP2 companion resources after all 20 Fashion MP2 packages are complete.
+1. Merge FASH-026 through FASH-033 after all checks pass.
+2. Build FASH-034 through FASH-040 — Customer Service and Visual Merchandising.
+3. Generate Fashion MP2 companion resources after all 20 Fashion MP2 packages are complete.
+4. Begin Entrepreneurship MP2 unit builds.
