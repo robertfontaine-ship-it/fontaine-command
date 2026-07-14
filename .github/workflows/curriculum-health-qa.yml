@@ -1,0 +1,58 @@
+name: Curriculum Health Dashboard QA
+
+on:
+  push:
+    branches:
+      - feature/curriculum-health-dashboard
+    paths:
+      - 'curriculum-health-dashboard.js'
+      - 'curriculum-health-dashboard.css'
+      - 'index.html'
+      - 'tests/curriculum-health-dashboard.test.cjs'
+      - 'tests/curriculum-health-mobile.test.cjs'
+      - '.github/workflows/curriculum-health-qa.yml'
+  pull_request:
+    paths:
+      - 'curriculum-health-dashboard.js'
+      - 'curriculum-health-dashboard.css'
+      - 'index.html'
+      - 'tests/curriculum-health-dashboard.test.cjs'
+      - 'tests/curriculum-health-mobile.test.cjs'
+      - '.github/workflows/curriculum-health-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  curriculum-health-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run health calculation and integration QA
+        id: calculation_qa
+        continue-on-error: true
+        run: node tests/curriculum-health-dashboard.test.cjs > curriculum-health-qa-output.txt 2>&1
+      - name: Upload calculation QA output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curriculum-health-qa-output
+          path: curriculum-health-qa-output.txt
+          if-no-files-found: error
+      - name: Report calculation QA result
+        if: always()
+        run: |
+          cat curriculum-health-qa-output.txt
+          test "${{ steps.calculation_qa.outcome }}" = "success"
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save --silent playwright >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+      - name: Run dashboard browser QA
+        run: node tests/curriculum-health-mobile.test.cjs
