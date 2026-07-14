@@ -1,0 +1,28 @@
+name: SEM MP3 Event Revenue QA
+
+on:
+  pull_request:
+    paths:
+      - 'sem-mp3-event-revenue-sources.js'
+      - 'sem-mp3-event-revenue-packages-a.js'
+      - 'sem-mp3-event-revenue-packages-b.js'
+      - 'index.html'
+      - 'tests/sem-mp3-event-revenue.test.cjs'
+      - '.github/workflows/sem-mp3-event-revenue.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sem-mp3-event-revenue-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run SEM MP3 Event Revenue QA
+        run: node tests/sem-mp3-event-revenue.test.cjs
