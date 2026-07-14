@@ -1,27 +1,26 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Complete Entrepreneurship MP3 Business Simulator Month 1 lesson packages.
+Finalize the complete three-course curriculum release and Entrepreneurship MP3 companion-resource expansion.
 
 ## Active Branch
-`agent/entrepreneurship-mp3-business-simulator`
+`agent/entrepreneurship-mp3-companion-release`
 
 ## Completed
 - SEM-001 through SEM-060, FASH-001 through FASH-060, and ENT-001 through ENT-060 are complete lesson packages across MP1, MP2, and MP3.
-- The complete 60-lesson MP3 curriculum map is fully built with no planned-only MP3 lessons remaining.
-- All SEM and Fashion MP3 lesson packages and companion resources are merged into `main`.
-- ENT-041 through ENT-050 cover Business Activation Strategy, Grand Opening Marketing, and Launch Operations.
-- ENT-051 through ENT-060 are built as complete Business Simulator Month 1 packages.
-- The simulator sequence covers setup, product and quality, pricing and promotion, staffing and operations, customer and risk cards, financial results, optimization, executive reporting, presentation, reflection, and an integrated performance check.
-- The verified Business Optimization Lab — Official Run Worksheet (Month 1) is linked to all ten simulator lessons.
-- Dedicated QA verifies all required fields, Fontaine format, source links, calculation and decision requirements, sequence coverage, and the 60/60 MP3 completion state.
-- Companion Resources currently cover 160 lessons with 800 generated printables, 55 verified Drive files, and 3 verified answer keys.
+- The curriculum contains 180 complete lesson packages: 60 per course and 20 per marking period.
+- No planned-only or incomplete curriculum lessons remain.
+- All 20 Entrepreneurship MP3 lessons cover Business Activation Strategy, Grand Opening Marketing and Launch Operations, and Business Simulator Month 1.
+- 100 generated Entrepreneurship MP3 companion resources complete the five-resource set for ENT-041 through ENT-060.
+- Companion Resources now cover all 180 lessons with 900 generated printables, 60 verified Drive files, and 3 verified answer keys.
+- Five verified Entrepreneurship MP3 sources cover activation strategy, operations, the Grand Opening Marketing Kit, the Month 1 simulator worksheet, and final exam review.
+- Annual Review now includes Entrepreneurship in its course filter.
+- Final release QA verifies lesson completion, resource totals, unique Drive IDs, script order, release documentation, and all three Annual Review course options.
 
 ## Current Priority
-Run Entrepreneurship MP3 Business Simulator and full application regression QA, resolve defects, and merge the ten complete packages.
+Run final companion-resource calculation, browser, mobile, source-link, release, and full application regression QA; resolve defects; and merge the complete release.
 
 ## Next
-1. Merge ENT-051 through ENT-060 after all checks pass.
-2. Generate Entrepreneurship MP3 companion resources for ENT-041 through ENT-060.
-3. Run final calculation, browser, mobile, source-link, and full curriculum regression QA.
-4. Update the annual curriculum review and release status.
+1. Merge the complete curriculum release after every workflow passes.
+2. Conduct classroom usability review and collect teacher feedback.
+3. Prioritize post-release polish, pacing adjustments, and future curriculum expansion.
