@@ -93,8 +93,9 @@
   const lessonCards=document.querySelectorAll(".main article.item");
   const count=lessonCards.length;
   const existing=document.querySelector(".mp2-result-count");
-  if(existing){existing.className="lesson-filter-summary";existing.innerHTML=`<strong>${count}</strong> matching lesson${count===1?"":"s"}<span>Open a lesson without losing these filters.</span>`;return;}
-  if(filters&&!document.querySelector(".lesson-filter-summary"))filters.insertAdjacentHTML("afterend",`<div class="lesson-filter-summary"><strong>${count}</strong> matching lesson${count===1?"":"s"}<span>Open a lesson without losing these filters.</span></div>`);
+  const message=`<strong>${count}</strong> lessons match the current filters<span>Open a lesson without losing this view.</span>`;
+  if(existing){existing.classList.add("lesson-filter-summary");existing.innerHTML=message;return;}
+  if(filters&&!document.querySelector(".lesson-filter-summary"))filters.insertAdjacentHTML("afterend",`<div class="lesson-filter-summary">${message}</div>`);
  }
  const originalRender=render;
  render=function(){
