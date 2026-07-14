@@ -18,7 +18,7 @@ const scripts=[
   'curriculum-quality-audit.js'
 ];
 const rows=[['SEM','8175','SEM'],['Fashion','8140','FASH'],['Entrepreneurship','9093','ENT']];
-const lessons=rows.flatMap(([course,courseCode,prefix])=>Array.from({length:20},(_,i)=>({
+const lessons=rows.filter(([course])=>course!=='Entrepreneurship').flatMap(([course,courseCode,prefix])=>Array.from({length:20},(_,i)=>({
   id:`${prefix}-${String(i+1).padStart(3,'0')}`,course,courseCode,title:'MP1',unit:'MP1',unitId:'mp1',day:i+1,status:'Complete',mapStatus:'Built',markingPeriod:'MP1',standards:`${courseCode} MP1`,duration:'45–60 minutes',components:['Lesson Plan'],overview:'Complete lesson package.',target:'I will learn.',success:'I will complete the lesson with at least 80% accuracy.',agenda:['Bell ringer','Mini lesson','Student activity','Exit ticket'],bellRinger:'Respond to the prompt.',miniLesson:'Review the lesson concept and model an example for students.',activity:'Students complete a structured application task and submit an organizer.',exitTicket:'Explain one idea from the lesson.',materials:['Teacher notes','Student organizer','Exit ticket'],differentiation:['Provide vocabulary support','Allow partner work','Challenge early finishers'],canvas:'📘 Review the directions.\n✅ Complete the task.\n📤 Submit the work in Canvas.\n🎯 Earn at least 80% mastery.',notes:'Source',version:'Version 1'
 })));
 const data={courses:rows.map(([title,code])=>({title,code})),units:{},lessonTitles:{},resources:[]};
