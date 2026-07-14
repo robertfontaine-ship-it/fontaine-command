@@ -29,34 +29,54 @@
  }
  function enhanceTopbar(){
   const subtitle=document.querySelector(".topbar>div>.muted");
-  if(subtitle)subtitle.textContent="SEM 8175 • Fashion 8140 • Entrepreneurship 9093";
+  const text="SEM 8175 • Fashion 8140 • Entrepreneurship 9093";
+  if(subtitle&&subtitle.textContent!==text)subtitle.textContent=text;
  }
  function enhanceLessonWorkspace(){
   if(state.page!=="Lesson Workspace")return;
   const header=document.querySelector(".lesson-header");
-  const tabs=header?.querySelector(".tabs");
-  if(header&&tabs&&!header.querySelector(".classroom-toolbar"))tabs.insertAdjacentHTML("beforebegin",lessonToolbar());
+  if(!header)return;
+  if(!document.querySelector(".classroom-toolbar")){
+   const tabs=header.querySelector(".tabs")||document.querySelector(".tabs");
+   if(tabs)tabs.insertAdjacentHTML("beforebegin",lessonToolbar());
+   else (header.querySelector(".row")||header.firstElementChild)?.insertAdjacentHTML("afterend",lessonToolbar());
+  }
   const oldBack=document.querySelector(".workspace-actions>button");
-  if(oldBack){oldBack.textContent=returnLabel();oldBack.setAttribute("onclick","returnFromLesson()");}
+  const label=returnLabel();
+  if(oldBack&&oldBack.textContent!==label)oldBack.textContent=label;
+  if(oldBack&&oldBack.getAttribute("onclick")!=="returnFromLesson()")oldBack.setAttribute("onclick","returnFromLesson()");
  }
  function enhanceLessonList(){
   if(state.page!=="Lessons")return;
   const filters=document.querySelector(".main>.filters");
   const lessonCards=document.querySelectorAll(".main article.item");
   const count=lessonCards.length;
+  const signature=String(count);
   const existing=document.querySelector(".mp2-result-count");
   const message=`<strong>${count}</strong> lessons match the current filters<span>Open a lesson without losing this view.</span>`;
-  if(existing){existing.classList.add("lesson-filter-summary");existing.innerHTML=message;return;}
-  if(filters&&!document.querySelector(".lesson-filter-summary"))filters.insertAdjacentHTML("afterend",`<div class="lesson-filter-summary">${message}</div>`);
+  if(existing){
+   if(existing.dataset.classroomSummary===signature)return;
+   existing.classList.add("lesson-filter-summary");
+   existing.dataset.classroomSummary=signature;
+   existing.innerHTML=message;
+   return;
+  }
+  if(filters&&!document.querySelector(".lesson-filter-summary"))filters.insertAdjacentHTML("afterend",`<div class="lesson-filter-summary" data-classroom-summary="${signature}">${message}</div>`);
  }
  function applyEnhancements(){
   enhanceTopbar();
   enhanceLessonWorkspace();
   enhanceLessonList();
  }
+ let enhancementQueued=false;
+ function scheduleEnhancements(){
+  if(enhancementQueued)return;
+  enhancementQueued=true;
+  requestAnimationFrame(()=>{enhancementQueued=false;applyEnhancements();});
+ }
  function finishAction(){
   applyEnhancements();
-  setTimeout(applyEnhancements,0);
+  scheduleEnhancements();
  }
  openLesson=function(id){
   if(state.page!=="Lesson Workspace")captureLessonReturnContext();
@@ -113,8 +133,10 @@
  const originalRender=render;
  render=function(){
   originalRender();
-  applyEnhancements();
+  finishAction();
  };
+ const observer=new MutationObserver(()=>scheduleEnhancements());
+ observer.observe(document.body,{childList:true,subtree:true});
  document.addEventListener("keydown",event=>{
   if(state.page!=="Lesson Workspace"||event.target?.matches?.("input,textarea,select"))return;
   if(event.altKey&&event.key==="ArrowLeft"){event.preventDefault();openAdjacentLesson(-1);}
@@ -122,5 +144,5 @@
  });
  render();
  finishAction();
- window.FONTaineClassroomUsability={version:1,features:["return-context","adjacent-lessons","quick-actions","full-lesson-print","lesson-resource-filter","mobile-toolbar"]};
+ window.FONTaineClassroomUsability={version:1,features:["return-context","adjacent-lessons","quick-actions","full-lesson-print","lesson-resource-filter","mobile-toolbar","render-observer"]};
 })();
