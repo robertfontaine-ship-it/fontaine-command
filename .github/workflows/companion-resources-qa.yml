@@ -9,6 +9,7 @@ on:
       - 'entrepreneurship-mp2-companion-resources.js'
       - 'sem-mp3-companion-resources.js'
       - 'fashion-mp3-companion-resources.js'
+      - 'entrepreneurship-mp3-companion-resources.js'
       - 'companion-resources.css'
       - 'index.html'
       - 'tests/companion-resources.test.cjs'
@@ -17,6 +18,7 @@ on:
       - 'tests/entrepreneurship-mp2-companion-resources.test.cjs'
       - 'tests/sem-mp3-companion-resources.test.cjs'
       - 'tests/fashion-mp3-companion-resources.test.cjs'
+      - 'tests/entrepreneurship-mp3-companion-resources.test.cjs'
       - 'tests/companion-resources-browser.test.cjs'
       - '.github/workflows/companion-resources-qa.yml'
   workflow_dispatch:
@@ -46,6 +48,8 @@ jobs:
         run: node tests/sem-mp3-companion-resources.test.cjs
       - name: Run Fashion MP3 companion resource calculation QA
         run: node tests/fashion-mp3-companion-resources.test.cjs
+      - name: Run Entrepreneurship MP3 companion resource calculation QA
+        run: node tests/entrepreneurship-mp3-companion-resources.test.cjs
       - name: Install browser test dependency
         run: |
           npm install --no-save --silent playwright >/dev/null 2>&1
