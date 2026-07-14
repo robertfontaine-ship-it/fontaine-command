@@ -13,8 +13,10 @@
   if(typeof initialComponentDetails==="function"&&!lesson.componentDetails)lesson.componentDetails=initialComponentDetails(lesson);
   if(typeof calculateReadiness==="function"&&lesson.componentDetails){
    calculateReadiness(lesson);
-   lesson.status="Planned";
-   lesson.mapStatus="Mapped";
+   if(lesson.mapStatus!=="Built"){
+    lesson.status="Planned";
+    lesson.mapStatus="Mapped";
+   }
   }
  });
  if(Array.isArray(window.FONTaineBuildTasks))window.FONTaineBuildTasks=lessons.flatMap(lesson=>lesson.buildTasks||[]);
