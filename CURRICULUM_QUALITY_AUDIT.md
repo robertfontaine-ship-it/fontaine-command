@@ -194,7 +194,25 @@ The first Minor Polish post-repair audit produced:
 - **Fashion average: 97 — 53 Strong, 7 Minor Polish**
 - **Entrepreneurship average: 97 — 51 Strong, 9 Minor Polish**
 
-The next lowest lessons are ENT-019 and ENT-020 at 83, followed by ENT-003 and FASH-006 at 84. The most common remaining issues are 43 low-rigor exit tickets, 25 unclear target actions, 16 success-evidence flags, seven unnamed activity products, six activities without completion criteria, and five repeated exit tickets.
+## Second Minor Polish Cluster
+
+The two lessons previously tied at 83 were rebuilt as complete presentation and mastery cycles:
+
+- **ENT-019:** a six-part three-to-four-minute business pitch, required quantitative and qualitative evidence, live question-and-answer defense, four Investor Evidence Scorecards, a $100,000 portfolio allocation, and Presenter Revision Note.
+- **ENT-020:** eight Venture Rescue cases, an individual performance check or verified 50-question Wayground review, eight-domain mastery tracking, evidence-based error analysis, and a three-action Mastery Recovery Plan.
+
+The second Minor Polish post-repair audit produced:
+
+- **97/100 overall average**
+- **158 Strong**
+- **22 Minor Polish**
+- **0 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96 — 52 Strong, 8 Minor Polish**
+- **Fashion average: 97 — 53 Strong, 7 Minor Polish**
+- **Entrepreneurship average: 97 — 53 Strong, 7 Minor Polish**
+
+The next lowest lessons are ENT-003 and FASH-006 at 84, followed by SEM-027 at 84. The most common remaining issues are 41 low-rigor exit tickets, 25 unclear target actions, 16 success-evidence flags, seven unnamed activity products, five repeated exit tickets, and four activities without completion criteria.
 
 ## Teacher Workflow
 
