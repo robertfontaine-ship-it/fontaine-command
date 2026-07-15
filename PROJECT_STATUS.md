@@ -19,15 +19,17 @@ Audit all 180 lessons for instructional quality, classroom usability, rigor, dif
 - Third repair cluster rebuilt eight Entrepreneurship and Fashion MP1 foundation and project lessons; baseline rose to 93 with 131 Strong and 22 Needs Revision.
 - Fourth repair cluster rebuilt ENT-012, ENT-018, FASH-004, and FASH-007; baseline rose to 94 with 135 Strong and 18 Needs Revision.
 - Fifth repair cluster rebuilt ENT-006, FASH-009, FASH-011, and FASH-012; baseline rose to 95 with 139 Strong and 14 Needs Revision.
-- Sixth repair cluster rebuilt ENT-005 and ENT-017.
-- Sixth post-repair baseline: 95/100 overall, 141 Strong, 27 Minor Polish, 12 Needs Revision, and 0 High Priority.
-- Current course averages: SEM 96, Fashion 95, Entrepreneurship 94.
+- Sixth repair cluster rebuilt ENT-005 and ENT-017; baseline reached 95 with 141 Strong and 12 Needs Revision.
+- Seventh repair cluster rebuilt ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, and ENT-016.
+- Seventh post-repair baseline: 96/100 overall, 147 Strong, 27 Minor Polish, 6 Needs Revision, and 0 High Priority.
+- Current course averages: SEM 96, Fashion 95, Entrepreneurship 96.
+- Entrepreneurship now has 50 Strong, 10 Minor Polish, and 0 Needs Revision lessons.
 
 ## Current Priority
-Strengthen the twelve remaining Needs Revision lessons tied at 78.
+Strengthen the six remaining Fashion Needs Revision lessons tied at 78: FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020.
 
 ## Next
-1. Rebuild the Entrepreneurship cluster: ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, and ENT-016.
-2. Rebuild the Fashion cluster: FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020.
-3. Continue reducing the 58 remaining low-rigor exit-ticket flags across Minor Polish and Strong lessons.
+1. Rebuild the six-lesson Fashion history, designer, project-planning, career, and cumulative-performance cluster.
+2. Confirm that all 180 lessons are at least Minor Polish and zero remain in Needs Revision or High Priority.
+3. Continue reducing the 52 remaining low-rigor exit-ticket flags, followed by unclear target actions and success evidence.
 4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
