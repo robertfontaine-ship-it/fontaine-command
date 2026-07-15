@@ -175,7 +175,26 @@ The eighth post-repair audit produced:
 - **Fashion average: 97 — 51 Strong, 9 Minor Polish**
 - **Entrepreneurship average: 96 — 50 Strong, 10 Minor Polish**
 
-Every released lesson is now at least Minor Polish. The lowest remaining lessons are ENT-008, FASH-003, and FASH-010 at 81. The most common remaining issues are 46 low-rigor exit tickets, 25 unclear target actions, 16 success-evidence flags, and seven unnamed activity products.
+## First Minor Polish Cluster
+
+The three lessons previously tied at 81 were rebuilt as evidence-rich classroom labs:
+
+- **ENT-008:** a twelve-source credibility and usefulness audit, three research questions, four-source mixed-method sequence, triangulation matrix, bias and limitation analysis, and measurable proceed-revise-stop decision rule.
+- **FASH-003:** fifteen fad-trend-classic classifications, a six-evidence lifecycle timeline, three cause-and-effect annotations, contradiction testing, stage diagnosis, and brand-response recommendation.
+- **FASH-010:** three-look elements audit with fifteen evidence statements, four redesign changes across at least three elements, design tradeoff analysis, peer verification, and customer-focused redesign brief.
+
+The first Minor Polish post-repair audit produced:
+
+- **97/100 overall average**
+- **156 Strong**
+- **24 Minor Polish**
+- **0 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96 — 52 Strong, 8 Minor Polish**
+- **Fashion average: 97 — 53 Strong, 7 Minor Polish**
+- **Entrepreneurship average: 97 — 51 Strong, 9 Minor Polish**
+
+The next lowest lessons are ENT-019 and ENT-020 at 83, followed by ENT-003 and FASH-006 at 84. The most common remaining issues are 43 low-rigor exit tickets, 25 unclear target actions, 16 success-evidence flags, seven unnamed activity products, six activities without completion criteria, and five repeated exit tickets.
 
 ## Teacher Workflow
 
