@@ -23,16 +23,17 @@ Audit all 180 lessons for instructional quality, classroom usability, rigor, dif
 - Seventh repair cluster rebuilt ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, and ENT-016; baseline reached 96 with 147 Strong and 6 Needs Revision.
 - Eighth repair cluster rebuilt FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020; all Needs Revision lessons were eliminated.
 - First Minor Polish cluster rebuilt ENT-008, FASH-003, and FASH-010.
-- Current baseline: 97/100 overall, 156 Strong, 24 Minor Polish, 0 Needs Revision, and 0 High Priority.
+- Second Minor Polish cluster rebuilt ENT-019 and ENT-020 as complete pitch-investment and cumulative-mastery workflows.
+- Current baseline: 97/100 overall, 158 Strong, 22 Minor Polish, 0 Needs Revision, and 0 High Priority.
 - Current course averages: SEM 96, Fashion 97, Entrepreneurship 97.
-- Course quality bands: SEM 52 Strong and 8 Minor Polish; Fashion 53 Strong and 7 Minor Polish; Entrepreneurship 51 Strong and 9 Minor Polish.
+- Course quality bands: SEM 52 Strong and 8 Minor Polish; Fashion 53 Strong and 7 Minor Polish; Entrepreneurship 53 Strong and 7 Minor Polish.
 - Every released lesson remains at least Minor Polish, and the audit permanently blocks any return to Needs Revision or High Priority.
 
 ## Current Priority
-Strengthen ENT-019 and ENT-020, the two lowest remaining lessons at 83, followed by ENT-003 and FASH-006 at 84.
+Strengthen ENT-003 and FASH-006, the two lowest remaining lessons at 84, followed by SEM-027 at 84.
 
 ## Next
-1. Rebuild ENT-019 and ENT-020 as complete pitch-presentation and cumulative-performance workflows.
-2. Rebuild ENT-003 and FASH-006 to remove thin activity, thin mini-lesson, and missing completion-criteria flags.
-3. Reduce the 43 remaining low-rigor exit-ticket flags, followed by 25 unclear target-action flags and 16 success-evidence flags.
+1. Rebuild ENT-003 and FASH-006 to remove thin activity, thin mini-lesson, and missing completion-criteria flags.
+2. Strengthen SEM-027 to improve target action, success evidence, and exit-ticket rigor.
+3. Reduce the 41 remaining low-rigor exit-ticket flags, followed by 25 unclear target-action flags and 16 success-evidence flags.
 4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
