@@ -4,7 +4,7 @@
 Audit all 180 lessons for instructional quality, classroom usability, rigor, differentiation, assessment evidence, and unnecessary repetition.
 
 ## Active Branch
-`agent/repair-segmentation-pitch-fashion-history`
+`main`
 
 ## Completed
 - SEM-001 through SEM-060, FASH-001 through FASH-060, and ENT-001 through ENT-060 are complete lesson packages across MP1, MP2, and MP3.
@@ -17,15 +17,17 @@ Audit all 180 lessons for instructional quality, classroom usability, rigor, dif
 - First repair cluster rebuilt SEM-001 through SEM-007; baseline rose to 92 with zero High Priority.
 - Second repair cluster rebuilt ENT-011, ENT-014, and FASH-013; Strong rose to 123 and Needs Revision fell to 30.
 - Third repair cluster rebuilt eight Entrepreneurship and Fashion MP1 foundation and project lessons; baseline rose to 93 with 131 Strong and 22 Needs Revision.
-- Fourth repair cluster rebuilt ENT-012, ENT-018, FASH-004, and FASH-007.
-- Fourth post-repair baseline: 94/100 overall, 135 Strong, 27 Minor Polish, 18 Needs Revision, and 0 High Priority.
-- Current course averages: SEM 96, Fashion 93, Entrepreneurship 93.
+- Fourth repair cluster rebuilt ENT-012, ENT-018, FASH-004, and FASH-007; baseline rose to 94 with 135 Strong and 18 Needs Revision.
+- Fifth repair cluster rebuilt ENT-006, FASH-009, FASH-011, and FASH-012.
+- Fifth post-repair baseline: 95/100 overall, 139 Strong, 27 Minor Polish, 14 Needs Revision, and 0 High Priority.
+- Current course averages: SEM 96, Fashion 95, Entrepreneurship 93.
+- All 27 curriculum, course, companion-resource, AI-assistant, dashboard, and classroom-usability workflows passed for the fifth repair cluster.
 
 ## Current Priority
-Merge the fourth ranked curriculum-quality repair cluster after full regression validation.
+Strengthen ENT-005 and ENT-017, the two remaining lowest-scoring lessons at 76.
 
 ## Next
-1. Strengthen ENT-006, FASH-009, FASH-011, and FASH-012.
-2. Strengthen ENT-005 and ENT-017.
-3. Continue reducing low-rigor exit tickets and thin activity directions across the remaining revision queue.
+1. Rebuild ENT-005 as a complete trend-scanning and opportunity-validation lab.
+2. Rebuild ENT-017 as a startup promotional-mix planning and budget-allocation lab.
+3. Continue through the twelve lessons tied at 78, prioritizing thin activity directions and low-rigor exit evidence.
 4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
