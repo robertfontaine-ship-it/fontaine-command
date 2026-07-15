@@ -5,7 +5,7 @@ const read=name=>fs.readFileSync(name,'utf8');
 
 const scripts=[
   'sem-lesson-packages.js','sem-mp1-foundation-quality-patch.js','sem-target-market-packages.js','sem-promotion-partnership-packages.js','sem-customer-service-selling-packages.js',
-  'fashion-lesson-packages.js','fashion-mp1-quality-patch.js','entrepreneurship-lesson-packages.js','entrepreneurship-mp1-quality-patch.js','mp1-priority-quality-patch.js','mp1-ideas-color-style-quality-patch.js',
+  'fashion-lesson-packages.js','fashion-mp1-quality-patch.js','entrepreneurship-lesson-packages.js','entrepreneurship-mp1-quality-patch.js','mp1-priority-quality-patch.js','mp1-ideas-color-style-quality-patch.js','mp1-trends-promotion-quality-patch.js',
   'companion-resources.js','mp2-source-data.js','fashion-mp2-customer-service-sources.js','entrepreneurship-mp2-marketing-sources.js','entrepreneurship-mp2-ownership-sources.js','entrepreneurship-mp2-financial-sources.js','mp2-curriculum-map.js',
   'sem-mp2-promotion-packages.js','sem-mp2-promotion-quality-patch.js','sem-mp2-selling-packages.js','sem-mp2-professional-skills-packages.js',
   'fashion-mp2-promotion-packages.js','fashion-mp2-promotion-quality-patch.js','fashion-mp2-selling-packages.js','fashion-mp2-selling-quality-patch.js','fashion-mp2-customer-service-packages.js','fashion-mp2-customer-service-quality-patch.js',
@@ -82,7 +82,7 @@ test('strengthened SEM foundation lessons are all strong',()=>{
   });
 });
 test('repaired Fashion and Entrepreneurship MP1 lessons are strong',()=>{
-  const ids=['ENT-001','ENT-002','ENT-006','ENT-011','ENT-012','ENT-013','ENT-014','ENT-018','FASH-001','FASH-002','FASH-004','FASH-007','FASH-009','FASH-011','FASH-012','FASH-013','FASH-014','FASH-017','FASH-018'];
+  const ids=['ENT-001','ENT-002','ENT-005','ENT-006','ENT-011','ENT-012','ENT-013','ENT-014','ENT-017','ENT-018','FASH-001','FASH-002','FASH-004','FASH-007','FASH-009','FASH-011','FASH-012','FASH-013','FASH-014','FASH-017','FASH-018'];
   const repairedCodes=['thin-activity','activity-product','activity-criteria','low-rigor-exit-ticket','thin-exit-ticket','thin-mini-lesson','success-evidence','target-action','activity-action'];
   ids.forEach(id=>{
     const result=audit.results.find(item=>item.lessonId===id);
@@ -100,10 +100,18 @@ test('fifth repair cluster clears its original quality flags',()=>{
     assert.equal(result.issues.some(issue=>originalFlags.includes(issue.code)),false,`${id} retained an original flag`);
   });
 });
+test('sixth repair cluster clears its original quality flags',()=>{
+  const originalFlags=['thin-mini-lesson','thin-activity','low-rigor-exit-ticket','target-action','success-evidence'];
+  ['ENT-005','ENT-017'].forEach(id=>{
+    const result=audit.results.find(item=>item.lessonId===id);
+    assert.ok(result.score>=90,`${id} scored ${result.score}`);
+    assert.equal(result.issues.some(issue=>originalFlags.includes(issue.code)),false,`${id} retained an original flag`);
+  });
+});
 test('audit score is a useful revision baseline',()=>{
-  assert.ok(audit.average>=94&&audit.average<=100,`average ${audit.average}`);
-  assert.ok(audit.strong>=139,`strong ${audit.strong}`);
-  assert.ok(audit.revision<=14,`revision ${audit.revision}`);
+  assert.ok(audit.average>=95&&audit.average<=100,`average ${audit.average}`);
+  assert.ok(audit.strong>=141,`strong ${audit.strong}`);
+  assert.ok(audit.revision<=12,`revision ${audit.revision}`);
   assert.ok(Object.values(audit.issueCounts).reduce((sum,count)=>sum+count,0)>0,'expected revision flags');
 });
 test('quality dashboard loads after all curriculum packages and before usability wrapper',()=>{
@@ -115,7 +123,8 @@ test('quality dashboard loads after all curriculum packages and before usability
   assert.ok(position('entrepreneurship-lesson-packages.js')<position('entrepreneurship-mp1-quality-patch.js'));
   assert.ok(position('entrepreneurship-mp1-quality-patch.js')<position('mp1-priority-quality-patch.js'));
   assert.ok(position('mp1-priority-quality-patch.js')<position('mp1-ideas-color-style-quality-patch.js'));
-  assert.ok(position('mp1-ideas-color-style-quality-patch.js')<position('entrepreneurship-migration-audit.js'));
+  assert.ok(position('mp1-ideas-color-style-quality-patch.js')<position('mp1-trends-promotion-quality-patch.js'));
+  assert.ok(position('mp1-trends-promotion-quality-patch.js')<position('entrepreneurship-migration-audit.js'));
   assert.ok(position('entrepreneurship-mp3-simulator-packages-b.js')<position('curriculum-quality-audit.js'));
   assert.ok(position('annual-review.js')<position('curriculum-quality-audit.js'));
   assert.ok(position('curriculum-quality-audit.js')<position('classroom-usability.js'));
