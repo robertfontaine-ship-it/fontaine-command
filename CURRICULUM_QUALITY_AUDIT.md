@@ -130,7 +130,30 @@ The sixth post-repair audit produced:
 - **Fashion average: 95**
 - **Entrepreneurship average: 94**
 
-The current lowest-scoring lessons are the twelve lessons tied at 78: ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, ENT-016, FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020. Each currently carries the same four flags: thin activity directions, low-rigor exit evidence, thin mini-lesson modeling, and missing activity completion criteria.
+## Seventh Repair Cluster
+
+The six remaining Entrepreneurship lessons in Needs Revision were rebuilt as distinct evidence and decision labs:
+
+- **ENT-004:** four entrepreneur profiles, six trait scores, a Risk-Reward Ledger, mitigation planning, stakeholder mapping, five ethical tests, and an Ethics Recommendation Memo.
+- **ENT-007:** eighteen research-evidence classifications, three decision-focused research questions, a Decision-to-Research Matrix, and a mixed-method Research Brief.
+- **ENT-009:** eight biased-question repairs, a ten-question survey, a five-question interview guide, pilot testing, privacy safeguards, and a documented Revision Log.
+- **ENT-010:** a thirty-response data-quality check, six calculations, two visuals, ten-comment theme coding, limitations analysis, and a Go-Revise-Stop Decision Memo.
+- **ENT-015:** a four-structure by eight-criterion ownership matrix, twelve founder scenarios, two priority profiles, and two evidence-based recommendation cards.
+- **ENT-016:** a weighted ownership decision matrix totaling 100 points, four structure scores, three growth stress tests, peer audit, and an Ownership Decision Memo.
+
+The seventh post-repair audit produced:
+
+- **96/100 overall average**
+- **147 Strong**
+- **27 Minor Polish**
+- **6 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96**
+- **Fashion average: 95**
+- **Entrepreneurship average: 96**
+- **Entrepreneurship quality bands: 50 Strong, 10 Minor Polish, 0 Needs Revision**
+
+The current lowest-scoring lessons are the six Fashion lessons tied at 78: FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020. Each carries the same four flags: thin activity directions, low-rigor exit evidence, thin mini-lesson modeling, and missing activity completion criteria. The most common remaining issue across all quality bands is low-rigor exit-ticket evidence.
 
 ## Teacher Workflow
 
