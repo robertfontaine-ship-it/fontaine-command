@@ -51,7 +51,7 @@ The first post-repair audit produced:
 
 ## Second Repair Cluster
 
-The next three lowest-scoring lessons were ENT-011, ENT-014, and FASH-013. Each began at 67/100 because the concept sequence was appropriate but the mini lesson, activity directions, student product, completion criteria, or exit evidence was too thin.
+ENT-011, ENT-014, and FASH-013 were rebuilt because their concepts were appropriate but the mini lesson, activity directions, student product, completion criteria, or exit evidence was too thin.
 
 - **ENT-011** now uses twelve customer-evidence cards, an eight-detail customer profile, and a four-part product-price-place-promotion decision table.
 - **ENT-014** now uses a six-step LISTEN service-recovery model, two scored role-plays, complaint documentation, and revision of the verified Entrepreneurship Customer Service Policy Builder.
@@ -67,7 +67,31 @@ The second post-repair audit produced:
 - **Fashion average: 90**
 - **Entrepreneurship average: 90**
 
-The current lowest-scoring cluster is ENT-001, ENT-002, ENT-013, FASH-001, FASH-002, FASH-014, FASH-017, and FASH-018. The most common remaining issues are low-rigor exit tickets, thin activity directions, thin mini lessons, and missing activity completion criteria.
+## Third Repair Cluster
+
+The next eight lowest-scoring lessons were rebuilt as complete classroom workflows:
+
+- **ENT-001:** four-station Entrepreneur Launch Passport, course-systems checkpoint, resource-constraint challenge, and team operating agreement.
+- **ENT-002:** six-role career matrix, scenario recommendation, and four-week career-growth sprint.
+- **ENT-013:** four-scenario Customer Experience Scorecard and five measurable rules in the verified Customer Service Policy Builder.
+- **FASH-001:** source-backed Fashion Launch Passport preserving Style Snapshot, Brand First Impressions, Trend Watch, Team Contract, and course systems.
+- **FASH-002:** source-backed fourteen-career sort, six-role pathway matrix, verified career scenario, and four-week Career Launch Plan.
+- **FASH-014:** six-touchpoint Brand Image Audit, calculated consistency percentage, Brand Identity Card, and improvement proposal.
+- **FASH-017:** eight-part Fashion Face-Off concept board, two critique rounds, and documented revision log.
+- **FASH-018:** complete pitch, question response, four audience scorecards, final ranking, and evidence-based reflection.
+
+The third post-repair audit produced:
+
+- **93/100 overall average**
+- **131 Strong**
+- **27 Minor Polish**
+- **22 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96**
+- **Fashion average: 92**
+- **Entrepreneurship average: 92**
+
+The current lowest-scoring lessons are ENT-012, ENT-018, FASH-004, and FASH-007 at 73, followed by ENT-006, FASH-009, and FASH-011 at 75. The most common remaining issues are low-rigor exit tickets, thin activity directions, unclear observable target actions, thin mini lessons, and missing activity completion criteria.
 
 ## Teacher Workflow
 
@@ -86,7 +110,7 @@ The `Curriculum Quality Audit` GitHub Actions workflow:
 - verifies that every lesson receives a score, band, and issue list;
 - confirms there are no missing core instructional fields;
 - reconciles course and quality-band totals;
-- verifies that SEM-001 through SEM-007, ENT-011, ENT-014, and FASH-013 remain Strong;
+- verifies all repaired SEM, Fashion, and Entrepreneurship MP1 lessons remain Strong;
 - prevents any High Priority lesson from returning;
 - verifies dashboard and quality-patch script order;
 - uploads `curriculum-quality-audit.json` with course summaries, common issues, and the first 30 revision priorities.
