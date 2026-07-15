@@ -40,7 +40,7 @@ All seven High Priority lessons were SEM-001 through SEM-007. They were marked c
 
 SEM-001 through SEM-007 were rebuilt from their seven verified exact lesson documents. The strengthened sequence now includes specific modeling, measurable evidence, named student products, completion criteria, rigorous exit tickets, differentiation, source notes, and complete Canvas directions.
 
-The post-repair audit produced:
+The first post-repair audit produced:
 
 - **92/100 overall average**
 - **120 Strong**
@@ -49,7 +49,25 @@ The post-repair audit produced:
 - **0 High Priority**
 - **SEM average increased from 91 to 96**
 
-The next revision queue is concentrated in Fashion and Entrepreneurship MP1. The most common remaining issues are low-rigor exit tickets, thin activity directions, thin mini lessons, and missing activity completion criteria.
+## Second Repair Cluster
+
+The next three lowest-scoring lessons were ENT-011, ENT-014, and FASH-013. Each began at 67/100 because the concept sequence was appropriate but the mini lesson, activity directions, student product, completion criteria, or exit evidence was too thin.
+
+- **ENT-011** now uses twelve customer-evidence cards, an eight-detail customer profile, and a four-part product-price-place-promotion decision table.
+- **ENT-014** now uses a six-step LISTEN service-recovery model, two scored role-plays, complaint documentation, and revision of the verified Entrepreneurship Customer Service Policy Builder.
+- **FASH-013** now uses six dated pieces of evidence, a trend-diffusion map, commercial adoption analysis, and an appreciation-versus-appropriation judgment.
+
+The second post-repair audit produced:
+
+- **92/100 overall average**
+- **123 Strong**
+- **27 Minor Polish**
+- **30 Needs Revision**
+- **0 High Priority**
+- **Fashion average: 90**
+- **Entrepreneurship average: 90**
+
+The current lowest-scoring cluster is ENT-001, ENT-002, ENT-013, FASH-001, FASH-002, FASH-014, FASH-017, and FASH-018. The most common remaining issues are low-rigor exit tickets, thin activity directions, thin mini lessons, and missing activity completion criteria.
 
 ## Teacher Workflow
 
@@ -68,8 +86,9 @@ The `Curriculum Quality Audit` GitHub Actions workflow:
 - verifies that every lesson receives a score, band, and issue list;
 - confirms there are no missing core instructional fields;
 - reconciles course and quality-band totals;
-- verifies that SEM-001 through SEM-007 remain Strong and that no High Priority lessons return;
-- verifies dashboard script order and navigation registration;
+- verifies that SEM-001 through SEM-007, ENT-011, ENT-014, and FASH-013 remain Strong;
+- prevents any High Priority lesson from returning;
+- verifies dashboard and quality-patch script order;
 - uploads `curriculum-quality-audit.json` with course summaries, common issues, and the first 30 revision priorities.
 
 The current baseline is diagnostic. Quality gates should become stricter as each ranked revision cluster is strengthened.
