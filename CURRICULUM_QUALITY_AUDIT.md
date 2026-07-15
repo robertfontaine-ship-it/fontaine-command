@@ -153,7 +153,29 @@ The seventh post-repair audit produced:
 - **Entrepreneurship average: 96**
 - **Entrepreneurship quality bands: 50 Strong, 10 Minor Polish, 0 Needs Revision**
 
-The current lowest-scoring lessons are the six Fashion lessons tied at 78: FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020. Each carries the same four flags: thin activity directions, low-rigor exit evidence, thin mini-lesson modeling, and missing activity completion criteria. The most common remaining issue across all quality bands is low-rigor exit-ticket evidence.
+## Eighth Repair Cluster
+
+The six remaining Fashion lessons in Needs Revision were rebuilt as complete history, design, career, and cumulative-performance labs:
+
+- **FASH-005:** an eight-category Decade Evidence Matrix, three verified sources, eight-image annotated board, five-event cause-and-effect timeline, iconic-versus-everyday comparison, and Decade Identity Brief.
+- **FASH-008:** four-to-six-minute evidence-based presentations, audience notes from four decades, a Cross-Decade Pattern Matrix, three recurring patterns, two turning points, one exception, and a comparative reflection.
+- **FASH-015:** twelve annotated looks from three collections, a six-category brand-code tally, five verified signature codes, competitor comparison, and Designer Brand Equity Brief.
+- **FASH-016:** an eight-requirement brief checklist, six customer insights, ten-image mood board, three concept alternatives, six-criterion scoring, revised concept plan, and peer audit.
+- **FASH-019:** six entry-level job analyses, three-career comparison, eight-row Evidence Gap Audit, three accomplishment statements, hiring scorecard, and 30-day Career Readiness Plan.
+- **FASH-020:** ten cumulative scenarios, an individual performance check, five-domain mastery tracking, evidence-based corrections, a transfer challenge, and three-action Mastery Plan.
+
+The eighth post-repair audit produced:
+
+- **96/100 overall average**
+- **153 Strong**
+- **27 Minor Polish**
+- **0 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96 — 52 Strong, 8 Minor Polish**
+- **Fashion average: 97 — 51 Strong, 9 Minor Polish**
+- **Entrepreneurship average: 96 — 50 Strong, 10 Minor Polish**
+
+Every released lesson is now at least Minor Polish. The lowest remaining lessons are ENT-008, FASH-003, and FASH-010 at 81. The most common remaining issues are 46 low-rigor exit tickets, 25 unclear target actions, 16 success-evidence flags, and seven unnamed activity products.
 
 ## Teacher Workflow
 
@@ -173,8 +195,9 @@ The `Curriculum Quality Audit` GitHub Actions workflow:
 - confirms there are no missing core instructional fields;
 - reconciles course and quality-band totals;
 - verifies all repaired SEM, Fashion, and Entrepreneurship MP1 lessons remain Strong;
-- prevents any High Priority lesson from returning;
+- requires every released lesson to remain at least Minor Polish;
+- prevents any Needs Revision or High Priority lesson from returning;
 - verifies dashboard and quality-patch script order;
-- uploads `curriculum-quality-audit.json` with course summaries, common issues, and the first 30 revision priorities.
+- uploads `curriculum-quality-audit.json` with course summaries, common issues, and the first 30 polish priorities.
 
-The current baseline is diagnostic. Quality gates should become stricter as each ranked revision cluster is strengthened.
+The current baseline is diagnostic. Quality gates should continue tightening as the remaining Minor Polish lessons are strengthened.
