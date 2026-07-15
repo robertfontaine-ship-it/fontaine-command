@@ -81,12 +81,14 @@ test('strengthened SEM foundation lessons are all strong',()=>{
     assert.equal(result.band,'Strong',id);
   });
 });
-test('repaired Fashion and Entrepreneurship priority lessons are strong',()=>{
-  ['ENT-011','ENT-014','FASH-013'].forEach(id=>{
+test('repaired Fashion and Entrepreneurship MP1 lessons are strong',()=>{
+  const ids=['ENT-001','ENT-002','ENT-011','ENT-013','ENT-014','FASH-001','FASH-002','FASH-013','FASH-014','FASH-017','FASH-018'];
+  const repairedCodes=['thin-activity','activity-product','activity-criteria','low-rigor-exit-ticket','thin-exit-ticket','thin-mini-lesson','success-evidence','target-action','activity-action'];
+  ids.forEach(id=>{
     const result=audit.results.find(item=>item.lessonId===id);
     assert.ok(result.score>=90,`${id} scored ${result.score}`);
     assert.equal(result.band,'Strong',id);
-    assert.equal(result.issues.some(issue=>['thin-activity','activity-product','activity-criteria','low-rigor-exit-ticket','thin-exit-ticket','thin-mini-lesson','success-evidence','target-action'].includes(issue.code)),false,`${id} retained a repaired issue`);
+    assert.equal(result.issues.some(issue=>repairedCodes.includes(issue.code)),false,`${id} retained a repaired issue`);
   });
   assert.equal(audit.priority,0);
 });
