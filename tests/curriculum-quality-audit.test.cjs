@@ -5,7 +5,7 @@ const read=name=>fs.readFileSync(name,'utf8');
 
 const scripts=[
   'sem-lesson-packages.js','sem-mp1-foundation-quality-patch.js','sem-target-market-packages.js','sem-promotion-partnership-packages.js','sem-customer-service-selling-packages.js',
-  'fashion-lesson-packages.js','entrepreneurship-lesson-packages.js',
+  'fashion-lesson-packages.js','fashion-mp1-quality-patch.js','entrepreneurship-lesson-packages.js','entrepreneurship-mp1-quality-patch.js',
   'companion-resources.js','mp2-source-data.js','fashion-mp2-customer-service-sources.js','entrepreneurship-mp2-marketing-sources.js','entrepreneurship-mp2-ownership-sources.js','entrepreneurship-mp2-financial-sources.js','mp2-curriculum-map.js',
   'sem-mp2-promotion-packages.js','sem-mp2-promotion-quality-patch.js','sem-mp2-selling-packages.js','sem-mp2-professional-skills-packages.js',
   'fashion-mp2-promotion-packages.js','fashion-mp2-promotion-quality-patch.js','fashion-mp2-selling-packages.js','fashion-mp2-selling-quality-patch.js','fashion-mp2-customer-service-packages.js','fashion-mp2-customer-service-quality-patch.js',
@@ -80,17 +80,28 @@ test('strengthened SEM foundation lessons are all strong',()=>{
     assert.ok(result.score>=90,`${id} scored ${result.score}`);
     assert.equal(result.band,'Strong',id);
   });
+});
+test('repaired Fashion and Entrepreneurship priority lessons are strong',()=>{
+  ['ENT-011','ENT-014','FASH-013'].forEach(id=>{
+    const result=audit.results.find(item=>item.lessonId===id);
+    assert.ok(result.score>=90,`${id} scored ${result.score}`);
+    assert.equal(result.band,'Strong',id);
+    assert.equal(result.issues.some(issue=>['thin-activity','activity-product','activity-criteria','low-rigor-exit-ticket','thin-exit-ticket','thin-mini-lesson','success-evidence','target-action'].includes(issue.code)),false,`${id} retained a repaired issue`);
+  });
   assert.equal(audit.priority,0);
 });
 test('audit score is a useful revision baseline',()=>{
-  assert.ok(audit.average>=90&&audit.average<=100,`average ${audit.average}`);
+  assert.ok(audit.average>=92&&audit.average<=100,`average ${audit.average}`);
   assert.ok(Object.values(audit.issueCounts).reduce((sum,count)=>sum+count,0)>0,'expected revision flags');
 });
 test('quality dashboard loads after all curriculum packages and before usability wrapper',()=>{
   const html=read('index.html');
   const position=value=>html.indexOf(value);
   assert.ok(position('sem-lesson-packages.js')<position('sem-mp1-foundation-quality-patch.js'));
-  assert.ok(position('sem-mp1-foundation-quality-patch.js')<position('curriculum-quality-audit.js'));
+  assert.ok(position('fashion-lesson-packages.js')<position('fashion-mp1-quality-patch.js'));
+  assert.ok(position('fashion-mp1-quality-patch.js')<position('fashion-migration-audit.js'));
+  assert.ok(position('entrepreneurship-lesson-packages.js')<position('entrepreneurship-mp1-quality-patch.js'));
+  assert.ok(position('entrepreneurship-mp1-quality-patch.js')<position('entrepreneurship-migration-audit.js'));
   assert.ok(position('entrepreneurship-mp3-simulator-packages-b.js')<position('curriculum-quality-audit.js'));
   assert.ok(position('annual-review.js')<position('curriculum-quality-audit.js'));
   assert.ok(position('curriculum-quality-audit.js')<position('classroom-usability.js'));
