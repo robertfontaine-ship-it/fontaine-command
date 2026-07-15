@@ -38,9 +38,7 @@ All seven High Priority lessons were SEM-001 through SEM-007. They were marked c
 
 ## First Repair Cluster
 
-SEM-001 through SEM-007 were rebuilt from their seven verified exact lesson documents. The strengthened sequence now includes specific modeling, measurable evidence, named student products, completion criteria, rigorous exit tickets, differentiation, source notes, and complete Canvas directions.
-
-The first post-repair audit produced:
+SEM-001 through SEM-007 were rebuilt from their seven verified exact lesson documents.
 
 - **92/100 overall average**
 - **120 Strong**
@@ -51,13 +49,7 @@ The first post-repair audit produced:
 
 ## Second Repair Cluster
 
-ENT-011, ENT-014, and FASH-013 were rebuilt because their concepts were appropriate but the mini lesson, activity directions, student product, completion criteria, or exit evidence was too thin.
-
-- **ENT-011** now uses twelve customer-evidence cards, an eight-detail customer profile, and a four-part product-price-place-promotion decision table.
-- **ENT-014** now uses a six-step LISTEN service-recovery model, two scored role-plays, complaint documentation, and revision of the verified Entrepreneurship Customer Service Policy Builder.
-- **FASH-013** now uses six dated pieces of evidence, a trend-diffusion map, commercial adoption analysis, and an appreciation-versus-appropriation judgment.
-
-The second post-repair audit produced:
+ENT-011, ENT-014, and FASH-013 were rebuilt as evidence-based target-market, service-recovery, and trend-diffusion lessons.
 
 - **92/100 overall average**
 - **123 Strong**
@@ -69,18 +61,7 @@ The second post-repair audit produced:
 
 ## Third Repair Cluster
 
-The next eight lowest-scoring lessons were rebuilt as complete classroom workflows:
-
-- **ENT-001:** four-station Entrepreneur Launch Passport, course-systems checkpoint, resource-constraint challenge, and team operating agreement.
-- **ENT-002:** six-role career matrix, scenario recommendation, and four-week career-growth sprint.
-- **ENT-013:** four-scenario Customer Experience Scorecard and five measurable rules in the verified Customer Service Policy Builder.
-- **FASH-001:** source-backed Fashion Launch Passport preserving Style Snapshot, Brand First Impressions, Trend Watch, Team Contract, and course systems.
-- **FASH-002:** source-backed fourteen-career sort, six-role pathway matrix, verified career scenario, and four-week Career Launch Plan.
-- **FASH-014:** six-touchpoint Brand Image Audit, calculated consistency percentage, Brand Identity Card, and improvement proposal.
-- **FASH-017:** eight-part Fashion Face-Off concept board, two critique rounds, and documented revision log.
-- **FASH-018:** complete pitch, question response, four audience scorecards, final ranking, and evidence-based reflection.
-
-The third post-repair audit produced:
+ENT-001, ENT-002, ENT-013, FASH-001, FASH-002, FASH-014, FASH-017, and FASH-018 were rebuilt as complete classroom workflows for course launch, careers, customer service, brand analysis, and Fashion Face-Off production and presentations.
 
 - **93/100 overall average**
 - **131 Strong**
@@ -91,7 +72,27 @@ The third post-repair audit produced:
 - **Fashion average: 92**
 - **Entrepreneurship average: 92**
 
-The current lowest-scoring lessons are ENT-012, ENT-018, FASH-004, and FASH-007 at 73, followed by ENT-006, FASH-009, and FASH-011 at 75. The most common remaining issues are low-rigor exit tickets, thin activity directions, unclear observable target actions, thin mini lessons, and missing activity completion criteria.
+## Fourth Repair Cluster
+
+The next four lowest-scoring lessons were strengthened:
+
+- **ENT-012:** four-segment profile matrix, five-criterion attractiveness scoring, primary and secondary target selection, and marketing-mix comparison.
+- **ENT-018:** seven-part elevator-pitch architecture, 90–130 word script, three timed practice rounds, feedback scorecards, revision log, and final delivery evidence.
+- **FASH-004:** source-backed Then-and-Now Evidence Board and complete History of Fashion project launch brief with historical-to-modern connections and source requirements.
+- **FASH-007:** source-backed eight-part project production tracker, peer Source-and-Evidence Audit, two documented revisions, and teacher checkpoint conference.
+
+The fourth post-repair audit produced:
+
+- **94/100 overall average**
+- **135 Strong**
+- **27 Minor Polish**
+- **18 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96**
+- **Fashion average: 93**
+- **Entrepreneurship average: 93**
+
+The current lowest-scoring lessons are ENT-006, FASH-009, FASH-011, and FASH-012 at 75, followed by ENT-005 and ENT-017 at 76. The most common remaining issues are low-rigor exit tickets, unclear observable target actions, thin activity directions, thin mini lessons, and missing completion criteria.
 
 ## Teacher Workflow
 
