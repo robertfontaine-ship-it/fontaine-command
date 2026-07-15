@@ -18,16 +18,16 @@ Audit all 180 lessons for instructional quality, classroom usability, rigor, dif
 - Second repair cluster rebuilt ENT-011, ENT-014, and FASH-013; Strong rose to 123 and Needs Revision fell to 30.
 - Third repair cluster rebuilt eight Entrepreneurship and Fashion MP1 foundation and project lessons; baseline rose to 93 with 131 Strong and 22 Needs Revision.
 - Fourth repair cluster rebuilt ENT-012, ENT-018, FASH-004, and FASH-007; baseline rose to 94 with 135 Strong and 18 Needs Revision.
-- Fifth repair cluster rebuilt ENT-006, FASH-009, FASH-011, and FASH-012.
-- Fifth post-repair baseline: 95/100 overall, 139 Strong, 27 Minor Polish, 14 Needs Revision, and 0 High Priority.
-- Current course averages: SEM 96, Fashion 95, Entrepreneurship 93.
-- All 27 curriculum, course, companion-resource, AI-assistant, dashboard, and classroom-usability workflows passed for the fifth repair cluster.
+- Fifth repair cluster rebuilt ENT-006, FASH-009, FASH-011, and FASH-012; baseline rose to 95 with 139 Strong and 14 Needs Revision.
+- Sixth repair cluster rebuilt ENT-005 and ENT-017.
+- Sixth post-repair baseline: 95/100 overall, 141 Strong, 27 Minor Polish, 12 Needs Revision, and 0 High Priority.
+- Current course averages: SEM 96, Fashion 95, Entrepreneurship 94.
 
 ## Current Priority
-Strengthen ENT-005 and ENT-017, the two remaining lowest-scoring lessons at 76.
+Strengthen the twelve remaining Needs Revision lessons tied at 78.
 
 ## Next
-1. Rebuild ENT-005 as a complete trend-scanning and opportunity-validation lab.
-2. Rebuild ENT-017 as a startup promotional-mix planning and budget-allocation lab.
-3. Continue through the twelve lessons tied at 78, prioritizing thin activity directions and low-rigor exit evidence.
+1. Rebuild the Entrepreneurship cluster: ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, and ENT-016.
+2. Rebuild the Fashion cluster: FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020.
+3. Continue reducing the 58 remaining low-rigor exit-ticket flags across Minor Polish and Strong lessons.
 4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
