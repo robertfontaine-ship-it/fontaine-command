@@ -112,7 +112,25 @@ The fifth post-repair audit produced:
 - **Fashion average: 95**
 - **Entrepreneurship average: 93**
 
-The current lowest-scoring lessons are ENT-005 and ENT-017 at 76. The next group at 78 includes ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, ENT-016, FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020. The most common remaining issues are low-rigor exit tickets, unclear observable target actions, thin activity directions, thin mini lessons, and missing completion criteria.
+## Sixth Repair Cluster
+
+The two remaining lowest-scoring lessons were rebuilt:
+
+- **ENT-005:** an eight-signal Trend Radar across at least four categories, three source-verification records, three Trend-to-Opportunity Statements, six-criterion opportunity scoring, assumption analysis, and a final recommendation brief.
+- **ENT-017:** a twenty-example promotional-mix classification, three-tool startup launch plan, $500 budget allocation, customer-journey map, measurable outcomes, risk-and-tradeoff analysis, and peer audit.
+
+The sixth post-repair audit produced:
+
+- **95/100 overall average**
+- **141 Strong**
+- **27 Minor Polish**
+- **12 Needs Revision**
+- **0 High Priority**
+- **SEM average: 96**
+- **Fashion average: 95**
+- **Entrepreneurship average: 94**
+
+The current lowest-scoring lessons are the twelve lessons tied at 78: ENT-004, ENT-007, ENT-009, ENT-010, ENT-015, ENT-016, FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020. Each currently carries the same four flags: thin activity directions, low-rigor exit evidence, thin mini-lesson modeling, and missing activity completion criteria.
 
 ## Teacher Workflow
 
