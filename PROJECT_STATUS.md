@@ -24,16 +24,18 @@ Audit all 180 lessons for instructional quality, classroom usability, rigor, dif
 - Eighth repair cluster rebuilt FASH-005, FASH-008, FASH-015, FASH-016, FASH-019, and FASH-020; all Needs Revision lessons were eliminated.
 - First Minor Polish cluster rebuilt ENT-008, FASH-003, and FASH-010.
 - Second Minor Polish cluster rebuilt ENT-019 and ENT-020 as complete pitch-investment and cumulative-mastery workflows.
-- Current baseline: 97/100 overall, 158 Strong, 22 Minor Polish, 0 Needs Revision, and 0 High Priority.
-- Current course averages: SEM 96, Fashion 97, Entrepreneurship 97.
-- Course quality bands: SEM 52 Strong and 8 Minor Polish; Fashion 53 Strong and 7 Minor Polish; Entrepreneurship 53 Strong and 7 Minor Polish.
+- Third Minor Polish cluster rebuilt ENT-003 and FASH-006 as value-creation and research-architecture labs.
+- Current baseline: 97/100 overall, 160 Strong, 20 Minor Polish, 0 Needs Revision, and 0 High Priority.
+- Current course averages: SEM 96, Fashion 98, Entrepreneurship 97.
+- Course quality bands: SEM 52 Strong and 8 Minor Polish; Fashion 54 Strong and 6 Minor Polish; Entrepreneurship 54 Strong and 6 Minor Polish.
 - Every released lesson remains at least Minor Polish, and the audit permanently blocks any return to Needs Revision or High Priority.
 
 ## Current Priority
-Strengthen ENT-003 and FASH-006, the two lowest remaining lessons at 84, followed by SEM-027 at 84.
+Strengthen SEM-027, the sole lowest remaining lesson at 84, followed by SEM-017 at 87 and SEM-036 at 88.
 
 ## Next
-1. Rebuild ENT-003 and FASH-006 to remove thin activity, thin mini-lesson, and missing completion-criteria flags.
-2. Strengthen SEM-027 to improve target action, success evidence, and exit-ticket rigor.
-3. Reduce the 41 remaining low-rigor exit-ticket flags, followed by 25 unclear target-action flags and 16 success-evidence flags.
-4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
+1. Rebuild SEM-027 to improve target action, success evidence, and exit-ticket rigor.
+2. Strengthen SEM-017 to improve success evidence, exit-ticket rigor, and extension.
+3. Strengthen SEM-036 to name a clearer student product and increase exit-ticket rigor.
+4. Reduce the 41 remaining low-rigor exit-ticket flags, followed by 25 unclear target-action flags and 16 success-evidence flags.
+5. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
