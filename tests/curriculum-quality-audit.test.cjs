@@ -82,7 +82,7 @@ test('strengthened SEM foundation lessons are all strong',()=>{
   });
 });
 test('repaired Fashion and Entrepreneurship MP1 lessons are strong',()=>{
-  const ids=['ENT-001','ENT-002','ENT-004','ENT-005','ENT-006','ENT-007','ENT-008','ENT-009','ENT-010','ENT-011','ENT-012','ENT-013','ENT-014','ENT-015','ENT-016','ENT-017','ENT-018','ENT-019','ENT-020','FASH-001','FASH-002','FASH-003','FASH-004','FASH-005','FASH-007','FASH-008','FASH-009','FASH-010','FASH-011','FASH-012','FASH-013','FASH-014','FASH-015','FASH-016','FASH-017','FASH-018','FASH-019','FASH-020'];
+  const ids=['ENT-001','ENT-002','ENT-003','ENT-004','ENT-005','ENT-006','ENT-007','ENT-008','ENT-009','ENT-010','ENT-011','ENT-012','ENT-013','ENT-014','ENT-015','ENT-016','ENT-017','ENT-018','ENT-019','ENT-020','FASH-001','FASH-002','FASH-003','FASH-004','FASH-005','FASH-006','FASH-007','FASH-008','FASH-009','FASH-010','FASH-011','FASH-012','FASH-013','FASH-014','FASH-015','FASH-016','FASH-017','FASH-018','FASH-019','FASH-020'];
   const repairedCodes=['thin-activity','activity-product','activity-criteria','low-rigor-exit-ticket','thin-exit-ticket','thin-mini-lesson','success-evidence','target-action','activity-action'];
   ids.forEach(id=>{
     const result=audit.results.find(item=>item.lessonId===id);
@@ -142,9 +142,19 @@ test('second Minor Polish cluster clears its original quality flags',()=>{
     assert.equal(result.issues.some(issue=>originalFlags.includes(issue.code)),false,`${id} retained an original flag`);
   });
 });
+test('third Minor Polish cluster clears its original quality flags',()=>{
+  const originalFlags=['thin-mini-lesson','thin-activity','activity-criteria'];
+  ['ENT-003','FASH-006'].forEach(id=>{
+    const result=audit.results.find(item=>item.lessonId===id);
+    assert.ok(result.score>=90,`${id} scored ${result.score}`);
+    assert.equal(result.band,'Strong',id);
+    assert.equal(result.issues.some(issue=>originalFlags.includes(issue.code)),false,`${id} retained an original flag`);
+  });
+});
 test('all released lessons are at least Minor Polish',()=>{
   assert.ok(audit.average>=97&&audit.average<=100,`average ${audit.average}`);
-  assert.ok(audit.strong>=158,`strong ${audit.strong}`);
+  assert.ok(audit.strong>=160,`strong ${audit.strong}`);
+  assert.ok(audit.minor<=20,`minor ${audit.minor}`);
   assert.equal(audit.revision,0,`revision ${audit.revision}`);
   assert.equal(audit.priority,0,`priority ${audit.priority}`);
   assert.ok(Object.values(audit.issueCounts).reduce((sum,count)=>sum+count,0)>0,'expected polish flags');
