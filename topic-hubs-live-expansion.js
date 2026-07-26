@@ -21,6 +21,10 @@
         action.replaceWith(link);
       }
     });
+    const nav=document.querySelector(".mission-nav");
+    if(nav&&!nav.querySelector('[href="student-mission-id.html"]')){
+      const link=document.createElement("a");link.href="student-mission-id.html";link.textContent="My Mission ID";nav.appendChild(link);
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", activate);
   else activate();
