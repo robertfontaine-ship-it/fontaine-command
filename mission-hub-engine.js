@@ -3,6 +3,7 @@
   const config = window.HUB_CONFIG;
   if (!config) return;
   const CAP = 10;
+  const ID_KEY = "fontaineMissionIdentity:v1";
   const weekKey = () => {
     const d = new Date(); const day = d.getDay();
     d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day)); d.setHours(0,0,0,0);
@@ -15,6 +16,15 @@
   const current = () => read()[weekKey()] || { profile:{first:"",last:"",period:""}, completions:{} };
   const entries = data => Math.min(CAP, Object.values(data.completions || {}).reduce((s,x)=>s+Number(x.entries||0),0));
   let filter = "All", active = null, receiptText = "";
+
+  function addMissionIdLink(){
+    const nav=document.querySelector(".mission-nav");
+    if(nav&&!nav.querySelector('[href="student-mission-id.html"]')){
+      const link=document.createElement("a"); link.href="student-mission-id.html"; link.textContent="My Mission ID"; nav.appendChild(link);
+    }
+  }
+  function savedIdentity(){try{return JSON.parse(localStorage.getItem(ID_KEY)||"{}")||{};}catch{return{};}}
+  function saveIdentity(profile){localStorage.setItem(ID_KEY,JSON.stringify(profile));}
 
   function renderCards(){
     const target=document.getElementById("missionGrid"); if(!target)return;
@@ -33,14 +43,14 @@
   }
   function openMission(id){
     const m=config.missions.find(x=>x.id===id); if(!m)return; active=id;
-    const data=current(), prior=data.completions[id];
+    const data=current(), prior=data.completions[id], identity=savedIdentity();
     document.getElementById("missionFormView").hidden=false; document.getElementById("receiptView").hidden=true;
     document.getElementById("modalLevel").textContent=`${m.level} Mission • ${m.minutes} minutes • ${m.entries} ${m.entries===1?"entry":"entries"}`;
     document.getElementById("modalTitle").textContent=`${m.id} — ${m.title}`;
     document.getElementById("modalBrief").textContent=m.brief;
-    document.getElementById("studentFirst").value=data.profile.first||"";
-    document.getElementById("studentLast").value=data.profile.last||"";
-    document.getElementById("studentPeriod").value=data.profile.period||"";
+    document.getElementById("studentFirst").value=data.profile.first||identity.first||"";
+    document.getElementById("studentLast").value=data.profile.last||identity.last||"";
+    document.getElementById("studentPeriod").value=data.profile.period||identity.period||"";
     document.getElementById("integrityCheck").checked=false;
     document.getElementById("promptFields").innerHTML=`<div class="briefing-callout"><strong>Complete every step:</strong> Give specific examples, explain your reasoning, and connect decisions to a target customer. One-word answers do not qualify.</div>`+m.prompts.map((p,i)=>`<label>Step ${i+1}: ${esc(p)}<textarea required minlength="20" data-response="${i}" placeholder="Write a complete response with evidence and explanation.">${esc(prior?.responses?.[i]||"")}</textarea></label>`).join("");
     document.getElementById("missionModal").hidden=false; document.body.style.overflow="hidden";
@@ -55,7 +65,7 @@
     const previous=data.completions[m.id], available=Math.max(0,CAP-entries(data)+(previous?Number(previous.entries||0):0));
     const earned=previous?Number(previous.entries||0):Math.min(m.entries,available);
     const code=previous?.code||`${m.id}-${week.replaceAll("-","").slice(4)}-${Math.random().toString(36).slice(2,7).toUpperCase()}`;
-    data.profile={first,last,period}; data.completions[m.id]={code,entries:earned,responses,submittedAt:new Date().toISOString()}; all[week]=data; write(all);
+    data.profile={first,last,period}; saveIdentity(data.profile); data.completions[m.id]={code,entries:earned,responses,submittedAt:new Date().toISOString()}; all[week]=data; write(all);
     receiptText=["FONTAINE MISSION RECEIPT",`Student: ${first} ${last}.`,`Period: ${period}`,`Topic: ${config.title}`,`Mission: ${m.id} — ${m.title}`,`Provisional entries: ${earned}`,`Receipt code: ${code}`,"Next step: Show this receipt to your teacher or paste it into the assigned location. Entries count only after teacher approval."].join("\n");
     document.getElementById("missionFormView").hidden=true; document.getElementById("receiptView").hidden=false;
     document.getElementById("receiptCard").innerHTML=`<dl><dt>Student</dt><dd>${esc(first)} ${esc(last)}.</dd><dt>Period</dt><dd>${esc(period)}</dd><dt>Topic</dt><dd>${esc(config.title)}</dd><dt>Mission</dt><dd>${m.id} — ${esc(m.title)}</dd><dt>Entries</dt><dd>${earned} provisional</dd><dt>Receipt code</dt><dd>${esc(code)}</dd><dt>Next step</dt><dd>Show or submit this receipt for teacher approval.</dd></dl>`;
@@ -68,5 +78,5 @@
   document.getElementById("missionForm")?.addEventListener("submit",submit);
   document.getElementById("copyReceipt")?.addEventListener("click",copyReceipt);
   document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
-  renderCards(); renderProgress();
+  addMissionIdLink(); renderCards(); renderProgress();
 })();
