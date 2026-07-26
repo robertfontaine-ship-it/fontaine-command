@@ -28,6 +28,7 @@ The prototype includes six foundational branding concepts and ten independent mi
 - Four Skill Missions worth two provisional entries each.
 - Three Boss Missions worth four provisional entries each.
 - Ten provisional entries maximum per student each week.
+- Student and teacher period selectors covering Periods 1–7.
 
 Student responses and receipts are stored only in the student browser. A receipt must be shown or submitted for teacher verification.
 
@@ -42,6 +43,27 @@ Student responses and receipts are stored only in the student browser. A receipt
 - Weighted random drawing.
 - CSV export.
 - Current rollout status and build queue.
+
+## Independent-Use Direction Standard
+
+Every topic hub must be understandable without a teacher explaining the page aloud. Each hub will use the same visible workflow:
+
+1. **Finish required work** — students are told that regular class assignments come first.
+2. **Choose one mission** — time, level, entry value, and expected outcome are visible before opening it.
+3. **Complete every prompt** — students receive explicit response-quality expectations and must answer every numbered question.
+4. **Create and submit the receipt** — the page states exactly what to copy, show, or submit and that entries require teacher approval.
+
+Every mission window must include:
+
+- A one-sentence mission goal.
+- A clear time estimate and entry value.
+- Numbered prompts in the order students should complete them.
+- Complete-sentence and evidence expectations.
+- A clear final submission step.
+- A reminder not to close the receipt before copying or showing it.
+- Plain-language button labels that describe the next action.
+
+Directions should avoid assumed knowledge, vague phrases such as “complete the activity,” and hidden submission requirements. A student opening the website for the first time should be able to identify what to do, what a finished response contains, and what happens after submission.
 
 ## Mission Design Standard
 
