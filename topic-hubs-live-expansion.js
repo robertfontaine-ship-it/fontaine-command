@@ -1,7 +1,9 @@
 (() => {
   const live = {
     "Target Market & Segmentation": "target-market-hub.html",
-    "The 4Ps of Marketing": "four-ps-hub.html"
+    "The 4Ps of Marketing": "four-ps-hub.html",
+    "Marketing Functions": "marketing-functions-hub.html",
+    "Promotional Mix": "promotional-mix-hub.html"
   };
   function activate(){
     document.querySelectorAll(".topic-card").forEach(card => {
