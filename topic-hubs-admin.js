@@ -92,7 +92,7 @@
         <div class="row"><div><h2>Approve an Entry</h2><p class="muted">Verify the student’s receipt or goodwill action, then add the approved entries to this browser’s weekly ledger.</p></div></div>
         <form class="topic-admin-form" onsubmit="addTopicEntry(event)">
           <label>Student name<input id="topicStudent" required placeholder="First name + last initial" /></label>
-          <label>Class period<select id="topicPeriod" required><option value="">Select</option><option>1</option><option>3</option><option>4</option><option>5</option><option>6</option><option>Other</option></select></label>
+          <label>Class period<select id="topicPeriod" required><option value="">Select period</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
           <label>Entry source<select id="topicSource"><option>Quick Mission</option><option>Skill Mission</option><option>Boss Mission</option><option>Goodwill Ticket</option><option>Growth / Improvement</option><option>Review Game</option></select></label>
           <label>Entries<input id="topicEntries" required type="number" min="1" max="4" value="1" /></label>
           <button class="btn" type="submit">Approve entries</button>
