@@ -3,7 +3,7 @@
   const ID_KEY="fontaineMissionIdentity:v1";
   const TOPICS={
     branding:"Branding", "target-market":"Target Market", "four-ps":"The 4Ps",
-    functions:"Marketing Functions", promotion:"Promotional Mix"
+    functions:"Marketing Functions", promotion:"Promotional Mix", agency:"Wolverine Agency"
   };
   const RANKS=[
     {name:"Marketing Rookie",xp:0},{name:"Campaign Specialist",xp:75},{name:"Brand Strategist",xp:175},
@@ -46,13 +46,14 @@
   function nextRank(xp){return RANKS.find(r=>xp<r.xp)||null;}
   function codeFor(identity){if(!identity.first||!identity.last||!identity.period)return"NOT-SET";const base=`${identity.first[0]}${identity.last}${identity.period}`.toUpperCase();let hash=0;for(const c of `${identity.first}${identity.last}${identity.period}`)hash=(hash*31+c.charCodeAt(0))%9999;return `FMN-${base}-${String(hash).padStart(4,"0")}`;}
   function badges(data){
-    const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length;
+    const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0;
     return [
       {icon:"🚀",name:"First Mission",desc:"Complete your first mission.",on:count>=1},
       {icon:"⚡",name:"Mission Streak",desc:"Complete five missions.",on:count>=5},
       {icon:"🏆",name:"Ten Deep",desc:"Complete ten missions.",on:count>=10},
-      {icon:"🧭",name:"Explorer",desc:"Complete missions in three topic hubs.",on:topics>=3},
-      {icon:"🌐",name:"Networked",desc:"Complete missions in all five live hubs.",on:topics>=5},
+      {icon:"🧭",name:"Explorer",desc:"Complete work in three departments.",on:topics>=3},
+      {icon:"💼",name:"Agency Rookie",desc:"Complete your first client project.",on:agency>=1},
+      {icon:"🌐",name:"Networked",desc:"Complete work in all five departments plus the agency.",on:topics>=6},
       {icon:"🧠",name:"Strategy Mind",desc:"Reach 175 XP.",on:data.xp>=175},
       {icon:"🎯",name:"Focused Marketer",desc:"Reach 325 XP.",on:data.xp>=325},
       {icon:"👑",name:"Industry Legend",desc:"Reach 1,200 XP.",on:data.xp>=1200}
@@ -74,7 +75,7 @@
     document.getElementById("nextRankText").textContent=next?`${next.xp-data.xp} XP until ${next.name}.`:"Maximum reputation achieved.";
     document.getElementById("rankPath").innerHTML=RANKS.map(r=>`<article class="rank-card ${data.xp>=r.xp?"unlocked":"locked"} ${r.name===rank.name?"current":""}"><h3>${r.name}</h3><p>${r.xp} XP required</p></article>`).join("");
     document.getElementById("badgeGrid").innerHTML=badges(data).map(b=>`<article class="badge-card ${b.on?"":"locked"}"><div class="badge-icon">${b.icon}</div><h3>${b.name}</h3><p>${b.on?"Unlocked":b.desc}</p></article>`).join("");
-    document.getElementById("topicProgress").innerHTML=Object.entries(TOPICS).map(([id,title])=>{const d=data.topicData[id],count=d?.missions.size||0;return `<article class="topic-progress-card"><h3>${title}</h3><p>${count} mission${count===1?"":"s"} completed</p><div class="entry-meter"><i style="width:${Math.min(100,count/10*100)}%"></i></div></article>`;}).join("");
+    document.getElementById("topicProgress").innerHTML=Object.entries(TOPICS).map(([id,title])=>{const d=data.topicData[id],count=d?.missions.size||0;return `<article class="topic-progress-card"><h3>${title}</h3><p>${count} ${id==="agency"?(count===1?"client project":"client projects"):(count===1?"mission":"missions")} completed</p><div class="entry-meter"><i style="width:${Math.min(100,count/10*100)}%"></i></div></article>`;}).join("");
   }
   const modal=document.getElementById("identityModal");
   function open(){const i=getIdentity();document.getElementById("idFirst").value=i.first||"";document.getElementById("idLast").value=i.last||"";document.getElementById("idPeriod").value=i.period||"";modal.hidden=false;document.body.style.overflow="hidden";}
