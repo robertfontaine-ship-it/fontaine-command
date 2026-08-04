@@ -67,6 +67,7 @@ async function runTeacherWorkflow(browser) {
     permissions: ["clipboard-read", "clipboard-write"]
   });
   const page = await context.newPage();
+  await page.route("**/favicon.ico", route => route.fulfill({ status: 204, body: "" }));
   const errors = [];
   page.on("pageerror", error => errors.push(`pageerror: ${error.message}`));
   page.on("console", message => { if (message.type() === "error") errors.push(`console: ${message.text()}`); });
