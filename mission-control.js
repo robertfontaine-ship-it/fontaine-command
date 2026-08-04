@@ -17,6 +17,7 @@
     distribution:{title:"Distribution & Logistics Center",href:"distribution-hub.html"},
     service:{title:"Customer Experience Center",href:"selling-customer-service-hub.html"},
     "startup-street":{title:"Startup Street",href:"startup-street.html"},
+    "wrs-career-center":{title:"WRS Career Center",href:"wrs-career-center.html"},
     agency:{title:"Wolverine Marketing Agency",href:"wolverine-agency.html"}
   };
   const TOPIC_ALIASES={functions:"marketing-functions",promotion:"promotional-mix"};
@@ -32,6 +33,7 @@
     {title:"Access Friction Hunt",brief:"Map how a customer discovers, buys, receives, and returns an offer, then repair the biggest barrier.",topic:"distribution",level:"Quick Mission",minutes:"10 minutes"},
     {title:"Feature-to-Benefit Translator",brief:"Turn four product features into honest benefits connected to one customer’s stated need.",topic:"service",level:"Quick Mission",minutes:"8–10 minutes"},
     {title:"Problem Spotter",brief:"Find a repeated frustration, define the customer experiencing it, and turn the observation into a focused opportunity statement.",topic:"startup-street",level:"Quick Mission",minutes:"8–10 minutes"},
+    {title:"Professionalism Pressure Test",brief:"Analyze a strong employee whose lateness, earbuds, and weak shift handoff are damaging a professional reputation.",topic:"wrs-career-center",level:"Quick Mission",minutes:"10 minutes"},
     {title:"Strategy Reset",brief:"Review your completed missions and choose the department where your next skill upgrade should happen.",topic:"branding",level:"Reflection",minutes:"5 minutes"}
   ];
   const canonicalTopic=topic=>TOPIC_ALIASES[topic]||topic;
@@ -51,12 +53,16 @@
   const nextRank=xp=>RANKS.find(r=>xp<r.xp)||null;
   function unlockedBadges(data){
     const badges=[];
+    const wrsCount=data.missions.filter(item=>item.topic==="wrs-career-center").length;
     if(data.missions.length>=1)badges.push(["🚀","First Mission","Completed the first mission"]);
     if(data.missions.length>=5)badges.push(["⚡","Mission Streak","Completed five missions"]);
     if(data.missions.length>=10)badges.push(["🏆","Ten Deep","Completed ten missions"]);
     if(data.topics.size>=3)badges.push(["🧭","Explorer","Worked in three departments"]);
     if(data.topics.has("agency"))badges.push(["💼","Agency Rookie","Completed a client project"]);
     if(data.topics.has("startup-street"))badges.push(["💡","Founder","Completed a Startup Street mission"]);
+    if(wrsCount>=1)badges.push(["🛡️","Work Ready","Completed a WRS competency mission"]);
+    if(wrsCount>=11)badges.push(["🧟","Career Survivor","Completed 11 WRS competency missions"]);
+    if(wrsCount>=22)badges.push(["🏅","WRS Master","Completed all 22 WRS competency missions"]);
     if(DEPARTMENT_TOPICS.every(topic=>data.topics.has(topic)))badges.push(["🌐","Networked","Worked in all nine marketing departments"]);
     if(data.xp>=175)badges.push(["🧠","Strategy Mind","Reached Brand Strategist rank"]);
     return badges;
