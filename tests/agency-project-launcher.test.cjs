@@ -139,6 +139,21 @@ test("assigned Agency launches remain profile-isolated and travel inside profile
   assert.equal(destination.store.getAgencyLaunch("WMA-QA123").joinedRole, "research");
 });
 
+test("weekly Mission Network keys stay on the local Monday in positive-offset time zones", { concurrency:false }, () => {
+  const originalTimezone = process.env.TZ;
+  process.env.TZ = "Pacific/Auckland";
+  try {
+    const { store } = loadStore();
+    const localMonday = new Date(2026, 7, 3, 0, 30, 0);
+    assert.equal(store.getWeekKey(localMonday), "2026-08-03");
+    assert.match(read("topic-hubs-admin.js"), /working\.getFullYear\(\)/);
+    assert.match(read("topic-hubs-review-queue.js"), /working\.getFullYear\(\)/);
+  } finally {
+    if (originalTimezone === undefined) delete process.env.TZ;
+    else process.env.TZ = originalTimezone;
+  }
+});
+
 test("teacher launcher provides editable templates, Periods 1–7, rosters, and portable student links", () => {
   const script = read("agency-project-launcher.js");
   const styles = read("agency-project-launcher.css");
@@ -146,6 +161,8 @@ test("teacher launcher provides editable templates, Periods 1–7, rosters, and 
   assert.match(script, /fontaineAgencyTeacherLaunches:v1/);
   assert.match(script, /Copy student link/);
   assert.match(script, /Team Roster and Role Assignments/);
+  assert.match(script, /Quick roster paste/);
+  assert.match(script, /applyAgencyRosterPaste/);
   assert.match(script, /Array\.from\(\{ length:7 \}/);
   assert.match(script, /Assign a different Agency role|kit\.validateLaunch/);
   assert.match(styles, /min-height:\s*44px/);
@@ -167,6 +184,7 @@ test("student Agency floor exposes direct joining, assigned projects, and indivi
   assert.match(styles, /body\.agency-site\s*\{/);
   assert.match(styles, /body\.agency-site \.modal-panel/);
   assert.match(review, /Agency accountability/);
+  assert.match(review, /Agency team accountability/);
   assert.match(review, /review-response-prompt/);
   assert.match(review, /item\.teamName/);
 });

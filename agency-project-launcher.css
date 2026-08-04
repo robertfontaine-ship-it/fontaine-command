@@ -136,6 +136,30 @@
   max-width: 460px;
 }
 
+.agency-roster-paste {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+  padding: 12px;
+  border: 1px dashed #c9bce3;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.agency-roster-paste label {
+  display: grid;
+  gap: 6px;
+  color: #51485f;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.agency-roster-paste p {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
 .agency-launch-members {
   display: grid;
   gap: 10px;
@@ -260,7 +284,8 @@
   .agency-launch-grid,
   .agency-launch-grid.compact-grid,
   .agency-launch-prompt,
-  .agency-launch-member {
+  .agency-launch-member,
+  .agency-roster-paste {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -276,8 +301,13 @@
   }
 
   .agency-member-remove,
-  .agency-launch-prompt .btn {
+  .agency-launch-prompt .btn,
+  .agency-roster-paste .btn {
     width: 100%;
+  }
+
+  .agency-roster-paste p {
+    grid-column: 1;
   }
 
   .agency-launch-submit-row,

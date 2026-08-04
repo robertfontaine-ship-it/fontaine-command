@@ -23,7 +23,7 @@
     const day = working.getDay();
     working.setDate(working.getDate() + (day === 0 ? -6 : 1 - day));
     working.setHours(0, 0, 0, 0);
-    return working.toISOString().slice(0, 10);
+    return `${working.getFullYear()}-${String(working.getMonth() + 1).padStart(2, "0")}-${String(working.getDate()).padStart(2, "0")}`;
   }
 
   function itemDate(item) {
@@ -233,6 +233,44 @@
     </details>`;
   }
 
+  function agencyTeamSection(queue) {
+    const groups = new Map();
+    const currentWeek = weekKey();
+    queue
+      .filter(item => item.projectLaunchId && item.teamName && weekKey(item.submittedAt || item.importedAt) === currentWeek)
+      .forEach(item => {
+        const key = `${item.projectLaunchId}|${item.teamName}|${item.period}`;
+        const group = groups.get(key) || {
+          projectName: item.mission,
+          teamName: item.teamName,
+          period: item.period,
+          expected: [],
+          submissions: []
+        };
+        group.submissions.push(item);
+        if (group.expected.length < (item.teamMembers || []).length) group.expected = item.teamMembers;
+        groups.set(key, group);
+      });
+    if (!groups.size) return "";
+
+    const cards = [...groups.values()]
+      .sort((a, b) => `${a.period}|${a.projectName}|${a.teamName}`.localeCompare(`${b.period}|${b.projectName}|${b.teamName}`))
+      .map(group => {
+        const submitted = new Set(group.submissions.map(item => String(item.student || "").trim().toLowerCase()));
+        const roleRows = group.expected.map(member => {
+          const student = String(member.student || "").trim();
+          const complete = submitted.has(student.toLowerCase());
+          return `<li class="${complete ? "submitted" : "waiting"}"><span>${complete ? "✓" : "○"} ${esc(member.role || "Agency role")}</span><strong>${esc(student)}</strong></li>`;
+        }).join("");
+        const approved = group.submissions.filter(item => item.status === "Approved").length;
+        const returned = group.submissions.filter(item => item.status === "Revision Requested").length;
+        const expectedCount = group.expected.length || group.submissions.length;
+        return `<article class="mission-agency-team-card"><div><span class="topic-admin-status">Period ${esc(group.period)}</span><h4>${esc(group.projectName)} • ${esc(group.teamName)}</h4><p class="muted">${group.submissions.length} of ${expectedCount} individual role packets submitted • ${approved} approved${returned ? ` • ${returned} returned` : ""}</p></div><ul>${roleRows || group.submissions.map(item => `<li class="submitted"><span>✓ ${esc(item.agencyRole || "Agency role")}</span><strong>${esc(item.student)}</strong></li>`).join("")}</ul></article>`;
+      }).join("");
+
+    return `<details class="mission-agency-team-report" open><summary>Agency team accountability • ${groups.size} active ${groups.size === 1 ? "team" : "teams"} this week</summary><p class="muted">See which professional roles have submitted individual evidence before approving the team’s client work.</p><div class="mission-agency-team-grid">${cards}</div></details>`;
+  }
+
   function filterControls() {
     const periodOptions = ["All", "1", "2", "3", "4", "5", "6", "7"]
       .map(period => `<option value="${period}" ${reviewFilters.period === period ? "selected" : ""}>${period === "All" ? "All periods" : `Period ${period}`}</option>`)
@@ -278,6 +316,7 @@
       </div>
       <div class="mission-review-summary" aria-label="Review queue totals"><span><strong>${queue.length}</strong> total</span><span><strong>${counts.Pending || 0}</strong> pending</span><span><strong>${counts.Approved || 0}</strong> approved</span><span><strong>${counts["Revision Requested"] || 0}</strong> returned</span><span><strong>${counts.Rejected || 0}</strong> rejected</span></div>
       ${weeklyParticipationSection(queue, readAdmin())}
+      ${agencyTeamSection(queue)}
       <section class="mission-review-worklist" aria-labelledby="missionReviewWorklistTitle"><div class="row"><div><h3 id="missionReviewWorklistTitle">Review worklist</h3><p class="muted">Showing ${visible.length} of ${queue.length} submissions.</p></div></div>${filterControls()}${batchToolbar(visible)}<div class="mission-review-list">${visible.length ? visible.map(({ item, index }) => queueRow(item, index)).join("") : `<div class="topic-empty">${emptyMessage}</div>`}</div></section>
     </section>`;
   }

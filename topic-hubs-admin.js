@@ -9,7 +9,7 @@
     const day = working.getDay();
     working.setDate(working.getDate() + (day === 0 ? -6 : 1 - day));
     working.setHours(0, 0, 0, 0);
-    return working.toISOString().slice(0, 10);
+    return `${working.getFullYear()}-${String(working.getMonth() + 1).padStart(2, "0")}-${String(working.getDate()).padStart(2, "0")}`;
   }
 
   function topicAdminStore() {

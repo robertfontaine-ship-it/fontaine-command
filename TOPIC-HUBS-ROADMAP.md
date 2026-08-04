@@ -180,8 +180,11 @@ The Mission Network should feel like one classroom learning operating system, no
 - Added a teacher Agency project launcher that turns any built-in or saved custom brief into one portable student link without a paid account or shared database.
 - Added editable and reusable client-brief templates, Periods 1–7, due dates, solo or team formats, saved launches, duplication, and student-link/project-code sharing.
 - Added two-to-six-student team rosters with unique professional roles, profile-isolated project joining, assigned work orders, and portable backup/restore support.
+- Added one-paste roster setup that assigns distinct Agency roles automatically while keeping every role editable.
 - Added role-specific client packets plus three individual accountability checks covering personal work, decision impact, and teammate handoffs.
 - Added Agency team, role, project-code, prompt, and roster context to the teacher review queue and weekly CSV export.
+- Added a current-week Agency accountability view showing expected roles, submitted packets, approvals, and returned work by team.
+- Kept Monday-based weekly caps and reports on the correct local calendar date in every time zone.
 - Added end-to-end browser coverage from teacher launch through two student roles, individual submissions, batch approval, weekly reporting, and phone-width use.
 
 ## Ordered Build Plan

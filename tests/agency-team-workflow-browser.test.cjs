@@ -55,13 +55,13 @@ async function createTeacherLaunch(browser, errors) {
   await page.locator("#agencyLaunchPeriod").selectOption("3");
   await page.locator("#agencyLaunchDueDate").fill("2026-09-18");
   await page.locator("#agencyLaunchTeamName").fill("A202 Launch Lab");
+  await page.locator("#agencyLaunchRosterPaste").fill("Mia, M\nLeo, L");
+  await page.getByRole("button", { name:"Build roster and balance roles" }).click();
   const members = page.locator("[data-agency-member-row]");
   assert.equal(await members.count(), 2);
-  await members.nth(0).locator("[data-member-first]").fill("Mia");
-  await members.nth(0).locator("[data-member-last]").fill("M");
+  assert.equal(await members.nth(0).locator("[data-member-first]").inputValue(), "Mia");
+  assert.equal(await members.nth(1).locator("[data-member-first]").inputValue(), "Leo");
   await members.nth(0).locator("[data-member-role]").selectOption("research");
-  await members.nth(1).locator("[data-member-first]").fill("Leo");
-  await members.nth(1).locator("[data-member-last]").fill("L");
   await members.nth(1).locator("[data-member-role]").selectOption("creative");
   await page.getByRole("button", { name:"Create project link" }).click();
   const card = page.locator(".agency-saved-launch.just-created");
@@ -150,6 +150,11 @@ async function reviewTeamPackets(teacher, packets, launchId, errors) {
   assert.match(queueText, /A202 Launch Lab/);
   assert.match(queueText, /Market Research Analyst/);
   assert.match(queueText, /Creative Director/);
+  const teamReport = page.locator(".mission-agency-team-report");
+  assert.match(await teamReport.innerText(), /Agency team accountability/i);
+  assert.match(await teamReport.innerText(), /2 of 2 individual role packets submitted/i);
+  assert.match(await teamReport.innerText(), /Mia M\./);
+  assert.match(await teamReport.innerText(), /Leo L\./);
   await page.locator(".mission-review-evidence").first().click();
   assert.match(await page.locator(".mission-review-responses").first().innerText(), /INDIVIDUAL EVIDENCE/);
   assert.match(await page.locator(".mission-review-responses").first().innerText(), /TEAM HANDOFF/);
@@ -158,6 +163,7 @@ async function reviewTeamPackets(teacher, packets, launchId, errors) {
   page.once("dialog", dialog => dialog.accept());
   await page.getByRole("button", { name:"Approve selected" }).click();
   assert.match(await page.locator(".mission-review-summary").innerText(), /2 approved/i);
+  assert.match(await page.locator(".mission-agency-team-report").innerText(), /2 approved/i);
   assert.match(await page.locator(".mission-weekly-report").innerText(), /2\s+participating students/i);
   assert.match(await page.locator(".mission-weekly-report").innerText(), /8\s+entries awarded/i);
 

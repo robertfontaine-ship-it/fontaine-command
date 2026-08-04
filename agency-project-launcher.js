@@ -144,6 +144,7 @@
           <div class="agency-team-editor" ${isTeam ? "" : "hidden"}>
             <div class="row"><div><h3>Team Roster and Role Assignments</h3><p class="muted">Every student gets the same client brief, a different professional responsibility, and an individual evidence packet.</p></div><button class="btn secondary" type="button" onclick="addAgencyLaunchMember()" ${editorDraft.members.length >= kit.roles.length ? "disabled" : ""}>Add teammate</button></div>
             <label class="agency-team-name">Team name<input id="agencyLaunchTeamName" value="${esc(editorDraft.teamName)}" ${isTeam ? "required" : ""} placeholder="Example: A202 Launch Lab" /></label>
+            <div class="agency-roster-paste"><label>Quick roster paste<textarea id="agencyLaunchRosterPaste" rows="3" placeholder="Mia, M&#10;Leo, L"></textarea></label><button class="btn secondary" type="button" onclick="applyAgencyRosterPaste()">Build roster and balance roles</button><p class="muted">Paste 2–6 students, one per line, as <strong>first name, last initial</strong>. Roles are balanced automatically and remain editable.</p></div>
             <div class="agency-launch-members">${editorDraft.members.map(memberRow).join("")}</div>
           </div>
 
@@ -251,6 +252,40 @@
     captureFormDraft();
     if (editorDraft.members.length <= 2) return;
     editorDraft.members.splice(index, 1);
+    rerenderLauncher("[data-agency-member-row] [data-member-first]");
+  };
+
+  window.applyAgencyRosterPaste = function applyAgencyRosterPaste() {
+    const field = document.getElementById("agencyLaunchRosterPaste");
+    const lines = String(field?.value || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+    if (lines.length < 2 || lines.length > kit.roles.length) {
+      toast("Paste between two and six students, one per line.");
+      field?.focus();
+      return;
+    }
+    const members = lines.map((line, index) => {
+      const separated = line.split(/[,\t]/).map(value => value.trim()).filter(Boolean);
+      const values = separated.length >= 2 ? separated : line.split(/\s+/).filter(Boolean);
+      return {
+        first: values[0] || "",
+        last: String(values[1] || "").replaceAll(".", "").slice(0, 1).toUpperCase(),
+        role: kit.roles[index].id
+      };
+    });
+    if (members.some(member => !member.first || !member.last)) {
+      toast("Use one line per student in the format: first name, last initial.");
+      field?.focus();
+      return;
+    }
+    const identities = new Set(members.map(member => `${member.first.toLowerCase()}|${member.last.toLowerCase()}`));
+    if (identities.size !== members.length) {
+      toast("Each teammate can appear only once in the pasted roster.");
+      field?.focus();
+      return;
+    }
+    captureFormDraft();
+    editorDraft.members = members;
+    toast(`${members.length} teammates added with distinct Agency roles.`);
     rerenderLauncher("[data-agency-member-row] [data-member-first]");
   };
 
