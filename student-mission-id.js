@@ -6,7 +6,7 @@
     branding:"Branding", "target-market":"Target Market", "four-ps":"The 4Ps",
     "marketing-functions":"Marketing Functions", "promotional-mix":"Promotional Mix", "market-research":"Market Research",
     pricing:"Pricing Strategy", distribution:"Distribution", service:"Selling & Customer Service",
-    "startup-street":"Startup Street", agency:"Wolverine Agency"
+    "startup-street":"Startup Street", "wrs-career-center":"WRS Career Center", agency:"Wolverine Agency"
   };
   const TOPIC_ALIASES={functions:"marketing-functions",promotion:"promotional-mix"};
   const DEPARTMENT_TOPICS=["branding","target-market","four-ps","marketing-functions","promotional-mix","market-research","pricing","distribution","service"];
@@ -36,7 +36,7 @@
   function nextRank(xp){return RANKS.find(r=>xp<r.xp)||null;}
   function codeFor(identity){if(!identity.first||!identity.last||!identity.period)return"NOT-SET";const base=`${identity.first[0]}${identity.last}${identity.period}`.toUpperCase();let hash=0;for(const c of `${identity.first}${identity.last}${identity.period}`)hash=(hash*31+c.charCodeAt(0))%9999;return `FMN-${base}-${String(hash).padStart(4,"0")}`;}
   function badges(data){
-    const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0,startup=data.topicData["startup-street"]?.missions.size||0;
+    const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0,startup=data.topicData["startup-street"]?.missions.size||0,wrs=data.topicData["wrs-career-center"]?.missions.size||0;
     const allDepartments=DEPARTMENT_TOPICS.every(topic=>(data.topicData[topic]?.missions.size||0)>=1);
     return [
       {icon:"🚀",name:"First Mission",desc:"Complete your first mission.",on:count>=1},
@@ -46,12 +46,16 @@
       {icon:"💼",name:"Agency Rookie",desc:"Complete your first client project.",on:agency>=1},
       {icon:"💡",name:"Founder",desc:"Complete your first Startup Street mission.",on:startup>=1},
       {icon:"🚀",name:"Launch Ready",desc:"Complete five Startup Street missions.",on:startup>=5},
+      {icon:"🛡️",name:"Work Ready",desc:"Complete your first WRS competency mission.",on:wrs>=1},
+      {icon:"🧟",name:"Career Survivor",desc:"Complete 11 WRS competency missions.",on:wrs>=11},
+      {icon:"🏅",name:"WRS Master",desc:"Complete all 22 WRS competency missions.",on:wrs>=22},
       {icon:"🌐",name:"Networked",desc:"Complete work in all nine marketing departments.",on:allDepartments},
       {icon:"🧠",name:"Strategy Mind",desc:"Reach 175 XP.",on:data.xp>=175},
       {icon:"🎯",name:"Focused Marketer",desc:"Reach 325 XP.",on:data.xp>=325},
       {icon:"👑",name:"Industry Legend",desc:"Reach 1,200 XP.",on:data.xp>=1200}
     ];
   }
+  function targetFor(id){if(id==="wrs-career-center")return 22;if(id==="startup-street")return 12;if(id==="agency")return 6;return 10;}
   function transferStatus(message,state=""){
     const target=document.getElementById("profileTransferStatus");
     if(!target)return;
@@ -81,7 +85,7 @@
     document.getElementById("nextRankText").textContent=next?`${next.xp-data.xp} XP until ${next.name}.`:"Maximum reputation achieved.";
     document.getElementById("rankPath").innerHTML=RANKS.map(r=>`<article class="rank-card ${data.xp>=r.xp?"unlocked":"locked"} ${r.name===rank.name?"current":""}"><h3>${r.name}</h3><p>${r.xp} XP required</p></article>`).join("");
     document.getElementById("badgeGrid").innerHTML=badges(data).map(b=>`<article class="badge-card ${b.on?"":"locked"}"><div class="badge-icon">${b.icon}</div><h3>${b.name}</h3><p>${b.on?"Unlocked":b.desc}</p></article>`).join("");
-    document.getElementById("topicProgress").innerHTML=Object.entries(TOPICS).map(([id,title])=>{const d=data.topicData[id],count=d?.missions.size||0;return `<article class="topic-progress-card"><h3>${title}</h3><p>${count} ${id==="agency"?(count===1?"client project":"client projects"):(count===1?"mission":"missions")} completed</p><div class="entry-meter"><i style="width:${Math.min(100,count/10*100)}%"></i></div></article>`;}).join("");
+    document.getElementById("topicProgress").innerHTML=Object.entries(TOPICS).map(([id,title])=>{const d=data.topicData[id],count=d?.missions.size||0,target=targetFor(id);return `<article class="topic-progress-card"><h3>${title}</h3><p>${id==="wrs-career-center"?`${count} of 22 competencies`:`${count} ${id==="agency"?(count===1?"client project":"client projects"):(count===1?"mission":"missions")} completed`}</p><div class="entry-meter"><i style="width:${Math.min(100,count/target*100)}%"></i></div></article>`;}).join("");
     updateTransfer(identity);
   }
   const modal=document.getElementById("identityModal");
