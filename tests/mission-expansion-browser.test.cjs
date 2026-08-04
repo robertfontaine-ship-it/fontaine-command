@@ -123,7 +123,7 @@ async function runMarketResearch(browser) {
   assert.equal(await page.locator('a[href="market-research-hub.html"]').count() > 0, true);
   await page.goto(`${BASE}/business-world.html`, { waitUntil: "load" });
   assert.equal(await page.locator('a[href="market-research-hub.html"]').count() > 0, true);
-  assert.match(await page.locator(".status-tag.open").first().innerText(), /10 locations live/i);
+  assert.match(await page.locator(".status-tag.open").first().innerText(), /11 locations live/i);
   await assertNoOverflow(page, "Business World with Market Research mobile");
   assert.deepEqual(errors, []);
   await context.close();
