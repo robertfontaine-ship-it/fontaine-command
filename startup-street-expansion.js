@@ -45,11 +45,13 @@
       locked.replaceWith(link);
     }
     const status = screen.querySelector('.section-heading .status-tag.open');
-    if (status && /Locations Live/.test(status.textContent) && status.textContent !== '11 Locations Live') status.textContent = '11 Locations Live';
+    const liveCount = Number.parseInt(status?.textContent, 10) || 0;
+    if (status && /Locations Live/.test(status.textContent) && liveCount < 11) status.textContent = '11 Locations Live';
     const news = [...screen.querySelectorAll('.news-item')].find((item) => item.textContent.includes('locations are open'));
-    if (news && !news.textContent.includes('Eleven locations')) news.innerHTML = '<span>🔥</span><div><strong>Eleven locations are open</strong><small>Ten learning districts plus Wolverine Agency.</small></div>';
+    if (news && !/Eleven locations|Twelve locations/.test(news.textContent)) news.innerHTML = '<span>🔥</span><div><strong>Eleven locations are open</strong><small>Ten learning districts plus Wolverine Agency.</small></div>';
+    const careerLive = Boolean(map.querySelector('a[href="wrs-career-center.html"]'));
     const next = [...screen.querySelectorAll('.news-item')].find((item) => item.textContent.includes('Next district'));
-    if (next && !next.textContent.includes('WRS Quest inside the Career Center')) next.innerHTML = '<span>🧟</span><div><strong>Next district</strong><small>WRS Quest inside the Career Center.</small></div>';
+    if (next && !careerLive && !next.textContent.includes('WRS Quest inside the Career Center')) next.innerHTML = '<span>🧟</span><div><strong>Next district</strong><small>WRS Quest inside the Career Center.</small></div>';
     patchLatestLinks();
   }
 
