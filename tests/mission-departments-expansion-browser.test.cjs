@@ -91,7 +91,7 @@ async function runDepartmentFlow(browser) {
   assert.match(packet.responses[0].response, /target-customer evidence/i);
 
   await page.goto(`${BASE}/student-mission-id.html`, { waitUntil: "load" });
-  assert.equal(await page.locator(".topic-progress-card").count(), 10, "Mission ID shows nine departments plus Agency");
+  assert.equal(await page.locator(".topic-progress-card").count(), 11, "Mission ID shows nine departments, Startup Street, and Agency");
   const progress = await page.locator("#topicProgress").innerText();
   assert.match(progress, /Pricing Strategy[\s\S]*1 mission completed/i);
   assert.match(progress, /Distribution[\s\S]*1 mission completed/i);
@@ -107,7 +107,7 @@ async function runDepartmentFlow(browser) {
   }
 
   await page.goto(`${BASE}/business-world.html`, { waitUntil: "load" });
-  assert.match(await page.locator(".status-tag.open").first().innerText(), /10 locations live/i);
+  assert.match(await page.locator(".status-tag.open").first().innerText(), /11 locations live/i);
   for (const department of departments) {
     assert.equal(await page.locator(`a[href="${department.route}"]`).count() > 0, true, `${department.route} is live in City Hall`);
   }
