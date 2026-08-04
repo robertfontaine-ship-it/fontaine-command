@@ -106,3 +106,90 @@ Mission levels:
 - Badges and cross-topic progression.
 - Course-specific mission paths for SEM, Fashion, and Entrepreneurship.
 - A monthly drawing that carries forward verified weekly participation.
+
+## Current Live Foundation
+
+- Five live departments: Brand Studio, Consumer Intelligence Center, Strategy War Room, Marketing Operations HQ, and Campaign Command Center.
+- Forty-nine Quick, Skill, and Boss missions.
+- Wolverine Marketing Agency with six career roles and six client briefs.
+- Mission Control, Mission IDs, XP, seven reputation ranks, badges, and department progress.
+- Teacher review packets, a review queue, approval ledger, weekly drawing, and CSV export.
+- Period selectors covering Periods 1–7.
+
+## Product North Star
+
+The Mission Network should feel like one classroom learning operating system, not a collection of websites. A student should always know who they are, what to do next, what quality looks like, what was saved, and how to submit. The teacher should be able to launch, review, approve, and report activity without maintaining a second grading system.
+
+### Student loop
+
+1. Check in once with a Mission ID.
+2. Finish required class work.
+3. Choose a mission that fits the available time.
+4. Complete specific, evidence-based work with visible quality criteria.
+5. Submit one review packet, receive feedback, revise when needed, and continue progressing.
+
+### Teacher loop
+
+1. Open Fontaine Command.
+2. See the pending review queue by period and status.
+3. Review the complete student evidence in one place.
+4. Approve, return, or reject without retyping student data.
+5. Run the weekly drawing and export the ledger when needed.
+
+## Non-Negotiable Release Gates
+
+| Area | Release standard |
+|---|---|
+| Shared devices | Student missions, XP, entries, roles, and portfolios never appear under another student profile. |
+| Reward economy | One network-wide weekly cap applies across every department, Agency project, and revision. |
+| Independent use | Every mission states the time, goal, numbered steps, quality standard, and exact submission action. |
+| Revision loop | Returned work can be revised and resubmitted under the original receipt without duplicate credit. |
+| Teacher workload | A complete submission can be reviewed and acted on from one queue in under one minute. |
+| Mobile access | All controls remain reachable at 390 px width with no horizontal document overflow and 44 px touch targets. |
+| Reliability | Refreshing, switching profiles, revising, or reaching the weekly cap never corrupts progress. |
+| Curriculum value | Every mission requires a marketing decision, evidence, target-customer reasoning, and a concrete product or recommendation. |
+| Accessibility | Forms have visible labels, dialogs support keyboard use, status changes are announced, and color is never the only signal. |
+| Free operation | The core classroom experience requires no paid student account or paid build platform. |
+
+## Hardening Completed
+
+- Replaced separate and conflicting browser stores with one versioned Mission Network data layer.
+- Isolated progress by student name, last initial, and class period for shared classroom computers.
+- Added automatic migration for the earlier Branding, department, Mission ID, and Agency storage formats.
+- Enforced the ten-entry cap across the entire network while preserving full XP for completed work.
+- Connected Agency projects to the same teacher review queue used by department missions.
+- Allowed returned submissions to re-enter the queue as revisions instead of being blocked as duplicates.
+- Allowed teachers to approve qualifying work even when no additional entries can be awarded.
+- Consolidated the five live departments into the main source of truth and removed render-time expansion patches.
+- Added dedicated Mission Network QA for inventory, Periods 1–7, script order, page wiring, profile isolation, cap behavior, migration, Agency packets, and revision approval.
+- Added profile-isolated autosave to all 49 department missions and every Agency role, including visible saved and recovered-work messages.
+- Added student profile backup and restore with safe merging of completed work, Agency roles, and unfinished drafts.
+- Added teacher-controlled cleanup for one student or the entire shared browser while preserving review-queue and giveaway records.
+- Verified Mission Network layout and interactions in a real browser at desktop, iPhone, and iPad sizes, including 44 px touch controls and zero document overflow.
+- Added end-to-end browser coverage for interrupted work, mission completion, backup download, cross-device restore, and teacher device reset.
+
+## Ordered Build Plan
+
+### P0 — Finish classroom hardening
+
+1. ✅ Run full browser interaction QA on desktop, iPhone-width, and iPad-width layouts.
+2. ✅ Add autosaved drafts and clear recovery messages for interrupted student work.
+3. ✅ Add profile export/import and a teacher-controlled shared-device reset.
+4. Standardize navigation, focus return, dialog behavior, and status announcements on every student page.
+5. Extend end-to-end browser coverage through copying, teacher return, student revision, approval, and the weekly drawing.
+
+### P1 — Reduce teacher setup time
+
+1. Add an Agency project launcher and editable client-brief templates.
+2. Add team rosters, multi-role packets, and individual accountability evidence.
+3. Add period and status filters, bulk review actions, and a weekly participation summary.
+4. Add printable student check-in cards and a one-page substitute-mode guide.
+
+### P2 — Expand the learning network
+
+1. Market Research.
+2. Pricing Strategy.
+3. Distribution.
+4. Selling and Customer Service.
+5. Course-specific pathways for SEM, Fashion, and Entrepreneurship.
+6. Topic mastery checks with an 80% threshold and targeted remediation routes.

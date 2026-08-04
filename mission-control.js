@@ -1,6 +1,7 @@
 (() => {
   "use strict";
-  const ID_KEY = "fontaineMissionIdentity:v1";
+  const missionStore = window.FontaineMissionStore;
+  if (!missionStore) return;
   const RANKS = [
     {name:"Marketing Rookie",xp:0},{name:"Campaign Specialist",xp:75},{name:"Brand Strategist",xp:175},
     {name:"Marketing Director",xp:325},{name:"Vice President",xp:525},{name:"Chief Marketing Officer",xp:800},{name:"Industry Legend",xp:1200}
@@ -10,7 +11,8 @@
     "target-market":{title:"Consumer Intelligence Center",href:"target-market-hub.html"},
     "four-ps":{title:"Strategy War Room",href:"four-ps-hub.html"},
     functions:{title:"Marketing Operations HQ",href:"marketing-functions-hub.html"},
-    promotion:{title:"Campaign Command Center",href:"promotional-mix-hub.html"}
+    promotion:{title:"Campaign Command Center",href:"promotional-mix-hub.html"},
+    agency:{title:"Wolverine Marketing Agency",href:"wolverine-agency.html"}
   };
   const DAILY = [
     {title:"Brand Detective",brief:"Choose a real brand and identify three clues that reveal its personality and target customer.",topic:"branding",level:"Quick Mission",minutes:"8–10 minutes"},
@@ -21,22 +23,11 @@
     {title:"Weekend Boss Preview",brief:"Build a mini launch strategy using one specific target customer and all four marketing-mix decisions.",topic:"four-ps",level:"Boss Preview",minutes:"25–35 minutes"},
     {title:"Sunday Strategy Reset",brief:"Review your completed missions and choose the department where your next skill upgrade should happen.",topic:"branding",level:"Reflection",minutes:"5 minutes"}
   ];
-  const readJSON = (key,fallback={}) => { try { return JSON.parse(localStorage.getItem(key)||"null")||fallback; } catch { return fallback; } };
-  const weekKey = () => { const d=new Date(),day=d.getDay(); d.setDate(d.getDate()+(day===0?-6:1-day)); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); };
-  const xpFor = entries => Number(entries)>=4?50:Number(entries)>=2?25:10;
   function collect(){
-    const identity=readJSON(ID_KEY,{first:"",last:"",period:""});
-    const items=[];
-    Object.keys(localStorage).filter(k=>k.startsWith("fontaineHub:")).forEach(key=>{
-      const topic=key.split(":")[1],all=readJSON(key,{});
-      Object.entries(all).forEach(([week,data])=>Object.entries(data?.completions||{}).forEach(([id,item])=>items.push({...item,id,topic,week})));
-    });
-    const legacy=readJSON("fontaineMissionNetwork:v1",{});
-    Object.entries(legacy.completions||{}).forEach(([week,missions])=>Object.entries(missions||{}).forEach(([id,item])=>items.push({...item,id,topic:"branding",week})));
-    const unique=new Map(); items.forEach(item=>unique.set(`${item.topic}:${item.id}`,item));
-    const missions=[...unique.values()].sort((a,b)=>new Date(b.submittedAt||0)-new Date(a.submittedAt||0));
-    const xp=missions.reduce((sum,item)=>sum+xpFor(item.entries),0);
-    const weekly=Math.min(10,missions.filter(item=>item.week===weekKey()).reduce((sum,item)=>sum+Number(item.entries||0),0));
+    const identity=missionStore.getActiveProfile();
+    const missions=missionStore.getAllHistory({profile:identity}).sort((a,b)=>new Date(b.submittedAt||b.completedAt||0)-new Date(a.submittedAt||a.completedAt||0));
+    const xp=missions.reduce((sum,item)=>sum+Number(item.xp??missionStore.xpForEntries(item.requestedEntries??item.entries)),0);
+    const weekly=missionStore.weeklyEntrySummary({profile:identity}).total;
     const topics=new Set(missions.map(item=>item.topic));
     return {identity,missions,xp,weekly,topics};
   }
@@ -48,6 +39,7 @@
     if(data.missions.length>=5)badges.push(["⚡","Mission Streak","Completed five missions"]);
     if(data.missions.length>=10)badges.push(["🏆","Ten Deep","Completed ten missions"]);
     if(data.topics.size>=3)badges.push(["🧭","Explorer","Worked in three departments"]);
+    if(data.topics.has("agency"))badges.push(["💼","Agency Rookie","Completed a client project"]);
     if(data.topics.size>=5)badges.push(["🌐","Networked","Worked in all live departments"]);
     if(data.xp>=175)badges.push(["🧠","Strategy Mind","Reached Brand Strategist rank"]);
     return badges;
@@ -77,7 +69,7 @@
       document.getElementById("continueMission").href=department.href;
       document.getElementById("continueMission").textContent="Continue in department";
     }
-    const daily=DAILY[new Date().getDay()],department=TOPICS[daily.topic];
+    const daily=DAILY[(new Date().getDay()+6)%7],department=TOPICS[daily.topic];
     document.getElementById("dailyTitle").textContent=daily.title;
     document.getElementById("dailyBrief").textContent=daily.brief;
     document.getElementById("dailyMeta").innerHTML=`<span>${daily.level}</span><span>${daily.minutes}</span><span>${department.title}</span>`;

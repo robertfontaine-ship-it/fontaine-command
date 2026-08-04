@@ -61,6 +61,11 @@
     const ledger = currentLedger(store);
     const summary = ledgerSummary(ledger);
     const winner = store.winners[topicWeekKey()];
+    const missionStore = window.FontaineMissionStore;
+    const studentProfiles = missionStore?.listProfiles() || [];
+    const activeStudent = studentProfiles.find(item => item.active);
+    const savedDrafts = studentProfiles.reduce((total, item) => total + Number(item.drafts || 0), 0);
+    const studentOptions = studentProfiles.map(item => `<option value="${topicEscape(item.key)}">${topicEscape(item.profile.first)} ${topicEscape(item.profile.last)}. • Period ${topicEscape(item.profile.period)} • ${item.missions} missions • ${item.drafts} drafts</option>`).join("");
     const rows = ledger.map((row, index) => `<tr>
       <td>${topicEscape(row.name)}</td><td>${topicEscape(row.period)}</td><td>${topicEscape(row.source)}</td><td>${row.entries}</td>
       <td><button class="btn secondary" type="button" onclick="removeTopicEntry(${index})">Remove</button></td>
@@ -68,12 +73,12 @@
 
     return shell(`<div class="topic-admin">
       <section class="card topic-admin-hero">
-        <div class="row"><div><span class="topic-admin-status">Prototype live</span><h2>Fontaine Mission Network</h2><p class="muted">Permanent topic websites plus optional early-finisher missions and weekly reward entries.</p></div><div class="topic-admin-actions"><a class="btn secondary" href="topic-hubs.html" target="_blank" rel="noopener">Open student network</a><a class="btn" href="branding-hub.html" target="_blank" rel="noopener">Open Branding Lab</a></div></div>
+        <div class="row"><div><span class="topic-admin-status">Network live</span><h2>Fontaine Mission Network</h2><p class="muted">Five permanent marketing departments, 49 independent missions, one student progression system, and Agency client work.</p></div><div class="topic-admin-actions"><a class="btn" href="mission-control.html" target="_blank" rel="noopener">Open Mission Control</a><a class="btn secondary" href="topic-hubs.html" target="_blank" rel="noopener">Open departments</a><a class="btn secondary" href="wolverine-agency.html" target="_blank" rel="noopener">Open Agency</a></div></div>
       </section>
 
       <div class="grid">
-        <section class="card span-4 topic-admin-card"><div class="metric">1</div><div class="muted">Live topic hub</div><h3>Branding</h3><p>Six concept briefings and ten missions: three Quick, four Skill, and three Boss challenges.</p></section>
-        <section class="card span-4 topic-admin-card"><div class="metric">10</div><div class="muted">Available missions</div><h3>Entry values</h3><p>Quick = 1, Skill = 2, Boss = 4. Students generate receipts for teacher verification.</p></section>
+        <section class="card span-4 topic-admin-card"><div class="metric">5</div><div class="muted">Live departments</div><h3>Core Marketing Library</h3><p>Branding, Target Market, the 4Ps, Marketing Functions, and Promotional Mix are live.</p></section>
+        <section class="card span-4 topic-admin-card"><div class="metric">49</div><div class="muted">Available missions</div><h3>Quick, Skill, and Boss</h3><p>Every mission includes a time estimate, numbered prompts, quality standards, and a teacher review packet.</p></section>
         <section class="card span-4 topic-admin-card"><div class="metric">${summary.entries}</div><div class="muted">Entries this week</div><h3>${summary.students} participating students</h3><p>${summary.records} approved ledger records for the week of ${topicWeekKey()}.</p></section>
       </div>
 
@@ -83,7 +88,7 @@
           <label>Featured prize<input id="topicPrize" value="${topicEscape(store.settings.prize)}" /></label>
           <label>Drawing day<select id="topicDrawingDay">${["Monday","Tuesday","Wednesday","Thursday","Friday"].map(day => `<option ${store.settings.drawingDay === day ? "selected" : ""}>${day}</option>`).join("")}</select></label>
           <label>Weekly entry cap<input id="topicEntryCap" type="number" min="1" max="50" value="${store.settings.entryCap}" /></label>
-          <label>Active topic<select id="topicActive"><option selected>Branding</option><option disabled>Target Market — queued</option><option disabled>4Ps — queued</option><option disabled>Marketing Functions — queued</option></select></label>
+          <label>Featured department<select id="topicActive">${["Branding", "Target Market & Segmentation", "The 4Ps of Marketing", "Marketing Functions", "Promotional Mix"].map(topic => `<option ${store.settings.activeTopic === topic ? "selected" : ""}>${topic}</option>`).join("")}</select></label>
           <button class="btn" type="submit">Save settings</button>
         </form>
       </section>
@@ -93,7 +98,7 @@
         <form class="topic-admin-form" onsubmit="addTopicEntry(event)">
           <label>Student name<input id="topicStudent" required placeholder="First name + last initial" /></label>
           <label>Class period<select id="topicPeriod" required><option value="">Select period</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
-          <label>Entry source<select id="topicSource"><option>Quick Mission</option><option>Skill Mission</option><option>Boss Mission</option><option>Goodwill Ticket</option><option>Growth / Improvement</option><option>Review Game</option></select></label>
+          <label>Entry source<select id="topicSource"><option>Quick Mission</option><option>Skill Mission</option><option>Boss Mission</option><option>Agency Project</option><option>Goodwill Ticket</option><option>Growth / Improvement</option><option>Review Game</option></select></label>
           <label>Entries<input id="topicEntries" required type="number" min="1" max="4" value="1" /></label>
           <button class="btn" type="submit">Approve entries</button>
         </form>
@@ -106,12 +111,27 @@
         <div class="row" style="margin-top:14px"><span class="muted">Each approved entry becomes one ticket in the weighted drawing.</span><button class="btn secondary" type="button" onclick="clearTopicLedger()">Reset this week</button></div>
       </section>
 
+      <section class="card topic-device-manager">
+        <div class="row"><div><h2>Shared-Device Student Data</h2><p class="muted">Teacher-only cleanup for classroom computers. This does not erase the teacher review queue, approved-entry ledger, or giveaway winner.</p></div><span class="topic-admin-status">${studentProfiles.length} saved ${studentProfiles.length === 1 ? "profile" : "profiles"}</span></div>
+        <div class="grid topic-device-summary">
+          <div class="card span-4"><div class="metric">${studentProfiles.length}</div><div class="muted">Student profiles on this browser</div></div>
+          <div class="card span-4"><div class="metric">${savedDrafts}</div><div class="muted">Interrupted-work drafts protected</div></div>
+          <div class="card span-4"><strong>${activeStudent ? `${topicEscape(activeStudent.profile.first)} ${topicEscape(activeStudent.profile.last)}. • Period ${topicEscape(activeStudent.profile.period)}` : "No active student"}</strong><div class="muted">Current shared-device identity</div></div>
+        </div>
+        <div class="topic-device-actions">
+          <label><strong>Select one student profile</strong><select id="missionDeviceProfile" ${studentProfiles.length ? "" : "disabled"}><option value="">Choose a saved profile</option>${studentOptions}</select></label>
+          <button class="btn secondary" type="button" onclick="clearSelectedMissionProfile()" ${studentProfiles.length ? "" : "disabled"}>Clear selected student</button>
+          <button class="btn secondary topic-danger" type="button" onclick="resetMissionStudentDevice()" ${studentProfiles.length ? "" : "disabled"}>Reset all student data</button>
+        </div>
+        <p class="muted topic-device-note">Before clearing a student who needs to continue on another device, have them download a backup from My Mission ID.</p>
+      </section>
+
       <section class="card">
         <h2>Next Build Queue</h2>
         <div class="grid">
-          <div class="card span-4"><strong>Target Market &amp; Segmentation</strong><p class="muted">Customer profiles, segmentation evidence, and persona missions.</p></div>
-          <div class="card span-4"><strong>The 4Ps of Marketing</strong><p class="muted">Connected marketing-mix decisions and product-launch missions.</p></div>
-          <div class="card span-4"><strong>Marketing Functions</strong><p class="muted">Function identification, career connections, and business-operation missions.</p></div>
+          <div class="card span-4"><strong>Market Research</strong><p class="muted">Source evaluation, surveys, data analysis, and decision missions.</p></div>
+          <div class="card span-4"><strong>Pricing Strategy</strong><p class="muted">Cost, value, competition, revenue, and pricing-psychology missions.</p></div>
+          <div class="card span-4"><strong>Distribution</strong><p class="muted">Channels, access, retail, inventory, and customer-experience missions.</p></div>
         </div>
       </section>
     </div>`);
@@ -196,6 +216,38 @@
     link.download = `fontaine-mission-ledger-${topicWeekKey()}.csv`;
     link.click();
     URL.revokeObjectURL(url);
+  };
+
+  window.clearSelectedMissionProfile = function clearSelectedMissionProfile() {
+    const missionStore = window.FontaineMissionStore;
+    const selectedKey = document.getElementById("missionDeviceProfile")?.value;
+    const selected = missionStore?.listProfiles().find(item => item.key === selectedKey);
+    if (!selected) {
+      toast("Choose a student profile to clear.");
+      return;
+    }
+    const phrase = `CLEAR ${selected.profile.first}`.toUpperCase();
+    const entered = window.prompt(`To clear ${selected.profile.first} ${selected.profile.last}., Period ${selected.profile.period}, type ${phrase}`);
+    if (String(entered || "").trim().toUpperCase() !== phrase) {
+      toast("Student data was not cleared.");
+      return;
+    }
+    missionStore.clearProfile({ profile: selected.profile });
+    toast(`${selected.profile.first} ${selected.profile.last}.’s Mission Network data was cleared from this browser.`);
+    render();
+  };
+
+  window.resetMissionStudentDevice = function resetMissionStudentDevice() {
+    const missionStore = window.FontaineMissionStore;
+    if (!missionStore?.listProfiles().length) return;
+    const entered = window.prompt("This clears every student profile, mission, Agency project, and autosaved draft on this browser. Type RESET STUDENT DEVICE to continue.");
+    if (String(entered || "").trim().toUpperCase() !== "RESET STUDENT DEVICE") {
+      toast("Shared-device student data was not reset.");
+      return;
+    }
+    missionStore.clearAllProfiles();
+    toast("All Mission Network student data was cleared from this browser. Teacher records were preserved.");
+    render();
   };
 
   if (typeof pages !== "undefined" && !pages.includes(TOPIC_ADMIN_PAGE)) {

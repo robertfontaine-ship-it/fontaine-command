@@ -1,15 +1,16 @@
 (() => {
   "use strict";
 
-  const ENTRY_CAP = 10;
-  const STORAGE_KEY = "fontaineMissionNetwork:v1";
+  const missionStore = window.FontaineMissionStore;
+  const autosaveFactory = window.FontaineMissionAutosave;
+  const ENTRY_CAP = missionStore?.WEEKLY_ENTRY_CAP || 10;
 
   const topics = [
-    { id: "branding", title: "Branding", status: "Live", description: "Identity, personality, positioning, voice, touchpoints, and brand equity.", tags: ["SEM", "Fashion", "Entrepreneurship"], href: "branding-hub.html" },
-    { id: "target-market", title: "Target Market & Segmentation", status: "Queued", description: "Customer profiles, segmentation variables, market selection, and evidence-based targeting.", tags: ["Customer", "Segments", "Personas"] },
-    { id: "four-ps", title: "The 4Ps of Marketing", status: "Queued", description: "Build connected product, price, place, and promotion decisions around a specific customer.", tags: ["Product", "Price", "Place", "Promotion"] },
-    { id: "functions", title: "Marketing Functions", status: "Queued", description: "Understand how marketing activities work together to create, communicate, and deliver value.", tags: ["7 Functions", "Careers", "Strategy"] },
-    { id: "promotion", title: "Promotional Mix", status: "Queued", description: "Advertising, public relations, sales promotion, personal selling, and direct marketing.", tags: ["Campaigns", "Media", "Messaging"] },
+    { id: "branding", title: "Brand Studio", status: "Live", description: "Build identity, positioning, voice, touchpoints, and brand equity.", tags: ["SEM", "Fashion", "Entrepreneurship"], href: "branding-hub.html" },
+    { id: "target-market", title: "Consumer Intelligence Center", status: "Live", description: "Investigate customer segments, personas, evidence, and audience opportunities.", tags: ["Customer", "Segments", "Personas"], href: "target-market-hub.html" },
+    { id: "four-ps", title: "Strategy War Room", status: "Live", description: "Coordinate Product, Price, Place, and Promotion around one target customer.", tags: ["Product", "Price", "Place", "Promotion"], href: "four-ps-hub.html" },
+    { id: "functions", title: "Marketing Operations HQ", status: "Live", description: "See how seven departments cooperate to create, communicate, and deliver value.", tags: ["7 Functions", "Careers", "Strategy"], href: "marketing-functions-hub.html" },
+    { id: "promotion", title: "Campaign Command Center", status: "Live", description: "Deploy advertising, PR, sales promotion, personal selling, and direct marketing.", tags: ["Campaigns", "Media", "Messaging"], href: "promotional-mix-hub.html" },
     { id: "research", title: "Market Research", status: "Queued", description: "Primary and secondary evidence, instrument design, analysis, and business decisions.", tags: ["Surveys", "Data", "Insights"] },
     { id: "pricing", title: "Pricing Strategy", status: "Queued", description: "Costs, customer value, competitor pressure, revenue goals, and pricing psychology.", tags: ["Revenue", "Value", "Strategy"] },
     { id: "distribution", title: "Distribution", status: "Queued", description: "Channels, intermediaries, inventory, access, convenience, and customer experience.", tags: ["Place", "Channels", "Retail"] },
@@ -130,28 +131,15 @@
   ];
 
   function getWeekKey(date = new Date()) {
-    const working = new Date(date);
-    const day = working.getDay();
-    const difference = day === 0 ? -6 : 1 - day;
-    working.setDate(working.getDate() + difference);
-    working.setHours(0, 0, 0, 0);
-    return working.toISOString().slice(0, 10);
+    return missionStore?.getWeekKey(date) || "";
   }
 
   function getStore() {
-    try {
-      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-      return {
-        profile: parsed.profile || { first: "", last: "", period: "" },
-        completions: parsed.completions || {}
-      };
-    } catch {
-      return { profile: { first: "", last: "", period: "" }, completions: {} };
-    }
-  }
-
-  function saveStore(store) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    const week = getWeekKey();
+    return {
+      profile: missionStore?.getActiveProfile() || { first: "", last: "", period: "" },
+      completions: { [week]: missionStore?.getTopicCompletions("branding") || {} }
+    };
   }
 
   function currentCompletions() {
@@ -160,7 +148,8 @@
   }
 
   function totalEntries(completions = currentCompletions()) {
-    return Math.min(ENTRY_CAP, Object.values(completions).reduce((sum, item) => sum + Number(item.entries || 0), 0));
+    void completions;
+    return missionStore?.weeklyEntrySummary().total || 0;
   }
 
   function escapeText(value) {
@@ -190,6 +179,31 @@
   let activeFilter = "All";
   let activeMissionId = null;
   let lastReceiptText = "";
+  let autosave = null;
+
+  function profileFromMissionForm() {
+    return {
+      first: document.getElementById("studentFirst").value.trim(),
+      last: document.getElementById("studentLast").value.trim().slice(0, 1).toUpperCase(),
+      period: document.getElementById("studentPeriod").value
+    };
+  }
+
+  function missionResponses() {
+    return [...document.querySelectorAll("[data-prompt-index]")].map(field => field.value);
+  }
+
+  function ensureDraftStatus(form) {
+    let status = form.querySelector("[data-draft-status]");
+    if (status) return status;
+    status = document.createElement("div");
+    status.className = "draft-status";
+    status.dataset.draftStatus = "";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    form.querySelector(".profile-fields")?.insertAdjacentElement("afterend", status);
+    return status;
+  }
 
   function renderMissionGrid() {
     const target = document.getElementById("missionGrid");
@@ -226,8 +240,14 @@
     const modal = document.getElementById("missionModal");
     if (!mission || !modal) return;
     activeMissionId = missionId;
+    autosave?.dispose();
     const store = getStore();
     const prior = (store.completions[getWeekKey()] || {})[missionId];
+    const draft = missionStore.getDraft("branding", missionId, { profile: store.profile });
+    const priorTime = Date.parse(prior?.submittedAt || prior?.completedAt || "") || 0;
+    const recoveredDraft = draft && ((Date.parse(draft.updatedAt) || 0) > priorTime) ? draft : null;
+    if (draft && !recoveredDraft) missionStore.deleteDraft("branding", missionId, { profile: store.profile });
+    const responses = recoveredDraft?.values?.responses || prior?.responses || [];
 
     document.getElementById("missionFormView").hidden = false;
     document.getElementById("receiptView").hidden = true;
@@ -238,15 +258,28 @@
     document.getElementById("studentLast").value = store.profile.last || "";
     document.getElementById("studentPeriod").value = store.profile.period || "";
     document.getElementById("integrityCheck").checked = false;
-    document.getElementById("promptFields").innerHTML = mission.prompts.map((prompt, index) => `<label>${index + 1}. ${escapeText(prompt)}<textarea required minlength="12" data-prompt-index="${index}">${escapeText(prior?.responses?.[index] || "")}</textarea></label>`).join("");
+    document.getElementById("promptFields").innerHTML = mission.prompts.map((prompt, index) => `<label>${index + 1}. ${escapeText(prompt)}<textarea required minlength="12" data-prompt-index="${index}">${escapeText(responses[index] || "")}</textarea></label>`).join("");
     modal.hidden = false;
     document.body.style.overflow = "hidden";
+    const form = document.getElementById("missionForm");
+    autosave = autosaveFactory?.create({
+      form,
+      status: ensureDraftStatus(form),
+      topic: "branding",
+      missionId,
+      title: mission.title,
+      getProfile: profileFromMissionForm,
+      readValues: () => ({ responses: missionResponses() }),
+      recoveredDraft
+    }) || null;
     setTimeout(() => document.getElementById("studentFirst").focus(), 0);
   }
 
   function closeMission() {
     const modal = document.getElementById("missionModal");
     if (!modal) return;
+    autosave?.dispose();
+    autosave = null;
     modal.hidden = true;
     document.body.style.overflow = "";
     activeMissionId = null;
@@ -262,28 +295,27 @@
     const mission = brandingMissions.find(item => item.id === activeMissionId);
     if (!mission) return;
 
-    const first = document.getElementById("studentFirst").value.trim();
-    const last = document.getElementById("studentLast").value.trim().slice(0, 1).toUpperCase();
-    const period = document.getElementById("studentPeriod").value;
-    const responses = [...document.querySelectorAll("[data-prompt-index]")].map(field => field.value.trim());
+    const { first, last, period } = profileFromMissionForm();
+    const responses = missionResponses().map(value => value.trim());
     if (!first || !last || !period || responses.some(response => response.length < 12)) return;
 
-    const store = getStore();
     const week = getWeekKey();
-    store.profile = { first, last, period };
-    store.completions[week] = store.completions[week] || {};
-    const previous = store.completions[week][mission.id];
-    const currentEntriesBefore = totalEntries(store.completions[week]);
-    const available = Math.max(0, ENTRY_CAP - currentEntriesBefore + (previous ? Number(previous.entries || 0) : 0));
-    const entries = previous ? Number(previous.entries || 0) : Math.min(mission.entries, available);
-    const code = previous?.code || receiptCode(mission.id);
     const submittedAt = new Date().toISOString();
-
-    store.completions[week][mission.id] = {
-      code, missionId: mission.id, title: mission.title, level: mission.level, entries,
-      first, last, period, responses, submittedAt
-    };
-    saveStore(store);
+    const profile = missionStore.setActiveProfile({ first, last, period });
+    const previous = missionStore.getTopicCompletions("branding", { profile })[mission.id];
+    const code = previous?.code || receiptCode(mission.id);
+    const saved = missionStore.saveCompletion({
+      topic: "branding",
+      missionId: mission.id,
+      profile,
+      requestedEntries: mission.entries,
+      xp: missionStore.xpForEntries(mission.entries),
+      item: { code, title: mission.title, level: mission.level, responses, submittedAt }
+    }).item;
+    autosave?.clear();
+    autosave?.dispose({ save: false });
+    autosave = null;
+    const entries = Number(saved.entries || 0);
 
     lastReceiptText = [
       "FONTAINE MISSION RECEIPT",
@@ -291,12 +323,14 @@
       `Class period: ${period}`,
       `Mission: ${mission.id} — ${mission.title}`,
       `Level: ${mission.level}`,
+      `XP earned: ${saved.xp}`,
       `Provisional entries: ${entries}`,
+      entries < mission.entries ? "Weekly cap note: This mission is complete, but only the remaining weekly entries were added." : "",
       `Week: ${week}`,
       `Receipt code: ${code}`,
       `Submitted: ${new Date(submittedAt).toLocaleString()}`,
       "Teacher verification required."
-    ].join("\n");
+    ].filter(Boolean).join("\n");
 
     document.getElementById("missionFormView").hidden = true;
     document.getElementById("receiptView").hidden = false;
@@ -304,7 +338,8 @@
       <dt>Student</dt><dd>${escapeText(first)} ${escapeText(last)}.</dd>
       <dt>Class period</dt><dd>${escapeText(period)}</dd>
       <dt>Mission</dt><dd>${mission.id} — ${escapeText(mission.title)}</dd>
-      <dt>Provisional entries</dt><dd>${entries}</dd>
+      <dt>XP</dt><dd>${saved.xp} earned</dd>
+      <dt>Provisional entries</dt><dd>${entries}${entries < mission.entries ? " — weekly cap reached" : ""}</dd>
       <dt>Receipt code</dt><dd>${escapeText(code)}</dd>
       <dt>Status</dt><dd>Teacher approval required</dd>
     </dl>`;
@@ -333,8 +368,7 @@
     if (last === null) return;
     const period = window.prompt("Class period:", store.profile.period || "");
     if (period === null) return;
-    store.profile = { first: first.trim(), last: last.trim().slice(0, 1).toUpperCase(), period: period.trim() };
-    saveStore(store);
+    missionStore.setActiveProfile({ first: first.trim(), last: last.trim().slice(0, 1).toUpperCase(), period: period.trim() });
   }
 
   function bindBrandingPage() {

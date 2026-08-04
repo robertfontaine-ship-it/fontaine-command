@@ -1,9 +1,9 @@
 (() => {
   "use strict";
 
-  const STORE_KEY = "fontaineAgency:v1";
-  const ID_KEY = "fontaineMissionIdentity:v1";
-  const HUB_KEY = "fontaineHub:agency";
+  const missionStore = window.FontaineMissionStore;
+  const autosaveFactory = window.FontaineMissionAutosave;
+  if (!missionStore) return;
   const PROJECT_XP = 50;
   const PROJECT_ENTRIES = 4;
 
@@ -25,25 +25,25 @@
     { id:"WA-06", category:"Creator", client:"Emerging Student Creator", title:"Influencer Partnership Kit", summary:"An emerging creator needs a focused personal brand and a professional partnership pitch that attracts appropriate sponsors.", audience:"A defined follower community and potential brand partners", problem:"Inconsistent identity and no clear sponsor value", constraints:"Authentic, age-appropriate, and realistic for a small creator", required:"Creator positioning, content pillars, partner fit, media-kit copy, and campaign concept", prompts:["Define the creator’s niche, target follower, personality, and one-sentence promise.","Create three repeatable content pillars and explain the role of each one.","Choose one realistic brand partner and score the fit on audience, values, credibility, and risk.","Write the creator’s short media-kit introduction and a partnership outreach message.","Design one sponsored content idea and identify three results both sides should measure."] }
   ];
 
-  const readJSON = (key, fallback={}) => { try { return JSON.parse(localStorage.getItem(key) || "null") || fallback; } catch { return fallback; } };
-  const writeJSON = (key, value) => localStorage.setItem(key, JSON.stringify(value));
   const escapeText = value => String(value ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
-  const weekKey = () => { const d=new Date(), day=d.getDay(); d.setDate(d.getDate()+(day===0?-6:1-day)); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); };
-  const defaultStore = () => ({ profile:{first:"",last:"",period:"",role:""}, completions:{} });
-  const getStore = () => ({ ...defaultStore(), ...readJSON(STORE_KEY, defaultStore()) });
-  const saveStore = store => writeJSON(STORE_KEY, store);
+  const getStore = () => {
+    const profile = missionStore.getActiveProfile();
+    const role = missionStore.getAgencyRole({ profile });
+    const history = missionStore.getTopicHistory("agency", { profile });
+    return {
+      profile: { ...profile, role },
+      completions: Object.fromEntries(history.map(item => [item.missionId, item]))
+    };
+  };
   const roleById = id => roles.find(role => role.id === id);
   const briefById = id => briefs.find(brief => brief.id === id);
   let activeFilter = "All";
   let activeBriefId = null;
   let lastReceipt = "";
+  let lastReviewPacket = "";
+  let autosave = null;
 
   function inferIdentity(store) {
-    const identity = readJSON(ID_KEY, {});
-    if (!store.profile.first && identity.first) {
-      store.profile = { ...store.profile, first:identity.first, last:identity.last, period:identity.period };
-      saveStore(store);
-    }
     return store;
   }
 
@@ -92,11 +92,49 @@
 
   function closeProfile() { document.getElementById("agencyProfileModal").hidden = true; document.body.style.overflow = ""; }
 
+  function agencyDraftId(briefId, roleId) { return `${briefId}:${roleId}`; }
+
+  function agencyAnswers() {
+    return [...document.querySelectorAll("[data-agency-answer]")].map(field => field.value);
+  }
+
+  function ensureAgencyDraftStatus(form) {
+    let status = form.querySelector("[data-draft-status]");
+    if (status) return status;
+    status = document.createElement("div");
+    status.className = "draft-status";
+    status.dataset.draftStatus = "";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    form.querySelector(".agency-role-banner")?.insertAdjacentElement("afterend", status);
+    return status;
+  }
+
+  function startAgencyAutosave(brief, role, recoveredDraft = null) {
+    const form = document.getElementById("agencyProjectForm");
+    autosave?.dispose();
+    autosave = autosaveFactory?.create({
+      form,
+      status: ensureAgencyDraftStatus(form),
+      topic: "agency",
+      missionId: agencyDraftId(brief.id, role.id),
+      title: `${brief.title} — ${role.name}`,
+      getProfile: () => getStore().profile,
+      readValues: () => ({ roleId: role.id, answers: agencyAnswers() }),
+      recoveredDraft
+    }) || null;
+  }
+
   function openProject(id) {
     const store = inferIdentity(getStore());
     if (!store.profile.first || !store.profile.role) { openProfile(); return; }
     const brief = briefById(id), role = roleById(store.profile.role), prior = store.completions[id];
     if (!brief || !role) return;
+    const draft = missionStore.getDraft("agency", agencyDraftId(id, role.id), { profile: store.profile });
+    const priorTime = Date.parse(prior?.submittedAt || prior?.completedAt || "") || 0;
+    const recoveredDraft = draft && ((Date.parse(draft.updatedAt) || 0) > priorTime) ? draft : null;
+    if (draft && !recoveredDraft) missionStore.deleteDraft("agency", agencyDraftId(id, role.id), { profile: store.profile });
+    const answers = recoveredDraft?.values?.answers || prior?.answers || [];
     activeBriefId = id;
     document.getElementById("agencyProjectFormView").hidden = false;
     document.getElementById("agencyReceiptView").hidden = true;
@@ -106,23 +144,24 @@
     document.getElementById("agencyProjectFacts").innerHTML = `<div><strong>Target audience</strong><span>${escapeText(brief.audience)}</span></div><div><strong>Client problem</strong><span>${escapeText(brief.problem)}</span></div><div><strong>Constraints</strong><span>${escapeText(brief.constraints)}</span></div><div><strong>Required work</strong><span>${escapeText(brief.required)}</span></div>`;
     document.getElementById("agencyRoleBanner").innerHTML = `<strong>Your role: ${escapeText(role.name)}</strong><p>${escapeText(role.deliverable)}</p>`;
     const prompts = [...brief.prompts, `ROLE DELIVERABLE — ${role.deliverable}`];
-    document.getElementById("agencyPromptFields").innerHTML = prompts.map((prompt,index)=>`<label>${index+1}. ${escapeText(prompt)}<textarea rows="5" data-agency-answer="${index}" required>${escapeText(prior?.answers?.[index]||"")}</textarea></label>`).join("");
+    document.getElementById("agencyPromptFields").innerHTML = prompts.map((prompt,index)=>`<label>${index+1}. ${escapeText(prompt)}<textarea rows="5" minlength="40" data-agency-answer="${index}" required placeholder="Write a specific response with evidence, reasoning, and client fit.">${escapeText(answers[index]||"")}</textarea></label>`).join("");
     document.getElementById("agencyIntegrity").checked = false;
     document.getElementById("agencyProjectModal").hidden = false;
     document.body.style.overflow = "hidden";
+    startAgencyAutosave(brief, role, recoveredDraft);
   }
 
-  function closeProject() { document.getElementById("agencyProjectModal").hidden = true; document.body.style.overflow = ""; }
-
-  function syncMissionProgress(item, profile) {
-    const all = readJSON(HUB_KEY, {}), week = weekKey();
-    all[week] = all[week] || { profile:{}, completions:{} };
-    all[week].profile = { first:profile.first, last:profile.last, period:profile.period };
-    all[week].completions[item.id] = { title:item.title, entries:PROJECT_ENTRIES, completedAt:item.completedAt, role:item.roleName, client:item.client };
-    writeJSON(HUB_KEY, all);
+  function closeProject() {
+    autosave?.dispose();
+    autosave = null;
+    document.getElementById("agencyProjectModal").hidden = true;
+    document.body.style.overflow = "";
   }
 
-  function buildReceipt(brief, role, profile, answers) {
+  function buildReceipt(brief, role, profile, answers, saved) {
+    const capNote = saved.entries < PROJECT_ENTRIES
+      ? ["Weekly cap note: The project is complete, but only the remaining weekly entries were added."]
+      : [];
     const lines = [
       "WOLVERINE MARKETING AGENCY — CLIENT REVIEW PACKET",
       `Project: ${brief.id} — ${brief.title}`,
@@ -131,7 +170,9 @@
       `Period: ${profile.period}`,
       `Agency Role: ${role.name}`,
       `Completed: ${new Date().toLocaleString()}`,
-      `Provisional Reward: ${PROJECT_XP} XP + up to ${PROJECT_ENTRIES} weekly entries after approval`,
+      `Reward: ${saved.xp} XP + ${saved.entries} provisional weekly ${saved.entries === 1 ? "entry" : "entries"}`,
+      `Receipt code: ${saved.code}`,
+      ...capNote,
       "",
       ...answers.flatMap((answer,index)=>[`RESPONSE ${index+1}`, brief.prompts[index] || `Role deliverable — ${role.deliverable}`, answer, ""]),
       "APPROVAL NOTE",
@@ -140,17 +181,31 @@
     return lines.join("\n");
   }
 
+  function encodeReviewPacket(brief, profile, answers, saved) {
+    const payload = {
+      version: 1,
+      student: `${profile.first} ${profile.last}.`,
+      first: profile.first,
+      last: profile.last,
+      period: profile.period,
+      topic: "Wolverine Agency",
+      mission: `${brief.id} — ${brief.title}`,
+      receiptCode: saved.code,
+      provisionalEntries: Number(saved.entries || 0),
+      responses: answers.map((response, index) => ({ step: index + 1, response })),
+      submittedAt: saved.submittedAt
+    };
+    return `FMN-REVIEW:${btoa(unescape(encodeURIComponent(JSON.stringify(payload))))}`;
+  }
+
   document.getElementById("agencyProfileForm").addEventListener("submit", event => {
     event.preventDefault();
-    const store = getStore();
-    store.profile = {
+    const profile = missionStore.setActiveProfile({
       first:document.getElementById("agencyFirst").value.trim(),
       last:document.getElementById("agencyLast").value.trim().slice(0,1).toUpperCase(),
-      period:document.getElementById("agencyPeriod").value,
-      role:document.getElementById("agencyRoleSelect").value
-    };
-    saveStore(store);
-    writeJSON(ID_KEY,{first:store.profile.first,last:store.profile.last,period:store.profile.period});
+      period:document.getElementById("agencyPeriod").value
+    });
+    missionStore.setAgencyRole(document.getElementById("agencyRoleSelect").value, { profile });
     closeProfile(); renderAll();
   });
 
@@ -158,11 +213,17 @@
     event.preventDefault();
     const store = getStore(), brief = briefById(activeBriefId), role = roleById(store.profile.role);
     if (!brief || !role) return;
-    const answers = [...document.querySelectorAll("[data-agency-answer]")].map(field=>field.value.trim());
-    const item = { id:brief.id, title:brief.title, client:brief.client, category:brief.category, role:role.id, roleName:role.name, answers, completedAt:new Date().toISOString(), entries:PROJECT_ENTRIES };
-    store.completions[brief.id] = item;
-    saveStore(store); syncMissionProgress(item,store.profile);
-    lastReceipt = buildReceipt(brief,role,store.profile,answers);
+    const answers = agencyAnswers().map(value=>value.trim());
+    if (answers.some(answer => answer.length < 40)) return;
+    const previous = store.completions[brief.id];
+    const code = previous?.code || `${brief.id}-${missionStore.getWeekKey().replaceAll("-","").slice(4)}-${Math.random().toString(36).slice(2,7).toUpperCase()}`;
+    const item = { id:brief.id, code, title:brief.title, client:brief.client, category:brief.category, role:role.id, roleName:role.name, answers, completedAt:new Date().toISOString(), entries:PROJECT_ENTRIES };
+    const saved = missionStore.saveCompletion({ topic:"agency", missionId:brief.id, profile:store.profile, item, requestedEntries:PROJECT_ENTRIES, xp:PROJECT_XP }).item;
+    autosave?.clear();
+    autosave?.dispose({save:false});
+    autosave = null;
+    lastReceipt = buildReceipt(brief,role,store.profile,answers,saved);
+    lastReviewPacket = encodeReviewPacket(brief,store.profile,answers,saved);
     document.getElementById("agencyReceiptText").textContent = lastReceipt;
     document.getElementById("agencyProjectFormView").hidden = true;
     document.getElementById("agencyReceiptView").hidden = false;
@@ -189,9 +250,15 @@
     try { await navigator.clipboard.writeText(lastReceipt); document.getElementById("copyAgencyReceipt").textContent="Copied"; }
     catch { window.prompt("Copy the review packet:",lastReceipt); }
   });
+  document.getElementById("copyAgencyTeacherPacket").addEventListener("click",async()=>{
+    try { await navigator.clipboard.writeText(lastReviewPacket); document.getElementById("copyAgencyTeacherPacket").textContent="Teacher submission copied"; }
+    catch { window.prompt("Copy this teacher submission:",lastReviewPacket); }
+  });
   document.getElementById("reviseAgencyProject").addEventListener("click",()=>{
     document.getElementById("agencyProjectFormView").hidden=false;
     document.getElementById("agencyReceiptView").hidden=true;
+    const store=getStore(), brief=briefById(activeBriefId), role=roleById(store.profile.role);
+    if(brief&&role)startAgencyAutosave(brief,role);
   });
 
   function renderAll(){ renderStatus(); renderRoles(); renderBriefs(); renderHistory(); }

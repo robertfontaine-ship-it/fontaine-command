@@ -129,10 +129,11 @@
       <div id="agencyReceiptView" hidden>
         <p class="eyebrow">Project complete</p>
         <h2>Client Review Packet</h2>
-        <p>Copy this packet before closing. Teacher approval controls entries and final project credit.</p>
+        <p>Copy the teacher submission before closing so it can be pasted into the Fontaine Command review queue. The readable packet is available for client feedback or a portfolio.</p>
         <pre class="receipt-box" id="agencyReceiptText"></pre>
         <div class="receipt-actions">
-          <button class="mission-button primary" id="copyAgencyReceipt" type="button">Copy review packet</button>
+          <button class="mission-button primary" id="copyAgencyTeacherPacket" type="button">Copy teacher submission</button>
+          <button class="mission-button secondary" id="copyAgencyReceipt" type="button">Copy readable client packet</button>
           <button class="mission-button secondary" id="reviseAgencyProject" type="button">Revise responses</button>
         </div>
       </div>
@@ -143,6 +144,8 @@
     <strong>Wolverine Marketing Agency</strong>
     <span>Sports &amp; Entertainment Marketing • Fashion Marketing • Entrepreneurship</span>
   </footer>
+  <script src="mission-data-store.js"></script>
+  <script src="mission-autosave.js"></script>
   <script src="wolverine-agency.js"></script>
 </body>
 </html>

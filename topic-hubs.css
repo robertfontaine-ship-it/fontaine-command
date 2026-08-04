@@ -26,7 +26,7 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .mission-brand strong { font-size: 0.98rem; }
 .mission-brand small { color: var(--mission-muted); font-size: 0.76rem; }
 .mission-nav { display: flex; align-items: center; gap: 6px; }
-.mission-nav a { padding: 9px 12px; border-radius: 999px; color: var(--mission-muted); font-weight: 750; font-size: 0.9rem; text-decoration: none; }
+.mission-nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 9px 12px; border-radius: 999px; color: var(--mission-muted); font-weight: 750; font-size: 0.9rem; text-decoration: none; }
 .mission-nav a:hover, .mission-nav a.active { color: var(--mission-primary-deep); background: #eee7fb; }
 
 .mission-hero { width: min(1180px, calc(100% - 36px)); margin: 34px auto 0; padding: clamp(30px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.8fr); gap: clamp(24px, 5vw, 64px); align-items: center; border: 1px solid #d9cff0; border-radius: 30px; overflow: hidden; position: relative; background: radial-gradient(circle at 90% 10%, rgba(240, 95, 166, 0.22), transparent 35%), linear-gradient(135deg, #f3edff, #fff 62%); box-shadow: var(--mission-shadow); }
@@ -40,7 +40,7 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .mission-button:hover { transform: translateY(-1px); }
 .mission-button.primary { color: #fff; background: linear-gradient(135deg, var(--mission-primary), var(--mission-primary-deep)); box-shadow: 0 10px 24px rgba(84, 36, 173, 0.25); }
 .mission-button.secondary { color: var(--mission-primary-deep); background: #fff; border-color: #cfc3e8; }
-.mission-button.compact { width: 100%; margin-top: 16px; padding: 9px 12px; min-height: 40px; }
+.mission-button.compact { width: 100%; margin-top: 16px; padding: 9px 12px; min-height: 44px; }
 .mission-button.full { width: 100%; margin-top: 8px; }
 
 .prize-card, .progress-card { position: relative; z-index: 1; padding: 24px; border-radius: 22px; background: rgba(255,255,255,0.86); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 18px 44px rgba(39, 22, 78, 0.14); }
@@ -88,9 +88,18 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 
 .concept-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .briefing-callout { margin-top: 18px; padding: 17px 20px; border-left: 5px solid var(--mission-gold); border-radius: 12px; background: #fff7e5; }
+.draft-status { margin: 16px 0 4px; padding: 11px 13px; display: flex; align-items: center; gap: 9px; border: 1px solid #d5cae8; border-radius: 11px; color: #4f485a; background: #f8f5fc; font-size: 0.82rem; font-weight: 760; }
+.draft-status::before { content: "●"; color: #7f7196; font-size: 0.7rem; }
+.draft-status[data-state="saving"]::before { color: var(--mission-gold); }
+.draft-status[data-state="saved"] { color: #11613e; border-color: #b9dfcc; background: #eefaf4; }
+.draft-status[data-state="saved"]::before { color: var(--mission-success); }
+.draft-status[data-state="recovered"] { color: #4b1e9b; border-color: #cbb8eb; background: #f3edff; }
+.draft-status[data-state="recovered"]::before { color: var(--mission-primary); }
+.draft-status[data-state="error"] { color: #8a2331; border-color: #e5b9c0; background: #fff2f4; }
+.draft-status[data-state="error"]::before { color: #b83446; }
 .mission-filter-heading { align-items: center; }
 .mission-filters { display: flex; flex-wrap: wrap; gap: 7px; }
-.filter-button { border: 1px solid var(--mission-line); border-radius: 999px; padding: 8px 13px; color: var(--mission-muted); background: #fff; font-weight: 800; }
+.filter-button { min-height: 44px; border: 1px solid var(--mission-line); border-radius: 999px; padding: 8px 13px; color: var(--mission-muted); background: #fff; font-weight: 800; }
 .filter-button.active { color: #fff; border-color: var(--mission-primary); background: var(--mission-primary); }
 .mission-card { min-height: 330px; position: relative; overflow: hidden; }
 .mission-card.complete::after { content: "RECEIPT CREATED"; position: absolute; top: 18px; right: -36px; padding: 6px 42px; transform: rotate(35deg); color: #fff; background: var(--mission-success); font-size: 0.62rem; font-weight: 900; letter-spacing: 0.08em; }
@@ -109,7 +118,7 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .mission-modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 18px; }
 .modal-backdrop { position: absolute; inset: 0; background: rgba(20, 12, 37, 0.72); backdrop-filter: blur(6px); }
 .modal-panel { position: relative; z-index: 1; width: min(760px, 100%); max-height: calc(100vh - 36px); overflow: auto; padding: clamp(22px, 4vw, 36px); border-radius: 24px; background: #fff; box-shadow: 0 24px 80px rgba(14, 8, 28, 0.4); }
-.modal-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border: 0; border-radius: 50%; color: #514b5c; background: #f1edf5; font-size: 1.5rem; }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border: 0; border-radius: 50%; color: #514b5c; background: #f1edf5; font-size: 1.5rem; }
 .profile-fields { display: grid; grid-template-columns: 1fr 0.6fr 1fr; gap: 10px; margin: 22px 0; }
 .modal-panel label { display: grid; gap: 6px; margin: 14px 0; color: #4f485a; font-size: 0.85rem; font-weight: 800; }
 .modal-panel input, .modal-panel select, .modal-panel textarea { width: 100%; border: 1px solid #cec6da; border-radius: 11px; padding: 11px 12px; color: var(--mission-ink); background: #fff; }
@@ -126,7 +135,8 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .mission-footer a { color: #fff; }
 
 /* Fontaine Command teacher dashboard extension */
-.topic-admin { display: grid; gap: 18px; }
+.topic-admin { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; }
+.topic-admin > * { min-width: 0; max-width: 100%; }
 .topic-admin-hero { background: linear-gradient(135deg, #f2ebff, #fff 62%); border-color: #cfc1e9; }
 .topic-admin-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .topic-admin .topic-admin-card { height: 100%; }
@@ -140,6 +150,16 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .topic-ledger-table th { color: var(--muted, #6b6574); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .topic-winner { padding: 16px; border-radius: 14px; background: #fff6da; border: 1px solid #f0d485; }
 .topic-empty { padding: 18px; color: var(--muted, #6b6574); text-align: center; }
+.topic-device-manager, .topic-device-manager * { box-sizing: border-box; min-width: 0; }
+.topic-device-manager { border-color: #d3c6e8; background: linear-gradient(145deg, #faf8fd, #fff); }
+.topic-device-summary { margin: 16px 0; }
+.topic-device-summary .card { box-shadow: none; }
+.topic-device-actions { display: grid; grid-template-columns: minmax(260px, 1fr) auto auto; gap: 10px; align-items: end; }
+.topic-device-actions label { display: grid; gap: 6px; color: var(--muted, #6b6574); font-size: 0.8rem; }
+.topic-device-actions select { width: 100%; min-height: 44px; padding: 9px 10px; border: 1px solid #d7d0df; border-radius: 10px; background: #fff; }
+.topic-device-actions .btn { min-height: 44px; white-space: normal; }
+.topic-device-actions .topic-danger { color: #8f2432; border-color: #d9a7af; background: #fff5f6; }
+.topic-device-note { margin-bottom: 0; }
 
 @media (max-width: 940px) {
   .mission-hero { grid-template-columns: 1fr; }
@@ -157,6 +177,7 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
   .section-heading, .mission-filter-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
   .topic-grid, .mission-grid, .concept-grid, .step-grid, .reward-grid, .rules-list { grid-template-columns: 1fr; }
   .profile-fields, .topic-admin-form { grid-template-columns: 1fr; }
+  .topic-device-actions { grid-template-columns: 1fr; }
   .receipt-card dl { grid-template-columns: 1fr; gap: 2px; }
   .receipt-card dd { margin-bottom: 9px; }
   .mission-footer { align-items: flex-start; flex-direction: column; }

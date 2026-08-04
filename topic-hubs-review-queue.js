@@ -86,7 +86,7 @@
         <div><span class="topic-admin-status">${esc(status)}</span><h3>${esc(item.student)} • Period ${esc(item.period)}</h3><p class="muted">${esc(item.topic)} • ${esc(item.mission)}</p></div>
         <div class="topic-admin-actions"><strong>${Number(item.provisionalEntries || 0)} provisional ${Number(item.provisionalEntries || 0) === 1 ? "entry" : "entries"}</strong></div>
       </div>
-      <div class="mission-review-meta"><span><strong>Receipt:</strong> ${esc(item.receiptCode)}</span><span><strong>Imported:</strong> ${new Date(item.importedAt).toLocaleString()}</span></div>
+      <div class="mission-review-meta"><span><strong>Receipt:</strong> ${esc(item.receiptCode)}</span><span><strong>Imported:</strong> ${new Date(item.importedAt).toLocaleString()}</span>${item.resubmittedAt ? `<span><strong>Resubmitted:</strong> ${new Date(item.resubmittedAt).toLocaleString()} • Revision ${Number(item.revisionCount || 1)}</span>` : ""}</div>
       <details><summary>Review student responses</summary><div class="mission-review-responses">${responseList(item)}</div></details>
       ${item.teacherNote ? `<div class="briefing-callout"><strong>Teacher note:</strong> ${esc(item.teacherNote)}</div>` : ""}
       <div class="topic-admin-actions mission-review-actions">
@@ -122,7 +122,23 @@
     try {
       const packet = decodePacket(field?.value);
       const queue = readQueue();
-      if (queue.some(item => item.receiptCode === packet.receiptCode)) {
+      const duplicateIndex = queue.findIndex(item => item.receiptCode === packet.receiptCode);
+      if (duplicateIndex >= 0 && queue[duplicateIndex].status === "Revision Requested") {
+        const previous = queue[duplicateIndex];
+        queue[duplicateIndex] = {
+          ...previous,
+          ...packet,
+          status: "Pending",
+          teacherNote: "",
+          resubmittedAt: new Date().toISOString(),
+          revisionCount: Number(previous.revisionCount || 0) + 1
+        };
+        writeQueue(queue);
+        toast(`Revised submission received from ${packet.student}.`);
+        render();
+        return;
+      }
+      if (duplicateIndex >= 0) {
         toast(`Duplicate receipt blocked: ${packet.receiptCode}.`);
         return;
       }
@@ -148,7 +164,14 @@
     const requested = Math.max(0, Number(item.provisionalEntries || 0));
     const approved = Math.min(requested, Math.max(0, admin.settings.entryCap - existing));
     if (!approved) {
-      toast(`${item.student} has reached the ${admin.settings.entryCap}-entry weekly cap.`);
+      item.status = "Approved";
+      item.approvedEntries = 0;
+      item.teacherNote = `Work approved. No additional drawing entries were added because the ${admin.settings.entryCap}-entry weekly cap was already reached.`;
+      item.reviewedAt = new Date().toISOString();
+      queue[index] = item;
+      writeQueue(queue);
+      toast(`${item.student}'s work was approved; the weekly entry cap was already reached.`);
+      render();
       return;
     }
     admin.ledgers[week].push({
@@ -161,6 +184,7 @@
     });
     item.status = "Approved";
     item.approvedEntries = approved;
+    if (approved < requested) item.teacherNote = `${approved} of ${requested} requested entries were added because the weekly cap was reached.`;
     item.reviewedAt = new Date().toISOString();
     queue[index] = item;
     writeAdmin(admin);
