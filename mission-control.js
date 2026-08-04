@@ -12,6 +12,7 @@
     "four-ps":{title:"Strategy War Room",href:"four-ps-hub.html"},
     functions:{title:"Marketing Operations HQ",href:"marketing-functions-hub.html"},
     promotion:{title:"Campaign Command Center",href:"promotional-mix-hub.html"},
+    "market-research":{title:"Market Research Lab",href:"market-research-hub.html"},
     agency:{title:"Wolverine Marketing Agency",href:"wolverine-agency.html"}
   };
   const DAILY = [
@@ -20,7 +21,7 @@
     {title:"Marketing Mix Repair",brief:"Find one Product, Price, Place, or Promotion decision that does not fit its customer and repair it.",topic:"four-ps",level:"Skill Mission",minutes:"15–20 minutes"},
     {title:"Department Breakdown",brief:"Choose a business action and explain which marketing functions must cooperate to make it work.",topic:"functions",level:"Skill Mission",minutes:"15–20 minutes"},
     {title:"Campaign Decision Room",brief:"Choose the best promotional tool for a specific audience, goal, message, and required action.",topic:"promotion",level:"Quick Mission",minutes:"10 minutes"},
-    {title:"Weekend Boss Preview",brief:"Build a mini launch strategy using one specific target customer and all four marketing-mix decisions.",topic:"four-ps",level:"Boss Preview",minutes:"25–35 minutes"},
+    {title:"Evidence Reality Check",brief:"Audit one survey question, sample, or data claim and repair the research before it drives a bad decision.",topic:"market-research",level:"Quick Mission",minutes:"10 minutes"},
     {title:"Sunday Strategy Reset",brief:"Review your completed missions and choose the department where your next skill upgrade should happen.",topic:"branding",level:"Reflection",minutes:"5 minutes"}
   ];
   function collect(){
@@ -40,7 +41,7 @@
     if(data.missions.length>=10)badges.push(["🏆","Ten Deep","Completed ten missions"]);
     if(data.topics.size>=3)badges.push(["🧭","Explorer","Worked in three departments"]);
     if(data.topics.has("agency"))badges.push(["💼","Agency Rookie","Completed a client project"]);
-    if(data.topics.size>=5)badges.push(["🌐","Networked","Worked in all live departments"]);
+    if(["branding","target-market","four-ps","functions","promotion","market-research"].every(topic=>data.topics.has(topic)))badges.push(["🌐","Networked","Worked in all six live departments"]);
     if(data.xp>=175)badges.push(["🧠","Strategy Mind","Reached Brand Strategist rank"]);
     return badges;
   }

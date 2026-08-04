@@ -67,7 +67,9 @@ test("mission JavaScript parses", () => {
     "target-market-hub.js",
     "four-ps-hub.js",
     "marketing-functions-hub.js",
-    "promotional-mix-hub.js"
+    "promotional-mix-hub.js",
+    "market-research-hub.js",
+    "mission-classroom-kit.js"
   ].forEach(file => assert.doesNotThrow(() => new Function(read(file)), file));
 });
 
@@ -82,6 +84,7 @@ test("every student experience loads the shared store before page logic", () => 
     "four-ps-hub.html": "mission-hub-engine.js",
     "marketing-functions-hub.html": "mission-hub-engine.js",
     "promotional-mix-hub.html": "mission-hub-engine.js",
+    "market-research-hub.html": "mission-hub-engine.js",
     "wolverine-agency.html": "wolverine-agency.js"
   };
 
@@ -101,6 +104,7 @@ test("every long-form mission page loads autosave before its form logic", () => 
     "four-ps-hub.html": "mission-hub-engine.js",
     "marketing-functions-hub.html": "mission-hub-engine.js",
     "promotional-mix-hub.html": "mission-hub-engine.js",
+    "market-research-hub.html": "mission-hub-engine.js",
     "wolverine-agency.html": "wolverine-agency.js"
   };
 
@@ -121,6 +125,7 @@ test("all mission forms support Periods 1 through 7", () => {
     "four-ps-hub.html",
     "marketing-functions-hub.html",
     "promotional-mix-hub.html",
+    "market-research-hub.html",
     "student-mission-id.html",
     "wolverine-agency.html"
   ].forEach(page => {
@@ -143,17 +148,18 @@ test("student scripts only reference elements present on their pages", () => {
   assertIds("student-mission-id.js", ["student-mission-id.html"]);
   assertIds("wolverine-agency.js", ["wolverine-agency.html"]);
   assertIds("topic-hubs.js", ["topic-hubs.html", "branding-hub.html"]);
-  ["target-market-hub.html", "four-ps-hub.html", "marketing-functions-hub.html", "promotional-mix-hub.html"]
+  ["target-market-hub.html", "four-ps-hub.html", "marketing-functions-hub.html", "promotional-mix-hub.html", "market-research-hub.html"]
     .forEach(page => assertIds("mission-hub-engine.js", [page]));
 });
 
-test("the five departments contain 49 unique missions", () => {
+test("the six departments contain 59 unique missions", () => {
   const inventory = [
     ["topic-hubs.js", "BR", 10],
     ["target-market-hub.js", "TM", 9],
     ["four-ps-hub.js", "4P", 10],
     ["marketing-functions-hub.js", "MF", 10],
-    ["promotional-mix-hub.js", "PM", 10]
+    ["promotional-mix-hub.js", "PM", 10],
+    ["market-research-hub.js", "MR", 10]
   ];
   const allIds = [];
 
@@ -163,13 +169,13 @@ test("the five departments contain 49 unique missions", () => {
     allIds.push(...ids);
   });
 
-  assert.equal(allIds.length, 49);
-  assert.equal(new Set(allIds).size, 49);
+  assert.equal(allIds.length, 59);
+  assert.equal(new Set(allIds).size, 59);
 });
 
 test("live departments are declared directly without render-time patch layers", () => {
   const source = read("topic-hubs.js");
-  assert.equal((source.match(/status:\s*"Live"/g) || []).length, 5);
+  assert.equal((source.match(/status:\s*"Live"/g) || []).length, 6);
   assert.doesNotMatch(read("topic-hubs.html"), /topic-hubs-live-expansion/);
   assert.doesNotMatch(read("index.html"), /topic-hubs-admin-expansion/);
   assert.equal(fs.existsSync(path.join(ROOT, "topic-hubs-live-expansion.js")), false);

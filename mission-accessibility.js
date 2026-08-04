@@ -10,7 +10,8 @@
     "target-market-hub.html",
     "four-ps-hub.html",
     "marketing-functions-hub.html",
-    "promotional-mix-hub.html"
+    "promotional-mix-hub.html",
+    "market-research-hub.html"
   ]);
   const pageLabels = {
     "mission-control.html": "Mission Control",
@@ -20,6 +21,7 @@
     "four-ps-hub.html": "Strategy War Room",
     "marketing-functions-hub.html": "Marketing Operations HQ",
     "promotional-mix-hub.html": "Campaign Command Center",
+    "market-research-hub.html": "Market Research Lab",
     "wolverine-agency.html": "Wolverine Marketing Agency",
     "student-mission-id.html": "Student Mission ID"
   };

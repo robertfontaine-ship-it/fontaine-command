@@ -13,6 +13,7 @@ const studentPages = [
   "four-ps-hub.html",
   "marketing-functions-hub.html",
   "promotional-mix-hub.html",
+  "market-research-hub.html",
   "wolverine-agency.html",
   "student-mission-id.html"
 ];

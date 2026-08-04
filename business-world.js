@@ -20,6 +20,7 @@
     'four-ps': { name: 'Strategy War Room', short: '4 Ps Plaza', icon: '🧩', href: 'four-ps-hub.html', description: 'Product, price, place, and promotion decisions.' },
     functions: { name: 'Marketing Operations HQ', short: 'Functions HQ', icon: '🏢', href: 'marketing-functions-hub.html', description: 'How departments cooperate to create value.' },
     promotion: { name: 'Campaign Command Center', short: 'Promotion Plaza', icon: '📣', href: 'promotional-mix-hub.html', description: 'Advertising, PR, selling, and direct marketing.' },
+    'market-research': { name: 'Market Research Lab', short: 'Insights Institute', icon: '🔬', href: 'market-research-hub.html', description: 'Evidence, surveys, sampling, analysis, and business recommendations.' },
     agency: { name: 'Wolverine Marketing Agency', short: 'Agency Floor', icon: '💼', href: 'wolverine-agency.html', description: 'Career roles, client briefs, and portfolio work.' }
   };
 
@@ -29,7 +30,7 @@
     { title: 'Marketing Mix Repair', brief: 'Find one Product, Price, Place, or Promotion decision that does not fit its customer and repair it.', topic: 'four-ps', level: 'Skill Mission', minutes: '15–20 minutes' },
     { title: 'Department Breakdown', brief: 'Choose a business action and explain which marketing functions must cooperate to make it work.', topic: 'functions', level: 'Skill Mission', minutes: '15–20 minutes' },
     { title: 'Campaign Decision Room', brief: 'Choose the best promotional tool for a specific audience, goal, message, and required action.', topic: 'promotion', level: 'Quick Mission', minutes: '10 minutes' },
-    { title: 'Weekend Boss Preview', brief: 'Build a mini launch strategy using one specific target customer and all four marketing-mix decisions.', topic: 'four-ps', level: 'Boss Preview', minutes: '25–35 minutes' },
+    { title: 'Evidence Reality Check', brief: 'Audit one survey question, sample, or data claim and repair the research before it drives a bad decision.', topic: 'market-research', level: 'Quick Mission', minutes: '10 minutes' },
     { title: 'Sunday Strategy Reset', brief: 'Review your completed missions and choose the department where your next skill upgrade should happen.', topic: 'branding', level: 'Reflection', minutes: '5 minutes' }
   ];
 
@@ -151,7 +152,7 @@
       { icon: '🏆', name: 'Ten Deep', description: 'Complete ten missions.', earned: count >= 10 },
       { icon: '🧭', name: 'Explorer', description: 'Work in three departments.', earned: topics >= 3 },
       { icon: '💼', name: 'Agency Rookie', description: 'Complete your first client project.', earned: (data.topicData.agency?.missions.size || 0) >= 1 },
-      { icon: '🌐', name: 'Networked', description: 'Work in all five departments and the agency.', earned: topics >= 6 },
+      { icon: '🌐', name: 'Networked', description: 'Work in all six live departments.', earned: ['branding', 'target-market', 'four-ps', 'functions', 'promotion', 'market-research'].every((topic) => (data.topicData[topic]?.missions.size || 0) >= 1) },
       { icon: '🧠', name: 'Strategy Mind', description: 'Reach Brand Strategist rank.', earned: data.xp >= 175 },
       { icon: '🎯', name: 'Focused Marketer', description: 'Reach Marketing Director rank.', earned: data.xp >= 325 },
       { icon: '👑', name: 'Industry Legend', description: 'Reach 1,200 XP.', earned: data.xp >= 1200 }
@@ -298,7 +299,7 @@
 
         <div class="section-heading">
           <div><p class="eyebrow">Interactive City Map</p><h2>Choose your destination.</h2><p>Every live building connects to the same Mission ID, XP, badges, and weekly entry system.</p></div>
-          <span class="status-tag open">6 Locations Live</span>
+          <span class="status-tag open">7 Locations Live</span>
         </div>
 
         <section class="dashboard-grid">
@@ -311,6 +312,7 @@
               <button class="city-hall-building" data-action="go-home"><span>🏛️</span><strong>CITY HALL</strong><small>A202 Headquarters</small></button>
               <a class="city-building live" href="marketing-functions-hub.html"><span>🏢</span><strong>Functions HQ</strong><small>Marketing Operations</small></a>
               <a class="city-building live" href="wolverine-agency.html"><span>💼</span><strong>Agency Floor</strong><small>Client Projects</small></a>
+              <a class="city-building live" href="market-research-hub.html"><span>🔬</span><strong>Insights Institute</strong><small>Market Research Lab</small></a>
               <button class="city-building locked" data-action="locked-district"><span>🧟</span><strong>Career Center</strong><small>WRS Quest • Locked</small></button>
               <button class="city-building locked" data-action="locked-district"><span>🚀</span><strong>Startup Street</strong><small>Entrepreneurship • Locked</small></button>
             </div>

@@ -109,8 +109,8 @@ Mission levels:
 
 ## Current Live Foundation
 
-- Five live departments: Brand Studio, Consumer Intelligence Center, Strategy War Room, Marketing Operations HQ, and Campaign Command Center.
-- Forty-nine Quick, Skill, and Boss missions.
+- Six live departments: Brand Studio, Consumer Intelligence Center, Strategy War Room, Marketing Operations HQ, Campaign Command Center, and Market Research Lab.
+- Fifty-nine Quick, Skill, and Boss missions.
 - Wolverine Marketing Agency with six career roles, six editable client-brief starters, teacher-launched project links, and multi-role team rosters.
 - Mission Control, Mission IDs, XP, seven reputation ranks, badges, and department progress.
 - Teacher review packets, a review queue, approval ledger, weekly drawing, and CSV export.
@@ -160,7 +160,7 @@ The Mission Network should feel like one classroom learning operating system, no
 - Connected Agency projects to the same teacher review queue used by department missions.
 - Allowed returned submissions to re-enter the queue as revisions instead of being blocked as duplicates.
 - Allowed teachers to approve qualifying work even when no additional entries can be awarded.
-- Consolidated the five live departments into the main source of truth and removed render-time expansion patches.
+- Consolidated the live departments into the main source of truth and removed render-time expansion patches.
 - Added dedicated Mission Network QA for inventory, Periods 1–7, script order, page wiring, profile isolation, cap behavior, migration, Agency packets, and revision approval.
 - Added profile-isolated autosave to all 49 department missions and every Agency role, including visible saved and recovered-work messages.
 - Added student profile backup and restore with safe merging of completed work, Agency roles, and unfinished drafts.
@@ -186,6 +186,9 @@ The Mission Network should feel like one classroom learning operating system, no
 - Added a current-week Agency accountability view showing expected roles, submitted packets, approvals, and returned work by team.
 - Kept Monday-based weekly caps and reports on the correct local calendar date in every time zone.
 - Added end-to-end browser coverage from teacher launch through two student roles, individual submissions, batch approval, weekly reporting, and phone-width use.
+- Added a printable classroom launch kit that turns a pasted roster into privacy-conscious first-name/last-initial check-in cards, with six black-and-white cards per sheet and blank-card support.
+- Added a configurable one-page substitute guide covering Periods 1–7, independent work, Canvas-first expectations, offline backup, teacher-only controls, and end-of-class procedures.
+- Launched the Market Research Lab with ten missions covering objectives, secondary and primary evidence, sampling, survey design, qualitative research, analysis, limitations, and decision recommendations.
 
 ## Ordered Build Plan
 
@@ -202,11 +205,11 @@ The Mission Network should feel like one classroom learning operating system, no
 1. ✅ Add an Agency project launcher and editable client-brief templates.
 2. ✅ Add team rosters, multi-role packets, and individual accountability evidence.
 3. ✅ Add period and status filters, bulk review actions, and a weekly participation summary.
-4. Add printable student check-in cards and a one-page substitute-mode guide.
+4. ✅ Add printable student check-in cards and a one-page substitute-mode guide.
 
 ### P2 — Expand the learning network
 
-1. Market Research.
+1. ✅ Market Research.
 2. Pricing Strategy.
 3. Distribution.
 4. Selling and Customer Service.

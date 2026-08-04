@@ -73,12 +73,12 @@
 
     return shell(`<div class="topic-admin">
       <section class="card topic-admin-hero">
-        <div class="row"><div><span class="topic-admin-status">Network live</span><h2>Fontaine Mission Network</h2><p class="muted">Five permanent marketing departments, 49 independent missions, one student progression system, and Agency client work.</p></div><div class="topic-admin-actions"><a class="btn" href="mission-control.html" target="_blank" rel="noopener">Open Mission Control</a><a class="btn secondary" href="topic-hubs.html" target="_blank" rel="noopener">Open departments</a><a class="btn secondary" href="wolverine-agency.html" target="_blank" rel="noopener">Open Agency</a></div></div>
+        <div class="row"><div><span class="topic-admin-status">Network live</span><h2>Fontaine Mission Network</h2><p class="muted">Six permanent marketing departments, 59 independent missions, one student progression system, and Agency client work.</p></div><div class="topic-admin-actions"><a class="btn" href="mission-control.html" target="_blank" rel="noopener">Open Mission Control</a><a class="btn secondary" href="topic-hubs.html" target="_blank" rel="noopener">Open departments</a><a class="btn secondary" href="wolverine-agency.html" target="_blank" rel="noopener">Open Agency</a><a class="btn secondary" href="mission-classroom-kit.html" target="_blank" rel="noopener">Open print + substitute kit</a></div></div>
       </section>
 
       <div class="grid">
-        <section class="card span-4 topic-admin-card"><div class="metric">5</div><div class="muted">Live departments</div><h3>Core Marketing Library</h3><p>Branding, Target Market, the 4Ps, Marketing Functions, and Promotional Mix are live.</p></section>
-        <section class="card span-4 topic-admin-card"><div class="metric">49</div><div class="muted">Available missions</div><h3>Quick, Skill, and Boss</h3><p>Every mission includes a time estimate, numbered prompts, quality standards, and a teacher review packet.</p></section>
+        <section class="card span-4 topic-admin-card"><div class="metric">6</div><div class="muted">Live departments</div><h3>Core Marketing Library</h3><p>Branding, Target Market, the 4Ps, Marketing Functions, Promotional Mix, and Market Research Lab are live.</p></section>
+        <section class="card span-4 topic-admin-card"><div class="metric">59</div><div class="muted">Available missions</div><h3>Quick, Skill, and Boss</h3><p>Every mission includes a time estimate, numbered prompts, quality standards, and a teacher review packet.</p></section>
         <section class="card span-4 topic-admin-card"><div class="metric">${summary.entries}</div><div class="muted">Entries this week</div><h3>${summary.students} participating students</h3><p>${summary.records} approved ledger records for the week of ${topicWeekKey()}.</p></section>
       </div>
 
@@ -88,9 +88,17 @@
           <label>Featured prize<input id="topicPrize" value="${topicEscape(store.settings.prize)}" /></label>
           <label>Drawing day<select id="topicDrawingDay">${["Monday","Tuesday","Wednesday","Thursday","Friday"].map(day => `<option ${store.settings.drawingDay === day ? "selected" : ""}>${day}</option>`).join("")}</select></label>
           <label>Weekly entry cap<input id="topicEntryCap" type="number" min="1" max="50" value="${store.settings.entryCap}" /></label>
-          <label>Featured department<select id="topicActive">${["Branding", "Target Market & Segmentation", "The 4Ps of Marketing", "Marketing Functions", "Promotional Mix"].map(topic => `<option ${store.settings.activeTopic === topic ? "selected" : ""}>${topic}</option>`).join("")}</select></label>
+          <label>Featured department<select id="topicActive">${["Branding", "Target Market & Segmentation", "The 4Ps of Marketing", "Marketing Functions", "Promotional Mix", "Market Research Lab"].map(topic => `<option ${store.settings.activeTopic === topic ? "selected" : ""}>${topic}</option>`).join("")}</select></label>
           <button class="btn" type="submit">Save settings</button>
         </form>
+      </section>
+
+      <section class="card topic-classroom-kit">
+        <div class="row"><div><h2>Classroom Launch Kit</h2><p class="muted">Prepare a class without rebuilding directions. Roster text is used only to make first-name/last-initial cards and is not saved.</p></div><a class="btn" href="mission-classroom-kit.html" target="_blank" rel="noopener">Build printable materials</a></div>
+        <div class="grid">
+          <div class="card span-6"><strong>Student Check-In Cards</strong><p class="muted">Six black-and-white cards per sheet with Mission ID, Periods 1–7, starting link, mission/project code, submission step, and shared-device reminder.</p></div>
+          <div class="card span-6"><strong>One-Page Substitute Mode</strong><p class="muted">Independent-work flow, all seven periods, offline backup, mission limits, exact substitute boundaries, and end-of-class procedures.</p></div>
+        </div>
       </section>
 
       <section class="card">
@@ -129,9 +137,9 @@
       <section class="card">
         <h2>Next Build Queue</h2>
         <div class="grid">
-          <div class="card span-4"><strong>Market Research</strong><p class="muted">Source evaluation, surveys, data analysis, and decision missions.</p></div>
           <div class="card span-4"><strong>Pricing Strategy</strong><p class="muted">Cost, value, competition, revenue, and pricing-psychology missions.</p></div>
           <div class="card span-4"><strong>Distribution</strong><p class="muted">Channels, access, retail, inventory, and customer-experience missions.</p></div>
+          <div class="card span-4"><strong>Selling &amp; Customer Service</strong><p class="muted">Needs discovery, sales steps, recovery, loyalty, and follow-up missions.</p></div>
         </div>
       </section>
     </div>`);

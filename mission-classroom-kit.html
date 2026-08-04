@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Printable student check-in cards and a one-page substitute guide for the Fontaine Mission Network." />
+  <title>Mission Classroom Kit | Fontaine Command</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="mission-classroom-kit.css" />
+</head>
+<body>
+  <a class="kit-skip-link" href="#main-content">Skip to setup</a>
+  <header class="kit-topbar">
+    <a class="kit-brand" href="index.html"><span>W</span><div><strong>Fontaine Command</strong><small>Mission Classroom Kit</small></div></a>
+    <nav aria-label="Teacher tools"><a href="index.html">Teacher Command</a><a href="topic-hubs.html">Student Network</a><a href="mission-control.html">Mission Control</a></nav>
+  </header>
+
+  <main class="kit-shell" id="main-content" tabindex="-1">
+    <section class="kit-hero">
+      <div><p class="kit-eyebrow">Classroom Launch Kit</p><h1>Print it once. Students know exactly what to do.</h1><p>Create private-by-design check-in cards from a roster or blank class set, then generate one substitute page covering all seven possible periods.</p></div>
+      <aside><strong>Built for A202</strong><span>Black-and-white printing</span><span>Six cards per sheet</span><span>Independent substitute workflow</span><span>No student account required</span></aside>
+    </section>
+
+    <section class="kit-section" id="cardSection">
+      <div class="kit-section-heading"><div><p class="kit-eyebrow">Tool 01</p><h2>Student Check-In Cards</h2></div><p>Paste a roster for personalized first-name/last-initial cards, or leave it blank to create reusable cards students complete by hand.</p></div>
+      <form class="kit-form" id="cardSetupForm">
+        <div class="kit-field-grid">
+          <label>Class period<select id="cardPeriod" required><option value="">Choose period</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          <label>Student starting point<select id="cardDestination"><option value="mission-control.html">Mission Control</option><option value="topic-hubs.html">Department Directory</option><option value="market-research-hub.html">Market Research Lab</option><option value="wolverine-agency.html">Wolverine Marketing Agency</option><option value="student-mission-id.html">My Mission ID</option></select></label>
+          <label>Mission or project code <span>(optional)</span><input id="cardMissionCode" maxlength="48" placeholder="Example: MR-02 or WMA-ABC123" /></label>
+          <label>Where students submit<input id="cardSubmitTo" maxlength="90" value="Paste the teacher review packet in the assigned Canvas submission." /></label>
+        </div>
+        <div class="kit-field-grid kit-roster-grid">
+          <label>Paste roster — one student per line <span>(not saved)</span><textarea id="cardRoster" rows="9" placeholder="Mia Martinez&#10;Jordan Lee&#10;Avery C"></textarea><small>Accepts “First Last” or “Last, First.” Printed cards show first name and last initial only.</small></label>
+          <div class="kit-blank-settings"><label>Blank cards if no roster<input id="blankCardCount" type="number" min="6" max="42" step="6" value="24" /></label><div class="kit-callout"><strong>Shared-device rule</strong><p>Students use only their own first name, last initial, and period. They switch profiles through My Mission ID instead of typing over someone else’s work.</p></div></div>
+        </div>
+        <div class="kit-actions"><button class="kit-button primary" type="submit">Generate check-in cards</button><button class="kit-button" id="printCards" type="button">Print card sheets</button><button class="kit-button ghost" id="clearRoster" type="button">Clear roster</button></div>
+        <p class="kit-status" id="cardStatus" role="status" aria-live="polite">Choose a period, then paste a roster or generate blank cards.</p>
+      </form>
+      <div class="print-preview" id="cardPrintArea" aria-label="Student check-in card preview"></div>
+    </section>
+
+    <section class="kit-section" id="subGuideSection">
+      <div class="kit-section-heading"><div><p class="kit-eyebrow">Tool 02</p><h2>One-Page Substitute Mode</h2></div><p>Build one independent-work guide the substitute can follow without approving rewards, grading mission work, or managing student data.</p></div>
+      <form class="kit-form" id="subGuideForm">
+        <div class="kit-field-grid">
+          <label>Date<input id="subDate" type="date" required /></label>
+          <label>Teacher<input id="subTeacher" maxlength="50" value="Mr. Fontaine" /></label>
+          <label>Room<input id="subRoom" maxlength="20" value="A202" /></label>
+          <label>Mission access<select id="subMissionAccess"><option value="after">Allowed only after required work is submitted</option><option value="assigned">Use only the mission assigned below</option><option value="closed">Mission Network is closed for this class</option></select></label>
+        </div>
+        <div class="kit-field-grid">
+          <label>Default required task<input id="subCommonTask" maxlength="160" value="Open Canvas and complete the assignment posted for your class." /></label>
+          <label>Submission requirement<input id="subSubmission" maxlength="160" value="Submit required work in Canvas before class ends." /></label>
+          <label>Assigned mission or backup destination<input id="subMission" maxlength="100" value="Mission Control → choose a mission that fits the remaining time" /></label>
+          <label>Offline backup<input id="subOffline" maxlength="160" value="Use the teacher-provided printed assignment or continue independent work already in progress." /></label>
+        </div>
+        <fieldset><legend>Period-by-period plan</legend><p>Leave a task blank to use the default required task above.</p><div class="period-plan" id="periodPlan"></div></fieldset>
+        <div class="kit-actions"><button class="kit-button primary" type="submit">Generate substitute guide</button><button class="kit-button" id="printSubGuide" type="button">Print one-page guide</button></div>
+        <p class="kit-status" id="subStatus" role="status" aria-live="polite">The guide includes Periods 1–7, independent-work rules, troubleshooting, and end-of-class procedures.</p>
+      </form>
+      <div class="print-preview" id="subGuidePrintArea" aria-label="Substitute guide preview"></div>
+    </section>
+  </main>
+
+  <footer class="kit-footer"><strong>Fontaine Mission Network</strong><span>Canvas remains the official assignment and grading location.</span></footer>
+  <script src="mission-classroom-kit.js"></script>
+</body>
+</html>
