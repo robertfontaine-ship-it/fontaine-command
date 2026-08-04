@@ -72,7 +72,7 @@ async function runStartupStreetFlow(browser) {
   assert.equal(await page.locator('#currentMissionLink[href="startup-street.html"]').count(), 1);
 
   await page.goto(`${BASE}/student-mission-id.html`, { waitUntil: "load" });
-  assert.equal(await page.locator(".topic-progress-card").count(), 11, "Mission ID shows nine marketing departments, Startup Street, and Agency");
+  assert.equal(await page.locator(".topic-progress-card").count(), 12, "Mission ID shows nine marketing departments, Startup Street, WRS Career Center, and Agency");
   const progress = await page.locator("#topicProgress").innerText();
   assert.match(progress, /Startup Street[\s\S]*1 mission completed/i);
   const badges = await page.locator("#badgeGrid").innerText();
@@ -80,8 +80,9 @@ async function runStartupStreetFlow(browser) {
 
   await page.goto(`${BASE}/business-world.html`, { waitUntil: "load" });
   await page.locator('a[href="startup-street.html"]').first().waitFor({ state: "visible" });
-  assert.match(await page.locator(".status-tag.open").first().innerText(), /11 locations live/i);
+  assert.match(await page.locator(".status-tag.open").first().innerText(), /12 locations live/i);
   assert.equal(await page.locator('a.city-building[href="startup-street.html"]').count(), 1);
+  assert.equal(await page.locator('a.city-building[href="wrs-career-center.html"]').count(), 1);
   await page.locator('[data-nav="passport"]').click();
   await page.locator('[data-startup-street-card]').waitFor({ state: "visible" });
   assert.match(await page.locator('[data-startup-street-card]').innerText(), /1 mission completed[\s\S]*Stamped/i);
