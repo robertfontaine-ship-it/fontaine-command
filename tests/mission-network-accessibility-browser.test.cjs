@@ -44,6 +44,9 @@ async function runShellConsistency(browser) {
     ["marketing-functions-hub.html", "Departments", true],
     ["promotional-mix-hub.html", "Departments", true],
     ["market-research-hub.html", "Departments", true],
+    ["pricing-strategy-hub.html", "Departments", true],
+    ["distribution-hub.html", "Departments", true],
+    ["selling-customer-service-hub.html", "Departments", true],
     ["wolverine-agency.html", "Agency", true],
     ["student-mission-id.html", "My Mission ID", false]
   ];

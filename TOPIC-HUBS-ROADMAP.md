@@ -109,8 +109,8 @@ Mission levels:
 
 ## Current Live Foundation
 
-- Six live departments: Brand Studio, Consumer Intelligence Center, Strategy War Room, Marketing Operations HQ, Campaign Command Center, and Market Research Lab.
-- Fifty-nine Quick, Skill, and Boss missions.
+- Nine live departments: Brand Studio, Consumer Intelligence Center, Strategy War Room, Marketing Operations HQ, Campaign Command Center, Market Research Lab, Pricing Strategy Center, Distribution & Logistics Center, and Customer Experience Center.
+- Eighty-nine Quick, Skill, and Boss missions.
 - Wolverine Marketing Agency with six career roles, six editable client-brief starters, teacher-launched project links, and multi-role team rosters.
 - Mission Control, Mission IDs, XP, seven reputation ranks, badges, and department progress.
 - Teacher review packets, a review queue, approval ledger, weekly drawing, and CSV export.
@@ -162,7 +162,7 @@ The Mission Network should feel like one classroom learning operating system, no
 - Allowed teachers to approve qualifying work even when no additional entries can be awarded.
 - Consolidated the live departments into the main source of truth and removed render-time expansion patches.
 - Added dedicated Mission Network QA for inventory, Periods 1–7, script order, page wiring, profile isolation, cap behavior, migration, Agency packets, and revision approval.
-- Added profile-isolated autosave to all 49 department missions and every Agency role, including visible saved and recovered-work messages.
+- Added profile-isolated autosave to all 89 department missions and every Agency role, including visible saved and recovered-work messages.
 - Added student profile backup and restore with safe merging of completed work, Agency roles, and unfinished drafts.
 - Added teacher-controlled cleanup for one student or the entire shared browser while preserving review-queue and giveaway records.
 - Verified Mission Network layout and interactions in a real browser at desktop, iPhone, and iPad sizes, including 44 px touch controls and zero document overflow.
@@ -170,7 +170,7 @@ The Mission Network should feel like one classroom learning operating system, no
 - Standardized the five-destination primary navigation across Mission Control, all departments, Agency, and Mission ID, with clear current-page state and contextual on-page links.
 - Added skip links, visible keyboard focus, reduced-motion support, focusable main landmarks, and 44 px contextual navigation targets.
 - Added consistent dialog labels, background isolation, keyboard focus traps, Escape behavior, focus return, and receipt/status announcements.
-- Added dedicated accessibility checks for all nine student surfaces plus Business World orientation and single-page navigation.
+- Added dedicated accessibility checks for all thirteen Mission Network student surfaces plus Business World orientation and single-page navigation.
 - Connected Business World City Hall directly to the shared Mission Network store so its profile, XP, entries, mission history, and Agency progress cannot drift from the rest of the system.
 - Added teacher worklist filters for Periods 1–7, review status, search, and sort order, with pending work shown by default.
 - Added selection-based batch approval and return actions with explicit confirmation, weekly cap enforcement, duplicate-credit protection, and preserved review history.
@@ -189,6 +189,11 @@ The Mission Network should feel like one classroom learning operating system, no
 - Added a printable classroom launch kit that turns a pasted roster into privacy-conscious first-name/last-initial check-in cards, with six black-and-white cards per sheet and blank-card support.
 - Added a configurable one-page substitute guide covering Periods 1–7, independent work, Canvas-first expectations, offline backup, teacher-only controls, and end-of-class procedures.
 - Launched the Market Research Lab with ten missions covering objectives, secondary and primary evidence, sampling, survey design, qualitative research, analysis, limitations, and decision recommendations.
+- Launched the Pricing Strategy Center with ten missions covering objectives, costs, contribution, break-even, customer value, competition, discounts, ticket revenue, and adjustment rules.
+- Launched the Distribution & Logistics Center with ten missions covering direct and indirect channels, intermediaries, market coverage, inventory, fulfillment, omnichannel journeys, event logistics, and recovery.
+- Launched the Customer Experience Center with ten missions covering product knowledge, needs discovery, features and benefits, objections, closing, returns, service recovery, follow-up, loyalty, and balanced performance measures.
+- Corrected Marketing Functions and Promotional Mix topic aliases so historical and new progress appears under the right department in Mission Control, Mission ID, City Hall, badges, and passports.
+- Added complete prompt text to teacher review packets so evidence can be evaluated without reopening the student mission page.
 
 ## Ordered Build Plan
 
@@ -210,8 +215,8 @@ The Mission Network should feel like one classroom learning operating system, no
 ### P2 — Expand the learning network
 
 1. ✅ Market Research.
-2. Pricing Strategy.
-3. Distribution.
-4. Selling and Customer Service.
+2. ✅ Pricing Strategy.
+3. ✅ Distribution.
+4. ✅ Selling and Customer Service.
 5. Course-specific pathways for SEM, Fashion, and Entrepreneurship.
 6. Topic mastery checks with an 80% threshold and targeted remediation routes.

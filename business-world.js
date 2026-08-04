@@ -18,21 +18,34 @@
     branding: { name: 'Brand Studio', short: 'Branding Boulevard', icon: '🎨', href: 'branding-hub.html', description: 'Identity, positioning, voice, and brand equity.' },
     'target-market': { name: 'Consumer Intelligence Center', short: 'Target Market Mall', icon: '🎯', href: 'target-market-hub.html', description: 'Segmentation, personas, and customer evidence.' },
     'four-ps': { name: 'Strategy War Room', short: '4 Ps Plaza', icon: '🧩', href: 'four-ps-hub.html', description: 'Product, price, place, and promotion decisions.' },
-    functions: { name: 'Marketing Operations HQ', short: 'Functions HQ', icon: '🏢', href: 'marketing-functions-hub.html', description: 'How departments cooperate to create value.' },
-    promotion: { name: 'Campaign Command Center', short: 'Promotion Plaza', icon: '📣', href: 'promotional-mix-hub.html', description: 'Advertising, PR, selling, and direct marketing.' },
+    'marketing-functions': { name: 'Marketing Operations HQ', short: 'Functions HQ', icon: '🏢', href: 'marketing-functions-hub.html', description: 'How departments cooperate to create value.' },
+    'promotional-mix': { name: 'Campaign Command Center', short: 'Promotion Plaza', icon: '📣', href: 'promotional-mix-hub.html', description: 'Advertising, PR, sales promotion, selling, and direct marketing.' },
     'market-research': { name: 'Market Research Lab', short: 'Insights Institute', icon: '🔬', href: 'market-research-hub.html', description: 'Evidence, surveys, sampling, analysis, and business recommendations.' },
+    pricing: { name: 'Pricing Strategy Center', short: 'Pricing Powerhouse', icon: '💲', href: 'pricing-strategy-hub.html', description: 'Costs, break-even, customer value, competition, and revenue decisions.' },
+    distribution: { name: 'Distribution & Logistics Center', short: 'Distribution Depot', icon: '🚚', href: 'distribution-hub.html', description: 'Channels, inventory, fulfillment, access, and omnichannel experience.' },
+    service: { name: 'Customer Experience Center', short: 'Customer Care Commons', icon: '🤝', href: 'selling-customer-service-hub.html', description: 'Needs discovery, selling, service recovery, follow-up, and loyalty.' },
     agency: { name: 'Wolverine Marketing Agency', short: 'Agency Floor', icon: '💼', href: 'wolverine-agency.html', description: 'Career roles, client briefs, and portfolio work.' }
   };
+  const TOPIC_ALIASES = { functions: 'marketing-functions', promotion: 'promotional-mix' };
+  const DEPARTMENT_TOPICS = ['branding', 'target-market', 'four-ps', 'marketing-functions', 'promotional-mix', 'market-research', 'pricing', 'distribution', 'service'];
 
   const DAILY = [
     { title: 'Brand Detective', brief: 'Choose a real brand and identify three clues that reveal its personality and target customer.', topic: 'branding', level: 'Quick Mission', minutes: '8–10 minutes' },
     { title: 'Audience Undercover', brief: 'Study one advertisement and build the most specific target-market profile the evidence supports.', topic: 'target-market', level: 'Quick Mission', minutes: '10 minutes' },
     { title: 'Marketing Mix Repair', brief: 'Find one Product, Price, Place, or Promotion decision that does not fit its customer and repair it.', topic: 'four-ps', level: 'Skill Mission', minutes: '15–20 minutes' },
-    { title: 'Department Breakdown', brief: 'Choose a business action and explain which marketing functions must cooperate to make it work.', topic: 'functions', level: 'Skill Mission', minutes: '15–20 minutes' },
-    { title: 'Campaign Decision Room', brief: 'Choose the best promotional tool for a specific audience, goal, message, and required action.', topic: 'promotion', level: 'Quick Mission', minutes: '10 minutes' },
+    { title: 'Department Breakdown', brief: 'Choose a business action and explain which marketing functions must cooperate to make it work.', topic: 'marketing-functions', level: 'Skill Mission', minutes: '15–20 minutes' },
+    { title: 'Campaign Decision Room', brief: 'Choose the best promotional tool for a specific audience, goal, message, and required action.', topic: 'promotional-mix', level: 'Quick Mission', minutes: '10 minutes' },
     { title: 'Evidence Reality Check', brief: 'Audit one survey question, sample, or data claim and repair the research before it drives a bad decision.', topic: 'market-research', level: 'Quick Mission', minutes: '10 minutes' },
-    { title: 'Sunday Strategy Reset', brief: 'Review your completed missions and choose the department where your next skill upgrade should happen.', topic: 'branding', level: 'Reflection', minutes: '5 minutes' }
+    { title: 'Price Signal Scan', brief: 'Choose an offer and explain what its price communicates about value, customer, position, and business goal.', topic: 'pricing', level: 'Quick Mission', minutes: '8–10 minutes' },
+    { title: 'Access Friction Hunt', brief: 'Map how a customer discovers, buys, receives, and returns an offer, then repair the biggest barrier.', topic: 'distribution', level: 'Quick Mission', minutes: '10 minutes' },
+    { title: 'Feature-to-Benefit Translator', brief: 'Turn four product features into honest benefits connected to one customer’s stated need.', topic: 'service', level: 'Quick Mission', minutes: '8–10 minutes' },
+    { title: 'Strategy Reset', brief: 'Review your completed missions and choose the department where your next skill upgrade should happen.', topic: 'branding', level: 'Reflection', minutes: '5 minutes' }
   ];
+  const canonicalTopic = (topic) => TOPIC_ALIASES[topic] || topic;
+  function dailyMission(date = new Date()) {
+    const day = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+    return DAILY[((day % DAILY.length) + DAILY.length) % DAILY.length];
+  }
 
   const screen = document.getElementById('screen');
   const modalRoot = document.getElementById('modal-root');
@@ -64,7 +77,7 @@
     const day = date.getDay();
     date.setDate(date.getDate() + (day === 0 ? -6 : 1 - day));
     date.setHours(0, 0, 0, 0);
-    return date.toISOString().slice(0, 10);
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
   }
 
   function xpFor(entries) {
@@ -75,14 +88,14 @@
   function collectProgress() {
     if (missionStore) {
       const profile = identity();
-      const missions = missionStore.getAllHistory({ profile }).sort((a, b) => {
+      const missions = missionStore.getAllHistory({ profile }).map((item) => ({ ...item, topic: canonicalTopic(item.topic) })).sort((a, b) => {
         const aTime = Date.parse(a.submittedAt || a.completedAt || 0) || 0;
         const bTime = Date.parse(b.submittedAt || b.completedAt || 0) || 0;
         return bTime - aTime;
       });
       const topicData = {};
       missions.forEach((item) => {
-        const topic = item.topic;
+        const topic = canonicalTopic(item.topic);
         const missionId = item.missionId || item.id;
         topicData[topic] = topicData[topic] || { missions: new Map(), weekly: 0 };
         topicData[topic].missions.set(missionId, item);
@@ -96,9 +109,10 @@
     const topicData = {};
     let inferredIdentity = null;
     const addCompletion = (topic, missionId, item, week) => {
-      topicData[topic] = topicData[topic] || { missions: new Map(), weekly: 0 };
-      topicData[topic].missions.set(missionId, item);
-      if (week === weekKey()) topicData[topic].weekly += Number(item.entries || 0);
+      const canonical = canonicalTopic(topic);
+      topicData[canonical] = topicData[canonical] || { missions: new Map(), weekly: 0 };
+      topicData[canonical].missions.set(missionId, item);
+      if (week === weekKey()) topicData[canonical].weekly += Number(item.entries || 0);
     };
 
     Object.keys(localStorage).filter((key) => key.startsWith('fontaineHub:')).forEach((key) => {
@@ -152,7 +166,7 @@
       { icon: '🏆', name: 'Ten Deep', description: 'Complete ten missions.', earned: count >= 10 },
       { icon: '🧭', name: 'Explorer', description: 'Work in three departments.', earned: topics >= 3 },
       { icon: '💼', name: 'Agency Rookie', description: 'Complete your first client project.', earned: (data.topicData.agency?.missions.size || 0) >= 1 },
-      { icon: '🌐', name: 'Networked', description: 'Work in all six live departments.', earned: ['branding', 'target-market', 'four-ps', 'functions', 'promotion', 'market-research'].every((topic) => (data.topicData[topic]?.missions.size || 0) >= 1) },
+      { icon: '🌐', name: 'Networked', description: 'Work in all nine live departments.', earned: DEPARTMENT_TOPICS.every((topic) => (data.topicData[topic]?.missions.size || 0) >= 1) },
       { icon: '🧠', name: 'Strategy Mind', description: 'Reach Brand Strategist rank.', earned: data.xp >= 175 },
       { icon: '🎯', name: 'Focused Marketer', description: 'Reach Marketing Director rank.', earned: data.xp >= 325 },
       { icon: '👑', name: 'Industry Legend', description: 'Reach 1,200 XP.', earned: data.xp >= 1200 }
@@ -262,7 +276,7 @@
     const next = nextRank(data.xp);
     const badges = unlockedBadges(data);
     const earnedBadges = badges.filter((badge) => badge.earned).length;
-    const daily = DAILY[new Date().getDay()];
+    const daily = dailyMission();
     const dailyTopic = TOPICS[daily.topic];
     const latest = data.missions[0];
     const latestTopic = latest ? TOPICS[latest.topic] : null;
@@ -299,7 +313,7 @@
 
         <div class="section-heading">
           <div><p class="eyebrow">Interactive City Map</p><h2>Choose your destination.</h2><p>Every live building connects to the same Mission ID, XP, badges, and weekly entry system.</p></div>
-          <span class="status-tag open">7 Locations Live</span>
+          <span class="status-tag open">10 Locations Live</span>
         </div>
 
         <section class="dashboard-grid">
@@ -308,11 +322,14 @@
               <a class="city-building live" href="branding-hub.html"><span>🎨</span><strong>Branding Boulevard</strong><small>Brand Studio</small></a>
               <a class="city-building live" href="target-market-hub.html"><span>🎯</span><strong>Target Market Mall</strong><small>Consumer Intelligence</small></a>
               <a class="city-building live" href="four-ps-hub.html"><span>🧩</span><strong>4 Ps Plaza</strong><small>Strategy War Room</small></a>
-              <a class="city-building live" href="promotional-mix-hub.html"><span>📣</span><strong>Promotion Plaza</strong><small>Campaign Command</small></a>
+              <a class="city-building live" href="pricing-strategy-hub.html"><span>💲</span><strong>Pricing Powerhouse</strong><small>Pricing Strategy</small></a>
               <button class="city-hall-building" data-action="go-home"><span>🏛️</span><strong>CITY HALL</strong><small>A202 Headquarters</small></button>
+              <a class="city-building live" href="distribution-hub.html"><span>🚚</span><strong>Distribution Depot</strong><small>Channels &amp; Logistics</small></a>
+              <a class="city-building live" href="promotional-mix-hub.html"><span>📣</span><strong>Promotion Plaza</strong><small>Campaign Command</small></a>
               <a class="city-building live" href="marketing-functions-hub.html"><span>🏢</span><strong>Functions HQ</strong><small>Marketing Operations</small></a>
-              <a class="city-building live" href="wolverine-agency.html"><span>💼</span><strong>Agency Floor</strong><small>Client Projects</small></a>
               <a class="city-building live" href="market-research-hub.html"><span>🔬</span><strong>Insights Institute</strong><small>Market Research Lab</small></a>
+              <a class="city-building live" href="selling-customer-service-hub.html"><span>🤝</span><strong>Customer Care Commons</strong><small>Selling &amp; Service</small></a>
+              <a class="city-building live" href="wolverine-agency.html"><span>💼</span><strong>Agency Floor</strong><small>Client Projects</small></a>
               <button class="city-building locked" data-action="locked-district"><span>🧟</span><strong>Career Center</strong><small>WRS Quest • Locked</small></button>
               <button class="city-building locked" data-action="locked-district"><span>🚀</span><strong>Startup Street</strong><small>Entrepreneurship • Locked</small></button>
             </div>
@@ -335,9 +352,9 @@
             <article class="mission-card">
               <p class="eyebrow">Company News</p>
               <div class="news-list">
-                <div class="news-item"><span>🔥</span><div><strong>Six locations are open</strong><small>Five departments plus Wolverine Agency.</small></div></div>
+                <div class="news-item"><span>🔥</span><div><strong>Ten locations are open</strong><small>Nine departments plus Wolverine Agency.</small></div></div>
                 <div class="news-item"><span>🎟️</span><div><strong>Friday Mystery Drop</strong><small>${data.weekly}/10 provisional entries this week.</small></div></div>
-                <div class="news-item"><span>🔒</span><div><strong>Next district</strong><small>Entrepreneurship's Startup Street.</small></div></div>
+                <div class="news-item"><span>🔒</span><div><strong>Next district</strong><small>WRS Quest inside the Career Center.</small></div></div>
               </div>
             </article>
           </aside>
@@ -346,7 +363,7 @@
   }
 
   function renderMissions(data) {
-    const daily = DAILY[new Date().getDay()];
+    const daily = dailyMission();
     const topic = TOPICS[daily.topic];
     const latest = data.missions[0];
     const latestTopic = latest ? TOPICS[latest.topic] : null;

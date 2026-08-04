@@ -6,7 +6,15 @@
   const destinationLabels = {
     "mission-control.html": "Mission Control",
     "topic-hubs.html": "Department Directory",
+    "branding-hub.html": "Brand Studio",
+    "target-market-hub.html": "Consumer Intelligence Center",
+    "four-ps-hub.html": "Strategy War Room",
+    "marketing-functions-hub.html": "Marketing Operations HQ",
+    "promotional-mix-hub.html": "Campaign Command Center",
     "market-research-hub.html": "Market Research Lab",
+    "pricing-strategy-hub.html": "Pricing Strategy Center",
+    "distribution-hub.html": "Distribution & Logistics Center",
+    "selling-customer-service-hub.html": "Customer Experience Center",
     "wolverine-agency.html": "Wolverine Marketing Agency",
     "student-mission-id.html": "My Mission ID"
   };

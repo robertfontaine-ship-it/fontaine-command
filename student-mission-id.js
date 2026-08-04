@@ -4,8 +4,11 @@
   if(!missionStore)return;
   const TOPICS={
     branding:"Branding", "target-market":"Target Market", "four-ps":"The 4Ps",
-    functions:"Marketing Functions", promotion:"Promotional Mix", "market-research":"Market Research", agency:"Wolverine Agency"
+    "marketing-functions":"Marketing Functions", "promotional-mix":"Promotional Mix", "market-research":"Market Research",
+    pricing:"Pricing Strategy", distribution:"Distribution", service:"Selling & Customer Service", agency:"Wolverine Agency"
   };
+  const TOPIC_ALIASES={functions:"marketing-functions",promotion:"promotional-mix"};
+  const DEPARTMENT_TOPICS=["branding","target-market","four-ps","marketing-functions","promotional-mix","market-research","pricing","distribution","service"];
   const RANKS=[
     {name:"Marketing Rookie",xp:0},{name:"Campaign Specialist",xp:75},{name:"Brand Strategist",xp:175},
     {name:"Marketing Director",xp:325},{name:"Vice President",xp:525},{name:"Chief Marketing Officer",xp:800},{name:"Industry Legend",xp:1200}
@@ -18,7 +21,7 @@
   function collect(){
     const identity=getIdentity(),topicData={},unique=new Map();
     missionStore.getAllHistory({profile:identity}).forEach(item=>{
-      const topic=item.topic,id=item.missionId;
+      const topic=TOPIC_ALIASES[item.topic]||item.topic,id=item.missionId;
       topicData[topic]=topicData[topic]||{missions:new Map(),weekly:0};
       topicData[topic].missions.set(id,item);
       if(item.week===weekKey())topicData[topic].weekly+=Number(item.entries||0);
@@ -33,14 +36,14 @@
   function codeFor(identity){if(!identity.first||!identity.last||!identity.period)return"NOT-SET";const base=`${identity.first[0]}${identity.last}${identity.period}`.toUpperCase();let hash=0;for(const c of `${identity.first}${identity.last}${identity.period}`)hash=(hash*31+c.charCodeAt(0))%9999;return `FMN-${base}-${String(hash).padStart(4,"0")}`;}
   function badges(data){
     const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0;
-    const allDepartments=["branding","target-market","four-ps","functions","promotion","market-research"].every(topic=>(data.topicData[topic]?.missions.size||0)>=1);
+    const allDepartments=DEPARTMENT_TOPICS.every(topic=>(data.topicData[topic]?.missions.size||0)>=1);
     return [
       {icon:"🚀",name:"First Mission",desc:"Complete your first mission.",on:count>=1},
       {icon:"⚡",name:"Mission Streak",desc:"Complete five missions.",on:count>=5},
       {icon:"🏆",name:"Ten Deep",desc:"Complete ten missions.",on:count>=10},
       {icon:"🧭",name:"Explorer",desc:"Complete work in three departments.",on:topics>=3},
       {icon:"💼",name:"Agency Rookie",desc:"Complete your first client project.",on:agency>=1},
-      {icon:"🌐",name:"Networked",desc:"Complete work in all six live departments.",on:allDepartments},
+      {icon:"🌐",name:"Networked",desc:"Complete work in all nine live departments.",on:allDepartments},
       {icon:"🧠",name:"Strategy Mind",desc:"Reach 175 XP.",on:data.xp>=175},
       {icon:"🎯",name:"Focused Marketer",desc:"Reach 325 XP.",on:data.xp>=325},
       {icon:"👑",name:"Industry Legend",desc:"Reach 1,200 XP.",on:data.xp>=1200}

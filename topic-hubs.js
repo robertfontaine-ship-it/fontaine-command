@@ -12,9 +12,9 @@
     { id: "functions", title: "Marketing Operations HQ", status: "Live", description: "See how seven departments cooperate to create, communicate, and deliver value.", tags: ["7 Functions", "Careers", "Strategy"], href: "marketing-functions-hub.html" },
     { id: "promotion", title: "Campaign Command Center", status: "Live", description: "Deploy advertising, PR, sales promotion, personal selling, and direct marketing.", tags: ["Campaigns", "Media", "Messaging"], href: "promotional-mix-hub.html" },
     { id: "market-research", title: "Market Research Lab", status: "Live", description: "Ask focused questions, collect credible evidence, analyze patterns, and recommend business decisions.", tags: ["Surveys", "Sampling", "Insights"], href: "market-research-hub.html" },
-    { id: "pricing", title: "Pricing Strategy", status: "Queued", description: "Costs, customer value, competitor pressure, revenue goals, and pricing psychology.", tags: ["Revenue", "Value", "Strategy"] },
-    { id: "distribution", title: "Distribution", status: "Queued", description: "Channels, intermediaries, inventory, access, convenience, and customer experience.", tags: ["Place", "Channels", "Retail"] },
-    { id: "service", title: "Selling & Customer Service", status: "Queued", description: "Customer needs, communication, sales steps, recovery, loyalty, and follow-up.", tags: ["Sales", "Recovery", "Loyalty"] }
+    { id: "pricing", title: "Pricing Strategy Center", status: "Live", description: "Use costs, customer value, competition, demand, and goals to make defensible pricing decisions.", tags: ["Break-Even", "Value", "Revenue"], href: "pricing-strategy-hub.html" },
+    { id: "distribution", title: "Distribution & Logistics Center", status: "Live", description: "Design channels, inventory, fulfillment, access, returns, and connected customer journeys.", tags: ["Channels", "Inventory", "Omnichannel"], href: "distribution-hub.html" },
+    { id: "service", title: "Customer Experience Center", status: "Live", description: "Discover needs, explain benefits, earn the sale, recover service, and build loyalty.", tags: ["Selling", "Recovery", "Loyalty"], href: "selling-customer-service-hub.html" }
   ];
 
   const brandingMissions = [

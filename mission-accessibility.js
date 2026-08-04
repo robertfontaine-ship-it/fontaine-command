@@ -11,7 +11,10 @@
     "four-ps-hub.html",
     "marketing-functions-hub.html",
     "promotional-mix-hub.html",
-    "market-research-hub.html"
+    "market-research-hub.html",
+    "pricing-strategy-hub.html",
+    "distribution-hub.html",
+    "selling-customer-service-hub.html"
   ]);
   const pageLabels = {
     "mission-control.html": "Mission Control",
@@ -22,6 +25,9 @@
     "marketing-functions-hub.html": "Marketing Operations HQ",
     "promotional-mix-hub.html": "Campaign Command Center",
     "market-research-hub.html": "Market Research Lab",
+    "pricing-strategy-hub.html": "Pricing Strategy Center",
+    "distribution-hub.html": "Distribution & Logistics Center",
+    "selling-customer-service-hub.html": "Customer Experience Center",
     "wolverine-agency.html": "Wolverine Marketing Agency",
     "student-mission-id.html": "Student Mission ID"
   };

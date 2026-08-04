@@ -119,6 +119,9 @@ async function runResponsiveQA(browser) {
     "branding-hub.html",
     "target-market-hub.html",
     "market-research-hub.html",
+    "pricing-strategy-hub.html",
+    "distribution-hub.html",
+    "selling-customer-service-hub.html",
     "wolverine-agency.html",
     "student-mission-id.html"
   ];

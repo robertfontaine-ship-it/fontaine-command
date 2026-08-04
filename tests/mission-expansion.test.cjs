@@ -59,9 +59,9 @@ test("the new department is connected to every student network surface", () => {
     "topic-hubs-admin.js"
   ];
   files.forEach(file => assert.match(read(file), /market-research-hub\.html|Market Research Lab/, file));
-  assert.match(read("topic-hubs.html"), /Six live departments/);
-  assert.match(read("topic-hubs.html"), /59 optional missions/);
-  assert.match(read("business-world.js"), /7 Locations Live/);
+  assert.match(read("topic-hubs.html"), /Nine live departments/);
+  assert.match(read("topic-hubs.html"), /89 optional missions/);
+  assert.match(read("business-world.js"), /10 Locations Live/);
 });
 
 test("classroom kit supports all seven periods and privacy-conscious roster cards", () => {

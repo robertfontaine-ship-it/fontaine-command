@@ -15,7 +15,18 @@
 
   function responses() {
     return [...document.querySelectorAll("[data-response], [data-prompt-index]")]
-      .map((field, index) => ({ step: index + 1, response: field.value.trim() }))
+      .map((field, index) => {
+        const label = field.closest("label");
+        const prompt = label
+          ? [...label.childNodes]
+            .filter(node => node !== field)
+            .map(node => node.textContent || "")
+            .join(" ")
+            .replace(/\s+/g, " ")
+            .trim()
+          : "";
+        return { step: index + 1, prompt, response: field.value.trim() };
+      })
       .filter(item => item.response);
   }
 

@@ -10,23 +10,36 @@
     branding:{title:"Brand Studio",href:"branding-hub.html"},
     "target-market":{title:"Consumer Intelligence Center",href:"target-market-hub.html"},
     "four-ps":{title:"Strategy War Room",href:"four-ps-hub.html"},
-    functions:{title:"Marketing Operations HQ",href:"marketing-functions-hub.html"},
-    promotion:{title:"Campaign Command Center",href:"promotional-mix-hub.html"},
+    "marketing-functions":{title:"Marketing Operations HQ",href:"marketing-functions-hub.html"},
+    "promotional-mix":{title:"Campaign Command Center",href:"promotional-mix-hub.html"},
     "market-research":{title:"Market Research Lab",href:"market-research-hub.html"},
+    pricing:{title:"Pricing Strategy Center",href:"pricing-strategy-hub.html"},
+    distribution:{title:"Distribution & Logistics Center",href:"distribution-hub.html"},
+    service:{title:"Customer Experience Center",href:"selling-customer-service-hub.html"},
     agency:{title:"Wolverine Marketing Agency",href:"wolverine-agency.html"}
   };
+  const TOPIC_ALIASES={functions:"marketing-functions",promotion:"promotional-mix"};
+  const DEPARTMENT_TOPICS=["branding","target-market","four-ps","marketing-functions","promotional-mix","market-research","pricing","distribution","service"];
   const DAILY = [
     {title:"Brand Detective",brief:"Choose a real brand and identify three clues that reveal its personality and target customer.",topic:"branding",level:"Quick Mission",minutes:"8–10 minutes"},
     {title:"Audience Undercover",brief:"Study one advertisement and build the most specific target-market profile the evidence supports.",topic:"target-market",level:"Quick Mission",minutes:"10 minutes"},
     {title:"Marketing Mix Repair",brief:"Find one Product, Price, Place, or Promotion decision that does not fit its customer and repair it.",topic:"four-ps",level:"Skill Mission",minutes:"15–20 minutes"},
-    {title:"Department Breakdown",brief:"Choose a business action and explain which marketing functions must cooperate to make it work.",topic:"functions",level:"Skill Mission",minutes:"15–20 minutes"},
-    {title:"Campaign Decision Room",brief:"Choose the best promotional tool for a specific audience, goal, message, and required action.",topic:"promotion",level:"Quick Mission",minutes:"10 minutes"},
+    {title:"Department Breakdown",brief:"Choose a business action and explain which marketing functions must cooperate to make it work.",topic:"marketing-functions",level:"Skill Mission",minutes:"15–20 minutes"},
+    {title:"Campaign Decision Room",brief:"Choose the best promotional tool for a specific audience, goal, message, and required action.",topic:"promotional-mix",level:"Quick Mission",minutes:"10 minutes"},
     {title:"Evidence Reality Check",brief:"Audit one survey question, sample, or data claim and repair the research before it drives a bad decision.",topic:"market-research",level:"Quick Mission",minutes:"10 minutes"},
-    {title:"Sunday Strategy Reset",brief:"Review your completed missions and choose the department where your next skill upgrade should happen.",topic:"branding",level:"Reflection",minutes:"5 minutes"}
+    {title:"Price Signal Scan",brief:"Choose an offer and explain what its price communicates about value, customer, position, and business goal.",topic:"pricing",level:"Quick Mission",minutes:"8–10 minutes"},
+    {title:"Access Friction Hunt",brief:"Map how a customer discovers, buys, receives, and returns an offer, then repair the biggest barrier.",topic:"distribution",level:"Quick Mission",minutes:"10 minutes"},
+    {title:"Feature-to-Benefit Translator",brief:"Turn four product features into honest benefits connected to one customer’s stated need.",topic:"service",level:"Quick Mission",minutes:"8–10 minutes"},
+    {title:"Strategy Reset",brief:"Review your completed missions and choose the department where your next skill upgrade should happen.",topic:"branding",level:"Reflection",minutes:"5 minutes"}
   ];
+  const canonicalTopic=topic=>TOPIC_ALIASES[topic]||topic;
+  function dailyMission(date=new Date()){
+    const day=Math.floor(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())/86400000);
+    return DAILY[((day%DAILY.length)+DAILY.length)%DAILY.length];
+  }
   function collect(){
     const identity=missionStore.getActiveProfile();
-    const missions=missionStore.getAllHistory({profile:identity}).sort((a,b)=>new Date(b.submittedAt||b.completedAt||0)-new Date(a.submittedAt||a.completedAt||0));
+    const missions=missionStore.getAllHistory({profile:identity}).map(item=>({...item,topic:canonicalTopic(item.topic)})).sort((a,b)=>new Date(b.submittedAt||b.completedAt||0)-new Date(a.submittedAt||a.completedAt||0));
     const xp=missions.reduce((sum,item)=>sum+Number(item.xp??missionStore.xpForEntries(item.requestedEntries??item.entries)),0);
     const weekly=missionStore.weeklyEntrySummary({profile:identity}).total;
     const topics=new Set(missions.map(item=>item.topic));
@@ -41,7 +54,7 @@
     if(data.missions.length>=10)badges.push(["🏆","Ten Deep","Completed ten missions"]);
     if(data.topics.size>=3)badges.push(["🧭","Explorer","Worked in three departments"]);
     if(data.topics.has("agency"))badges.push(["💼","Agency Rookie","Completed a client project"]);
-    if(["branding","target-market","four-ps","functions","promotion","market-research"].every(topic=>data.topics.has(topic)))badges.push(["🌐","Networked","Worked in all six live departments"]);
+    if(DEPARTMENT_TOPICS.every(topic=>data.topics.has(topic)))badges.push(["🌐","Networked","Worked in all nine live departments"]);
     if(data.xp>=175)badges.push(["🧠","Strategy Mind","Reached Brand Strategist rank"]);
     return badges;
   }
@@ -70,7 +83,7 @@
       document.getElementById("continueMission").href=department.href;
       document.getElementById("continueMission").textContent="Continue in department";
     }
-    const daily=DAILY[(new Date().getDay()+6)%7],department=TOPICS[daily.topic];
+    const daily=dailyMission(),department=TOPICS[daily.topic];
     document.getElementById("dailyTitle").textContent=daily.title;
     document.getElementById("dailyBrief").textContent=daily.brief;
     document.getElementById("dailyMeta").innerHTML=`<span>${daily.level}</span><span>${daily.minutes}</span><span>${department.title}</span>`;
