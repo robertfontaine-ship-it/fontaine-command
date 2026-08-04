@@ -23,9 +23,10 @@ async function run(browser){
 
   await page.locator("#transitStart").click();
   await page.locator("#transitRight").click();
-  await wait(850);
+  await wait(1250);
   assert.equal(await page.locator("#transitMessage").isHidden(),true);
   assert.ok(Number(await page.locator("#transitTime").innerText())<20);
+  assert.ok(Number(await page.locator("#transitScore").innerText())>0);
   assert.match(await page.locator("#transitRunner").getAttribute("style"),/70%/);
 
   await page.locator('[data-mission-id="WRS-20"]').click();
