@@ -5,7 +5,8 @@
   const TOPICS={
     branding:"Branding", "target-market":"Target Market", "four-ps":"The 4Ps",
     "marketing-functions":"Marketing Functions", "promotional-mix":"Promotional Mix", "market-research":"Market Research",
-    pricing:"Pricing Strategy", distribution:"Distribution", service:"Selling & Customer Service", agency:"Wolverine Agency"
+    pricing:"Pricing Strategy", distribution:"Distribution", service:"Selling & Customer Service",
+    "startup-street":"Startup Street", agency:"Wolverine Agency"
   };
   const TOPIC_ALIASES={functions:"marketing-functions",promotion:"promotional-mix"};
   const DEPARTMENT_TOPICS=["branding","target-market","four-ps","marketing-functions","promotional-mix","market-research","pricing","distribution","service"];
@@ -35,7 +36,7 @@
   function nextRank(xp){return RANKS.find(r=>xp<r.xp)||null;}
   function codeFor(identity){if(!identity.first||!identity.last||!identity.period)return"NOT-SET";const base=`${identity.first[0]}${identity.last}${identity.period}`.toUpperCase();let hash=0;for(const c of `${identity.first}${identity.last}${identity.period}`)hash=(hash*31+c.charCodeAt(0))%9999;return `FMN-${base}-${String(hash).padStart(4,"0")}`;}
   function badges(data){
-    const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0;
+    const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0,startup=data.topicData["startup-street"]?.missions.size||0;
     const allDepartments=DEPARTMENT_TOPICS.every(topic=>(data.topicData[topic]?.missions.size||0)>=1);
     return [
       {icon:"🚀",name:"First Mission",desc:"Complete your first mission.",on:count>=1},
@@ -43,7 +44,9 @@
       {icon:"🏆",name:"Ten Deep",desc:"Complete ten missions.",on:count>=10},
       {icon:"🧭",name:"Explorer",desc:"Complete work in three departments.",on:topics>=3},
       {icon:"💼",name:"Agency Rookie",desc:"Complete your first client project.",on:agency>=1},
-      {icon:"🌐",name:"Networked",desc:"Complete work in all nine live departments.",on:allDepartments},
+      {icon:"💡",name:"Founder",desc:"Complete your first Startup Street mission.",on:startup>=1},
+      {icon:"🚀",name:"Launch Ready",desc:"Complete five Startup Street missions.",on:startup>=5},
+      {icon:"🌐",name:"Networked",desc:"Complete work in all nine marketing departments.",on:allDepartments},
       {icon:"🧠",name:"Strategy Mind",desc:"Reach 175 XP.",on:data.xp>=175},
       {icon:"🎯",name:"Focused Marketer",desc:"Reach 325 XP.",on:data.xp>=325},
       {icon:"👑",name:"Industry Legend",desc:"Reach 1,200 XP.",on:data.xp>=1200}
