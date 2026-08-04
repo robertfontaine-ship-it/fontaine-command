@@ -109,6 +109,7 @@
     }
     if (currentFile === "wolverine-agency.html") {
       return [
+        { href: "#assigned-projects", label: "Assigned projects" },
         { href: "#roles", label: "Agency roles" },
         { href: "#briefs", label: "Client briefs" },
         { href: "#agencyHistory", label: "My portfolio" }
@@ -163,7 +164,7 @@
   }
 
   function closeModalFromKeyboard(modal) {
-    const closeButton = modal.querySelector(".modal-close") || [...modal.querySelectorAll("[data-close-modal], [data-close-id], [data-close-agency-profile], [data-close-agency-project]")].find(element => !element.classList.contains("modal-backdrop"));
+    const closeButton = modal.querySelector(".modal-close") || [...modal.querySelectorAll("[data-close-modal], [data-close-id], [data-close-agency-profile], [data-close-agency-join], [data-close-agency-project]")].find(element => !element.classList.contains("modal-backdrop"));
     closeButton?.click();
   }
 

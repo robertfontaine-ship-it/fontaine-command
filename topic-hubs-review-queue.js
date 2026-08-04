@@ -105,7 +105,7 @@
     if (reviewFilters.period !== "All" && String(item.period) !== reviewFilters.period) return false;
     if (reviewFilters.status !== "All" && status !== reviewFilters.status) return false;
     if (!search) return true;
-    return [item.student, item.topic, item.mission, item.receiptCode]
+    return [item.student, item.topic, item.mission, item.receiptCode, item.projectLaunchId, item.teamName, item.agencyRole]
       .join(" ")
       .toLowerCase()
       .includes(search);
@@ -138,8 +138,16 @@
 
   function responseList(item) {
     return (item.responses || [])
-      .map(row => `<div class="review-response"><strong>Step ${esc(row.step)}</strong><p>${esc(row.response)}</p></div>`)
+      .map(row => `<div class="review-response"><strong>Step ${esc(row.step)}</strong>${row.prompt ? `<span class="review-response-prompt">${esc(row.prompt)}</span>` : ""}<p>${esc(row.response)}</p></div>`)
       .join("");
+  }
+
+  function agencyContext(item) {
+    if (!item.projectLaunchId && !item.teamName && !item.agencyRole) return "";
+    const roster = Array.isArray(item.teamMembers) && item.teamMembers.length
+      ? `<div class="mission-review-team-roster">${item.teamMembers.map(member => `<span>${esc(member.student)} — ${esc(member.role)}</span>`).join("")}</div>`
+      : "";
+    return `<div class="mission-review-agency-context"><strong>Agency accountability</strong><div><span><b>Project:</b> ${esc(item.projectLaunchId || "Open brief")}</span>${item.teamName ? `<span><b>Team:</b> ${esc(item.teamName)}</span>` : ""}${item.agencyRole ? `<span><b>Assigned role:</b> ${esc(item.agencyRole)}</span>` : ""}</div>${roster}</div>`;
   }
 
   function reviewHistoryList(item) {
@@ -165,6 +173,7 @@
         </div>
       </div>
       <div class="mission-review-meta"><span><strong>Receipt:</strong> ${esc(item.receiptCode)}</span><span><strong>Imported:</strong> ${formatDate(item.importedAt || item.submittedAt)}</span>${item.resubmittedAt ? `<span><strong>Resubmitted:</strong> ${formatDate(item.resubmittedAt)} • Revision ${Number(item.revisionCount || 1)}</span>` : ""}</div>
+      ${agencyContext(item)}
       <details class="mission-review-evidence"><summary>Review ${Number(item.responses?.length || 0)} student responses</summary><div class="mission-review-responses">${responseList(item)}</div></details>
       ${item.teacherNote ? `<div class="briefing-callout"><strong>Teacher note:</strong> ${esc(item.teacherNote)}</div>` : ""}
       ${reviewHistoryList(item)}
@@ -577,7 +586,7 @@
     const queue = readQueue();
     const admin = readAdmin();
     const report = periodSummary(queue, admin);
-    const rows = [["Week", "Record Type", "Student", "Period", "Topic or Source", "Mission", "Status", "Revision Count", "Entries", "Receipt", "Submitted or Approved", "Reviewed", "Teacher Note"]];
+    const rows = [["Week", "Record Type", "Student", "Period", "Topic or Source", "Mission", "Project Launch", "Team", "Agency Role", "Status", "Revision Count", "Entries", "Receipt", "Submitted or Approved", "Reviewed", "Teacher Note"]];
     report.weeklyQueue.forEach(item => rows.push([
       report.week,
       "Submission",
@@ -585,6 +594,9 @@
       item.period,
       item.topic,
       item.mission,
+      item.projectLaunchId || "",
+      item.teamName || "",
+      item.agencyRole || "",
       item.status || "Pending",
       Number(item.revisionCount || 0),
       Number(item.approvedEntries || 0),
@@ -599,6 +611,9 @@
       item.name,
       item.period,
       item.source,
+      "",
+      "",
+      "",
       "",
       "Entry awarded",
       "",

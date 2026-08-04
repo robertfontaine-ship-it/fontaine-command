@@ -29,6 +29,7 @@
         <h1>Turn marketing knowledge into client-ready work.</h1>
         <p>Choose a professional role, accept a client brief, complete the work order, and generate a review packet for teacher or client feedback.</p>
         <div class="mission-actions">
+          <button class="mission-button primary" id="joinAgencyProject" type="button">Join teacher project</button>
           <a class="mission-button primary" href="#roles">Choose your role</a>
           <a class="mission-button secondary" href="#briefs">View client briefs</a>
         </div>
@@ -56,6 +57,14 @@
         <article><span>3</span><h3>Accept a brief</h3><p>Read the client problem, audience, constraints, and required deliverables.</p></article>
         <article><span>4</span><h3>Submit the packet</h3><p>Complete every prompt and copy the client review packet before closing it.</p></article>
       </div>
+    </section>
+
+    <section class="mission-section" id="assigned-projects">
+      <div class="section-heading">
+        <div><p class="eyebrow">Teacher-launched work</p><h2>My Assigned Agency Projects</h2></div>
+        <p>Open the link from your teacher—or paste its project code—to receive the exact client brief, team roster, role assignment, due date, and individual evidence requirements.</p>
+      </div>
+      <div class="agency-assigned-grid" id="agencyAssignedGrid"></div>
     </section>
 
     <section class="mission-section" id="roles">
@@ -109,6 +118,35 @@
     </section>
   </div>
 
+  <div class="mission-modal" id="agencyJoinModal" hidden>
+    <div class="modal-backdrop" data-close-agency-join></div>
+    <section class="modal-panel agency-join-panel" role="dialog" aria-modal="true" aria-labelledby="agencyJoinTitle">
+      <button class="modal-close" type="button" data-close-agency-join aria-label="Close project join">×</button>
+      <p class="eyebrow">Project check-in</p>
+      <h2 id="agencyJoinTitle">Join a Teacher-Launched Project</h2>
+      <p>Open the link your teacher shared, or paste the complete Agency project code below. Team members must choose their own name from the assigned roster.</p>
+      <form id="agencyJoinForm">
+        <label>Project link or code<textarea id="agencyLaunchCode" rows="4" placeholder="Paste the text beginning with FMN-AGENCY-LAUNCH:"></textarea></label>
+        <button class="mission-button secondary full" id="readAgencyLaunch" type="button">Read project assignment</button>
+        <div class="agency-join-preview" id="agencyJoinPreview" hidden></div>
+        <div id="agencyTeamJoinFields" hidden>
+          <label>Choose your assigned name<select id="agencyTeamMemberSelect"></select></label>
+          <p class="agency-join-note">Your class period and Agency role will be set from the teacher’s roster.</p>
+        </div>
+        <div id="agencySoloJoinFields" hidden>
+          <div class="profile-fields">
+            <label>First name<input id="agencyJoinFirst" required /></label>
+            <label>Last initial<input id="agencyJoinLast" maxlength="1" required /></label>
+            <label>Class period<select id="agencyJoinPeriod" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          </div>
+          <label>Choose your Agency role<select id="agencyJoinRole"></select></label>
+        </div>
+        <div class="agency-join-status" id="agencyJoinStatus" role="status" aria-live="polite"></div>
+        <button class="mission-button primary full" id="acceptAgencyLaunch" type="submit" hidden>Join project and open my work order</button>
+      </form>
+    </section>
+  </div>
+
   <div class="mission-modal" id="agencyProjectModal" hidden>
     <div class="modal-backdrop" data-close-agency-project></div>
     <section class="modal-panel agency-project-panel" role="dialog" aria-modal="true" aria-labelledby="agencyProjectTitle">
@@ -144,6 +182,7 @@
     <strong>Wolverine Marketing Agency</strong>
     <span>Sports &amp; Entertainment Marketing • Fashion Marketing • Entrepreneurship</span>
   </footer>
+  <script src="agency-project-kit.js"></script>
   <script src="mission-data-store.js"></script>
   <script src="mission-autosave.js"></script>
   <script src="mission-accessibility.js"></script>

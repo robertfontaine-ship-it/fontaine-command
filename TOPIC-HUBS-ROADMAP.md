@@ -111,7 +111,7 @@ Mission levels:
 
 - Five live departments: Brand Studio, Consumer Intelligence Center, Strategy War Room, Marketing Operations HQ, and Campaign Command Center.
 - Forty-nine Quick, Skill, and Boss missions.
-- Wolverine Marketing Agency with six career roles and six client briefs.
+- Wolverine Marketing Agency with six career roles, six editable client-brief starters, teacher-launched project links, and multi-role team rosters.
 - Mission Control, Mission IDs, XP, seven reputation ranks, badges, and department progress.
 - Teacher review packets, a review queue, approval ledger, weekly drawing, and CSV export.
 - Period selectors covering Periods 1–7.
@@ -177,6 +177,12 @@ The Mission Network should feel like one classroom learning operating system, no
 - Added a seven-period weekly participation summary, revision-cycle tracking, entry totals, and a detailed weekly CSV report.
 - Completed browser coverage from student packet copy through teacher return, student revision, batch approval, reporting, weighted drawing, and phone-width teacher use.
 - Added a dedicated Mission Network GitHub QA workflow so data, accessibility, and browser safeguards run automatically when relevant PR files change.
+- Added a teacher Agency project launcher that turns any built-in or saved custom brief into one portable student link without a paid account or shared database.
+- Added editable and reusable client-brief templates, Periods 1–7, due dates, solo or team formats, saved launches, duplication, and student-link/project-code sharing.
+- Added two-to-six-student team rosters with unique professional roles, profile-isolated project joining, assigned work orders, and portable backup/restore support.
+- Added role-specific client packets plus three individual accountability checks covering personal work, decision impact, and teammate handoffs.
+- Added Agency team, role, project-code, prompt, and roster context to the teacher review queue and weekly CSV export.
+- Added end-to-end browser coverage from teacher launch through two student roles, individual submissions, batch approval, weekly reporting, and phone-width use.
 
 ## Ordered Build Plan
 
@@ -190,8 +196,8 @@ The Mission Network should feel like one classroom learning operating system, no
 
 ### P1 — Reduce teacher setup time
 
-1. Add an Agency project launcher and editable client-brief templates.
-2. Add team rosters, multi-role packets, and individual accountability evidence.
+1. ✅ Add an Agency project launcher and editable client-brief templates.
+2. ✅ Add team rosters, multi-role packets, and individual accountability evidence.
 3. ✅ Add period and status filters, bulk review actions, and a weekly participation summary.
 4. Add printable student check-in cards and a one-page substitute-mode guide.
 

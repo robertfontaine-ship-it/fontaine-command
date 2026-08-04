@@ -95,7 +95,8 @@
       link.remove();
       setTimeout(()=>URL.revokeObjectURL(url),0);
       const draftCount=Object.keys(payload.missionData.drafts||{}).length;
-      transferStatus(`Backup downloaded for ${payload.profile.first} ${payload.profile.last}. It includes ${draftCount} autosaved ${draftCount===1?"draft":"drafts"}.`,"success");
+      const launchCount=Object.keys(payload.missionData.agencyLaunches||{}).length;
+      transferStatus(`Backup downloaded for ${payload.profile.first} ${payload.profile.last}. It includes ${draftCount} autosaved ${draftCount===1?"draft":"drafts"} and ${launchCount} assigned Agency ${launchCount===1?"project":"projects"}.`,"success");
     }catch(error){
       transferStatus(error.message||"The profile backup could not be created.","error");
     }
@@ -115,7 +116,7 @@
       }
       const result=missionStore.importProfile(payload,{mode:"merge"});
       render();
-      transferStatus(`Progress restored for ${result.profile.first} ${result.profile.last}.: ${result.missions} completed ${result.missions===1?"mission":"missions"} and ${result.drafts} autosaved ${result.drafts===1?"draft":"drafts"}.`,"success");
+      transferStatus(`Progress restored for ${result.profile.first} ${result.profile.last}.: ${result.missions} completed ${result.missions===1?"mission":"missions"}, ${result.drafts} autosaved ${result.drafts===1?"draft":"drafts"}, and ${result.agencyLaunches} assigned Agency ${result.agencyLaunches===1?"project":"projects"}.`,"success");
     }catch(error){
       transferStatus(error.message||"That file could not be imported.","error");
     }finally{

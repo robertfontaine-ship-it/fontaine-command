@@ -47,7 +47,7 @@
 
   function emptyData() {
     return {
-      version: 3,
+      version: 4,
       activeProfileKey: "",
       profiles: {},
       migrations: {}
@@ -59,7 +59,7 @@
     return {
       ...emptyData(),
       ...parsed,
-      version: 3,
+      version: 4,
       profiles: parsed?.profiles || {},
       migrations: parsed?.migrations || {}
     };
@@ -78,7 +78,8 @@
       profile: normalized,
       topics: existing.topics || {},
       drafts: existing.drafts || {},
-      agencyRole: existing.agencyRole || ""
+      agencyRole: existing.agencyRole || "",
+      agencyLaunches: existing.agencyLaunches || {}
     };
     return { key, record: data.profiles[key] };
   }
@@ -396,7 +397,8 @@
       missionData: {
         topics: clone(target.record.topics || {}),
         drafts: clone(target.record.drafts || {}),
-        agencyRole: String(target.record.agencyRole || "")
+        agencyRole: String(target.record.agencyRole || ""),
+        agencyLaunches: clone(target.record.agencyLaunches || {})
       }
     };
   }
@@ -407,7 +409,8 @@
         profile: clone(imported.profile || local.profile || {}),
         topics: clone(imported.topics || {}),
         drafts: clone(imported.drafts || {}),
-        agencyRole: String(imported.agencyRole || "")
+        agencyRole: String(imported.agencyRole || ""),
+        agencyLaunches: clone(imported.agencyLaunches || {})
       };
     }
 
@@ -415,7 +418,8 @@
       profile: clone(local.profile || imported.profile || {}),
       topics: clone(local.topics || {}),
       drafts: clone(local.drafts || {}),
-      agencyRole: String(local.agencyRole || imported.agencyRole || "")
+      agencyRole: String(local.agencyRole || imported.agencyRole || ""),
+      agencyLaunches: clone(local.agencyLaunches || {})
     };
 
     Object.entries(imported.topics || {}).forEach(([topic, topicData]) => {
@@ -434,6 +438,10 @@
     Object.entries(imported.drafts || {}).forEach(([key, draft]) => {
       const prior = merged.drafts[key];
       if (!prior || itemTime(draft) >= itemTime(prior)) merged.drafts[key] = clone(draft);
+    });
+    Object.entries(imported.agencyLaunches || {}).forEach(([key, launch]) => {
+      const prior = merged.agencyLaunches[key];
+      if (!prior || itemTime(launch) >= itemTime(prior)) merged.agencyLaunches[key] = clone(launch);
     });
     return merged;
   }
@@ -455,7 +463,8 @@
       profile,
       topics: payload.missionData.topics && typeof payload.missionData.topics === "object" ? payload.missionData.topics : {},
       drafts: payload.missionData.drafts && typeof payload.missionData.drafts === "object" ? payload.missionData.drafts : {},
-      agencyRole: String(payload.missionData.agencyRole || "")
+      agencyRole: String(payload.missionData.agencyRole || ""),
+      agencyLaunches: payload.missionData.agencyLaunches && typeof payload.missionData.agencyLaunches === "object" ? payload.missionData.agencyLaunches : {}
     };
     data.profiles[target.key] = mergeProfileRecord(target.record, imported, options.mode === "replace");
     data.profiles[target.key].profile = profile;
@@ -465,7 +474,8 @@
     return {
       profile: clone(profile),
       missions: countCompletions(data.profiles[target.key]),
-      drafts: Object.keys(data.profiles[target.key].drafts || {}).length
+      drafts: Object.keys(data.profiles[target.key].drafts || {}).length,
+      agencyLaunches: Object.keys(data.profiles[target.key].agencyLaunches || {}).length
     };
   }
 
@@ -521,6 +531,52 @@
     return target.record.agencyRole;
   }
 
+  function saveAgencyLaunch(launch, options = {}) {
+    const launchId = String(launch?.launchId || "").trim();
+    if (!launchId) throw new Error("An Agency launch ID is required.");
+    const data = readData();
+    const target = ensureProfile(data, options.profile || resolveProfile(data)?.record?.profile || {});
+    if (!target) throw new Error("Set a complete student identity before joining an Agency project.");
+    const saved = {
+      ...clone(target.record.agencyLaunches?.[launchId] || {}),
+      ...clone(launch),
+      launchId,
+      updatedAt: launch.updatedAt || new Date().toISOString()
+    };
+    target.record.agencyLaunches = target.record.agencyLaunches || {};
+    target.record.agencyLaunches[launchId] = saved;
+    data.activeProfileKey = target.key;
+    writeData(data);
+    localStorage.setItem(IDENTITY_KEY, JSON.stringify(target.record.profile));
+    return clone(saved);
+  }
+
+  function getAgencyLaunch(launchId, options = {}) {
+    const data = readData();
+    const target = resolveProfile(data, options.profile);
+    if (!target) return null;
+    return clone(target.record.agencyLaunches?.[String(launchId || "").trim()] || null);
+  }
+
+  function getAgencyLaunches(options = {}) {
+    const data = readData();
+    const target = resolveProfile(data, options.profile);
+    if (!target) return [];
+    return Object.values(target.record.agencyLaunches || {})
+      .map(clone)
+      .sort((a, b) => itemTime(b) - itemTime(a));
+  }
+
+  function deleteAgencyLaunch(launchId, options = {}) {
+    const data = readData();
+    const target = resolveProfile(data, options.profile);
+    const key = String(launchId || "").trim();
+    if (!target?.record?.agencyLaunches?.[key]) return false;
+    delete target.record.agencyLaunches[key];
+    writeData(data);
+    return true;
+  }
+
   initialize();
 
   window.FontaineMissionStore = Object.freeze({
@@ -548,6 +604,10 @@
     clearAllProfiles,
     getAgencyRole,
     setAgencyRole,
+    saveAgencyLaunch,
+    getAgencyLaunch,
+    getAgencyLaunches,
+    deleteAgencyLaunch,
     xpForEntries
   });
 })();

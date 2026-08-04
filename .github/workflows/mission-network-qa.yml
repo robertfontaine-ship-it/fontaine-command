@@ -14,8 +14,10 @@ on:
       - 'marketing-functions-hub.*'
       - 'promotional-mix-hub.*'
       - 'wolverine-agency.*'
+      - 'agency-project-*'
       - 'index.html'
       - 'tests/mission-*.test.cjs'
+      - 'tests/agency-*.test.cjs'
       - '.github/workflows/mission-network-qa.yml'
   workflow_dispatch:
 
@@ -35,7 +37,7 @@ jobs:
           node-version: '24'
 
       - name: Run Mission Network data and accessibility checks
-        run: node --test tests/mission-network.test.cjs tests/mission-network-accessibility.test.cjs
+        run: node --test tests/mission-network.test.cjs tests/mission-network-accessibility.test.cjs tests/agency-project-launcher.test.cjs
 
       - name: Install Playwright
         run: |
@@ -47,3 +49,4 @@ jobs:
           node tests/mission-network-browser.test.cjs
           node tests/mission-network-accessibility-browser.test.cjs
           node tests/mission-review-workflow-browser.test.cjs
+          node tests/agency-team-workflow-browser.test.cjs

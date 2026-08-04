@@ -315,6 +315,48 @@
   white-space: pre-wrap;
 }
 
+.review-response-prompt {
+  display: block;
+  margin-top: 4px;
+  color: #625d73;
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.mission-review-agency-context {
+  display: grid;
+  gap: 9px;
+  margin: 12px 0;
+  padding: 13px;
+  border: 1px solid #d8caee;
+  border-radius: 12px;
+  background: #f7f2fd;
+}
+
+.mission-review-agency-context > strong {
+  color: #4b1e9b;
+}
+
+.mission-review-agency-context > div,
+.mission-review-team-roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mission-review-agency-context span,
+.mission-review-team-roster span {
+  overflow-wrap: anywhere;
+}
+
+.mission-review-team-roster span {
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: #ece4f8;
+  color: #55466d;
+  font-size: 0.75rem;
+}
+
 .mission-review-history ol {
   display: grid;
   gap: 8px;
