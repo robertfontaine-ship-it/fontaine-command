@@ -1,7 +1,7 @@
 const assert=require("node:assert/strict");
 const {spawn}=require("node:child_process");
 const {chromium}=require("playwright");
-const PORT=4186;
+const PORT=4187;
 const BASE=`http://127.0.0.1:${PORT}`;
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function waitForServer(){for(let attempt=0;attempt<40;attempt+=1){try{if((await fetch(`${BASE}/wrs-career-center.html`)).ok)return;}catch{}await wait(250);}throw new Error("WRS Career Center QA server did not start.");}
@@ -56,9 +56,9 @@ async function run(browser){
   assert.equal(await page.locator('a[href="wrs-career-center.html"]').count()>0,true);
   assert.match(await page.locator(".status-tag.open").first().innerText(),/12 locations live/i);
   await assertNoOverflow(page,"Business World with WRS Career Center mobile");
-  await page.getByRole("button",{name:/Passport/i}).click();
+  await page.locator('[data-nav="passport"]').click();
   assert.match(await page.locator('[data-wrs-career-card]').innerText(),/1 of 22 competencies[\s\S]*Stamped/i);
-  await page.getByRole("button",{name:/Awards/i}).click();
+  await page.locator('[data-nav="achievements"]').click();
   assert.match(await page.locator('[data-wrs-career-badge]').first().innerText(),/Work Ready[\s\S]*Earned/i);
   assert.deepEqual(errors,[]);
   await context.close();
