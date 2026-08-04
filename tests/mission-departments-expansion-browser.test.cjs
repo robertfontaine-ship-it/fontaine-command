@@ -91,7 +91,7 @@ async function runDepartmentFlow(browser) {
   assert.match(packet.responses[0].response, /target-customer evidence/i);
 
   await page.goto(`${BASE}/student-mission-id.html`, { waitUntil: "load" });
-  assert.equal(await page.locator(".topic-progress-card").count(), 11, "Mission ID shows nine departments, Startup Street, and Agency");
+  assert.equal(await page.locator(".topic-progress-card").count(), 12, "Mission ID shows nine departments, Startup Street, WRS Career Center, and Agency");
   const progress = await page.locator("#topicProgress").innerText();
   assert.match(progress, /Pricing Strategy[\s\S]*1 mission completed/i);
   assert.match(progress, /Distribution[\s\S]*1 mission completed/i);
@@ -107,10 +107,11 @@ async function runDepartmentFlow(browser) {
   }
 
   await page.goto(`${BASE}/business-world.html`, { waitUntil: "load" });
-  assert.match(await page.locator(".status-tag.open").first().innerText(), /11 locations live/i);
+  assert.match(await page.locator(".status-tag.open").first().innerText(), /12 locations live/i);
   for (const department of departments) {
     assert.equal(await page.locator(`a[href="${department.route}"]`).count() > 0, true, `${department.route} is live in City Hall`);
   }
+  assert.equal(await page.locator('a[href="wrs-career-center.html"]').count()>0,true,"WRS Career Center is live in City Hall");
   await assertNoOverflow(page, "Business World expanded city mobile");
   assert.deepEqual(errors, []);
   await context.close();
