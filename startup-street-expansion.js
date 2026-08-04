@@ -45,11 +45,11 @@
       locked.replaceWith(link);
     }
     const status = screen.querySelector('.section-heading .status-tag.open');
-    if (status && /Locations Live/.test(status.textContent)) status.textContent = '11 Locations Live';
+    if (status && /Locations Live/.test(status.textContent) && status.textContent !== '11 Locations Live') status.textContent = '11 Locations Live';
     const news = [...screen.querySelectorAll('.news-item')].find((item) => item.textContent.includes('locations are open'));
-    if (news) news.innerHTML = '<span>🔥</span><div><strong>Eleven locations are open</strong><small>Ten learning districts plus Wolverine Agency.</small></div>';
+    if (news && !news.textContent.includes('Eleven locations')) news.innerHTML = '<span>🔥</span><div><strong>Eleven locations are open</strong><small>Ten learning districts plus Wolverine Agency.</small></div>';
     const next = [...screen.querySelectorAll('.news-item')].find((item) => item.textContent.includes('Next district'));
-    if (next) next.innerHTML = '<span>🧟</span><div><strong>Next district</strong><small>WRS Quest inside the Career Center.</small></div>';
+    if (next && !next.textContent.includes('WRS Quest inside the Career Center')) next.innerHTML = '<span>🧟</span><div><strong>Next district</strong><small>WRS Quest inside the Career Center.</small></div>';
     patchLatestLinks();
   }
 
@@ -77,9 +77,10 @@
       grid.insertAdjacentHTML('beforeend', `<article class="achievement-card ${badge.earned ? 'earned' : 'locked'}" data-startup-founder-badge><span class="achievement-icon">${badge.icon}</span><h3 style="margin-top:16px;">${badge.name}</h3><p>${badge.earned ? 'Unlocked and added to your Business World record.' : badge.description}</p><span class="status-tag ${badge.earned ? 'complete' : ''}">${badge.earned ? 'Earned' : 'Locked'}</span></article>`);
     });
     const earned = screen.querySelector('.page-header .status-tag.complete');
-    if (earned) {
+    if (earned && !earned.dataset.startupCounted) {
       const base = Number.parseInt(earned.textContent, 10) || 0;
       earned.textContent = `${base + badges.filter((badge) => badge.earned).length} Earned`;
+      earned.dataset.startupCounted = 'true';
     }
   }
 
@@ -89,7 +90,7 @@
     const latestId = latest.missionId || latest.id || 'Startup Mission';
     const latestHeading = [...screen.querySelectorAll('h2,h3')].find((item) => item.textContent.includes(latestId) || item.closest('.mission-card')?.textContent.includes('LATEST RECEIPT'));
     const card = latestHeading?.closest('.mission-card');
-    if (!card) return;
+    if (!card || card.dataset.startupPatched) return;
     const heading = card.querySelector('h2,h3');
     if (heading) heading.textContent = `${latestId} • Startup Street`;
     const link = card.querySelector('a');
@@ -97,6 +98,7 @@
       link.href = 'startup-street.html';
       link.textContent = 'RETURN TO STARTUP STREET';
     }
+    card.dataset.startupPatched = 'true';
   }
 
   let scheduled = false;
