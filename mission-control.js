@@ -16,6 +16,7 @@
     pricing:{title:"Pricing Strategy Center",href:"pricing-strategy-hub.html"},
     distribution:{title:"Distribution & Logistics Center",href:"distribution-hub.html"},
     service:{title:"Customer Experience Center",href:"selling-customer-service-hub.html"},
+    "startup-street":{title:"Startup Street",href:"startup-street.html"},
     agency:{title:"Wolverine Marketing Agency",href:"wolverine-agency.html"}
   };
   const TOPIC_ALIASES={functions:"marketing-functions",promotion:"promotional-mix"};
@@ -30,6 +31,7 @@
     {title:"Price Signal Scan",brief:"Choose an offer and explain what its price communicates about value, customer, position, and business goal.",topic:"pricing",level:"Quick Mission",minutes:"8–10 minutes"},
     {title:"Access Friction Hunt",brief:"Map how a customer discovers, buys, receives, and returns an offer, then repair the biggest barrier.",topic:"distribution",level:"Quick Mission",minutes:"10 minutes"},
     {title:"Feature-to-Benefit Translator",brief:"Turn four product features into honest benefits connected to one customer’s stated need.",topic:"service",level:"Quick Mission",minutes:"8–10 minutes"},
+    {title:"Problem Spotter",brief:"Find a repeated frustration, define the customer experiencing it, and turn the observation into a focused opportunity statement.",topic:"startup-street",level:"Quick Mission",minutes:"8–10 minutes"},
     {title:"Strategy Reset",brief:"Review your completed missions and choose the department where your next skill upgrade should happen.",topic:"branding",level:"Reflection",minutes:"5 minutes"}
   ];
   const canonicalTopic=topic=>TOPIC_ALIASES[topic]||topic;
@@ -54,14 +56,15 @@
     if(data.missions.length>=10)badges.push(["🏆","Ten Deep","Completed ten missions"]);
     if(data.topics.size>=3)badges.push(["🧭","Explorer","Worked in three departments"]);
     if(data.topics.has("agency"))badges.push(["💼","Agency Rookie","Completed a client project"]);
-    if(DEPARTMENT_TOPICS.every(topic=>data.topics.has(topic)))badges.push(["🌐","Networked","Worked in all nine live departments"]);
+    if(data.topics.has("startup-street"))badges.push(["💡","Founder","Completed a Startup Street mission"]);
+    if(DEPARTMENT_TOPICS.every(topic=>data.topics.has(topic)))badges.push(["🌐","Networked","Worked in all nine marketing departments"]);
     if(data.xp>=175)badges.push(["🧠","Strategy Mind","Reached Brand Strategist rank"]);
     return badges;
   }
   function render(){
     const data=collect(),rank=rankFor(data.xp),next=nextRank(data.xp),identity=data.identity;
     document.getElementById("mcWelcome").textContent=identity.first?`Welcome back, ${identity.first}.`:`Welcome to Mission Control.`;
-    document.getElementById("mcSubhead").textContent=identity.first?`Period ${identity.period} • Your progress is active across every live department.`:"Open My Mission ID and set your name and period before beginning a mission.";
+    document.getElementById("mcSubhead").textContent=identity.first?`Period ${identity.period} • Your progress is active across every live district.`:"Open My Mission ID and set your name and period before beginning a mission.";
     document.getElementById("mcRank").textContent=rank.name;
     document.getElementById("mcXp").textContent=`${data.xp} XP`;
     document.getElementById("mcXpStat").textContent=data.xp;
@@ -75,13 +78,13 @@
     document.getElementById("mcNextRank").textContent=next?`${next.xp-data.xp} XP until ${next.name}.`:`Maximum reputation achieved.`;
     const recent=data.missions[0];
     if(recent){
-      const department=TOPICS[recent.topic]||{title:"Marketing Department",href:"topic-hubs.html"};
-      document.getElementById("currentMissionTitle").textContent=`${recent.id} • ${department.title}`;
-      document.getElementById("currentMissionText").textContent="Your latest mission is saved. Reopen the department to review, revise, or start another challenge.";
+      const department=TOPICS[recent.topic]||{title:"Business District",href:"business-world.html"};
+      document.getElementById("currentMissionTitle").textContent=`${recent.id||recent.missionId} • ${department.title}`;
+      document.getElementById("currentMissionText").textContent="Your latest mission is saved. Reopen the district to review, revise, or start another challenge.";
       document.getElementById("currentMissionLink").href=department.href;
-      document.getElementById("currentMissionLink").textContent="Return to department";
+      document.getElementById("currentMissionLink").textContent="Return to district";
       document.getElementById("continueMission").href=department.href;
-      document.getElementById("continueMission").textContent="Continue in department";
+      document.getElementById("continueMission").textContent="Continue in district";
     }
     const daily=dailyMission(),department=TOPICS[daily.topic];
     document.getElementById("dailyTitle").textContent=daily.title;
