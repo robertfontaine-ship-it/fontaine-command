@@ -1,1 +1,382 @@
-.mission-review-queue{display:grid;gap:18px}.mission-review-import{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end;padding:16px;border:1px solid #ded8ea;border-radius:14px;background:#f8f5fc}.mission-review-import label{display:grid;gap:7px}.mission-review-import textarea{width:100%;min-height:92px;padding:11px 12px;border:1px solid #cec6da;border-radius:10px;resize:vertical}.mission-review-summary{display:flex;flex-wrap:wrap;gap:10px}.mission-review-summary span{padding:8px 11px;border-radius:999px;background:#f1edf5;color:#625d73}.mission-review-list{display:grid;gap:12px}.mission-review-item{box-shadow:none}.mission-review-item.approved{border-left:5px solid #18794e}.mission-review-item.revision-requested{border-left:5px solid #d48a00}.mission-review-item.rejected{border-left:5px solid #a62b38}.mission-review-meta{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0;color:#625d73;font-size:.84rem}.mission-review-item details{margin:12px 0}.mission-review-item summary{cursor:pointer;font-weight:850;color:#4b1e9b}.mission-review-responses{display:grid;gap:10px;margin-top:12px}.review-response{padding:13px;border:1px solid #ded8ea;border-radius:12px;background:#faf8fd}.review-response p{margin:5px 0 0;white-space:pre-wrap}.mission-review-actions{margin-top:14px}@media(max-width:680px){.mission-review-import{grid-template-columns:1fr}.mission-review-import .btn{width:100%}}
+.mission-review-queue {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.mission-review-queue .btn {
+  min-height: 44px;
+}
+
+.mission-review-import {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid #ded8ea;
+  border-radius: 14px;
+  background: #f8f5fc;
+}
+
+.mission-review-import label,
+.mission-review-filters label {
+  display: grid;
+  gap: 7px;
+  color: #4f485e;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.mission-review-import textarea,
+.mission-review-filters input,
+.mission-review-filters select {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 1px solid #cec6da;
+  border-radius: 10px;
+  background: #fff;
+  color: #24202c;
+  font: inherit;
+}
+
+.mission-review-import textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.mission-review-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mission-review-summary span {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #f1edf5;
+  color: #625d73;
+}
+
+.mission-weekly-report {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #d9d1e5;
+  border-radius: 14px;
+  background: #fcfbfe;
+}
+
+.mission-weekly-report > summary {
+  cursor: pointer;
+  color: #4b1e9b;
+  font-weight: 900;
+}
+
+.mission-weekly-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.mission-weekly-metrics div {
+  display: grid;
+  gap: 3px;
+  padding: 14px;
+  border: 1px solid #e0d9e9;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.mission-weekly-metrics strong {
+  color: #27143f;
+  font-size: 1.55rem;
+}
+
+.mission-weekly-metrics span {
+  color: #625d73;
+  font-size: 0.78rem;
+}
+
+.mission-weekly-table-wrap {
+  max-width: 100%;
+  margin-bottom: 14px;
+  overflow-x: auto;
+}
+
+.mission-weekly-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.mission-weekly-table th,
+.mission-weekly-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e6e0eb;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.mission-weekly-table thead th {
+  color: #625d73;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mission-weekly-table tbody th {
+  color: #4b1e9b;
+}
+
+.mission-weekly-total {
+  background: #f1edf5;
+  font-weight: 850;
+}
+
+.mission-review-worklist {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.mission-review-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+  padding: 14px;
+  border: 1px solid #ded8ea;
+  border-radius: 14px;
+  background: #f8f5fc;
+}
+
+.mission-review-filter-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mission-review-batch {
+  position: sticky;
+  z-index: 2;
+  top: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid #cfc1e9;
+  border-radius: 14px;
+  background: rgba(250, 248, 253, 0.97);
+  box-shadow: 0 8px 20px rgba(48, 28, 78, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.mission-review-batch > div:first-child {
+  display: grid;
+  gap: 2px;
+  min-width: 150px;
+}
+
+.mission-review-batch span {
+  color: #625d73;
+  font-size: 0.76rem;
+}
+
+.mission-review-list {
+  display: grid;
+  gap: 14px;
+}
+
+.mission-review-item {
+  min-width: 0;
+  box-shadow: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.mission-review-item.pending {
+  border-left: 5px solid #5b2aa1;
+}
+
+.mission-review-item.approved {
+  border-left: 5px solid #18794e;
+}
+
+.mission-review-item.revision-requested {
+  border-left: 5px solid #d48a00;
+}
+
+.mission-review-item.rejected {
+  border-left: 5px solid #a62b38;
+}
+
+.mission-review-item.selected {
+  border-color: #6e35b5;
+  background: #fbf8ff;
+  box-shadow: 0 0 0 2px rgba(110, 53, 181, 0.14);
+}
+
+.mission-review-item-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.mission-review-select {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: #f1edf5;
+  color: #4b1e9b;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.mission-review-select input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #5b2aa1;
+}
+
+.mission-review-title-row {
+  align-items: flex-start;
+}
+
+.mission-review-title-row h3 {
+  margin: 7px 0 4px;
+}
+
+.topic-admin-status.status-pending {
+  color: #4b1e9b;
+  background: #eee6fa;
+}
+
+.topic-admin-status.status-revision-requested {
+  color: #825200;
+  background: #fff0c9;
+}
+
+.topic-admin-status.status-rejected {
+  color: #8c1f2d;
+  background: #fde2e6;
+}
+
+.mission-review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 10px 0;
+  color: #625d73;
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.mission-review-evidence,
+.mission-review-history {
+  margin: 12px 0;
+}
+
+.mission-review-evidence > summary,
+.mission-review-history > summary {
+  min-height: 44px;
+  padding: 11px 0;
+  color: #4b1e9b;
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.mission-review-responses {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.review-response {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #ded8ea;
+  border-radius: 12px;
+  background: #faf8fd;
+}
+
+.review-response p {
+  margin: 5px 0 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.mission-review-history ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 24px;
+}
+
+.mission-review-history li {
+  padding: 10px 12px;
+  border-left: 3px solid #cfc1e9;
+  background: #faf8fd;
+}
+
+.mission-review-history p {
+  margin: 4px 0 0;
+}
+
+.mission-review-actions {
+  margin-top: 14px;
+}
+
+@media (max-width: 980px) {
+  .mission-review-filters,
+  .mission-weekly-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mission-review-batch {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .mission-review-import,
+  .mission-review-filters,
+  .mission-weekly-metrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mission-review-import .btn,
+  .mission-review-filter-actions,
+  .mission-review-filter-actions .btn,
+  .mission-review-batch .topic-admin-actions,
+  .mission-review-batch .btn,
+  .mission-review-actions .btn {
+    width: 100%;
+  }
+
+  .mission-review-batch .topic-admin-actions,
+  .mission-review-actions {
+    display: grid;
+  }
+
+  .mission-review-title-row {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-review-item {
+    transition: none;
+  }
+}

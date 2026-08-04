@@ -63,6 +63,7 @@ test("mission JavaScript parses", () => {
     "student-mission-id.js",
     "student-review-packet.js",
     "wolverine-agency.js",
+    "topic-hubs-review-queue.js",
     "target-market-hub.js",
     "four-ps-hub.js",
     "marketing-functions-hub.js",
@@ -485,6 +486,121 @@ test("returned work can be resubmitted and approved after the entry cap", () => 
   assert.equal(queue[0].status, "Approved");
   assert.equal(queue[0].approvedEntries, 0);
   assert.match(queue[0].teacherNote, /weekly cap/i);
+});
+
+test("teacher review workflow exposes filters, safe batch actions, history, and weekly reporting", () => {
+  const script = read("topic-hubs-review-queue.js");
+  const styles = read("topic-hubs-review-queue.css");
+  assert.match(script, /missionReviewPeriod/);
+  assert.match(script, /missionReviewStatus/);
+  assert.match(script, /batchApproveMissionReviews/);
+  assert.match(script, /batchReturnMissionReviews/);
+  assert.match(script, /reviewHistory/);
+  assert.match(script, /exportMissionWeeklyReport/);
+  assert.match(script, /Array\.from\(\{ length: 7 \}/, "weekly report covers Periods 1–7");
+  assert.match(styles, /\.mission-review-batch/);
+  assert.match(styles, /min-height:\s*44px/);
+  assert.match(styles, /overflow-x:\s*auto/);
+});
+
+test("batch review applies student caps, preserves an audit trail, and blocks duplicate credit", () => {
+  const localStorage = new MemoryStorage({
+    "fontaineTopicHubAdmin:v1": JSON.stringify({
+      settings: { entryCap: 10 },
+      ledgers: {
+        "2026-08-03": [{ name: "Alice A.", period: "1", source: "Prior work", entries: 8 }]
+      },
+      winners: {}
+    })
+  });
+  const field = { value: "" };
+  const notices = [];
+  const window = {
+    prompt: () => "Use more specific customer evidence.",
+    confirm: () => true
+  };
+  const document = {
+    getElementById: id => id === "missionReviewPacket" ? field : null,
+    querySelector: () => null,
+    querySelectorAll: () => []
+  };
+  const context = {
+    window,
+    document,
+    localStorage,
+    state: { page: "Other" },
+    render: () => {},
+    toast: message => notices.push(message),
+    Date,
+    JSON,
+    Object,
+    String,
+    Number,
+    Boolean,
+    Math,
+    Array,
+    Error,
+    Blob,
+    URL,
+    atob,
+    escape,
+    decodeURIComponent
+  };
+  vm.runInNewContext(read("topic-hubs-review-queue.js"), context);
+
+  const packet = ({ student, first, last, period, receiptCode, entries = 4 }) => `FMN-REVIEW:${Buffer.from(JSON.stringify({
+    version: 1,
+    student,
+    first,
+    last,
+    period,
+    topic: "Brand Studio",
+    mission: "BR-01 — Brand Snapshot",
+    receiptCode,
+    provisionalEntries: entries,
+    responses: [{ step: 1, response: "Specific marketing evidence and customer reasoning." }],
+    submittedAt: "2026-08-03T14:00:00Z"
+  }), "utf8").toString("base64")}`;
+
+  field.value = packet({ student: "Alice A.", first: "Alice", last: "A", period: "1", receiptCode: "BR-01-A", entries: 4 });
+  window.importMissionReview();
+  field.value = packet({ student: "Bob B.", first: "Bob", last: "B", period: "2", receiptCode: "BR-01-B", entries: 2 });
+  window.importMissionReview();
+  window.setMissionReviewSelected("BR-01-A", true);
+  window.setMissionReviewSelected("BR-01-B", true);
+  window.batchApproveMissionReviews();
+
+  let queue = JSON.parse(localStorage.getItem("fontaineMissionReviewQueue:v1"));
+  let admin = JSON.parse(localStorage.getItem("fontaineTopicHubAdmin:v1"));
+  assert.deepEqual(queue.map(item => item.status), ["Approved", "Approved"]);
+  assert.equal(queue.find(item => item.student === "Alice A.").approvedEntries, 2, "Alice only receives the two remaining entries");
+  assert.equal(queue.find(item => item.student === "Bob B.").approvedEntries, 2);
+  assert.equal(queue.every(item => item.reviewHistory.length === 1), true, "approval history is preserved");
+  assert.equal(admin.ledgers["2026-08-03"].length, 3);
+
+  queue[0].status = "Pending";
+  localStorage.setItem("fontaineMissionReviewQueue:v1", JSON.stringify(queue));
+  window.setMissionReviewSelected(queue[0].receiptCode, true);
+  window.batchApproveMissionReviews();
+  queue = JSON.parse(localStorage.getItem("fontaineMissionReviewQueue:v1"));
+  admin = JSON.parse(localStorage.getItem("fontaineTopicHubAdmin:v1"));
+  assert.equal(admin.ledgers["2026-08-03"].length, 3, "the same receipt cannot earn duplicate ledger credit");
+  assert.match(queue[0].teacherNote, /already present/i);
+
+  field.value = packet({ student: "Casey C.", first: "Casey", last: "C", period: "3", receiptCode: "BR-01-C", entries: 1 });
+  window.importMissionReview();
+  field.value = packet({ student: "Drew D.", first: "Drew", last: "D", period: "3", receiptCode: "BR-01-D", entries: 1 });
+  window.importMissionReview();
+  window.setMissionReviewSelected("BR-01-C", true);
+  window.setMissionReviewSelected("BR-01-D", true);
+  window.batchReturnMissionReviews();
+  queue = JSON.parse(localStorage.getItem("fontaineMissionReviewQueue:v1"));
+  const returned = queue.filter(item => ["BR-01-C", "BR-01-D"].includes(item.receiptCode));
+  assert.equal(returned.every(item => item.status === "Revision Requested"), true);
+  assert.equal(returned.every(item => item.teacherNote === "Use more specific customer evidence."), true);
+  assert.equal(returned.every(item => item.reviewHistory[0].status === "Revision Requested"), true);
+  assert.ok(notices.some(message => /2 submissions approved/i.test(message)));
+  assert.ok(notices.some(message => /2 submissions were returned/i.test(message)));
 });
 
 console.log("\nMission Network QA checks registered.");

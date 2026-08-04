@@ -172,6 +172,11 @@ The Mission Network should feel like one classroom learning operating system, no
 - Added consistent dialog labels, background isolation, keyboard focus traps, Escape behavior, focus return, and receipt/status announcements.
 - Added dedicated accessibility checks for all nine student surfaces plus Business World orientation and single-page navigation.
 - Connected Business World City Hall directly to the shared Mission Network store so its profile, XP, entries, mission history, and Agency progress cannot drift from the rest of the system.
+- Added teacher worklist filters for Periods 1–7, review status, search, and sort order, with pending work shown by default.
+- Added selection-based batch approval and return actions with explicit confirmation, weekly cap enforcement, duplicate-credit protection, and preserved review history.
+- Added a seven-period weekly participation summary, revision-cycle tracking, entry totals, and a detailed weekly CSV report.
+- Completed browser coverage from student packet copy through teacher return, student revision, batch approval, reporting, weighted drawing, and phone-width teacher use.
+- Added a dedicated Mission Network GitHub QA workflow so data, accessibility, and browser safeguards run automatically when relevant PR files change.
 
 ## Ordered Build Plan
 
@@ -181,13 +186,13 @@ The Mission Network should feel like one classroom learning operating system, no
 2. ✅ Add autosaved drafts and clear recovery messages for interrupted student work.
 3. ✅ Add profile export/import and a teacher-controlled shared-device reset.
 4. ✅ Standardize navigation, focus return, dialog behavior, and status announcements on every student page.
-5. Extend end-to-end browser coverage through copying, teacher return, student revision, approval, and the weekly drawing.
+5. ✅ Extend end-to-end browser coverage through copying, teacher return, student revision, approval, and the weekly drawing.
 
 ### P1 — Reduce teacher setup time
 
 1. Add an Agency project launcher and editable client-brief templates.
 2. Add team rosters, multi-role packets, and individual accountability evidence.
-3. Add period and status filters, bulk review actions, and a weekly participation summary.
+3. ✅ Add period and status filters, bulk review actions, and a weekly participation summary.
 4. Add printable student check-in cards and a one-page substitute-mode guide.
 
 ### P2 — Expand the learning network
