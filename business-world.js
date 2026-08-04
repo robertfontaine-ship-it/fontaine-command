@@ -3,6 +3,7 @@
 
   const ID_KEY = 'fontaineMissionIdentity:v1';
   const PREF_KEY = 'woodsideBusinessWorld:preferences:v1';
+  const missionStore = window.FontaineMissionStore;
   const RANKS = [
     { name: 'Marketing Rookie', xp: 0 },
     { name: 'Campaign Specialist', xp: 75 },
@@ -35,8 +36,10 @@
   const screen = document.getElementById('screen');
   const modalRoot = document.getElementById('modal-root');
   const toast = document.getElementById('toast');
+  const VIEW_TITLES = { home: 'City Hall', missions: 'Missions', passport: 'Business Passport', achievements: 'Achievement Gallery' };
   let currentView = 'home';
   let toastTimer;
+  let modalReturnFocus = null;
 
   function readJSON(key, fallback = {}) {
     try { return JSON.parse(localStorage.getItem(key) || 'null') || fallback; }
@@ -52,7 +55,7 @@
   }
 
   function identity() {
-    return { first: '', last: '', period: '', ...readJSON(ID_KEY, {}) };
+    return { first: '', last: '', period: '', ...(missionStore?.getActiveProfile() || readJSON(ID_KEY, {})) };
   }
 
   function weekKey() {
@@ -65,10 +68,30 @@
 
   function xpFor(entries) {
     const value = Number(entries || 0);
-    return value >= 4 ? 50 : value >= 2 ? 25 : 10;
+    return value >= 4 ? 50 : value >= 2 ? 25 : value >= 1 ? 10 : 0;
   }
 
   function collectProgress() {
+    if (missionStore) {
+      const profile = identity();
+      const missions = missionStore.getAllHistory({ profile }).sort((a, b) => {
+        const aTime = Date.parse(a.submittedAt || a.completedAt || 0) || 0;
+        const bTime = Date.parse(b.submittedAt || b.completedAt || 0) || 0;
+        return bTime - aTime;
+      });
+      const topicData = {};
+      missions.forEach((item) => {
+        const topic = item.topic;
+        const missionId = item.missionId || item.id;
+        topicData[topic] = topicData[topic] || { missions: new Map(), weekly: 0 };
+        topicData[topic].missions.set(missionId, item);
+        if (item.week === missionStore.getWeekKey()) topicData[topic].weekly += Number(item.entries || 0);
+      });
+      const xp = missions.reduce((sum, item) => sum + Number(item.xp ?? missionStore.xpForEntries(item.requestedEntries ?? item.entries)), 0);
+      const weekly = missionStore.weeklyEntrySummary({ profile }).total;
+      return { topicData, missions, xp, weekly, inferredIdentity: profile };
+    }
+
     const topicData = {};
     let inferredIdentity = null;
     const addCompletion = (topic, missionId, item, week) => {
@@ -153,6 +176,11 @@
     document.querySelectorAll('[data-profile-rank]').forEach((item) => { item.textContent = rank.name; });
     const soundIcon = document.querySelector('[data-sound-icon]');
     if (soundIcon) soundIcon.textContent = pref.sound ? '🔊' : '🔇';
+    const soundButton = document.querySelector('[data-action="toggle-sound"]');
+    if (soundButton) {
+      soundButton.setAttribute('aria-pressed', String(pref.sound));
+      soundButton.setAttribute('aria-label', `Turn sound effects ${pref.sound ? 'off' : 'on'}`);
+    }
   }
 
   function rankProgress(data) {
@@ -189,13 +217,20 @@
   }
 
   function setActiveNav(view) {
-    document.querySelectorAll('[data-nav]').forEach((button) => button.classList.toggle('active', button.dataset.nav === view));
+    document.querySelectorAll('[data-nav]').forEach((button) => {
+      const active = button.dataset.nav === view;
+      button.classList.toggle('active', active);
+      if (active) button.setAttribute('aria-current', 'page');
+      else button.removeAttribute('aria-current');
+    });
+    document.title = view === 'home' ? 'Woodside Business World' : `${VIEW_TITLES[view]} | Woodside Business World`;
   }
 
   function navigate(view) {
     currentView = view;
     render();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
     requestAnimationFrame(() => screen.focus({ preventScroll: true }));
   }
 
@@ -203,11 +238,13 @@
     const data = collectProgress();
     const profile = identity();
     if (!profile.first && data.inferredIdentity?.first) {
-      writeJSON(ID_KEY, {
+      const inferredProfile = {
         first: data.inferredIdentity.first || '',
         last: String(data.inferredIdentity.last || '').slice(0, 1).toUpperCase(),
         period: data.inferredIdentity.period || ''
-      });
+      };
+      if (missionStore) missionStore.setActiveProfile(inferredProfile);
+      else writeJSON(ID_KEY, inferredProfile);
     }
     syncHeader(data);
     if (currentView === 'missions') renderMissions(data);
@@ -347,25 +384,52 @@
   function openProfileModal(required = false) {
     const profile = identity();
     const pref = preferences();
-    const avatarOptions = ['FI', '📣', '🎯', '🚀', '👗', '💼'];
+    const avatarOptions = [
+      { value: 'FI', label: 'Fontaine initials' },
+      { value: '📣', label: 'Megaphone' },
+      { value: '🎯', label: 'Target' },
+      { value: '🚀', label: 'Rocket' },
+      { value: '👗', label: 'Fashion' },
+      { value: '💼', label: 'Briefcase' }
+    ];
+    if (!modalRoot.innerHTML) modalReturnFocus = required ? null : document.activeElement;
     modalRoot.innerHTML = `
       <div class="modal-backdrop" ${required ? '' : 'data-action="close-modal"'}>
-        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
-          <div class="modal-header"><div><p class="eyebrow">New Hire Orientation</p><h2 id="profile-title">Set your employee profile.</h2><p>Use the same name and period on every Mission Network page. Progress remains on this browser.</p></div>${required ? '' : '<button class="close-button" data-action="close-modal" aria-label="Close profile editor">✕</button>'}</div>
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-title" aria-describedby="profile-description">
+          <div class="modal-header"><div><p class="eyebrow">New Hire Orientation</p><h2 id="profile-title">Set your employee profile.</h2><p id="profile-description">Use the same name and period on every Mission Network page. Progress remains on this browser.</p></div>${required ? '' : '<button type="button" class="close-button" data-action="close-modal" aria-label="Close profile editor">✕</button>'}</div>
           <form id="profile-form" class="form-grid">
             <label>First name<input name="first" maxlength="20" value="${escapeHtml(profile.first)}" placeholder="First name" required /></label>
             <label>Last initial<input name="last" maxlength="1" value="${escapeHtml(profile.last)}" placeholder="Last initial" required /></label>
             <label>Class period<select name="period" required><option value="">Choose a period</option>${['1','2','3','4','5','6','7'].map((period) => `<option value="${period}" ${profile.period === period ? 'selected' : ''}>Period ${period}</option>`).join('')}</select></label>
-            <label>Employee badge style<div class="avatar-picker">${avatarOptions.map((avatar) => `<button type="button" class="avatar-option ${pref.avatar === avatar ? 'selected' : ''}" data-action="select-avatar" data-avatar="${avatar}">${avatar}</button>`).join('')}</div><input type="hidden" name="avatar" value="${escapeHtml(pref.avatar)}" /></label>
+            <label>Employee badge style<div class="avatar-picker" role="group" aria-label="Employee badge style">${avatarOptions.map((avatar) => `<button type="button" class="avatar-option ${pref.avatar === avatar.value ? 'selected' : ''}" data-action="select-avatar" data-avatar="${avatar.value}" aria-label="Select ${avatar.label} badge" aria-pressed="${pref.avatar === avatar.value}">${avatar.value}</button>`).join('')}</div><input type="hidden" name="avatar" value="${escapeHtml(pref.avatar)}" /></label>
             <button class="primary-button" type="submit">${profile.first ? 'SAVE PROFILE' : 'CLOCK IN'}</button>
           </form>
         </section>
       </div>`;
+    document.getElementById('app').inert = true;
+    document.querySelector('.skip-link').inert = true;
+    document.body.classList.add('modal-open');
     const first = modalRoot.querySelector('input[name="first"]');
     if (first) setTimeout(() => first.focus(), 30);
   }
 
-  function closeModal() { modalRoot.innerHTML = ''; }
+  function closeModal() {
+    if (!modalRoot.innerHTML) return;
+    const returnFocus = modalReturnFocus;
+    modalReturnFocus = null;
+    modalRoot.innerHTML = '';
+    document.getElementById('app').inert = false;
+    document.querySelector('.skip-link').inert = false;
+    document.body.classList.remove('modal-open');
+    requestAnimationFrame(() => {
+      if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    });
+  }
+
+  function modalFocusableElements() {
+    return [...modalRoot.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+      .filter(element => getComputedStyle(element).display !== 'none' && getComputedStyle(element).visibility !== 'hidden');
+  }
 
   function escapeHtml(value) {
     return String(value || '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
@@ -391,8 +455,12 @@
     }
     if (action === 'select-avatar') {
       const picker = target.closest('.avatar-picker');
-      picker.querySelectorAll('.avatar-option').forEach((button) => button.classList.remove('selected'));
+      picker.querySelectorAll('.avatar-option').forEach((button) => {
+        button.classList.remove('selected');
+        button.setAttribute('aria-pressed', 'false');
+      });
       target.classList.add('selected');
+      target.setAttribute('aria-pressed', 'true');
       target.closest('label').querySelector('input[name="avatar"]').value = target.dataset.avatar;
     }
   });
@@ -405,7 +473,8 @@
     const last = String(formData.get('last') || '').trim().slice(0, 1).toUpperCase();
     const period = String(formData.get('period') || '');
     if (!first || !last || !period) return;
-    writeJSON(ID_KEY, { first, last, period });
+    if (missionStore) missionStore.setActiveProfile({ first, last, period });
+    else writeJSON(ID_KEY, { first, last, period });
     writeJSON(PREF_KEY, { ...preferences(), avatar: String(formData.get('avatar') || initials({ first, last })) });
     closeModal();
     render();
@@ -414,7 +483,24 @@
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modalRoot.innerHTML && identity().first) closeModal();
+    if (!modalRoot.innerHTML) return;
+    if (event.key === 'Escape' && identity().first) {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const items = modalFocusableElements();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 
   window.addEventListener('storage', render);

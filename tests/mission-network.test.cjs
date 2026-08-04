@@ -55,6 +55,8 @@ test("mission JavaScript parses", () => {
   [
     "mission-data-store.js",
     "mission-autosave.js",
+    "mission-accessibility.js",
+    "business-world.js",
     "mission-hub-engine.js",
     "topic-hubs.js",
     "mission-control.js",
@@ -70,6 +72,7 @@ test("mission JavaScript parses", () => {
 
 test("every student experience loads the shared store before page logic", () => {
   const pages = {
+    "business-world.html": "business-world.js",
     "mission-control.html": "mission-control.js",
     "student-mission-id.html": "student-mission-id.js",
     "topic-hubs.html": "topic-hubs.js",

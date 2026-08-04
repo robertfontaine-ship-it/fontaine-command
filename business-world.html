@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="business-world.css" />
 </head>
 <body>
+  <a class="skip-link" href="#screen">Skip to main content</a>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
@@ -33,15 +34,16 @@
     <main id="screen" tabindex="-1"></main>
 
     <nav class="bottom-nav" aria-label="Primary navigation">
-      <button data-nav="home" class="active"><span>🏛️</span>City Hall</button>
-      <button data-nav="missions"><span>📋</span>Missions</button>
-      <button data-nav="passport"><span>🛂</span>Passport</button>
-      <button data-nav="achievements"><span>🏆</span>Awards</button>
+      <button type="button" data-nav="home" class="active" aria-current="page"><span>🏛️</span>City Hall</button>
+      <button type="button" data-nav="missions"><span>📋</span>Missions</button>
+      <button type="button" data-nav="passport"><span>🛂</span>Passport</button>
+      <button type="button" data-nav="achievements"><span>🏆</span>Awards</button>
     </nav>
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="modal-root"></div>
+  <script src="mission-data-store.js"></script>
   <script src="business-world.js"></script>
 </body>
 </html>

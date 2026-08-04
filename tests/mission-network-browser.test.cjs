@@ -136,7 +136,7 @@ async function runResponsiveQA(browser) {
       await page.goto(`${BASE}/${route}`, { waitUntil: "load" });
       await assertNoOverflow(page, `${viewport.name} ${route}`);
       if (viewport.touch) {
-        const shortTargets = await page.locator(".mission-button, .filter-button, .mission-nav a, .modal-close").evaluateAll(elements => elements
+        const shortTargets = await page.locator(".mission-button, .filter-button, .mission-nav a, .mission-subnav a, .modal-close").evaluateAll(elements => elements
           .filter(element => getComputedStyle(element).display !== "none")
           .map(element => ({ text: element.textContent.trim(), height: element.getBoundingClientRect().height }))
           .filter(item => item.height > 0 && item.height < 43));

@@ -167,6 +167,11 @@ The Mission Network should feel like one classroom learning operating system, no
 - Added teacher-controlled cleanup for one student or the entire shared browser while preserving review-queue and giveaway records.
 - Verified Mission Network layout and interactions in a real browser at desktop, iPhone, and iPad sizes, including 44 px touch controls and zero document overflow.
 - Added end-to-end browser coverage for interrupted work, mission completion, backup download, cross-device restore, and teacher device reset.
+- Standardized the five-destination primary navigation across Mission Control, all departments, Agency, and Mission ID, with clear current-page state and contextual on-page links.
+- Added skip links, visible keyboard focus, reduced-motion support, focusable main landmarks, and 44 px contextual navigation targets.
+- Added consistent dialog labels, background isolation, keyboard focus traps, Escape behavior, focus return, and receipt/status announcements.
+- Added dedicated accessibility checks for all nine student surfaces plus Business World orientation and single-page navigation.
+- Connected Business World City Hall directly to the shared Mission Network store so its profile, XP, entries, mission history, and Agency progress cannot drift from the rest of the system.
 
 ## Ordered Build Plan
 
@@ -175,7 +180,7 @@ The Mission Network should feel like one classroom learning operating system, no
 1. ✅ Run full browser interaction QA on desktop, iPhone-width, and iPad-width layouts.
 2. ✅ Add autosaved drafts and clear recovery messages for interrupted student work.
 3. ✅ Add profile export/import and a teacher-controlled shared-device reset.
-4. Standardize navigation, focus return, dialog behavior, and status announcements on every student page.
+4. ✅ Standardize navigation, focus return, dialog behavior, and status announcements on every student page.
 5. Extend end-to-end browser coverage through copying, teacher return, student revision, approval, and the weekly drawing.
 
 ### P1 — Reduce teacher setup time

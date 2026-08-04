@@ -18,6 +18,12 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .mission-site a { color: inherit; }
 .mission-site button, .mission-site input, .mission-site select, .mission-site textarea { font: inherit; }
 .mission-site button { cursor: pointer; }
+.mission-site :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid #1769c2; outline-offset: 3px; box-shadow: 0 0 0 5px #fff; }
+.mission-control-site :where(a, button, input, select, textarea, [tabindex]):focus-visible,
+.agency-site :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline-color: #ffd166; box-shadow: 0 0 0 5px #171024; }
+.skip-link { position: fixed; z-index: 1000; top: 10px; left: 12px; padding: 11px 15px; border-radius: 10px; color: #fff !important; background: #171024; font-weight: 850; text-decoration: none; transform: translateY(-160%); transition: transform 0.15s ease; }
+.skip-link:focus { transform: translateY(0); }
+body.mission-site.modal-open { overflow: hidden; }
 
 .mission-topbar { position: sticky; top: 0; z-index: 20; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 12px clamp(18px, 4vw, 64px); background: rgba(251, 250, 255, 0.94); border-bottom: 1px solid var(--mission-line); backdrop-filter: blur(16px); }
 .mission-brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
@@ -28,6 +34,10 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 .mission-nav { display: flex; align-items: center; gap: 6px; }
 .mission-nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 9px 12px; border-radius: 999px; color: var(--mission-muted); font-weight: 750; font-size: 0.9rem; text-decoration: none; }
 .mission-nav a:hover, .mission-nav a.active { color: var(--mission-primary-deep); background: #eee7fb; }
+.mission-subnav { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px clamp(18px, 4vw, 64px); overflow-x: auto; color: #423a52; background: #f1edf8; border-bottom: 1px solid var(--mission-line); }
+.mission-subnav a { min-height: 44px; display: inline-flex; flex: 0 0 auto; align-items: center; padding: 9px 12px; border-radius: 999px; font-size: 0.84rem; font-weight: 800; text-decoration: none; }
+.mission-subnav a:hover { color: var(--mission-primary-deep); background: #fff; }
+main [id] { scroll-margin-top: 132px; }
 
 .mission-hero { width: min(1180px, calc(100% - 36px)); margin: 34px auto 0; padding: clamp(30px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.8fr); gap: clamp(24px, 5vw, 64px); align-items: center; border: 1px solid #d9cff0; border-radius: 30px; overflow: hidden; position: relative; background: radial-gradient(circle at 90% 10%, rgba(240, 95, 166, 0.22), transparent 35%), linear-gradient(135deg, #f3edff, #fff 62%); box-shadow: var(--mission-shadow); }
 .mission-hero::after { content: ""; position: absolute; right: -120px; bottom: -180px; width: 360px; height: 360px; border-radius: 50%; background: rgba(110, 53, 212, 0.08); pointer-events: none; }
@@ -171,6 +181,7 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
 @media (max-width: 680px) {
   .mission-topbar { position: static; align-items: flex-start; flex-direction: column; }
   .mission-nav { width: 100%; overflow-x: auto; padding-bottom: 2px; }
+  .mission-subnav { justify-content: flex-start; padding-inline: 12px; }
   .mission-hero, .mission-section { width: min(100% - 24px, 1180px); }
   .mission-hero { margin-top: 16px; border-radius: 22px; padding: 26px 20px; }
   .mission-hero h1 { font-size: clamp(2.45rem, 14vw, 4rem); }
@@ -182,4 +193,9 @@ body.mission-site { margin: 0; background: #fbfaff; color: var(--mission-ink); f
   .receipt-card dd { margin-bottom: 9px; }
   .mission-footer { align-items: flex-start; flex-direction: column; }
   .topic-ledger-table { font-size: 0.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .skip-link, .mission-button { transition: none; }
 }
