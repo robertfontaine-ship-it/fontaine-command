@@ -170,10 +170,10 @@ async function runBusinessWorld(browser) {
   await page.getByRole("button", { name: "CLOCK IN" }).click();
   await page.waitForFunction(() => !document.getElementById("modal-root").innerHTML);
   assert.equal(await page.evaluate(() => document.getElementById("app").inert), false);
-  assert.equal((await page.locator('.bottom-nav [aria-current="page"]').innerText()).trim(), "🏛️City Hall");
+  assert.equal((await page.locator('.bottom-nav [aria-current="page"]').innerText()).replace(/\s+/g, " ").trim(), "🏛️ City Hall");
 
   await page.locator('[data-nav="missions"]').click();
-  assert.equal((await page.locator('.bottom-nav [aria-current="page"]').innerText()).trim(), "📋Missions");
+  assert.equal((await page.locator('.bottom-nav [aria-current="page"]').innerText()).replace(/\s+/g, " ").trim(), "📋 Missions");
   await page.waitForFunction(() => document.activeElement.id === "screen");
   assert.equal(await page.evaluate(() => document.activeElement.id), "screen");
   assert.match(await page.title(), /^Missions \| Woodside Business World$/);
