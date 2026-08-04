@@ -130,7 +130,7 @@ async function runProfileDialogs(browser) {
   assert.equal(await page.evaluate(() => document.activeElement.id), "idFirst");
   await page.keyboard.press("Escape");
   await page.waitForFunction(() => document.getElementById("identityModal").hidden);
-  await page.waitForTimeout(30);
+  await page.waitForFunction(() => document.activeElement.id === "editIdentity");
   assert.equal(await page.evaluate(() => document.activeElement.id), "editIdentity");
 
   await page.goto(`${BASE}/wolverine-agency.html`, { waitUntil: "load" });
@@ -140,7 +140,7 @@ async function runProfileDialogs(browser) {
   assert.equal(await page.evaluate(() => document.querySelector("#agencyProfileModal").contains(document.activeElement)), true);
   await page.keyboard.press("Escape");
   await page.waitForFunction(() => document.getElementById("agencyProfileModal").hidden);
-  await page.waitForTimeout(30);
+  await page.waitForFunction(() => document.activeElement.id === "editAgencyProfile");
   assert.equal(await page.evaluate(() => document.activeElement.id), "editAgencyProfile");
   assert.deepEqual(errors, []);
   await context.close();
