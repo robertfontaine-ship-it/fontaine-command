@@ -58,3 +58,4 @@ jobs:
           node tests/agency-team-workflow-browser.test.cjs
           node tests/mission-expansion-browser.test.cjs
           node tests/mission-departments-expansion-browser.test.cjs
+          node tests/mission-startup-street-browser.test.cjs
