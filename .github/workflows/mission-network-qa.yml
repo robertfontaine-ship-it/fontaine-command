@@ -17,6 +17,7 @@ on:
       - 'pricing-strategy-hub.*'
       - 'distribution-hub.*'
       - 'selling-customer-service-hub.*'
+      - 'startup-street.*'
       - 'mission-classroom-kit.*'
       - 'wolverine-agency.*'
       - 'agency-project-*'
@@ -42,7 +43,7 @@ jobs:
           node-version: '24'
 
       - name: Run Mission Network data and accessibility checks
-        run: node --test tests/mission-network.test.cjs tests/mission-network-accessibility.test.cjs tests/mission-expansion.test.cjs tests/mission-departments-expansion.test.cjs tests/agency-project-launcher.test.cjs
+        run: node --test tests/mission-network.test.cjs tests/mission-network-accessibility.test.cjs tests/mission-expansion.test.cjs tests/mission-departments-expansion.test.cjs tests/mission-startup-street.test.cjs tests/agency-project-launcher.test.cjs
 
       - name: Install Playwright
         run: |
