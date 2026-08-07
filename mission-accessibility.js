@@ -18,6 +18,7 @@
   ]);
   const pageLabels = {
     "mission-control.html": "Mission Control",
+    "course-pathways.html": "Course Pathways",
     "topic-hubs.html": "Department Directory",
     "branding-hub.html": "Brand Studio",
     "target-market-hub.html": "Consumer Intelligence Center",
@@ -35,6 +36,7 @@
     { href: "business-world.html", label: "City Hall" },
     { href: "mission-control.html", label: "Mission Control" },
     { href: "topic-hubs.html", label: "Departments" },
+    { href: "course-pathways.html", label: "Pathways" },
     { href: "wolverine-agency.html", label: "Agency" },
     { href: "student-mission-id.html", label: "My Mission ID" }
   ];
@@ -121,6 +123,13 @@
         { href: "#roles", label: "Agency roles" },
         { href: "#briefs", label: "Client briefs" },
         { href: "#agencyHistory", label: "My portfolio" }
+      ];
+    }
+    if (currentFile === "course-pathways.html") {
+      return [
+        { href: "#course-select", label: "Choose course" },
+        { href: "#pathway-board", label: "My pathway" },
+        { href: "#mastery-check", label: "Mastery check" }
       ];
     }
     return [];

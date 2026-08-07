@@ -273,13 +273,67 @@
 .topic-progress-card .entry-meter {
   margin-top: 14px;
 }
+.course-pathway-record-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.course-pathway-record {
+  padding: 20px;
+  border: 1px solid var(--mission-line);
+  border-radius: 20px;
+  background: #fff;
+}
+.course-pathway-record.active {
+  border-color: #9c7cdb;
+  background: #f7f3ff;
+}
+.course-pathway-record-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.course-pathway-record-head > span {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #eee7fb;
+  font-size: 1.35rem;
+}
+.course-pathway-record small {
+  color: var(--mission-primary);
+  font-weight: 850;
+}
+.course-pathway-record h3 {
+  margin: 3px 0 0;
+  line-height: 1.15;
+}
+.course-pathway-record p {
+  min-height: 48px;
+  color: var(--mission-muted);
+}
+.course-pathway-record-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0 16px;
+  color: #5c5567;
+  font-size: 0.82rem;
+}
+.course-pathway-record .mission-button {
+  width: 100%;
+}
 @media (max-width: 900px) {
   .id-stats,
   .badge-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .rank-path,
-  .topic-progress-grid {
+  .topic-progress-grid,
+  .course-pathway-record-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -293,7 +347,8 @@
   .id-stats,
   .badge-grid,
   .rank-path,
-  .topic-progress-grid {
+  .topic-progress-grid,
+  .course-pathway-record-grid {
     grid-template-columns: 1fr;
   }
   .id-code {

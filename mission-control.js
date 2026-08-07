@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const missionStore = window.FontaineMissionStore;
+  const pathwayData = window.FontaineCoursePathways;
   if (!missionStore) return;
   const RANKS = [
     {name:"Marketing Rookie",xp:0},{name:"Campaign Specialist",xp:75},{name:"Brand Strategist",xp:175},
@@ -99,6 +100,22 @@
     document.getElementById("dailyLink").href=department.href;
     const badgeTarget=document.getElementById("mcBadges");
     badgeTarget.innerHTML=(badges.slice(-3).reverse().map(b=>`<div class="mc-badge"><span>${b[0]}</span><div><strong>${b[1]}</strong><small>${b[2]}</small></div></div>`).join(""))||`<p>Complete your first mission to unlock an achievement.</p>`;
+    const pathway=missionStore.getPathwayProgress({profile:identity});
+    const course=pathwayData?.COURSES?.[pathway.activeCourse];
+    const pathwayTitle=document.getElementById("mcPathwayTitle"),pathwayText=document.getElementById("mcPathwayText"),pathwayLink=document.getElementById("mcPathwayLink"),pathwayMeta=document.getElementById("mcPathwayMeta"),pathwayMeter=document.getElementById("mcPathwayMeter");
+    if(course){
+      const mastered=course.stages.filter(stage=>pathway.courses?.[course.id]?.stages?.[stage.id]?.passed).length;
+      const next=course.stages.find(stage=>!pathway.courses?.[course.id]?.stages?.[stage.id]?.passed);
+      const percent=Math.round(mastered/course.stages.length*100);
+      pathwayTitle.textContent=`${course.shortTitle} Pathway`;
+      pathwayText.textContent=next?`Next gate: ${next.title}. Complete its applied mission, then score at least 4 of 5.`:`All six mastery gates are cleared. Open the pathway to review your record.`;
+      pathwayMeta.textContent=`${mastered} of ${course.stages.length} gates mastered • 80% required`;
+      pathwayMeter.style.width=`${percent}%`;
+      pathwayLink.href=`course-pathways.html?course=${course.id}`;
+      pathwayLink.textContent=next?"Continue my pathway":"Review completed pathway";
+    }else{
+      pathwayMeter.style.width="0%";
+    }
   }
   window.addEventListener("storage",render);
   render();

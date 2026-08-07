@@ -4,6 +4,7 @@
   const DATA_KEY = "fontaineMissionData:v2";
   const IDENTITY_KEY = "fontaineMissionIdentity:v1";
   const WEEKLY_ENTRY_CAP = 10;
+  const MASTERY_THRESHOLD = 80;
   const PROFILE_EXPORT_FORMAT = "fontaine-mission-profile";
   const PROFILE_EXPORT_VERSION = 1;
 
@@ -47,7 +48,7 @@
 
   function emptyData() {
     return {
-      version: 4,
+      version: 5,
       activeProfileKey: "",
       profiles: {},
       migrations: {}
@@ -59,9 +60,19 @@
     return {
       ...emptyData(),
       ...parsed,
-      version: 4,
+      version: 5,
       profiles: parsed?.profiles || {},
       migrations: parsed?.migrations || {}
+    };
+  }
+
+  function normalizePathways(pathways = {}) {
+    const courses = pathways?.courses && typeof pathways.courses === "object" && !Array.isArray(pathways.courses)
+      ? clone(pathways.courses)
+      : {};
+    return {
+      activeCourse: String(pathways?.activeCourse || ""),
+      courses
     };
   }
 
@@ -79,7 +90,8 @@
       topics: existing.topics || {},
       drafts: existing.drafts || {},
       agencyRole: existing.agencyRole || "",
-      agencyLaunches: existing.agencyLaunches || {}
+      agencyLaunches: existing.agencyLaunches || {},
+      pathways: normalizePathways(existing.pathways)
     };
     return { key, record: data.profiles[key] };
   }
@@ -398,9 +410,61 @@
         topics: clone(target.record.topics || {}),
         drafts: clone(target.record.drafts || {}),
         agencyRole: String(target.record.agencyRole || ""),
-        agencyLaunches: clone(target.record.agencyLaunches || {})
+        agencyLaunches: clone(target.record.agencyLaunches || {}),
+        pathways: normalizePathways(target.record.pathways)
       }
     };
+  }
+
+  function pathwayStageTime(stage = {}) {
+    const value = stage.lastAttemptAt || stage.passedAt || stage.updatedAt || "";
+    const time = Date.parse(value);
+    return Number.isFinite(time) ? time : 0;
+  }
+
+  function mergePathways(local = {}, imported = {}) {
+    const current = normalizePathways(local);
+    const incoming = normalizePathways(imported);
+    const merged = {
+      activeCourse: current.activeCourse || incoming.activeCourse,
+      courses: clone(current.courses)
+    };
+
+    Object.entries(incoming.courses).forEach(([courseId, incomingCourse]) => {
+      const currentCourse = merged.courses[courseId] || {};
+      const stages = clone(currentCourse.stages || {});
+      Object.entries(incomingCourse?.stages || {}).forEach(([stageId, incomingStage]) => {
+        const currentStage = stages[stageId] || {};
+        const incomingIsNewer = pathwayStageTime(incomingStage) >= pathwayStageTime(currentStage);
+        const latest = incomingIsNewer ? incomingStage : currentStage;
+        const older = incomingIsNewer ? currentStage : incomingStage;
+        const attempts = [...(currentStage.attempts || []), ...(incomingStage.attempts || [])]
+          .filter((attempt, index, list) => {
+            const key = attempt.attemptId || `${attempt.submittedAt}|${attempt.score}|${attempt.total}`;
+            return list.findIndex(item => (item.attemptId || `${item.submittedAt}|${item.score}|${item.total}`) === key) === index;
+          })
+          .sort((a, b) => Date.parse(a.submittedAt || 0) - Date.parse(b.submittedAt || 0))
+          .slice(-20);
+        stages[stageId] = {
+          ...clone(older),
+          ...clone(latest),
+          attempts,
+          attemptsCount: Math.max(Number(currentStage.attemptsCount || 0), Number(incomingStage.attemptsCount || 0), attempts.length),
+          bestPercent: Math.max(Number(currentStage.bestPercent || 0), Number(incomingStage.bestPercent || 0)),
+          passed: Boolean(currentStage.passed || incomingStage.passed),
+          passedAt: currentStage.passedAt || incomingStage.passedAt || ""
+        };
+      });
+      merged.courses[courseId] = {
+        ...clone(currentCourse),
+        ...clone(incomingCourse),
+        stages,
+        updatedAt: pathwayStageTime(incomingCourse) >= pathwayStageTime(currentCourse)
+          ? incomingCourse.updatedAt || currentCourse.updatedAt || ""
+          : currentCourse.updatedAt || incomingCourse.updatedAt || ""
+      };
+    });
+    return merged;
   }
 
   function mergeProfileRecord(local = {}, imported = {}, replace = false) {
@@ -410,7 +474,8 @@
         topics: clone(imported.topics || {}),
         drafts: clone(imported.drafts || {}),
         agencyRole: String(imported.agencyRole || ""),
-        agencyLaunches: clone(imported.agencyLaunches || {})
+        agencyLaunches: clone(imported.agencyLaunches || {}),
+        pathways: normalizePathways(imported.pathways)
       };
     }
 
@@ -419,7 +484,8 @@
       topics: clone(local.topics || {}),
       drafts: clone(local.drafts || {}),
       agencyRole: String(local.agencyRole || imported.agencyRole || ""),
-      agencyLaunches: clone(local.agencyLaunches || {})
+      agencyLaunches: clone(local.agencyLaunches || {}),
+      pathways: mergePathways(local.pathways, imported.pathways)
     };
 
     Object.entries(imported.topics || {}).forEach(([topic, topicData]) => {
@@ -464,7 +530,8 @@
       topics: payload.missionData.topics && typeof payload.missionData.topics === "object" ? payload.missionData.topics : {},
       drafts: payload.missionData.drafts && typeof payload.missionData.drafts === "object" ? payload.missionData.drafts : {},
       agencyRole: String(payload.missionData.agencyRole || ""),
-      agencyLaunches: payload.missionData.agencyLaunches && typeof payload.missionData.agencyLaunches === "object" ? payload.missionData.agencyLaunches : {}
+      agencyLaunches: payload.missionData.agencyLaunches && typeof payload.missionData.agencyLaunches === "object" ? payload.missionData.agencyLaunches : {},
+      pathways: payload.missionData.pathways && typeof payload.missionData.pathways === "object" ? payload.missionData.pathways : {}
     };
     data.profiles[target.key] = mergeProfileRecord(target.record, imported, options.mode === "replace");
     data.profiles[target.key].profile = profile;
@@ -475,7 +542,10 @@
       profile: clone(profile),
       missions: countCompletions(data.profiles[target.key]),
       drafts: Object.keys(data.profiles[target.key].drafts || {}).length,
-      agencyLaunches: Object.keys(data.profiles[target.key].agencyLaunches || {}).length
+      agencyLaunches: Object.keys(data.profiles[target.key].agencyLaunches || {}).length,
+      pathwayGates: Object.values(data.profiles[target.key].pathways?.courses || {}).reduce((sum, course) => {
+        return sum + Object.values(course?.stages || {}).filter(stage => stage?.passed).length;
+      }, 0)
     };
   }
 
@@ -577,12 +647,85 @@
     return true;
   }
 
+  function getPathwayProgress(options = {}) {
+    const data = readData();
+    const target = resolveProfile(data, options.profile);
+    if (!target) return normalizePathways();
+    return normalizePathways(target.record.pathways);
+  }
+
+  function setActivePathway(courseId, options = {}) {
+    const id = String(courseId || "").trim();
+    if (!id) throw new Error("Choose a course pathway before saving progress.");
+    const data = readData();
+    const target = ensureProfile(data, options.profile || resolveProfile(data)?.record?.profile || {});
+    if (!target) throw new Error("Set a complete student identity before choosing a course pathway.");
+    target.record.pathways = normalizePathways(target.record.pathways);
+    target.record.pathways.activeCourse = id;
+    target.record.pathways.courses[id] = target.record.pathways.courses[id] || { stages: {}, updatedAt: "" };
+    data.activeProfileKey = target.key;
+    writeData(data);
+    localStorage.setItem(IDENTITY_KEY, JSON.stringify(target.record.profile));
+    return normalizePathways(target.record.pathways);
+  }
+
+  function savePathwayAttempt({ courseId, stageId, score, total, answers = {}, missedQuestionIds = [], profile } = {}) {
+    const course = String(courseId || "").trim();
+    const stage = String(stageId || "").trim();
+    if (!course || !stage) throw new Error("A course and mastery gate are required.");
+    const questionTotal = Math.max(1, Number(total || 0));
+    const earned = Math.max(0, Math.min(questionTotal, Number(score || 0)));
+    const percent = Math.round((earned / questionTotal) * 100);
+    const submittedAt = new Date().toISOString();
+    const data = readData();
+    const target = ensureProfile(data, profile || resolveProfile(data)?.record?.profile || {});
+    if (!target) throw new Error("Set a complete student identity before taking a mastery check.");
+    target.record.pathways = normalizePathways(target.record.pathways);
+    target.record.pathways.activeCourse = course;
+    const courseRecord = target.record.pathways.courses[course] || { stages: {}, updatedAt: "" };
+    courseRecord.stages = courseRecord.stages || {};
+    const previous = courseRecord.stages[stage] || {};
+    const passedNow = percent >= MASTERY_THRESHOLD;
+    const attempt = {
+      attemptId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      score: earned,
+      total: questionTotal,
+      percent,
+      answers: clone(answers),
+      missedQuestionIds: [...new Set((missedQuestionIds || []).map(String))],
+      passed: passedNow,
+      submittedAt
+    };
+    const attempts = [...(previous.attempts || []), attempt].slice(-20);
+    const saved = {
+      ...clone(previous),
+      attempts,
+      attemptsCount: Number(previous.attemptsCount || 0) + 1,
+      latestScore: earned,
+      latestTotal: questionTotal,
+      latestPercent: percent,
+      bestPercent: Math.max(Number(previous.bestPercent || 0), percent),
+      passed: Boolean(previous.passed || passedNow),
+      passedAt: previous.passedAt || (passedNow ? submittedAt : ""),
+      lastAttemptAt: submittedAt,
+      missedQuestionIds: attempt.missedQuestionIds
+    };
+    courseRecord.stages[stage] = saved;
+    courseRecord.updatedAt = submittedAt;
+    target.record.pathways.courses[course] = courseRecord;
+    data.activeProfileKey = target.key;
+    writeData(data);
+    localStorage.setItem(IDENTITY_KEY, JSON.stringify(target.record.profile));
+    return clone(saved);
+  }
+
   initialize();
 
   window.FontaineMissionStore = Object.freeze({
     DATA_KEY,
     IDENTITY_KEY,
     WEEKLY_ENTRY_CAP,
+    MASTERY_THRESHOLD,
     getWeekKey,
     normalizeProfile,
     profileKey,
@@ -608,6 +751,9 @@
     getAgencyLaunch,
     getAgencyLaunches,
     deleteAgencyLaunch,
+    getPathwayProgress,
+    setActivePathway,
+    savePathwayAttempt,
     xpForEntries
   });
 })();

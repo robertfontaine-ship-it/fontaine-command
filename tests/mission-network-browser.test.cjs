@@ -115,6 +115,7 @@ async function runResponsiveQA(browser) {
   ];
   const pages = [
     "mission-control.html",
+    "course-pathways.html",
     "topic-hubs.html",
     "branding-hub.html",
     "target-market-hub.html",
@@ -158,7 +159,8 @@ async function runResponsiveQA(browser) {
   let browser;
   try {
     await waitForServer();
-    browser = await chromium.launch({ headless: true });
+    const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;
+    browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
     await runRecoveryAndTransfer(browser);
     await runResponsiveQA(browser);
   } finally {

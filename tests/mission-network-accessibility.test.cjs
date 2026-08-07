@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, "..");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const studentPages = [
   "mission-control.html",
+  "course-pathways.html",
   "topic-hubs.html",
   "branding-hub.html",
   "target-market-hub.html",
@@ -35,9 +36,9 @@ test("every Mission Network surface loads the shared accessibility layer", () =>
   });
 });
 
-test("shared navigation defines the five canonical destinations", () => {
+test("shared navigation defines the six canonical destinations", () => {
   const script = read("mission-accessibility.js");
-  ["business-world.html", "mission-control.html", "topic-hubs.html", "wolverine-agency.html", "student-mission-id.html"].forEach(href => {
+  ["business-world.html", "mission-control.html", "topic-hubs.html", "course-pathways.html", "wolverine-agency.html", "student-mission-id.html"].forEach(href => {
     assert.match(script, new RegExp(href.replaceAll(".", "\\.")));
   });
   assert.match(script, /aria-current/);

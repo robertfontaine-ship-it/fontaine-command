@@ -25,7 +25,7 @@ function collectErrors(page) {
 
 async function assertCurrentNavigation(page, label) {
   assert.equal(await page.locator(".mission-nav").getAttribute("aria-label"), "Primary navigation");
-  assert.equal(await page.locator(".mission-nav a").count(), 5);
+  assert.equal(await page.locator(".mission-nav a").count(), 6);
   assert.equal((await page.locator('.mission-nav a[aria-current="page"]').innerText()).trim(), label);
   assert.equal((await page.locator(".mission-brand strong").innerText()).trim(), "Woodside Business World");
   assert.match(await page.locator(".mission-brand").getAttribute("href"), /business-world\.html$/);
@@ -37,6 +37,7 @@ async function runShellConsistency(browser) {
   const errors = collectErrors(page);
   const routes = [
     ["mission-control.html", "Mission Control", false],
+    ["course-pathways.html", "Pathways", true],
     ["topic-hubs.html", "Departments", true],
     ["branding-hub.html", "Departments", true],
     ["target-market-hub.html", "Departments", true],
@@ -210,7 +211,8 @@ async function runBusinessWorld(browser) {
   let browser;
   try {
     await waitForServer();
-    browser = await chromium.launch({ headless: true });
+    const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;
+    browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
     await runShellConsistency(browser);
     await runMissionDialog(browser);
     await runProfileDialogs(browser);

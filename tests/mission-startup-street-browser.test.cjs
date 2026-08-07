@@ -102,7 +102,8 @@ async function runStartupStreetFlow(browser) {
   let browser;
   try {
     await waitForServer();
-    browser = await chromium.launch({ headless: true });
+    const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;
+    browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
     await runStartupStreetFlow(browser);
   } finally {
     if (browser) await browser.close();

@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const missionStore=window.FontaineMissionStore;
+  const pathwayData=window.FontaineCoursePathways;
   if(!missionStore)return;
   const TOPICS={
     branding:"Branding", "target-market":"Target Market", "four-ps":"The 4Ps",
@@ -38,6 +39,9 @@
   function badges(data){
     const count=data.unique.size,topics=Object.keys(data.topicData).filter(k=>data.topicData[k].missions.size).length,agency=data.topicData.agency?.missions.size||0,startup=data.topicData["startup-street"]?.missions.size||0,wrs=data.topicData["wrs-career-center"]?.missions.size||0;
     const allDepartments=DEPARTMENT_TOPICS.every(topic=>(data.topicData[topic]?.missions.size||0)>=1);
+    const pathways=missionStore.getPathwayProgress({profile:getIdentity()});
+    const gateCount=pathwayData?pathwayData.courseList.reduce((sum,course)=>sum+course.stages.filter(stage=>pathways.courses?.[course.id]?.stages?.[stage.id]?.passed).length,0):0;
+    const courseMaster=pathwayData?pathwayData.courseList.some(course=>course.stages.every(stage=>pathways.courses?.[course.id]?.stages?.[stage.id]?.passed)):false;
     return [
       {icon:"🚀",name:"First Mission",desc:"Complete your first mission.",on:count>=1},
       {icon:"⚡",name:"Mission Streak",desc:"Complete five missions.",on:count>=5},
@@ -49,6 +53,8 @@
       {icon:"🛡️",name:"Work Ready",desc:"Complete your first WRS competency mission.",on:wrs>=1},
       {icon:"🧟",name:"Career Survivor",desc:"Complete 11 WRS competency missions.",on:wrs>=11},
       {icon:"🏅",name:"WRS Master",desc:"Complete all 22 WRS competency missions.",on:wrs>=22},
+      {icon:"🔓",name:"Gate Breaker",desc:"Clear the first course mastery gate at 80% or higher.",on:gateCount>=1},
+      {icon:"🧭",name:"Course Master",desc:"Clear all six gates in one course pathway.",on:courseMaster},
       {icon:"🌐",name:"Networked",desc:"Complete work in all nine marketing departments.",on:allDepartments},
       {icon:"🧠",name:"Strategy Mind",desc:"Reach 175 XP.",on:data.xp>=175},
       {icon:"🎯",name:"Focused Marketer",desc:"Reach 325 XP.",on:data.xp>=325},
@@ -56,6 +62,20 @@
     ];
   }
   function targetFor(id){if(id==="wrs-career-center")return 22;if(id==="startup-street")return 12;if(id==="agency")return 6;return 10;}
+  function renderPathways(identity){
+    const target=document.getElementById("coursePathwayProgress");
+    if(!target||!pathwayData)return;
+    const pathways=missionStore.getPathwayProgress({profile:identity});
+    const total=pathwayData.courseList.reduce((sum,course)=>sum+course.stages.filter(stage=>pathways.courses?.[course.id]?.stages?.[stage.id]?.passed).length,0);
+    document.getElementById("pathwayRecordSummary").textContent=total?`${total} of 18 total course gates mastered across this Mission ID.`:"Choose a course route and clear each checkpoint at 80% or higher.";
+    target.innerHTML=pathwayData.courseList.map(course=>{
+      const mastered=course.stages.filter(stage=>pathways.courses?.[course.id]?.stages?.[stage.id]?.passed).length;
+      const next=course.stages.find(stage=>!pathways.courses?.[course.id]?.stages?.[stage.id]?.passed);
+      const percent=Math.round(mastered/course.stages.length*100);
+      const active=pathways.activeCourse===course.id;
+      return `<article class="course-pathway-record ${active?"active":""}"><div class="course-pathway-record-head"><span>${course.icon}</span><div><small>Course ${course.code}${active?" • Active route":""}</small><h3>${course.title}</h3></div></div><p>${next?`Next gate: ${next.title}`:"All six gates mastered."}</p><div class="entry-meter"><i style="width:${percent}%"></i></div><div class="course-pathway-record-meta"><strong>${mastered}/6 gates</strong><span>${percent}% complete</span></div><a class="mission-button ${active?"primary":"secondary"}" href="course-pathways.html?course=${course.id}">${mastered?"Continue pathway":"Open pathway"}</a></article>`;
+    }).join("");
+  }
   function transferStatus(message,state=""){
     const target=document.getElementById("profileTransferStatus");
     if(!target)return;
@@ -86,6 +106,7 @@
     document.getElementById("rankPath").innerHTML=RANKS.map(r=>`<article class="rank-card ${data.xp>=r.xp?"unlocked":"locked"} ${r.name===rank.name?"current":""}"><h3>${r.name}</h3><p>${r.xp} XP required</p></article>`).join("");
     document.getElementById("badgeGrid").innerHTML=badges(data).map(b=>`<article class="badge-card ${b.on?"":"locked"}"><div class="badge-icon">${b.icon}</div><h3>${b.name}</h3><p>${b.on?"Unlocked":b.desc}</p></article>`).join("");
     document.getElementById("topicProgress").innerHTML=Object.entries(TOPICS).map(([id,title])=>{const d=data.topicData[id],count=d?.missions.size||0,target=targetFor(id);return `<article class="topic-progress-card"><h3>${title}</h3><p>${id==="wrs-career-center"?`${count} of 22 competencies`:`${count} ${id==="agency"?(count===1?"client project":"client projects"):(count===1?"mission":"missions")} completed`}</p><div class="entry-meter"><i style="width:${Math.min(100,count/target*100)}%"></i></div></article>`;}).join("");
+    renderPathways(identity);
     updateTransfer(identity);
   }
   const modal=document.getElementById("identityModal");
@@ -107,7 +128,8 @@
       setTimeout(()=>URL.revokeObjectURL(url),0);
       const draftCount=Object.keys(payload.missionData.drafts||{}).length;
       const launchCount=Object.keys(payload.missionData.agencyLaunches||{}).length;
-      transferStatus(`Backup downloaded for ${payload.profile.first} ${payload.profile.last}. It includes ${draftCount} autosaved ${draftCount===1?"draft":"drafts"} and ${launchCount} assigned Agency ${launchCount===1?"project":"projects"}.`,"success");
+      const gateCount=Object.values(payload.missionData.pathways?.courses||{}).reduce((sum,course)=>sum+Object.values(course.stages||{}).filter(stage=>stage.passed).length,0);
+      transferStatus(`Backup downloaded for ${payload.profile.first} ${payload.profile.last}. It includes ${draftCount} autosaved ${draftCount===1?"draft":"drafts"}, ${launchCount} assigned Agency ${launchCount===1?"project":"projects"}, and ${gateCount} mastered pathway ${gateCount===1?"gate":"gates"}.`,"success");
     }catch(error){
       transferStatus(error.message||"The profile backup could not be created.","error");
     }
@@ -127,7 +149,7 @@
       }
       const result=missionStore.importProfile(payload,{mode:"merge"});
       render();
-      transferStatus(`Progress restored for ${result.profile.first} ${result.profile.last}.: ${result.missions} completed ${result.missions===1?"mission":"missions"}, ${result.drafts} autosaved ${result.drafts===1?"draft":"drafts"}, and ${result.agencyLaunches} assigned Agency ${result.agencyLaunches===1?"project":"projects"}.`,"success");
+      transferStatus(`Progress restored for ${result.profile.first} ${result.profile.last}. This profile includes ${result.missions} completed ${result.missions===1?"mission":"missions"}, ${result.drafts} autosaved ${result.drafts===1?"draft":"drafts"}, ${result.agencyLaunches} assigned Agency ${result.agencyLaunches===1?"project":"projects"}, and ${result.pathwayGates||0} mastered pathway ${(result.pathwayGates||0)===1?"gate":"gates"}.`,"success");
     }catch(error){
       transferStatus(error.message||"That file could not be imported.","error");
     }finally{

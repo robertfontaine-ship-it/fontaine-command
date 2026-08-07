@@ -65,4 +65,4 @@ async function run(browser){
   await context.close();
   console.log("PASS WRS mission, zombie transit, receipt, Mission Control, Mission ID, Passport, achievements, and mobile integration");
 }
-(async()=>{const server=spawn("python3",["-m","http.server",String(PORT),"--bind","127.0.0.1"],{stdio:"ignore"});let browser;try{await waitForServer();browser=await chromium.launch({headless:true});await run(browser);}finally{if(browser)await browser.close();server.kill("SIGTERM");}console.log("WRS Career Center browser QA passed.");})().catch(error=>{console.error(error);process.exit(1);});
+(async()=>{const server=spawn("python3",["-m","http.server",String(PORT),"--bind","127.0.0.1"],{stdio:"ignore"});let browser;try{await waitForServer();const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});await run(browser);}finally{if(browser)await browser.close();server.kill("SIGTERM");}console.log("WRS Career Center browser QA passed.");})().catch(error=>{console.error(error);process.exit(1);});

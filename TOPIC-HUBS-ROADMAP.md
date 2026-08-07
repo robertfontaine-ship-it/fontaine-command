@@ -102,9 +102,9 @@ Mission levels:
 - Centralized mission submissions instead of browser-only receipts.
 - Teacher approval from a shared roster.
 - Canvas deep links for required submissions.
-- Topic mastery checks with 80% thresholds.
+- ✅ Topic mastery checks with 80% thresholds, unlimited retries, and targeted remediation.
 - Badges and cross-topic progression.
-- Course-specific mission paths for SEM, Fashion, and Entrepreneurship.
+- ✅ Course-specific mission paths for SEM, Fashion, and Entrepreneurship.
 - A monthly drawing that carries forward verified weekly participation.
 
 ## Current Live Foundation
@@ -113,6 +113,8 @@ Mission levels:
 - Eighty-nine Quick, Skill, and Boss missions.
 - Wolverine Marketing Agency with six career roles, six editable client-brief starters, teacher-launched project links, and multi-role team rosters.
 - Mission Control, Mission IDs, XP, seven reputation ranks, badges, and department progress.
+- Three six-gate course pathways for SEM 8175, Fashion 8140, and Entrepreneurship 9093.
+- Ninety scenario-based mastery questions: five per gate, with 4 of 5 required to continue.
 - Teacher review packets, a review queue, approval ledger, weekly drawing, and CSV export.
 - Period selectors covering Periods 1–7.
 
@@ -194,6 +196,12 @@ The Mission Network should feel like one classroom learning operating system, no
 - Launched the Customer Experience Center with ten missions covering product knowledge, needs discovery, features and benefits, objections, closing, returns, service recovery, follow-up, loyalty, and balanced performance measures.
 - Corrected Marketing Functions and Promotional Mix topic aliases so historical and new progress appears under the right department in Mission Control, Mission ID, City Hall, badges, and passports.
 - Added complete prompt text to teacher review packets so evidence can be evaluated without reopening the student mission page.
+- Added six-stage SEM, Fashion, and Entrepreneurship routes that connect the existing departments, Startup Street, and Agency work into clear course progression.
+- Required saved applied-mission evidence before each course mastery check becomes available.
+- Added five-question mastery gates with an explicit 80% threshold, unlimited retries, shuffled question and answer order, saved best scores, and direct remediation for every missed skill.
+- Kept pathway checks outside the XP and weekly-entry economy so repeated attempts cannot be used to farm rewards.
+- Stored pathway selection and every attempt inside the profile-isolated Mission Network record and portable student backup.
+- Added course progress to City Hall, Mission Control, My Mission ID, achievements, canonical navigation, and desktop/mobile QA.
 
 ## Ordered Build Plan
 
@@ -218,5 +226,11 @@ The Mission Network should feel like one classroom learning operating system, no
 2. ✅ Pricing Strategy.
 3. ✅ Distribution.
 4. ✅ Selling and Customer Service.
-5. Course-specific pathways for SEM, Fashion, and Entrepreneurship.
-6. Topic mastery checks with an 80% threshold and targeted remediation routes.
+5. ✅ Course-specific pathways for SEM, Fashion, and Entrepreneurship.
+6. ✅ Topic mastery checks with an 80% threshold and targeted remediation routes.
+
+### P3 — Optional connected classroom layer
+
+1. Evaluate a no-cost shared-storage option without weakening offline-first use.
+2. Preserve Canvas as the official gradebook and submission system.
+3. Keep local backups and profile isolation as the failure-safe path.
