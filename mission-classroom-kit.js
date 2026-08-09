@@ -4,6 +4,9 @@
   const STORAGE_KEY = "fontaineMissionClassroomKit:v1";
   const PERIODS = ["1", "2", "3", "4", "5", "6", "7"];
   const destinationLabels = {
+    "business-world.html": "Student City Hall",
+    "student-orientation.html": "New Hire Orientation",
+    "course-pathways.html": "Course Pathways",
     "mission-control.html": "Mission Control",
     "topic-hubs.html": "Department Directory",
     "branding-hub.html": "Brand Studio",
@@ -15,6 +18,8 @@
     "pricing-strategy-hub.html": "Pricing Strategy Center",
     "distribution-hub.html": "Distribution & Logistics Center",
     "selling-customer-service-hub.html": "Customer Experience Center",
+    "wrs-career-center.html": "WRS Career Center",
+    "startup-street.html": "Startup Street",
     "wolverine-agency.html": "Wolverine Marketing Agency",
     "student-mission-id.html": "My Mission ID"
   };

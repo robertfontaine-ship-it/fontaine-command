@@ -1,10 +1,22 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Ship course-specific SEM, Fashion, and Entrepreneurship mastery pathways on top of the Woodside Business World Mission Network while preserving the completed curriculum-quality baseline.
+Classroom-proof the merged Woodside Business World release with one teacher launch, orientation, Canvas, shared-device, and recovery workflow.
 
 ## Active Branch
-`agent/topic-mission-hubs` — draft PR #64
+`agent/teacher-launch-system` — post-merge classroom launch release
+
+## Teacher Launch System — Built August 9, 2026
+
+- PR #64 was promoted from draft and merged into `main` at `653940e6` after all 28 hosted workflows reported success.
+- GitHub Pages published the merged Teacher Command, Student City Hall, and all three course pathways at their permanent addresses.
+- Added a dedicated Teacher Launch Center with a saved six-check preflight, live device metrics, permanent classroom links, and print-friendly launch plan.
+- Added configurable launch lanes for Periods 1–7 without assuming the still-unconfirmed 2026–27 class schedule.
+- Added a first-five-meetings rollout that introduces Mission IDs, review packets, mastery pathways, backups, and weekly rewards one layer at a time.
+- Added a projector-ready six-screen New Hire Orientation with keyboard controls, phone-safe layout, direct Mission ID and City Hall entry points, and explicit shared-device rules.
+- Added Canvas-ready templates for orientation, assigned missions, 80% pathway gates, and early-finisher missions.
+- Added shared-device start/work/end routines and a recovery ladder connecting autosave, Switch Profile, backup/restore, review queue, and teacher device cleanup.
+- Connected Teacher Launch to Fontaine Command, the Classroom Print Kit, Student City Hall, Course Pathways, My Mission ID, review queue, and device manager.
 
 ## Course Pathways — Built August 6, 2026
 
@@ -41,10 +53,12 @@ Ship course-specific SEM, Fashion, and Entrepreneurship mastery pathways on top 
 - Every released lesson remains at least Minor Polish, and the audit permanently blocks any return to Needs Revision or High Priority.
 
 ## Current Priority
-Complete PR #64 release validation and prepare the all-green student experience for review and merge.
+Complete the Teacher Launch regression sweep and publish the new classroom-rollout checkpoint for review.
 
 ## Next
-1. Review and merge draft PR #64 after the final hosted checks report green.
-2. Evaluate an optional no-cost shared-storage layer without weakening offline-first use, student backups, or Canvas as the official gradebook.
-3. Resume the remaining Minor Polish curriculum backlog, beginning with SEM-027, SEM-017, and SEM-036.
-4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
+1. Review and merge the Teacher Launch release after hosted Mission Network QA reports green.
+2. Run the first realistic classroom pilot across a Chromebook, desktop, and student phone.
+3. Build Alert Mode and guided daily missions from pilot evidence.
+4. Evaluate an optional no-cost shared-storage layer without weakening offline-first use, student backups, or Canvas as the official gradebook.
+5. Resume the remaining Minor Polish curriculum backlog, beginning with SEM-027, SEM-017, and SEM-036.
+6. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.

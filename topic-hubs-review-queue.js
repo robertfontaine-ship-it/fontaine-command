@@ -308,7 +308,7 @@
     const emptyMessage = queue.length
       ? "No submissions match the current filters."
       : "No mission packets have been imported.";
-    return `<section class="card mission-review-queue">
+    return `<section class="card mission-review-queue" id="mission-review-queue">
       <div class="row"><div><h2>Teacher Mission Review Queue</h2><p class="muted">Paste student packets, review the evidence, then approve, return, or reject from one screen. Start with one class period when the queue is busy.</p></div><div class="topic-admin-actions"><span class="topic-admin-status">${counts.Pending || 0} pending</span></div></div>
       <div class="mission-review-import">
         <label><strong>Paste student review packet</strong><textarea id="missionReviewPacket" placeholder="Paste the text beginning with FMN-REVIEW:"></textarea></label>

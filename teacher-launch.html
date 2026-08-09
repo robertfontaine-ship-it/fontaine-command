@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#24123f" />
+  <meta name="description" content="Teacher launch system for rolling out Woodside Business World, course pathways, Mission IDs, Canvas handoffs, and shared-device routines." />
+  <title>Teacher Launch Center | Fontaine Command</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="teacher-launch.css" />
+</head>
+<body>
+  <a class="launch-skip" href="#main-content">Skip to launch plan</a>
+
+  <header class="launch-topbar">
+    <a class="launch-brand" href="index.html" aria-label="Fontaine Command teacher dashboard">
+      <span aria-hidden="true">W</span>
+      <span><strong>Fontaine Command</strong><small>Teacher Launch Center</small></span>
+    </a>
+    <nav aria-label="Launch tools">
+      <a href="index.html">Teacher Command</a>
+      <a href="business-world.html">Student City Hall</a>
+      <a href="index.html?launch=reviews#mission-review-queue">Review Queue</a>
+      <a href="mission-classroom-kit.html">Print Kit</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="launch-shell" tabindex="-1">
+    <section class="launch-hero">
+      <div class="launch-hero-copy">
+        <p class="launch-eyebrow">A202 • Classroom Release System</p>
+        <h1>Launch the whole experience without winging it.</h1>
+        <p>One teacher command post for student orientation, Periods 1–7, Canvas directions, shared-device routines, recovery, and the first five class meetings.</p>
+        <div class="launch-actions">
+          <a class="launch-button primary" href="student-orientation.html">Project student orientation</a>
+          <a class="launch-button" href="business-world.html">Open student headquarters</a>
+          <button class="launch-button ghost" id="printLaunchPlan" type="button">Print launch plan</button>
+        </div>
+      </div>
+      <aside class="launch-readiness" aria-labelledby="launch-readiness-title">
+        <div class="launch-readiness-heading">
+          <div><p class="launch-eyebrow">Launch Readiness</p><h2 id="launch-readiness-title"><span id="readinessPercent">0%</span> ready</h2></div>
+          <span class="launch-status-dot" aria-hidden="true"></span>
+        </div>
+        <div class="launch-progress" aria-hidden="true"><i id="readinessBar"></i></div>
+        <p id="readinessMessage">Complete the six preflight checks below.</p>
+        <div class="launch-live-metrics" aria-label="This browser status">
+          <span><strong id="savedProfiles">0</strong> student profiles</span>
+          <span><strong id="pendingReviews">0</strong> pending reviews</span>
+          <span><strong id="approvedEntries">0</strong> approved entries</span>
+        </div>
+        <small>Counts describe this browser only. Canvas remains the official assignment and gradebook.</small>
+      </aside>
+    </section>
+
+    <section class="launch-section" id="preflight">
+      <div class="launch-section-heading">
+        <div><p class="launch-eyebrow">01 • Preflight</p><h2>Six checks before students enter</h2></div>
+        <button class="text-button" id="resetLaunchPlan" type="button">Start a fresh rollout</button>
+      </div>
+      <div class="preflight-grid" id="preflightChecklist">
+        <label><input type="checkbox" data-launch-check="student-link" /><span><b>Student link posted</b><small>Business World is visible in the correct Canvas module.</small></span></label>
+        <label><input type="checkbox" data-launch-check="orientation" /><span><b>Orientation ready</b><small>The projector page opens and the six-step script is familiar.</small></span></label>
+        <label><input type="checkbox" data-launch-check="periods" /><span><b>Periods configured</b><small>Every class using the system has a course and starting mode below.</small></span></label>
+        <label><input type="checkbox" data-launch-check="canvas" /><span><b>Canvas directions posted</b><small>Students know the task, evidence, submission, and mastery rule.</small></span></label>
+        <label><input type="checkbox" data-launch-check="cards" /><span><b>Check-in plan ready</b><small>Cards are printed or Mission ID directions are projected.</small></span></label>
+        <label><input type="checkbox" data-launch-check="recovery" /><span><b>Recovery rehearsed</b><small>One backup was exported and restored on a test profile.</small></span></label>
+      </div>
+    </section>
+
+    <section class="launch-section" id="command-links">
+      <div class="launch-section-heading">
+        <div><p class="launch-eyebrow">02 • Command Links</p><h2>The right door for each job</h2></div>
+        <p>These are permanent links. Copy the student doors into Canvas; keep teacher operations in Fontaine Command.</p>
+      </div>
+      <div class="command-grid">
+        <article><span class="command-icon" aria-hidden="true">🏛️</span><div><h3>Student City Hall</h3><p>Profiles, missions, Passport, awards, and all 12 live locations.</p></div><div class="command-actions"><a href="business-world.html">Open</a><button type="button" data-copy-link="business-world.html">Copy link</button></div></article>
+        <article><span class="command-icon" aria-hidden="true">🧭</span><div><h3>Course Pathways</h3><p>SEM, Fashion, and Entrepreneurship with six 80% gates each.</p></div><div class="command-actions"><a href="course-pathways.html">Open</a><button type="button" data-copy-link="course-pathways.html">Copy link</button></div></article>
+        <article><span class="command-icon" aria-hidden="true">🪪</span><div><h3>My Mission ID</h3><p>Profile switching, progress, receipts, backups, and restore.</p></div><div class="command-actions"><a href="student-mission-id.html">Open</a><button type="button" data-copy-link="student-mission-id.html">Copy link</button></div></article>
+        <article><span class="command-icon" aria-hidden="true">🗂️</span><div><h3>Teacher Review Queue</h3><p>Paste packets, review evidence, approve entries, and return revisions.</p></div><div class="command-actions"><a href="index.html?launch=reviews#mission-review-queue">Open</a><button type="button" data-copy-link="index.html?launch=reviews#mission-review-queue">Copy link</button></div></article>
+        <article><span class="command-icon" aria-hidden="true">🖨️</span><div><h3>Classroom Print Kit</h3><p>Private-by-design check-in cards and the Periods 1–7 substitute guide.</p></div><div class="command-actions"><a href="mission-classroom-kit.html">Open</a><button type="button" data-copy-link="mission-classroom-kit.html">Copy link</button></div></article>
+        <article><span class="command-icon" aria-hidden="true">🧰</span><div><h3>Device Manager</h3><p>Clear one profile or reset student data while preserving teacher records.</p></div><div class="command-actions"><a href="index.html?launch=reviews#shared-device-manager">Open</a><button type="button" data-copy-link="index.html?launch=reviews#shared-device-manager">Copy link</button></div></article>
+      </div>
+    </section>
+
+    <section class="launch-section" id="period-setup">
+      <div class="launch-section-heading">
+        <div><p class="launch-eyebrow">03 • Period Setup</p><h2>Set the starting lane for Periods 1–7</h2></div>
+        <p>Choose only the periods using Business World. Planning or unused periods can stay closed. Changes save automatically on this browser.</p>
+      </div>
+      <div class="period-plan" id="periodPlan" aria-label="Periods 1 through 7 launch plan"></div>
+      <p class="launch-save-status" id="periodSaveStatus" role="status" aria-live="polite">No period setup saved yet.</p>
+    </section>
+
+    <section class="launch-section" id="first-week">
+      <div class="launch-section-heading">
+        <div><p class="launch-eyebrow">04 • First Five Meetings</p><h2>Teach the system one layer at a time</h2></div>
+        <p>Students experience something real every meeting, but no single day carries the whole operating system.</p>
+      </div>
+      <div class="week-grid">
+        <article><span>DAY 1</span><h3>Enter the city</h3><p>Project orientation. Students create a Mission ID using first name, last initial, and period, then explore City Hall.</p><strong>Win condition: correct profile + one destination named.</strong></article>
+        <article><span>DAY 2</span><h3>Finish a Quick Mission</h3><p>Model required work first, specific evidence, receipt creation, and the Canvas handoff.</p><strong>Win condition: one complete review packet in Canvas.</strong></article>
+        <article><span>DAY 3</span><h3>Open the course path</h3><p>Students select their course, complete the matching applied mission, and learn the 4-of-5 gate rule.</p><strong>Win condition: first gate attempted honestly.</strong></article>
+        <article><span>DAY 4</span><h3>Recover like a pro</h3><p>Practice Switch Profile, autosaved drafts, profile export, and a test restore before stakes are high.</p><strong>Win condition: students can explain the recovery ladder.</strong></article>
+        <article><span>DAY 5</span><h3>Close the loop</h3><p>Review packets, approve entries, spotlight strong evidence, and run the first low-dollar weekly drawing.</p><strong>Win condition: students see that quality and follow-through count.</strong></article>
+      </div>
+    </section>
+
+    <section class="launch-section orientation-system" id="orientation">
+      <div>
+        <p class="launch-eyebrow">05 • Student Orientation</p>
+        <h2>A 10-minute New Hire briefing</h2>
+        <ol>
+          <li><b>1 minute:</b> “This is a business world, not free time. Required Canvas work always comes first.”</li>
+          <li><b>2 minutes:</b> Build a Mission ID—first name, last initial, Period 1–7.</li>
+          <li><b>2 minutes:</b> Show City Hall, Departments, Pathways, Agency, and My Mission ID.</li>
+          <li><b>2 minutes:</b> Explain Learn → Apply → Prove and the 80% mastery gate.</li>
+          <li><b>2 minutes:</b> Demonstrate the teacher review packet → Canvas handoff.</li>
+          <li><b>1 minute:</b> Rehearse switching profiles and the end-of-class backup routine.</li>
+        </ol>
+      </div>
+      <aside>
+        <h3>Projector-ready mode</h3>
+        <p>Large type, six guided screens, keyboard controls, phone-safe layout, and direct student launch buttons.</p>
+        <a class="launch-button primary" href="student-orientation.html">Start the briefing</a>
+        <a class="launch-button" href="mission-classroom-kit.html#cardSection">Print check-in cards</a>
+      </aside>
+    </section>
+
+    <section class="launch-section" id="canvas-handoff">
+      <div class="launch-section-heading">
+        <div><p class="launch-eyebrow">06 • Canvas Handoff</p><h2>Generate the directions students actually need</h2></div>
+        <p>Pick the period, course, and workflow. The post always names the evidence, submission, and 80% rule when mastery applies.</p>
+      </div>
+      <div class="canvas-builder">
+        <form id="canvasForm" class="canvas-controls">
+          <label>Class period<select id="canvasPeriod"><option value="1">Period 1</option><option value="2">Period 2</option><option value="3">Period 3</option><option value="4">Period 4</option><option value="5">Period 5</option><option value="6">Period 6</option><option value="7">Period 7</option></select></label>
+          <label>Course<select id="canvasCourse"><option value="SEM">Sports &amp; Entertainment Marketing 8175</option><option value="Fashion">Fashion Marketing 8140</option><option value="Entrepreneurship">Entrepreneurship 9093</option></select></label>
+          <label>Canvas post<select id="canvasType"><option value="orientation">New Hire Orientation</option><option value="mission">Assigned Mission</option><option value="pathway">Course Mastery Gate</option><option value="early-finisher">Early Finisher Mission</option></select></label>
+          <button class="launch-button primary" type="submit">Refresh directions</button>
+          <button class="launch-button" id="copyCanvasDirections" type="button">Copy for Canvas</button>
+        </form>
+        <div class="canvas-preview-wrap">
+          <div class="canvas-preview-heading"><strong>Student-facing preview</strong><span>Canvas is the official submission location</span></div>
+          <pre id="canvasPreview" tabindex="0"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="launch-section" id="shared-device">
+      <div class="launch-section-heading">
+        <div><p class="launch-eyebrow">07 • Shared Devices &amp; Recovery</p><h2>Protect progress without student accounts</h2></div>
+        <p>The system is browser-local by design. The routine matters as much as the technology.</p>
+      </div>
+      <div class="device-grid">
+        <article><span>START</span><h3>Claim the right profile</h3><ol><li>Open My Mission ID.</li><li>Use first name, last initial, and correct period.</li><li>If the device was shared, choose Switch Profile—never type over another student.</li></ol></article>
+        <article><span>WORK</span><h3>Let autosave work</h3><ol><li>Stay on the assigned profile.</li><li>Wait for “All changes saved” before leaving a mission.</li><li>Create the review packet only after every response is complete.</li></ol></article>
+        <article><span>END</span><h3>Close the loop</h3><ol><li>Paste the review packet into Canvas.</li><li>Export the Mission ID backup on the assigned backup day.</li><li>Use Switch Profile or close the browser—do not reset the device.</li></ol></article>
+        <article class="recovery-card"><span>RECOVER</span><h3>Use the ladder in order</h3><ol><li>Refresh and reopen My Mission ID.</li><li>Confirm the correct profile is active.</li><li>Reopen the mission and check the recovered draft.</li><li>Restore the student’s latest backup file.</li><li>Use teacher device cleanup only after backup options are exhausted.</li></ol><div class="command-actions"><a href="student-mission-id.html#profileTransfer">Open backup &amp; restore</a><a href="index.html?launch=reviews#shared-device-manager">Open device manager</a></div></article>
+      </div>
+    </section>
+
+    <section class="launch-bottom-line" aria-label="Nonnegotiable classroom rules">
+      <strong>Four nonnegotiables</strong>
+      <span>Required work first</span><span>Use your own Mission ID</span><span>Specific evidence beats speed</span><span>Submit through Canvas</span>
+    </section>
+  </main>
+
+  <div class="launch-toast" id="launchToast" role="status" aria-live="polite"></div>
+  <footer class="launch-footer"><div><strong>Fontaine Command</strong><span>Woodside Business World • A202</span></div><p>Offline-resilient student progress • Portable backups • Canvas as the official gradebook</p></footer>
+
+  <script src="mission-data-store.js"></script>
+  <script src="teacher-launch.js"></script>
+</body>
+</html>

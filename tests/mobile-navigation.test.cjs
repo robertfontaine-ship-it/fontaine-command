@@ -28,7 +28,8 @@ async function assertNoDocumentOverflow(page,label){
   let browser;
   try{
     await waitForServer();
-    browser=await chromium.launch({headless:true});
+    const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;
+    browser=await chromium.launch({headless:true,...(executablePath?{executablePath,args:['--no-sandbox','--disable-gpu']}: {})});
     for(const viewport of viewports){
       const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},isMobile:viewport.width<600,hasTouch:true});
       const page=await context.newPage();
