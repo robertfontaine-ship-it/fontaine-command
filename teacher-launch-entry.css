@@ -1,0 +1,23 @@
+.nav a[data-teacher-launch-link] {
+  width: 100%;
+  min-height: 44px;
+  display: block;
+  padding: 11px 12px;
+  border-radius: 10px;
+  color: #c8d1df;
+  background: transparent;
+  font-size: inherit;
+  text-align: left;
+  text-decoration: none;
+}
+
+.nav a[data-teacher-launch-link]:hover,
+.nav a[data-teacher-launch-link]:focus-visible {
+  color: #fff;
+  background: #263249;
+}
+
+.nav a[data-teacher-launch-link]:focus-visible {
+  outline: 3px solid #8ab4ff;
+  outline-offset: 2px;
+}

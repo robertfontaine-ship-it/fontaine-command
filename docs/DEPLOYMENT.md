@@ -8,6 +8,15 @@ After GitHub Pages is enabled with **GitHub Actions** as the source, the site ad
 
 `https://robertfontaine-ship-it.github.io/fontaine-command/`
 
+## Permanent classroom links
+
+- Teacher Launch Center: `https://robertfontaine-ship-it.github.io/fontaine-command/teacher-launch.html`
+- Student City Hall: `https://robertfontaine-ship-it.github.io/fontaine-command/business-world.html`
+- Course Pathways: `https://robertfontaine-ship-it.github.io/fontaine-command/course-pathways.html`
+- My Mission ID: `https://robertfontaine-ship-it.github.io/fontaine-command/student-mission-id.html`
+
+Use the Teacher Launch Center to copy student links, set Periods 1–7, generate Canvas directions, project orientation, and open recovery tools.
+
 ## Automatic publishing
 
 The workflow in `.github/workflows/deploy-pages.yml` runs whenever a commit is pushed to `main`.
@@ -23,6 +32,8 @@ In the GitHub repository:
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
 
 After that one-time setting, future commits to `main` publish automatically.
+
+After a release merge, verify the root Teacher Command, Student City Hall, and Course Pathways pages before posting links to students.
 
 ## Data behavior
 

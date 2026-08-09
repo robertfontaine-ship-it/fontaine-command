@@ -119,7 +119,7 @@
         <div class="row" style="margin-top:14px"><span class="muted">Each approved entry becomes one ticket in the weighted drawing.</span><button class="btn secondary" type="button" onclick="clearTopicLedger()">Reset this week</button></div>
       </section>
 
-      <section class="card topic-device-manager">
+      <section class="card topic-device-manager" id="shared-device-manager">
         <div class="row"><div><h2>Shared-Device Student Data</h2><p class="muted">Teacher-only cleanup for classroom computers. This does not erase the teacher review queue, approved-entry ledger, or giveaway winner.</p></div><span class="topic-admin-status">${studentProfiles.length} saved ${studentProfiles.length === 1 ? "profile" : "profiles"}</span></div>
         <div class="grid topic-device-summary">
           <div class="card span-4"><div class="metric">${studentProfiles.length}</div><div class="muted">Student profiles on this browser</div></div>
