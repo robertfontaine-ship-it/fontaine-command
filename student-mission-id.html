@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Woodside Business World student ID, XP, reputation, badges, and mission progress."
+    />
+    <title>My Mission ID | Woodside Business World</title>
+    <link rel="stylesheet" href="topic-hubs.css" />
+    <link rel="stylesheet" href="student-mission-id.css" />
+  </head>
+  <body class="mission-site mission-id-site">
+    <header class="mission-topbar">
+      <a class="mission-brand" href="business-world.html"
+        ><span class="mission-brand-mark">W</span
+        ><span
+          ><strong>Woodside Business World</strong
+          ><small>Student Mission ID</small></span
+        ></a
+      >
+      <nav class="mission-nav">
+        <a href="business-world.html">City Hall</a
+        ><a href="mission-control.html">Mission Control</a
+        ><a href="topic-hubs.html">Departments</a
+        ><a href="wolverine-agency.html">Agency</a
+        ><a class="active" href="student-mission-id.html">My Mission ID</a>
+      </nav>
+    </header>
+    <main>
+      <section class="mission-hero id-hero">
+        <div class="mission-hero-copy">
+          <p class="eyebrow">Persistent student profile</p>
+          <h1>Your Marketing Reputation</h1>
+          <p>
+            Your Mission ID combines progress from every department and agency
+            project saved on this browser. Complete missions to earn XP, unlock
+            ranks, and collect badges.
+          </p>
+          <div class="mission-actions">
+            <a class="mission-button primary" href="business-world.html"
+              >Return to City Hall</a
+            ><a class="mission-button secondary" href="topic-hubs.html"
+              >Choose another mission</a
+            ><button
+              class="mission-button secondary"
+              type="button"
+              id="editIdentity"
+            >
+              Set or change identity
+            </button>
+          </div>
+        </div>
+        <aside class="id-mini-card">
+          <p class="eyebrow">Current rank</p>
+          <strong id="heroRank">Marketing Rookie</strong
+          ><span id="heroXp">0 XP</span>
+          <div class="entry-meter"><i id="heroMeter"></i></div>
+          <small id="nextRankText">Complete a mission to begin.</small>
+        </aside>
+      </section>
+      <section class="mission-section" id="identitySection">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Digital credential</p>
+            <h2>Fontaine Mission ID</h2>
+          </div>
+          <p>
+            This is a classroom progress card, not an official school
+            identification card.
+          </p>
+        </div>
+        <div class="mission-id-card" id="missionIdCard">
+          <div class="id-card-top">
+            <div class="id-avatar" id="idAvatar">?</div>
+            <div>
+              <p class="eyebrow">Woodside Business World</p>
+              <h2 id="studentName">Profile not set</h2>
+              <p id="studentDetails">Select your name and class period.</p>
+            </div>
+            <span class="id-rank" id="idRank">Marketing Rookie</span>
+          </div>
+          <div class="id-stats">
+            <div><strong id="xpTotal">0</strong><span>Total XP</span></div>
+            <div>
+              <strong id="missionsTotal">0</strong><span>Missions</span>
+            </div>
+            <div>
+              <strong id="weeklyEntries">0</strong><span>Weekly entries</span>
+            </div>
+            <div>
+              <strong id="topicsTotal">0</strong><span>Topics explored</span>
+            </div>
+          </div>
+          <div class="id-code">
+            <span>Mission ID</span><strong id="missionCode">NOT-SET</strong>
+          </div>
+        </div>
+      </section>
+      <section class="mission-section transfer-section" id="profileTransfer">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Device switch protection</p>
+            <h2>Back Up or Move Your Progress</h2>
+          </div>
+          <p>
+            Save one small backup file, then import it on another computer to
+            restore this Mission ID, completed work, Agency role, and autosaved
+            drafts.
+          </p>
+        </div>
+        <div class="transfer-grid">
+          <article class="transfer-card">
+            <span class="transfer-step">1</span>
+            <h3>Download My Backup</h3>
+            <p>
+              Use this before changing devices or whenever you finish a major
+              project. The file contains only the active student profile.
+            </p>
+            <button
+              class="mission-button primary"
+              type="button"
+              id="exportMissionProfile"
+            >
+              Download my progress
+            </button>
+          </article>
+          <article class="transfer-card">
+            <span class="transfer-step">2</span>
+            <h3>Restore From a Backup</h3>
+            <p>
+              Choose a Fontaine Mission backup file. Newer work is kept when
+              the same mission exists on both devices.
+            </p>
+            <label class="mission-button secondary transfer-upload">
+              Choose backup file
+              <input
+                type="file"
+                id="importMissionProfile"
+                accept="application/json,.json"
+              />
+            </label>
+          </article>
+        </div>
+        <div
+          class="transfer-status"
+          id="profileTransferStatus"
+          role="status"
+          aria-live="polite"
+        >
+          Set your Mission ID before creating a backup.
+        </div>
+        <p class="fine-print transfer-note">
+          Backups do not contain teacher approvals, giveaway ledgers, or other
+          students’ profiles.
+        </p>
+      </section>
+      <section class="mission-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Progression system</p>
+            <h2>Reputation Path</h2>
+          </div>
+          <p>
+            XP reflects completed mission receipts stored on this device.
+            Teacher approval still controls giveaway entries.
+          </p>
+        </div>
+        <div class="rank-path" id="rankPath"></div>
+      </section>
+      <section class="mission-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Achievements</p>
+            <h2>Badge Collection</h2>
+          </div>
+          <p>Badges unlock automatically as your mission history grows.</p>
+        </div>
+        <div class="badge-grid" id="badgeGrid"></div>
+      </section>
+      <section class="mission-section" id="coursePathwayRecord">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Course mastery</p>
+            <h2>Pathway Record</h2>
+          </div>
+          <p id="pathwayRecordSummary">
+            Choose a course route and clear each checkpoint at 80% or higher.
+          </p>
+        </div>
+        <div class="course-pathway-record-grid" id="coursePathwayProgress"></div>
+      </section>
+      <section class="mission-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Activity record</p>
+            <h2>Topic Progress</h2>
+          </div>
+          <p>
+            Progress is stored locally on this browser and may differ on another
+            device.
+          </p>
+        </div>
+        <div class="topic-progress-grid" id="topicProgress"></div>
+      </section>
+    </main>
+    <div class="mission-modal" id="identityModal" hidden>
+      <div class="modal-backdrop" data-close-id></div>
+      <section class="modal-panel">
+        <button class="modal-close" type="button" data-close-id>×</button>
+        <p class="eyebrow">Set your profile</p>
+        <h2>Create Your Mission ID</h2>
+        <p>
+          Use the same name and period you enter on mission receipts so your
+          progress connects correctly.
+        </p>
+        <form id="identityForm">
+          <div class="profile-fields">
+            <label>First name<input id="idFirst" required /></label
+            ><label
+              >Last initial<input id="idLast" maxlength="1" required /></label
+            ><label
+              >Class period<select id="idPeriod" required>
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+              </select></label
+            >
+          </div>
+          <button class="mission-button primary full" type="submit">
+            Save Mission ID
+          </button>
+        </form>
+      </section>
+    </div>
+    <footer class="mission-footer">
+      <strong>Student Mission ID</strong
+      ><a href="business-world.html">Return to City Hall</a>
+    </footer>
+    <script src="mission-data-store.js"></script>
+    <script src="course-pathways-data.js"></script>
+    <script src="mission-accessibility.js"></script>
+    <script src="student-mission-id.js"></script>
+  </body>
+</html>

@@ -1,0 +1,363 @@
+.id-hero {
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(244, 181, 63, 0.28),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(240, 95, 166, 0.18),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #eee7ff, #fff 64%);
+}
+.id-mini-card {
+  position: relative;
+  z-index: 1;
+  padding: 26px;
+  border-radius: 24px;
+  background: #171024;
+  color: #fff;
+  box-shadow: 0 20px 50px rgba(20, 12, 37, 0.25);
+}
+.id-mini-card strong,
+.id-mini-card span,
+.id-mini-card small {
+  display: block;
+}
+.id-mini-card strong {
+  font-size: 1.8rem;
+  line-height: 1.05;
+}
+.id-mini-card span {
+  margin-top: 8px;
+  font-weight: 850;
+}
+.id-mini-card small {
+  color: #d9cee9;
+}
+.mission-id-card {
+  padding: 26px;
+  border-radius: 28px;
+  color: #fff;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(244, 181, 63, 0.25),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #21133e, #54259c 62%, #8a2d74);
+  box-shadow: 0 26px 70px rgba(30, 16, 59, 0.28);
+  overflow: hidden;
+}
+.id-card-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+.id-avatar {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #f4b53f, #f05fa6);
+  font-size: 2rem;
+  font-weight: 950;
+}
+.id-card-top h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+}
+.id-card-top p {
+  margin: 4px 0;
+  color: #e8def5;
+}
+.id-rank {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-weight: 900;
+}
+.id-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 28px;
+}
+.id-stats div {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.id-stats strong,
+.id-stats span {
+  display: block;
+}
+.id-stats strong {
+  font-size: 1.9rem;
+}
+.id-stats span {
+  color: #e3d9f1;
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+.id-code {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.id-code span {
+  color: #e3d9f1;
+}
+.id-code strong {
+  letter-spacing: 0.08em;
+}
+.transfer-section {
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid #d8ccec;
+  border-radius: 26px;
+  background: linear-gradient(145deg, #f4efff, #fff 58%);
+  box-shadow: 0 18px 45px rgba(35, 22, 71, 0.08);
+}
+.transfer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.transfer-card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--mission-line);
+  border-radius: 18px;
+  background: #fff;
+}
+.transfer-card h3 {
+  margin: 12px 0 6px;
+}
+.transfer-card p {
+  color: var(--mission-muted);
+}
+.transfer-card .mission-button {
+  margin-top: auto;
+}
+.transfer-step {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #fff;
+  background: var(--mission-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+.transfer-upload {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.transfer-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.transfer-status {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 11px;
+  color: #4f485a;
+  background: #eee9f6;
+  font-weight: 760;
+}
+.transfer-status[data-state="success"] {
+  color: #11613e;
+  background: #ddf4e8;
+}
+.transfer-status[data-state="error"] {
+  color: #8a2331;
+  background: #fff0f2;
+}
+.transfer-note {
+  margin-bottom: 0;
+}
+.rank-path {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.rank-card {
+  padding: 20px;
+  border: 1px solid var(--mission-line);
+  border-radius: 18px;
+  background: #fff;
+}
+.rank-card.current {
+  border-color: #9c7cdb;
+  background: #f4efff;
+}
+.rank-card.unlocked::before {
+  content: "UNLOCKED";
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #11613e;
+  background: #ddf4e8;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+.rank-card.locked {
+  opacity: 0.6;
+}
+.rank-card h3 {
+  margin: 4px 0;
+}
+.rank-card p {
+  margin: 0;
+  color: var(--mission-muted);
+}
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.badge-card {
+  min-height: 180px;
+  padding: 20px;
+  border: 1px solid var(--mission-line);
+  border-radius: 18px;
+  background: #fff;
+}
+.badge-card.locked {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+.badge-icon {
+  font-size: 2rem;
+}
+.badge-card h3 {
+  margin: 10px 0 4px;
+}
+.badge-card p {
+  margin: 0;
+  color: var(--mission-muted);
+}
+.topic-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.topic-progress-card {
+  padding: 20px;
+  border: 1px solid var(--mission-line);
+  border-radius: 18px;
+  background: #fff;
+}
+.topic-progress-card h3 {
+  margin: 0 0 8px;
+}
+.topic-progress-card p {
+  margin: 0;
+  color: var(--mission-muted);
+}
+.topic-progress-card .entry-meter {
+  margin-top: 14px;
+}
+.course-pathway-record-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.course-pathway-record {
+  padding: 20px;
+  border: 1px solid var(--mission-line);
+  border-radius: 20px;
+  background: #fff;
+}
+.course-pathway-record.active {
+  border-color: #9c7cdb;
+  background: #f7f3ff;
+}
+.course-pathway-record-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.course-pathway-record-head > span {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #eee7fb;
+  font-size: 1.35rem;
+}
+.course-pathway-record small {
+  color: var(--mission-primary);
+  font-weight: 850;
+}
+.course-pathway-record h3 {
+  margin: 3px 0 0;
+  line-height: 1.15;
+}
+.course-pathway-record p {
+  min-height: 48px;
+  color: var(--mission-muted);
+}
+.course-pathway-record-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0 16px;
+  color: #5c5567;
+  font-size: 0.82rem;
+}
+.course-pathway-record .mission-button {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .id-stats,
+  .badge-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rank-path,
+  .topic-progress-grid,
+  .course-pathway-record-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .id-card-top {
+    grid-template-columns: auto 1fr;
+  }
+  .id-rank {
+    grid-column: 1/-1;
+  }
+  .id-stats,
+  .badge-grid,
+  .rank-path,
+  .topic-progress-grid,
+  .course-pathway-record-grid {
+    grid-template-columns: 1fr;
+  }
+  .id-code {
+    flex-direction: column;
+  }
+  .transfer-grid {
+    grid-template-columns: 1fr;
+  }
+  .transfer-card .mission-button {
+    width: 100%;
+  }
+}

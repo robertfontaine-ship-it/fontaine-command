@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Wolverine Marketing Agency: choose a professional role, accept a client brief, and build portfolio-ready marketing work." />
+  <title>Wolverine Marketing Agency | Fontaine Mission Network</title>
+  <link rel="stylesheet" href="topic-hubs.css" />
+  <link rel="stylesheet" href="wolverine-agency.css" />
+</head>
+<body class="mission-site agency-site">
+  <header class="mission-topbar">
+    <a class="mission-brand" href="mission-control.html" aria-label="Mission Control home">
+      <span class="mission-brand-mark">WA</span>
+      <span><strong>Wolverine Marketing Agency</strong><small>Real roles. Real clients. Portfolio work.</small></span>
+    </a>
+    <nav class="mission-nav" aria-label="Primary navigation">
+      <a href="mission-control.html">Mission Control</a>
+      <a href="topic-hubs.html">Departments</a>
+      <a class="active" href="wolverine-agency.html">Agency</a>
+      <a href="student-mission-id.html">My Mission ID</a>
+    </nav>
+  </header>
+
+  <main class="agency-shell">
+    <section class="agency-hero">
+      <div>
+        <p class="eyebrow">Student Agency Floor</p>
+        <h1>Turn marketing knowledge into client-ready work.</h1>
+        <p>Choose a professional role, accept a client brief, complete the work order, and generate a review packet for teacher or client feedback.</p>
+        <div class="mission-actions">
+          <button class="mission-button primary" id="joinAgencyProject" type="button">Join teacher project</button>
+          <a class="mission-button primary" href="#roles">Choose your role</a>
+          <a class="mission-button secondary" href="#briefs">View client briefs</a>
+        </div>
+      </div>
+      <aside class="agency-status-card" aria-live="polite">
+        <span>Agency Status</span>
+        <strong id="agencyStudent">Profile not set</strong>
+        <p id="agencyRole">No role selected</p>
+        <div class="agency-status-grid">
+          <div><strong id="agencyProjects">0</strong><span>Projects</span></div>
+          <div><strong id="agencyXp">0</strong><span>Agency XP</span></div>
+        </div>
+        <button class="mission-button secondary compact" id="editAgencyProfile" type="button">Set identity and role</button>
+      </aside>
+    </section>
+
+    <section class="mission-section agency-rules">
+      <div class="section-heading">
+        <div><p class="eyebrow">How the agency works</p><h2>Four-Step Client Workflow</h2></div>
+        <p>Assignments come first. Agency projects can be used for enrichment, team projects, make-up work, or real school clients.</p>
+      </div>
+      <div class="step-grid">
+        <article><span>1</span><h3>Check in</h3><p>Use the same name and period as your Fontaine Mission ID.</p></article>
+        <article><span>2</span><h3>Choose a role</h3><p>Select the responsibility you want to own on this project.</p></article>
+        <article><span>3</span><h3>Accept a brief</h3><p>Read the client problem, audience, constraints, and required deliverables.</p></article>
+        <article><span>4</span><h3>Submit the packet</h3><p>Complete every prompt and copy the client review packet before closing it.</p></article>
+      </div>
+    </section>
+
+    <section class="mission-section" id="assigned-projects">
+      <div class="section-heading">
+        <div><p class="eyebrow">Teacher-launched work</p><h2>My Assigned Agency Projects</h2></div>
+        <p>Open the link from your teacher—or paste its project code—to receive the exact client brief, team roster, role assignment, due date, and individual evidence requirements.</p>
+      </div>
+      <div class="agency-assigned-grid" id="agencyAssignedGrid"></div>
+    </section>
+
+    <section class="mission-section" id="roles">
+      <div class="section-heading">
+        <div><p class="eyebrow">Agency career tracks</p><h2>Choose the Job You Want to Practice</h2></div>
+        <p>Every role contributes a different piece of the final client solution. Roles are recommendations, not permanent assignments.</p>
+      </div>
+      <div class="agency-role-grid" id="agencyRoleGrid"></div>
+    </section>
+
+    <section class="mission-section" id="briefs">
+      <div class="section-heading">
+        <div><p class="eyebrow">Open accounts</p><h2>Client Brief Board</h2></div>
+        <p>Each brief is a Boss-level agency project worth 50 XP and up to four provisional weekly entries after approval.</p>
+      </div>
+      <div class="agency-filter-row" role="group" aria-label="Filter client briefs">
+        <button class="filter-button active" data-agency-filter="All" type="button">All clients</button>
+        <button class="filter-button" data-agency-filter="School" type="button">School</button>
+        <button class="filter-button" data-agency-filter="Community" type="button">Community</button>
+        <button class="filter-button" data-agency-filter="Business" type="button">Business</button>
+        <button class="filter-button" data-agency-filter="Creator" type="button">Creator</button>
+      </div>
+      <div class="agency-brief-grid" id="agencyBriefGrid"></div>
+    </section>
+
+    <section class="mission-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Portfolio record</p><h2>Completed Agency Projects</h2></div>
+        <p>Projects are saved on this browser and also appear on your Mission ID as Agency progress.</p>
+      </div>
+      <div class="agency-history" id="agencyHistory"></div>
+    </section>
+  </main>
+
+  <div class="mission-modal" id="agencyProfileModal" hidden>
+    <div class="modal-backdrop" data-close-agency-profile></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="agencyProfileTitle">
+      <button class="modal-close" type="button" data-close-agency-profile aria-label="Close profile">×</button>
+      <p class="eyebrow">Agency check-in</p>
+      <h2 id="agencyProfileTitle">Set Your Agency Identity</h2>
+      <p>Use the same identity on every project so your work connects to one Mission ID.</p>
+      <form id="agencyProfileForm">
+        <div class="profile-fields">
+          <label>First name<input id="agencyFirst" required /></label>
+          <label>Last initial<input id="agencyLast" maxlength="1" required /></label>
+          <label>Class period<select id="agencyPeriod" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+        </div>
+        <label>Agency role<select id="agencyRoleSelect" required></select></label>
+        <button class="mission-button primary full" type="submit">Save agency profile</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="mission-modal" id="agencyJoinModal" hidden>
+    <div class="modal-backdrop" data-close-agency-join></div>
+    <section class="modal-panel agency-join-panel" role="dialog" aria-modal="true" aria-labelledby="agencyJoinTitle">
+      <button class="modal-close" type="button" data-close-agency-join aria-label="Close project join">×</button>
+      <p class="eyebrow">Project check-in</p>
+      <h2 id="agencyJoinTitle">Join a Teacher-Launched Project</h2>
+      <p>Open the link your teacher shared, or paste the complete Agency project code below. Team members must choose their own name from the assigned roster.</p>
+      <form id="agencyJoinForm">
+        <label>Project link or code<textarea id="agencyLaunchCode" rows="4" placeholder="Paste the text beginning with FMN-AGENCY-LAUNCH:"></textarea></label>
+        <button class="mission-button secondary full" id="readAgencyLaunch" type="button">Read project assignment</button>
+        <div class="agency-join-preview" id="agencyJoinPreview" hidden></div>
+        <div id="agencyTeamJoinFields" hidden>
+          <label>Choose your assigned name<select id="agencyTeamMemberSelect"></select></label>
+          <p class="agency-join-note">Your class period and Agency role will be set from the teacher’s roster.</p>
+        </div>
+        <div id="agencySoloJoinFields" hidden>
+          <div class="profile-fields">
+            <label>First name<input id="agencyJoinFirst" required /></label>
+            <label>Last initial<input id="agencyJoinLast" maxlength="1" required /></label>
+            <label>Class period<select id="agencyJoinPeriod" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          </div>
+          <label>Choose your Agency role<select id="agencyJoinRole"></select></label>
+        </div>
+        <div class="agency-join-status" id="agencyJoinStatus" role="status" aria-live="polite"></div>
+        <button class="mission-button primary full" id="acceptAgencyLaunch" type="submit" hidden>Join project and open my work order</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="mission-modal" id="agencyProjectModal" hidden>
+    <div class="modal-backdrop" data-close-agency-project></div>
+    <section class="modal-panel agency-project-panel" role="dialog" aria-modal="true" aria-labelledby="agencyProjectTitle">
+      <button class="modal-close" type="button" data-close-agency-project aria-label="Close project">×</button>
+      <div id="agencyProjectFormView">
+        <p class="eyebrow" id="agencyProjectCategory"></p>
+        <h2 id="agencyProjectTitle">Client Project</h2>
+        <p id="agencyProjectSummary"></p>
+        <div class="agency-briefing-card" id="agencyProjectFacts"></div>
+        <div class="briefing-callout"><strong>Quality standard:</strong> Give specific evidence, explain your decisions, connect every recommendation to the client’s target audience, and complete every prompt.</div>
+        <form id="agencyProjectForm">
+          <div class="agency-role-banner" id="agencyRoleBanner"></div>
+          <div id="agencyPromptFields"></div>
+          <label class="integrity-row"><input id="agencyIntegrity" type="checkbox" required /> <span>I completed this work honestly and can explain every decision.</span></label>
+          <button class="mission-button primary full" type="submit">Create client review packet</button>
+        </form>
+      </div>
+      <div id="agencyReceiptView" hidden>
+        <p class="eyebrow">Project complete</p>
+        <h2>Client Review Packet</h2>
+        <p>Copy the teacher submission before closing so it can be pasted into the Fontaine Command review queue. The readable packet is available for client feedback or a portfolio.</p>
+        <pre class="receipt-box" id="agencyReceiptText"></pre>
+        <div class="receipt-actions">
+          <button class="mission-button primary" id="copyAgencyTeacherPacket" type="button">Copy teacher submission</button>
+          <button class="mission-button secondary" id="copyAgencyReceipt" type="button">Copy readable client packet</button>
+          <button class="mission-button secondary" id="reviseAgencyProject" type="button">Revise responses</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="mission-footer">
+    <strong>Wolverine Marketing Agency</strong>
+    <span>Sports &amp; Entertainment Marketing • Fashion Marketing • Entrepreneurship</span>
+  </footer>
+  <script src="agency-project-kit.js"></script>
+  <script src="mission-data-store.js"></script>
+  <script src="mission-autosave.js"></script>
+  <script src="mission-accessibility.js"></script>
+  <script src="wolverine-agency.js"></script>
+</body>
+</html>

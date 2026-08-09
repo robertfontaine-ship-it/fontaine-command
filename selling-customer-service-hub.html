@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Selling and Customer Service missions for the Fontaine Mission Network." />
+  <title>Customer Experience Center | Fontaine Mission Network</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="topic-hubs.css" />
+</head>
+<body class="mission-site">
+  <header class="mission-topbar">
+    <a class="mission-brand" href="topic-hubs.html"><span class="mission-brand-mark">FM</span><span><strong>Fontaine Mission Network</strong><small>Customer Experience Center</small></span></a>
+    <nav class="mission-nav"><a href="topic-hubs.html">Topic Hubs</a><a href="#start">Start Here</a><a href="#missions">Missions</a><a href="#progress">My Progress</a></nav>
+  </header>
+  <main>
+    <section class="mission-hero service-hero">
+      <div class="mission-hero-copy">
+        <p class="eyebrow">Topic Hub 09</p>
+        <h1>Customer Experience Center</h1>
+        <p>Learn the offer, discover customer needs, explain value, earn the sale, solve problems, and build loyalty without pressuring the wrong fit.</p>
+        <div class="hero-tags"><span>Product Knowledge</span><span>Needs Discovery</span><span>Benefits</span><span>Objections</span><span>Service Recovery</span><span>Loyalty</span></div>
+        <a class="mission-button primary" href="#start">Start here</a>
+      </div>
+      <aside class="progress-card" id="progress">
+        <p class="eyebrow">This week</p>
+        <div class="progress-number"><strong id="entryCount">0</strong><span>/ 10 provisional entries</span></div>
+        <div class="entry-meter"><i id="entryMeter"></i></div>
+        <div class="progress-facts"><span><strong id="missionCount">0</strong> missions completed</span><span id="weekLabel"></span></div>
+      </aside>
+    </section>
+
+    <section class="mission-section" id="start">
+      <div class="section-heading"><div><p class="eyebrow">Read this first</p><h2>How to Complete a Mission</h2></div><p>The best interaction solves a real need, gives accurate information, makes the next step easy, and protects the long-term customer relationship.</p></div>
+      <div class="step-grid">
+        <article><span>1</span><h3>Finish required work</h3><p>Submit the Canvas assignment before beginning optional mission work.</p></article>
+        <article><span>2</span><h3>Understand the customer</h3><p>Ask, listen, confirm the need, and avoid assumptions or scripted pressure.</p></article>
+        <article><span>3</span><h3>Connect value</h3><p>Translate accurate features into relevant benefits and a clear next step.</p></article>
+        <article><span>4</span><h3>Submit your packet</h3><p>Copy the teacher review packet. Entries count only after teacher approval.</p></article>
+      </div>
+    </section>
+
+    <section class="mission-section concept-section">
+      <div class="section-heading"><div><p class="eyebrow">Mission briefing</p><h2>Serve the Need, Earn the Relationship</h2></div><p>The complete customer cycle includes knowledge, needs, education, purchase support, recovery, and follow-up.</p></div>
+      <div class="concept-grid">
+        <article><span>01</span><h3>Know the Offer</h3><p>Learn features, benefits, price, availability, policies, limitations, alternatives, and safe product use.</p></article>
+        <article><span>02</span><h3>Discover Needs</h3><p>Use open questions, active listening, observation, and confirmation to understand goals and constraints.</p></article>
+        <article><span>03</span><h3>Educate &amp; Demonstrate</h3><p>Connect the most relevant benefits to the customer’s need and provide honest comparison or proof.</p></article>
+        <article><span>04</span><h3>Resolve &amp; Close</h3><p>Clarify objections, check fit, recommend the next step, and make the transaction accurate and easy.</p></article>
+        <article><span>05</span><h3>Returns &amp; Recovery</h3><p>Listen, acknowledge, verify facts, explain options, solve within policy, escalate when needed, and document the result.</p></article>
+        <article><span>06</span><h3>Follow Up &amp; Retain</h3><p>Confirm satisfaction, keep promises, learn from feedback, and build loyalty through relevant—not random—contact.</p></article>
+      </div>
+      <div class="briefing-callout"><strong>Quality standard:</strong> Use the customer’s stated need, accurate product and policy knowledge, natural dialogue, a specific solution, a clear handoff or next step, and one measure of satisfaction or loyalty.</div>
+    </section>
+
+    <section class="mission-section" id="missions">
+      <div class="section-heading mission-filter-heading"><div><p class="eyebrow">Optional enrichment board</p><h2>Selling &amp; Customer Service Missions</h2></div><div class="mission-filters"><button class="filter-button active" data-filter="All">All</button><button class="filter-button" data-filter="Quick">Quick</button><button class="filter-button" data-filter="Skill">Skill</button><button class="filter-button" data-filter="Boss">Boss</button></div></div>
+      <div class="mission-grid" id="missionGrid"></div>
+    </section>
+
+    <section class="mission-section reward-section">
+      <div class="section-heading"><div><p class="eyebrow">Before you submit</p><h2>Customer Experience Quality Check</h2></div></div>
+      <div class="rules-list"><div><span>1</span><p>Use questions to uncover the real need.</p></div><div><span>2</span><p>Translate accurate features into benefits.</p></div><div><span>3</span><p>Give a specific solution within policy.</p></div><div><span>4</span><p>Close with a next step and follow-up measure.</p></div></div>
+    </section>
+  </main>
+
+  <div class="mission-modal" id="missionModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel">
+      <button class="modal-close" data-close-modal>×</button>
+      <div id="missionFormView">
+        <p class="eyebrow" id="modalLevel"></p><h2 id="modalTitle"></h2><p id="modalBrief"></p>
+        <form id="missionForm">
+          <div class="profile-fields">
+            <label>First name<input required id="studentFirst" /></label>
+            <label>Last initial<input required maxlength="1" id="studentLast" /></label>
+            <label>Class period<select required id="studentPeriod"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          </div>
+          <div id="promptFields"></div>
+          <label class="integrity-check"><input required type="checkbox" id="integrityCheck" /> I finished my assigned work, used accurate product and policy information, and wrote my own customer solution.</label>
+          <button class="mission-button primary full" type="submit">Create mission receipt</button>
+        </form>
+      </div>
+      <div id="receiptView" hidden>
+        <p class="eyebrow">Mission submitted</p><h2>Provisional Entry Receipt</h2><div class="receipt-card" id="receiptCard"></div>
+        <p class="fine-print">Copy the teacher review packet and submit it in the assigned location. Entries count only after approval.</p>
+        <div class="mission-actions"><button class="mission-button primary" id="copyReceipt">Copy receipt</button><button class="mission-button secondary" data-close-modal>Close</button></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="mission-footer"><strong>Customer Experience Center</strong><a href="topic-hubs.html">Return to all departments</a></footer>
+  <script src="mission-data-store.js"></script>
+  <script src="mission-autosave.js"></script>
+  <script src="mission-accessibility.js"></script>
+  <script src="selling-customer-service-hub.js"></script>
+  <script src="mission-hub-engine.js"></script>
+  <script src="student-review-packet.js"></script>
+</body>
+</html>

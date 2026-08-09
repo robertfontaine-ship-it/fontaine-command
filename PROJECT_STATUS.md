@@ -1,10 +1,20 @@
 # Fontaine Command Project Status
 
 ## Current Sprint
-Audit all 180 lessons for instructional quality, classroom usability, rigor, differentiation, assessment evidence, and unnecessary repetition.
+Ship course-specific SEM, Fashion, and Entrepreneurship mastery pathways on top of the Woodside Business World Mission Network while preserving the completed curriculum-quality baseline.
 
 ## Active Branch
-`main`
+`agent/topic-mission-hubs` — draft PR #64
+
+## Course Pathways — Built August 6, 2026
+
+- Sports & Entertainment Marketing 8175, Fashion Marketing 8140, and Entrepreneurship 9093 each have a complete six-gate student pathway.
+- Every gate uses the same independent workflow: learn the focus, complete a matching applied mission, then score at least 4 of 5 (80%) on a mastery check.
+- The system contains 90 course-specific, scenario-based questions with shuffled display order, unlimited retries, saved best scores, and targeted review routes for every missed skill.
+- Passing a gate immediately unlocks the next stage. Failed attempts remain saved without awarding XP or weekly drawing entries.
+- Course selection, attempts, best scores, and passed gates are isolated by Mission ID and included in the portable backup and restore workflow.
+- Pathway progress appears in City Hall, Mission Control, My Mission ID, achievements, and the shared six-destination navigation.
+- Dedicated source, data, integration, accessibility, desktop, phone-width, persistence, remediation, and cross-profile browser QA is green. The complete Mission Network regression suite remains green.
 
 ## Completed
 - SEM-001 through SEM-060, FASH-001 through FASH-060, and ENT-001 through ENT-060 are complete lesson packages across MP1, MP2, and MP3.
@@ -31,11 +41,10 @@ Audit all 180 lessons for instructional quality, classroom usability, rigor, dif
 - Every released lesson remains at least Minor Polish, and the audit permanently blocks any return to Needs Revision or High Priority.
 
 ## Current Priority
-Strengthen SEM-027, the sole lowest remaining lesson at 84, followed by SEM-017 at 87 and SEM-036 at 88.
+Complete PR #64 release validation and prepare the all-green student experience for review and merge.
 
 ## Next
-1. Rebuild SEM-027 to improve target action, success evidence, and exit-ticket rigor.
-2. Strengthen SEM-017 to improve success evidence, exit-ticket rigor, and extension.
-3. Strengthen SEM-036 to name a clearer student product and increase exit-ticket rigor.
-4. Reduce the 41 remaining low-rigor exit-ticket flags, followed by 25 unclear target-action flags and 16 success-evidence flags.
-5. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.
+1. Review and merge draft PR #64 after the final hosted checks report green.
+2. Evaluate an optional no-cost shared-storage layer without weakening offline-first use, student backups, or Canvas as the official gradebook.
+3. Resume the remaining Minor Polish curriculum backlog, beginning with SEM-027, SEM-017, and SEM-036.
+4. Align lessons to the 2026–27 pacing calendar when official scheduling information is available.

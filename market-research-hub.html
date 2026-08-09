@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Market Research Lab missions for the Fontaine Mission Network." />
+  <title>Market Research Lab | Fontaine Mission Network</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="topic-hubs.css" />
+</head>
+<body class="mission-site">
+  <header class="mission-topbar">
+    <a class="mission-brand" href="topic-hubs.html"><span class="mission-brand-mark">FM</span><span><strong>Fontaine Mission Network</strong><small>Market Research Lab</small></span></a>
+    <nav class="mission-nav"><a href="topic-hubs.html">Topic Hubs</a><a href="#start">Start Here</a><a href="#missions">Missions</a><a href="#progress">My Progress</a></nav>
+  </header>
+  <main>
+    <section class="mission-hero research-hero">
+      <div class="mission-hero-copy">
+        <p class="eyebrow">Topic Hub 06</p>
+        <h1>Market Research Lab</h1>
+        <p>Ask sharper questions, collect credible evidence, find meaningful patterns, and turn what customers say and do into better business decisions.</p>
+        <div class="hero-tags"><span>Objectives</span><span>Primary Data</span><span>Secondary Data</span><span>Sampling</span><span>Survey Design</span><span>Insights</span></div>
+        <a class="mission-button primary" href="#start">Start here</a>
+      </div>
+      <aside class="progress-card" id="progress">
+        <p class="eyebrow">This week</p>
+        <div class="progress-number"><strong id="entryCount">0</strong><span>/ 10 provisional entries</span></div>
+        <div class="entry-meter"><i id="entryMeter"></i></div>
+        <div class="progress-facts"><span><strong id="missionCount">0</strong> missions completed</span><span id="weekLabel"></span></div>
+      </aside>
+    </section>
+
+    <section class="mission-section" id="start">
+      <div class="section-heading"><div><p class="eyebrow">Read this first</p><h2>How to Complete a Mission</h2></div><p>Follow the same four-step workflow every time. The mission contains all required evidence and directions.</p></div>
+      <div class="step-grid">
+        <article><span>1</span><h3>Finish required work</h3><p>Submit the Canvas assignment before beginning optional mission work.</p></article>
+        <article><span>2</span><h3>Define the decision</h3><p>Know what the organization must decide before choosing evidence or a method.</p></article>
+        <article><span>3</span><h3>Use evidence honestly</h3><p>Name sources, samples, patterns, and limitations. Never invent missing data.</p></article>
+        <article><span>4</span><h3>Submit your packet</h3><p>Copy the teacher review packet. Entries count only after teacher approval.</p></article>
+      </div>
+    </section>
+
+    <section class="mission-section concept-section">
+      <div class="section-heading"><div><p class="eyebrow">Mission briefing</p><h2>From Question to Decision</h2></div><p>Research is useful only when the evidence answers a focused question and leads to a defensible action.</p></div>
+      <div class="concept-grid">
+        <article><span>01</span><h3>Problem &amp; Objective</h3><p>Translate a business problem into a specific question and the decision the research must support.</p></article>
+        <article><span>02</span><h3>Secondary Research</h3><p>Use credible evidence that already exists, including reports, records, articles, and competitor information.</p></article>
+        <article><span>03</span><h3>Primary Research</h3><p>Collect new evidence through surveys, interviews, focus groups, observation, experiments, or tests.</p></article>
+        <article><span>04</span><h3>Population &amp; Sample</h3><p>Define who matters, who participates, and how the sample could overrepresent or exclude people.</p></article>
+        <article><span>05</span><h3>Instrument Quality</h3><p>Use clear, neutral questions that ask one thing and produce information the organization can use.</p></article>
+        <article><span>06</span><h3>Finding → Insight → Action</h3><p>Report the pattern, explain what it may mean, and recommend a decision supported by evidence.</p></article>
+      </div>
+      <div class="briefing-callout"><strong>Quality standard:</strong> Separate facts from interpretation. Name the evidence, explain the pattern, connect it to a target customer, acknowledge a limitation, and make a specific recommendation.</div>
+    </section>
+
+    <section class="mission-section" id="missions">
+      <div class="section-heading mission-filter-heading"><div><p class="eyebrow">Optional enrichment board</p><h2>Market Research Missions</h2></div><div class="mission-filters"><button class="filter-button active" data-filter="All">All</button><button class="filter-button" data-filter="Quick">Quick</button><button class="filter-button" data-filter="Skill">Skill</button><button class="filter-button" data-filter="Boss">Boss</button></div></div>
+      <div class="mission-grid" id="missionGrid"></div>
+    </section>
+
+    <section class="mission-section reward-section">
+      <div class="section-heading"><div><p class="eyebrow">Before you submit</p><h2>Research Quality Check</h2></div></div>
+      <div class="rules-list"><div><span>1</span><p>State the question and decision.</p></div><div><span>2</span><p>Name the source, method, or sample.</p></div><div><span>3</span><p>Use evidence without inventing data.</p></div><div><span>4</span><p>End with a specific recommendation.</p></div></div>
+    </section>
+  </main>
+
+  <div class="mission-modal" id="missionModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel">
+      <button class="modal-close" data-close-modal>×</button>
+      <div id="missionFormView">
+        <p class="eyebrow" id="modalLevel"></p><h2 id="modalTitle"></h2><p id="modalBrief"></p>
+        <form id="missionForm">
+          <div class="profile-fields">
+            <label>First name<input required id="studentFirst" /></label>
+            <label>Last initial<input required maxlength="1" id="studentLast" /></label>
+            <label>Class period<select required id="studentPeriod"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          </div>
+          <div id="promptFields"></div>
+          <label class="integrity-check"><input required type="checkbox" id="integrityCheck" /> I finished my assigned work, used the provided evidence honestly, and wrote my own responses.</label>
+          <button class="mission-button primary full" type="submit">Create mission receipt</button>
+        </form>
+      </div>
+      <div id="receiptView" hidden>
+        <p class="eyebrow">Mission submitted</p><h2>Provisional Entry Receipt</h2><div class="receipt-card" id="receiptCard"></div>
+        <p class="fine-print">Copy the teacher review packet and submit it in the assigned location. Entries count only after approval.</p>
+        <div class="mission-actions"><button class="mission-button primary" id="copyReceipt">Copy receipt</button><button class="mission-button secondary" data-close-modal>Close</button></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="mission-footer"><strong>Market Research Lab</strong><a href="topic-hubs.html">Return to all departments</a></footer>
+  <script src="mission-data-store.js"></script>
+  <script src="mission-autosave.js"></script>
+  <script src="mission-accessibility.js"></script>
+  <script src="market-research-hub.js"></script>
+  <script src="mission-hub-engine.js"></script>
+  <script src="student-review-packet.js"></script>
+</body>
+</html>

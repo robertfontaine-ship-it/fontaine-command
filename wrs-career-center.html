@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="WRS Career Center: 22 Virginia Workplace Readiness competency missions and a zombie hallway transit drill." />
+  <title>WRS Career Center | Woodside Business World</title>
+  <link rel="stylesheet" href="topic-hubs.css" />
+  <link rel="stylesheet" href="wrs-career-center.css" />
+</head>
+<body class="mission-site wrs-site">
+  <header class="mission-topbar">
+    <a class="mission-brand" href="business-world.html" aria-label="Woodside Business World City Hall">
+      <span class="mission-brand-mark">WRS</span>
+      <span><strong>WRS Career Center</strong><small>Workplace Readiness Quest</small></span>
+    </a>
+    <nav class="mission-nav" aria-label="Primary navigation">
+      <a href="business-world.html">City Hall</a>
+      <a href="mission-control.html">Mission Control</a>
+      <a href="#zones">Career Zones</a>
+      <a href="#transit">Zombie Transit</a>
+      <a href="#missions">Missions</a>
+      <a href="student-mission-id.html">Mission ID</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="mission-hero wrs-hero">
+      <div class="mission-hero-copy">
+        <p class="eyebrow">Career Center • Outbreak Protocol Active</p>
+        <h1>Work Ready.<br />Pressure Tested.</h1>
+        <p>Complete realistic workplace missions, prove all 22 Virginia Workplace Readiness competencies, and survive the hallways between training zones.</p>
+        <div class="hero-tags"><span>22 Competencies</span><span>Independent Missions</span><span>Keyboard + Touch</span><span>Shared Mission ID</span></div>
+        <div class="mission-actions">
+          <a class="mission-button primary" href="#zones">Enter Career Center</a>
+          <a class="mission-button secondary" href="#transit">Run Transit Drill</a>
+        </div>
+      </div>
+      <aside class="progress-card" id="progress">
+        <p class="eyebrow">This week</p>
+        <div class="progress-number"><strong id="entryCount">0</strong><span>/ 10 provisional entries</span></div>
+        <div class="entry-meter"><i id="entryMeter"></i></div>
+        <div class="progress-facts"><span><strong id="missionCount">0</strong> competencies completed</span><span id="weekLabel"></span></div>
+      </aside>
+    </section>
+
+    <section class="mission-section" id="zones">
+      <div class="section-heading">
+        <div><p class="eyebrow">Career Center map</p><h2>Five zones. Twenty-two workplace skills.</h2></div>
+        <p>Choose a zone based on the skill you need to strengthen. Missions can be completed in any order.</p>
+      </div>
+      <div class="wrs-zone-grid">
+        <article data-zone="survival"><span class="zone-number">01</span><div class="zone-icon">🛡️</div><h3>Survival Basics</h3><p>Integrity, work ethic, professionalism, time management, and workplace safety.</p><strong>WRS 04, 05, 14, 20, 22</strong></article>
+        <article data-zone="communication"><span class="zone-number">02</span><div class="zone-icon">📡</div><h3>Communication Wing</h3><p>Listening, speaking, reading, writing, information literacy, and security.</p><strong>WRS 07, 15, 16, 21</strong></article>
+        <article data-zone="team"><span class="zone-number">03</span><div class="zone-icon">🤝</div><h3>Team Operations</h3><p>Conflict resolution, diversity, customer service, teamwork, and big-picture thinking.</p><strong>WRS 06, 08, 09, 10, 11</strong></article>
+        <article data-zone="growth"><span class="zone-number">04</span><div class="zone-icon">📈</div><h3>Career Growth Lab</h3><p>Creativity, critical thinking, initiative, life management, and adaptability.</p><strong>WRS 01, 02, 03, 12, 13</strong></article>
+        <article data-zone="technology"><span class="zone-number">05</span><div class="zone-icon">🧰</div><h3>Tech &amp; Numbers Bay</h3><p>Information technology, job-specific tools, and workplace mathematics.</p><strong>WRS 17, 18, 19</strong></article>
+      </div>
+    </section>
+
+    <section class="mission-section transit-section" id="transit">
+      <div class="section-heading">
+        <div><p class="eyebrow">Optional arcade interstitial</p><h2>Zombie Hallway Transit Drill</h2></div>
+        <p>Dodge hazards for 20 seconds while moving between career zones. The drill is for fun and does not award entries.</p>
+      </div>
+      <div class="transit-shell">
+        <div class="transit-hud"><span>Time <strong id="transitTime">20</strong></span><span>Distance <strong id="transitScore">0</strong></span><span>Best <strong id="transitBest">0</strong></span></div>
+        <div class="transit-stage" id="transitStage" tabindex="0" role="application" aria-label="Zombie hallway transit drill. Use left and right arrow keys or the move buttons to avoid obstacles.">
+          <div class="hallway-lines" aria-hidden="true"></div>
+          <div class="runner" id="transitRunner" aria-label="Student runner">🏃</div>
+          <div id="transitObstacles" aria-hidden="true"></div>
+          <div class="transit-message" id="transitMessage"><strong>Hallway Clear—for now.</strong><span>Press Start, then move left or right.</span></div>
+        </div>
+        <div class="transit-controls">
+          <button type="button" id="transitLeft" aria-label="Move left">← Move Left</button>
+          <button type="button" id="transitStart">Start 20-Second Run</button>
+          <button type="button" id="transitRight" aria-label="Move right">Move Right →</button>
+        </div>
+        <p class="fine-print">Controls: Left/Right arrows, A/D, or the on-screen buttons. Collisions reduce distance but do not affect academic progress.</p>
+      </div>
+    </section>
+
+    <section class="mission-section how-it-works">
+      <div class="section-heading"><div><p class="eyebrow">Mission protocol</p><h2>How WRS Quest Works</h2></div><p>The same four steps apply to all 22 competency missions.</p></div>
+      <div class="step-grid">
+        <article><span>1</span><h3>Finish assigned work</h3><p>Required class work must be complete before starting an optional mission.</p></article>
+        <article><span>2</span><h3>Choose a competency</h3><p>Select Quick, Skill, or Boss based on time and the workplace skill you need.</p></article>
+        <article><span>3</span><h3>Make the decision</h3><p>Use evidence, workplace reasoning, exact language, calculations, or procedures.</p></article>
+        <article><span>4</span><h3>Submit the receipt</h3><p>Show or copy the receipt. Entries count only after teacher approval.</p></article>
+      </div>
+    </section>
+
+    <section class="mission-section" id="missions">
+      <div class="section-heading mission-filter-heading">
+        <div><p class="eyebrow">Workplace Readiness mission board</p><h2>22 Competency Missions</h2></div>
+        <div class="mission-filters">
+          <button class="filter-button active" data-filter="All" type="button">All</button>
+          <button class="filter-button" data-filter="Quick" type="button">Quick</button>
+          <button class="filter-button" data-filter="Skill" type="button">Skill</button>
+          <button class="filter-button" data-filter="Boss" type="button">Boss</button>
+        </div>
+      </div>
+      <div class="mission-grid" id="missionGrid"></div>
+    </section>
+
+    <section class="mission-section reward-section">
+      <div class="section-heading"><div><p class="eyebrow">Before submitting</p><h2>Work-Ready Quality Check</h2></div></div>
+      <div class="rules-list">
+        <div><span>1</span><p>Respond to the exact workplace situation, not a generic version.</p></div>
+        <div><span>2</span><p>Explain why the decision is effective, fair, safe, or professional.</p></div>
+        <div><span>3</span><p>Use exact words, steps, calculations, or evidence when requested.</p></div>
+        <div><span>4</span><p>State the next action and how success will be checked.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mission-modal" id="missionModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close mission">×</button>
+      <div id="missionFormView">
+        <p class="eyebrow" id="modalLevel"></p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalBrief"></p>
+        <form id="missionForm">
+          <div class="profile-fields">
+            <label>First name<input required id="studentFirst" /></label>
+            <label>Last initial<input required maxlength="1" id="studentLast" /></label>
+            <label>Class period<select required id="studentPeriod"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          </div>
+          <div id="promptFields"></div>
+          <label class="integrity-check"><input required type="checkbox" id="integrityCheck" /> I finished my assigned work and these responses are my own.</label>
+          <button class="mission-button primary full" type="submit">Create mission receipt</button>
+        </form>
+      </div>
+      <div id="receiptView" hidden>
+        <p class="eyebrow">Competency submitted</p>
+        <h2>Provisional Entry Receipt</h2>
+        <div class="receipt-card" id="receiptCard"></div>
+        <p class="fine-print">Copy or show this receipt to your teacher. Entries count only after approval.</p>
+        <div class="mission-actions"><button class="mission-button primary" id="copyReceipt" type="button">Copy receipt</button><button class="mission-button secondary" data-close-modal type="button">Close</button></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="mission-footer"><strong>WRS Career Center</strong><a href="business-world.html">Return to City Hall</a></footer>
+  <script src="mission-data-store.js"></script>
+  <script src="mission-autosave.js"></script>
+  <script src="mission-accessibility.js"></script>
+  <script src="wrs-career-center.js"></script>
+  <script src="mission-hub-engine.js"></script>
+  <script src="student-review-packet.js"></script>
+  <script src="wrs-career-center-game.js"></script>
+</body>
+</html>

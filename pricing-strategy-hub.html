@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Pricing Strategy missions for the Fontaine Mission Network." />
+  <title>Pricing Strategy Center | Fontaine Mission Network</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="topic-hubs.css" />
+</head>
+<body class="mission-site">
+  <header class="mission-topbar">
+    <a class="mission-brand" href="topic-hubs.html"><span class="mission-brand-mark">FM</span><span><strong>Fontaine Mission Network</strong><small>Pricing Strategy Center</small></span></a>
+    <nav class="mission-nav"><a href="topic-hubs.html">Topic Hubs</a><a href="#start">Start Here</a><a href="#missions">Missions</a><a href="#progress">My Progress</a></nav>
+  </header>
+  <main>
+    <section class="mission-hero pricing-hero">
+      <div class="mission-hero-copy">
+        <p class="eyebrow">Topic Hub 07</p>
+        <h1>Pricing Strategy Center</h1>
+        <p>Use costs, customer value, competition, demand, and business goals to set prices that customers understand and organizations can sustain.</p>
+        <div class="hero-tags"><span>Costs</span><span>Break-Even</span><span>Customer Value</span><span>Competition</span><span>Revenue</span><span>Psychology</span></div>
+        <a class="mission-button primary" href="#start">Start here</a>
+      </div>
+      <aside class="progress-card" id="progress">
+        <p class="eyebrow">This week</p>
+        <div class="progress-number"><strong id="entryCount">0</strong><span>/ 10 provisional entries</span></div>
+        <div class="entry-meter"><i id="entryMeter"></i></div>
+        <div class="progress-facts"><span><strong id="missionCount">0</strong> missions completed</span><span id="weekLabel"></span></div>
+      </aside>
+    </section>
+
+    <section class="mission-section" id="start">
+      <div class="section-heading"><div><p class="eyebrow">Read this first</p><h2>How to Complete a Mission</h2></div><p>Pricing is a business decision, not a guess. Show the numbers, explain the customer value, and name the tradeoff.</p></div>
+      <div class="step-grid">
+        <article><span>1</span><h3>Finish required work</h3><p>Submit the Canvas assignment before beginning optional mission work.</p></article>
+        <article><span>2</span><h3>Define the goal</h3><p>Name the customer, offer, and goal before choosing a pricing method.</p></article>
+        <article><span>3</span><h3>Show the evidence</h3><p>Use costs, calculations, competitor evidence, or customer-value reasoning.</p></article>
+        <article><span>4</span><h3>Submit your packet</h3><p>Copy the teacher review packet. Entries count only after teacher approval.</p></article>
+      </div>
+    </section>
+
+    <section class="mission-section concept-section">
+      <div class="section-heading"><div><p class="eyebrow">Mission briefing</p><h2>Price Has More Than One Job</h2></div><p>A strong price covers the business, fits the market position, communicates value, and supports a measurable goal.</p></div>
+      <div class="concept-grid">
+        <article><span>01</span><h3>Objectives</h3><p>Choose the job of the price: profit, sales volume, market share, survival, customer trial, or brand image.</p></article>
+        <article><span>02</span><h3>Costs &amp; Margin</h3><p>Separate fixed and variable costs. Contribution per unit equals price minus variable cost per unit.</p></article>
+        <article><span>03</span><h3>Break-Even</h3><p>Break-even units = fixed costs ÷ contribution per unit. Profit begins only after that volume is reached.</p></article>
+        <article><span>04</span><h3>Customer Value</h3><p>Customers compare the total benefits, effort, risk, alternatives, and price—not cost alone.</p></article>
+        <article><span>05</span><h3>Market Strategy</h3><p>Cost-plus, competitive, value-based, penetration, skimming, premium, bundle, and dynamic pricing solve different problems.</p></article>
+        <article><span>06</span><h3>Price Presentation</h3><p>Reference prices, tiers, bundles, endings, fees, and discounts shape perception. The complete price must stay clear.</p></article>
+      </div>
+      <div class="briefing-callout"><strong>Quality standard:</strong> State a specific price, show accurate math when numbers are provided, connect the choice to a target customer and objective, compare at least one alternative, and name a risk or adjustment rule.</div>
+    </section>
+
+    <section class="mission-section" id="missions">
+      <div class="section-heading mission-filter-heading"><div><p class="eyebrow">Optional enrichment board</p><h2>Pricing Strategy Missions</h2></div><div class="mission-filters"><button class="filter-button active" data-filter="All">All</button><button class="filter-button" data-filter="Quick">Quick</button><button class="filter-button" data-filter="Skill">Skill</button><button class="filter-button" data-filter="Boss">Boss</button></div></div>
+      <div class="mission-grid" id="missionGrid"></div>
+    </section>
+
+    <section class="mission-section reward-section">
+      <div class="section-heading"><div><p class="eyebrow">Before you submit</p><h2>Pricing Quality Check</h2></div></div>
+      <div class="rules-list"><div><span>1</span><p>Name the pricing objective and target customer.</p></div><div><span>2</span><p>Show the calculation or evidence behind the price.</p></div><div><span>3</span><p>Explain the value and competitive position.</p></div><div><span>4</span><p>Name a risk, metric, and adjustment rule.</p></div></div>
+    </section>
+  </main>
+
+  <div class="mission-modal" id="missionModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel">
+      <button class="modal-close" data-close-modal>×</button>
+      <div id="missionFormView">
+        <p class="eyebrow" id="modalLevel"></p><h2 id="modalTitle"></h2><p id="modalBrief"></p>
+        <form id="missionForm">
+          <div class="profile-fields">
+            <label>First name<input required id="studentFirst" /></label>
+            <label>Last initial<input required maxlength="1" id="studentLast" /></label>
+            <label>Class period<select required id="studentPeriod"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          </div>
+          <div id="promptFields"></div>
+          <label class="integrity-check"><input required type="checkbox" id="integrityCheck" /> I finished my assigned work, showed my calculations or evidence, and wrote my own pricing reasoning.</label>
+          <button class="mission-button primary full" type="submit">Create mission receipt</button>
+        </form>
+      </div>
+      <div id="receiptView" hidden>
+        <p class="eyebrow">Mission submitted</p><h2>Provisional Entry Receipt</h2><div class="receipt-card" id="receiptCard"></div>
+        <p class="fine-print">Copy the teacher review packet and submit it in the assigned location. Entries count only after approval.</p>
+        <div class="mission-actions"><button class="mission-button primary" id="copyReceipt">Copy receipt</button><button class="mission-button secondary" data-close-modal>Close</button></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="mission-footer"><strong>Pricing Strategy Center</strong><a href="topic-hubs.html">Return to all departments</a></footer>
+  <script src="mission-data-store.js"></script>
+  <script src="mission-autosave.js"></script>
+  <script src="mission-accessibility.js"></script>
+  <script src="pricing-strategy-hub.js"></script>
+  <script src="mission-hub-engine.js"></script>
+  <script src="student-review-packet.js"></script>
+</body>
+</html>

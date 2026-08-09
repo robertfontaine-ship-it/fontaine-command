@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="description" content="Woodside Business World — the student mission hub for A202." />
+  <title>Woodside Business World</title>
+  <link rel="stylesheet" href="business-world.css" />
+</head>
+<body>
+  <a class="skip-link" href="#screen">Skip to main content</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <button class="brand-button" data-action="go-home" aria-label="Return to City Hall">
+        <span class="brand-mark">W</span>
+        <span>
+          <strong>WOODSIDE BUSINESS WORLD</strong>
+          <small>A202 Headquarters</small>
+        </span>
+      </button>
+      <div class="topbar-actions">
+        <button class="icon-button" data-action="toggle-sound" aria-label="Toggle sound effects" title="Sound effects"><span data-sound-icon>🔊</span></button>
+        <button class="profile-chip" data-action="open-profile" aria-label="Open employee profile">
+          <span class="profile-avatar" data-profile-avatar>FI</span>
+          <span><strong data-profile-name>New Hire</strong><small data-profile-rank>Marketing Rookie</small></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="screen" tabindex="-1"></main>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <button type="button" data-nav="home" class="active" aria-current="page"><span>🏛️</span>City Hall</button>
+      <button type="button" data-nav="missions"><span>📋</span>Missions</button>
+      <button type="button" data-nav="passport"><span>🛂</span>Passport</button>
+      <button type="button" data-nav="achievements"><span>🏆</span>Awards</button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modal-root"></div>
+  <script src="mission-data-store.js"></script>
+  <script src="course-pathways-data.js"></script>
+  <script src="business-world.js"></script>
+  <script src="startup-street-expansion.js"></script>
+  <script src="wrs-career-center-expansion.js"></script>
+  <script src="course-pathways-expansion.js"></script>
+</body>
+</html>
