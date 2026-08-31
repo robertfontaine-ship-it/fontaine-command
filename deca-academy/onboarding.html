@@ -14,29 +14,9 @@ frame.addEventListener('load',()=>{
   try{
     const w=frame.contentWindow,d=frame.contentDocument;
     if(!w.location.pathname.endsWith('/deca-academy/onboarding-core.html')){window.location.href=w.location.href;return}
-    const style=d.createElement('style');
-    style.textContent='.hero .paperCue{color:#5f4700}.hero .paperCue .checkpointHint{color:#765000}';
-    d.head.appendChild(style);
-    const patch=d.createElement('script');
-    patch.textContent=`saveIdentity=function(){
-      let first=document.getElementById('firstName').value.trim();
-      let last=document.getElementById('lastInitial').value.trim().toUpperCase();
-      let period=document.getElementById('period').value;
-      let selected=document.querySelector('[data-q="course"] .choice.sel');
-      let course=(selected&&selected.dataset.v)||answers.course||'';
-      if(!first){alert('Enter your first name.');return}
-      if(last.length!==1){alert('Enter one letter for your last initial.');return}
-      if(!period){alert('Choose your class period.');return}
-      if(!course){alert('Choose your class.');return}
-      answers.course=course;
-      let s=readState();
-      s.student={firstName:first,lastInitial:last,period,course,teacher:teachers[course]};
-      s.cat=course;
-      writeState(s);
-      go(2)
-    }`;
-    d.head.appendChild(patch);
-  }catch(err){console.error('DECA onboarding patch failed',err)}
+    const css=d.createElement('link');css.rel='stylesheet';css.href='onboarding-upgrade.css?v=2';d.head.appendChild(css);
+    const js=d.createElement('script');js.src='onboarding-upgrade.js?v=2';d.body.appendChild(js);
+  }catch(err){console.error('DECA onboarding upgrade failed',err)}
 });
 </script>
 </body>
