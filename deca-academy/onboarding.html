@@ -14,8 +14,12 @@ frame.addEventListener('load',()=>{
   try{
     const w=frame.contentWindow,d=frame.contentDocument;
     if(!w.location.pathname.endsWith('/deca-academy/onboarding-core.html')){window.location.href=w.location.href;return}
-    const css=d.createElement('link');css.rel='stylesheet';css.href='onboarding-upgrade.css?v=2';d.head.appendChild(css);
-    const js=d.createElement('script');js.src='onboarding-upgrade.js?v=2';d.body.appendChild(js);
+    const css=d.createElement('link');css.rel='stylesheet';css.href='onboarding-upgrade.css?v=3';d.head.appendChild(css);
+    const js=d.createElement('script');js.src='onboarding-upgrade.js?v=3';
+    js.onload=()=>{
+      const classroom=d.createElement('script');classroom.src='onboarding-classroom.js?v=1';d.body.appendChild(classroom);
+    };
+    d.body.appendChild(js);
   }catch(err){console.error('DECA onboarding upgrade failed',err)}
 });
 </script>
